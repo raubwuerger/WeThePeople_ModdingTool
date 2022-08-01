@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:WeThePeople_ModdingTool"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel Margin="10" HorizontalAlignment="Left">
+        <ComboBox Width="200" x:Name="ComboBox_Yield">
+            <ComboBoxItem IsSelected="true">YIELD_FOOD</ComboBoxItem>
+            <ComboBoxItem>YIELD_TIMBER</ComboBoxItem>
+            <ComboBoxItem>YIELD_HARDWOOD</ComboBoxItem>
+        </ComboBox>
+        <ComboBox Width="200" x:Name="ComboBox_Harbour">
+            <ComboBoxItem IsSelected="true">Europe</ComboBoxItem>
+            <ComboBoxItem>Africa</ComboBoxItem>
+            <ComboBoxItem>Port Royal</ComboBoxItem>
+        </ComboBox>
         <Button Width="160" Height="80">Ich bin ein Druckknopf!</Button>
-    </Grid>
+    </StackPanel>
 </Window>
