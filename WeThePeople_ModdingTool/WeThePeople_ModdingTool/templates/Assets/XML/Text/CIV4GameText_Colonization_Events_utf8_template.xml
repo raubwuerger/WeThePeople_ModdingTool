@@ -1,0 +1,25 @@
+    <TEXT>
+        <Tag>TXT_KEY_WORLD_EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Tag>
+        <English>The race to dominate the market in the colonies for [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa has begun.</English>
+        <German>Das Rennen zur Beherrschung des Marktes in den Kolonien für [COLOR_FONT_GOLD]Handelsgüter[COLOR_REVERT] aus Afrika hat begonnen.</German>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_WORLD_EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Tag>
+        <English>We have managed to become the dominant leader in the trade of [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa.</English>
+        <German>Uns ist es gelungen der dominante Marktführer für den Handel mit afrikanischen [COLOR_FONT_GOLD]Handelsgütern[COLOR_REVERT] zu werden.</German>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_EVENT_TRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Tag>
+        <English>Our colonists are thrilled with the first shipments of [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa.</English>
+        <German>Die Bürger unserer Kolonien sind vom ersten Handel mit afrikanischen [COLOR_FONT_GOLD]Handelsgütern[COLOR_REVERT] begeistert.</German>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_FAILED</Tag>
+        <English>Another colonial power first succeeded in cornering the market in the colonies for [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa.</English>
+        <German>Einer anderen Kolonialmacht ist es zuerst gelungen den Markt in den Kolonien für afrikanische [COLOR_FONT_GOLD]Handelsgüter[COLOR_REVERT] zu beherrschen.</German>
+    </TEXT>
+    <TEXT>
+        <Tag>TXT_KEY_EVENT_TRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Tag>
+        <English>We have managed to become the dominant leader in the trade of [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa.</English>
+        <German>Uns ist es gelungen der dominante Marktführer für den Handel mit afrikanischen [COLOR_FONT_GOLD]Handelsgütern[COLOR_REVERT] zu werden.</German>
+    </TEXT>
