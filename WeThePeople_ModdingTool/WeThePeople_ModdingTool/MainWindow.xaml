@@ -17,6 +17,6 @@
             <ComboBoxItem>Africa</ComboBoxItem>
             <ComboBoxItem>Port Royal</ComboBoxItem>
         </ComboBox>
-        <Button Width="160" Height="80">Ich bin ein Druckknopf!</Button>
+        <Button Width="160" Height="80">Create</Button>
     </StackPanel>
 </Window>

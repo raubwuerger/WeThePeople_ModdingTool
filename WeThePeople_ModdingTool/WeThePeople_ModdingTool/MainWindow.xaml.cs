@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace WeThePeople_ModdingTool
         public MainWindow()
         {
             InitializeComponent();
+            IO.XMLFileParser parser = new IO.XMLFileParser();
+            String currentDir = Directory.GetCurrentDirectory();
+            currentDir += "..\\..\\..\\templates\\Assets\\XML\\Events\\CIV4EventInfos_template.xml";
+            Console.WriteLine(Directory.GetCurrentDirectory());
+            parser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\XML\\Events\\CIV4EventInfos_template.xml");
         }
     }
 }

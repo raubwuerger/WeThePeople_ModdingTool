@@ -1,3 +1,4 @@
+<root>
     <TEXT>
         <Tag>TXT_KEY_WORLD_EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Tag>
         <English>The race to dominate the market in the colonies for [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa has begun.</English>
@@ -23,3 +24,4 @@
         <English>We have managed to become the dominant leader in the trade of [COLOR_FONT_GOLD]trading goods[COLOR_REVERT] from Africa.</English>
         <German>Uns ist es gelungen der dominante Marktführer für den Handel mit afrikanischen [COLOR_FONT_GOLD]Handelsgütern[COLOR_REVERT] zu werden.</German>
     </TEXT>
+</root>

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml;
 
 namespace WeThePeople_ModdingTool
 {
@@ -14,4 +15,5 @@ namespace WeThePeople_ModdingTool
     public partial class App : Application
     {
     }
+
 }
