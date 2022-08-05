@@ -16,7 +16,7 @@ namespace WeThePeople_ModdingTool.IO
                 String nodeName;
                 foreach (XmlNode node in doc.DocumentElement.ChildNodes)
                 {
-                    nodeName = node.InnerText; //or loop through its children as well
+                    nodeName = node.InnerText;
                 }
                 return doc;
             }
