@@ -24,6 +24,16 @@ namespace WeThePeople_ModdingTool
         public MainWindow()
         {
             InitializeComponent();
+            if( false == MainSettingsLoader.Instance.Init() )
+            {
+                string messageBoxText = "Initialization failed! See log file!";
+                string caption = "Initialization failed!";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
         }
     }
 }
