@@ -1,23 +1,23 @@
 <EventInfo>
-	<Type>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Type>
-	<Description>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_START</Description>
+	<Type>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
+	<Description>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_DONE</Description>
 	<LocalInfoText/>
 	<WorldNewsTexts/>
 	<OtherPlayerPopup/>
-	<QuestFailText>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_FAILED</QuestFailText>
-	<bQuest>1</bQuest>
-	<bGlobal>0</bGlobal>
+	<QuestFailText/>
+	<bQuest>0</bQuest>
+	<bGlobal>1</bGlobal>
 	<bTeam>0</bTeam>
 	<bPickCity>1</bPickCity>
 	<bPickOtherPlayerCity>0</bPickOtherPlayerCity>
 	<bDeclareWar>0</bDeclareWar>
-	<iGold>0</iGold>
+	<iGold>$GOLD$</iGold>
 	<bGoldToPlayer>0</bGoldToPlayer>
 	<iRandomGold>0</iRandomGold>
 	<iCulture>0</iCulture>
 	<iHealth>0</iHealth>
-	<UnitClass>NONE</UnitClass>
-	<iNumFreeUnits>0</iNumFreeUnits>
+	<UnitClass>$UNIT_CLASS$</UnitClass>
+	<iNumFreeUnits>$UNIT_COUNT$</iNumFreeUnits>
 	<bDisbandUnit>0</bDisbandUnit>
 	<iUnitExperience>0</iUnitExperience>
 	<iUnitImmobileTurns>0</iUnitImmobileTurns>
@@ -47,15 +47,20 @@
 	<iPopulationChange>0</iPopulationChange>
 	<AdditionalEvents/>
 	<EventTimes/>
-	<ClearEvents/>
-	<PythonCallback/>
+	<ClearEvents>
+		<EventChance>
+			<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+			<iEventChance>100</iEventChance>
+		</EventChance>
+	</ClearEvents>
+	<PythonCallback>applyQuestDone$NATION_NORMAL$TradePriceAndAttitude</PythonCallback>
 	<PythonExpireCheck/>
 	<PythonCanDo/>
-	<PythonHelp>getHelpQuestStart$NATION_NORMAL$TradeYieldAndAmount</PythonHelp>
+	<PythonHelp>getHelpQuestDone$NATION_NORMAL$TradePriceAndAttitude</PythonHelp>
 	<Button>,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 	<iAIValue>800</iAIValue>
-	<iGenericParameter1>$TRIGGER_START$</iGenericParameter1>
+	<iGenericParameter1>5000</iGenericParameter1>
 	<iGenericParameter2>$YIELD$</iGenericParameter2>
-	<iGenericParameter3>$TRIGGER_DONE$</iGenericParameter3>
-	<iGenericParameter4>0</iGenericParameter4>
+	<iGenericParameter3>$KING_RELATION$</iGenericParameter3>
+	<iGenericParameter4>$YIELD_PRICE$</iGenericParameter4>
 </EventInfo>

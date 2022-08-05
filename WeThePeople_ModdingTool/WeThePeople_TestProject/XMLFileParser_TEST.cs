@@ -42,5 +42,10 @@ namespace WeThePeople_TestProject
             Assert.IsNull(xmlFileParser.LoadFile("C:\\DieseDateiGibtEsNicht.xml"));
         }
 
+        [Test]
+        public void ValidXMLFileTest()
+        {
+            Assert.IsNull(xmlFileParser.LoadFile("C:\\DieseDateiGibtEsNicht.xml"));
+        }
     }
 }

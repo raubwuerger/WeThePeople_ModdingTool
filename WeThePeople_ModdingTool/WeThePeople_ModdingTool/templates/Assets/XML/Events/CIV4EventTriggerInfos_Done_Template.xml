@@ -1,17 +1,17 @@
 <EventTriggerInfo>
-	<Type>EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Type>
+	<Type>EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
 	<WorldNewsTexts>
-		<Text>TXT_KEY_WORLD_EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Text>
+		<Text>TXT_KEY_WORLD_EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
 	</WorldNewsTexts>
 	<TriggerTexts>
 		<TriggerText>
-			<Text>TXT_KEY_EVENT_TRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Text>
+			<Text>TXT_KEY_EVENT_TRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
 			<Era>NONE</Era>
 		</TriggerText>
 	</TriggerTexts>
 	<bTutorial>0</bTutorial>
 	<bSinglePlayer>0</bSinglePlayer>
-	<EventArt>,Art/EventImages/quest_image1.dds</EventArt>
+	<EventArt>,Art/EventImages/Event_Image1.dds</EventArt>
 	<iPercentGamesActive>100</iPercentGamesActive>
 	<iWeight>-1</iWeight>
 	<bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
@@ -19,7 +19,7 @@
 	<eCivic>NONE</eCivic>
 	<iMinTreasury>0</iMinTreasury>
 	<iMinPopulation>0</iMinPopulation>
-	<iMaxPopulation>-1</iMaxPopulation>
+	<iMaxPopulation>0</iMaxPopulation>
 	<iMinMapLandmass>0</iMinMapLandmass>
 	<iMinOurLandmass>0</iMinOurLandmass>
 	<iMaxOurLandmass>-1</iMaxOurLandmass>
@@ -35,17 +35,21 @@
 	<iNumBuildings>0</iNumBuildings>
 	<iNumBuildingsGlobal>0</iNumBuildingsGlobal>
 	<iNumPlotsRequired>0</iNumPlotsRequired>
-	<bOwnPlot>0</bOwnPlot>
+	<bOwnPlot>1</bOwnPlot>
 	<ePlotType>NONE</ePlotType>
 	<FeaturesRequired/>
 	<TerrainsRequired/>
 	<ImprovementsRequired/>
 	<RoutesRequired/>
 	<Events>
-		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Event>
+		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE1</Event>
+		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE2</Event>
 	</Events>
-	<PrereqEvents/>
-	<bPrereqEventPlot>0</bPrereqEventPlot>
+	<PrereqEvents>
+		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+	</PrereqEvents>
+	<bPrereqEventPlot>1</bPrereqEventPlot>
 	<bRecurring>0</bRecurring>
 	<bTeam>0</bTeam>
 	<bGlobal>1</bGlobal>
@@ -61,7 +65,7 @@
 	<bFrontPopup>0</bFrontPopup>
 	<iCityFoodWeight>0</iCityFoodWeight>
 	<PythonCanDo/>
-	<PythonCanDoCity>canTrigger$NATION_NORMAL$TradeQuest_$YIELD$_START</PythonCanDoCity>
+	<PythonCanDoCity>canTrigger$NATION_NORMAL$TradeQuest_$YIELD$_DONE</PythonCanDoCity>
 	<PythonCanDoUnit/>
 	<PythonCallback/>
 </EventTriggerInfo>

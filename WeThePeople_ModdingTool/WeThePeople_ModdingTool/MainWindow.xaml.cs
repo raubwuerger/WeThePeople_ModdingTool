@@ -24,18 +24,6 @@ namespace WeThePeople_ModdingTool
         public MainWindow()
         {
             InitializeComponent();
-            IO.XMLFileParser parser = new IO.XMLFileParser();
-            String currentDir = Directory.GetCurrentDirectory();
-            currentDir += "..\\..\\..\\templates\\Assets\\XML\\Events\\CIV4EventInfos_template.xml";
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            String xmlFile = "D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\XML\\Events\\CIV4EventInfos_template.xml";
-
-            if( xmlFile.Equals(currentDir) )
-            {
-                int areEqual;
-            }
-            parser.LoadFile(currentDir);
-            parser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\XML\\Events\\CIV4EventInfos_template.xml");
         }
     }
 }
