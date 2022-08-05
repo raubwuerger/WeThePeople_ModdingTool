@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace WeThePeople_ModdingTool.IO
 {
-    public class XMLFileParser
+    public class XMLFileLoader
     {
         public XmlDocument LoadFile( string fileName )
         {

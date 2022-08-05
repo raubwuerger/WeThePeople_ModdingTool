@@ -5,11 +5,11 @@ namespace WeThePeople_TestProject
 {
     public class Tests
     {
-        WeThePeople_ModdingTool.IO.XMLFileParser xmlFileParser;
+        WeThePeople_ModdingTool.IO.XMLFileLoader xmlFileParser;
         [SetUp]
         public void Setup()
         {
-            xmlFileParser = new WeThePeople_ModdingTool.IO.XMLFileParser();
+            xmlFileParser = new WeThePeople_ModdingTool.IO.XMLFileLoader();
         }
 
         [Test]
