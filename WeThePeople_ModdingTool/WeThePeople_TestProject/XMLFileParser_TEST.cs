@@ -37,15 +37,21 @@ namespace WeThePeople_TestProject
         }
 
         [Test]
+        public void NotAnXMLFileTest()
+        {
+            Assert.IsNull(xmlFileParser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\NotAnXMLFile.txt"));
+        }
+
+        [Test]
         public void InvalidXMLFileTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile("C:\\DieseDateiGibtEsNicht.xml"));
+            Assert.IsNull(xmlFileParser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\InValidXMLFile.xml"));
         }
 
         [Test]
         public void ValidXMLFileTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile("C:\\DieseDateiGibtEsNicht.xml"));
+            Assert.IsNotNull(xmlFileParser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\ValidXMLFile.xml"));
         }
     }
 }
