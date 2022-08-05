@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
 {
@@ -38,9 +39,9 @@ namespace WeThePeople_ModdingTool
         private String CIV4GameText_Colonization_Events_utf8_templatePath = "\\XML\\Text\\CIV4GameText_Colonization_Events_utf8_template.xml";
 
         public String CvRandomEventInterface_Start_Template;
-        private String CvRandomEventInterface_Start_TemplatePath = "\\XML\\Python\\EntryPoints\\CvRandomEventInterface_Start_Template.py";
+        private String CvRandomEventInterface_Start_TemplatePathAbsolute = "D:\\C_sharp\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\Python\\EntryPoints\\CvRandomEventInterface_Start_Template.py";
         public String CvRandomEventInterface_Done_Template;
-        private String CvRandomEventInterface_Done_TemplatePath = "\\XML\\Python\\EntryPoints\\CvRandomEventInterface_Done_Template.py";
+        private String CvRandomEventInterface_Done_TemplatePathAbsolute = "D:\\C_sharp\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\Python\\EntryPoints\\CvRandomEventInterface_Done_Template.py";
 
         public bool Init()
         {
@@ -80,13 +81,31 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
+            CvRandomEventInterface_Start_Template = LoadTextFile(CvRandomEventInterface_Start_TemplatePathAbsolute);
+            if ( null == CvRandomEventInterface_Start_Template )
+            {
+                return false;
+            }
+
+            CvRandomEventInterface_Done_Template = LoadTextFile(CvRandomEventInterface_Done_TemplatePathAbsolute);
+            if( null == CvRandomEventInterface_Done_Template )
+            {
+                return false;
+            }
+
             return true;
         }
 
         private XmlDocument LoadXMLFile(String fileName)
         {
-            IO.XMLFileParser parser = new IO.XMLFileParser();
+            IO.XMLFileLoader parser = new IO.XMLFileLoader();
             return parser.LoadFile(fileName);
+        }
+
+        private String LoadTextFile(String fileName)
+        {
+            TextFileLoader textFileLoader = new TextFileLoader();
+            return textFileLoader.LoadTextFile(fileName);
         }
     }
 }
