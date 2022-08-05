@@ -50,32 +50,33 @@ namespace WeThePeople_ModdingTool
         public bool LoadTemplates()
         {
             var absoluteProgramPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            var relativeAssetPath = absoluteProgramPath + assetPathRelative;
 
-            CIV4EventInfos_Start_Template = LoadXMLFile(absoluteProgramPath + assetPathRelative + CIV4EventInfos_Start_TemplatePath);
+            CIV4EventInfos_Start_Template = LoadXMLFile(relativeAssetPath + CIV4EventInfos_Start_TemplatePath);
             if ( null == CIV4EventInfos_Start_Template )
             {
                 return false;
             }
 
-            CIV4EventInfos_Done_Template = LoadXMLFile(absoluteProgramPath + assetPathRelative + CIV4EventInfos_Done_TemplatePath);
+            CIV4EventInfos_Done_Template = LoadXMLFile(relativeAssetPath + CIV4EventInfos_Done_TemplatePath);
             if( null == CIV4EventInfos_Done_Template )
             {
                 return false;
             }
 
-            CIV4EventTriggerInfos_Start_Template = LoadXMLFile(absoluteProgramPath + assetPathRelative + CIV4EventTriggerInfos_Start_TemplatePath);
+            CIV4EventTriggerInfos_Start_Template = LoadXMLFile(relativeAssetPath + CIV4EventTriggerInfos_Start_TemplatePath);
             if( null == CIV4EventTriggerInfos_Start_Template )
             {
                 return false;
             }
 
-            CIV4EventTriggerInfos_Done_Template = LoadXMLFile(absoluteProgramPath + assetPathRelative + CIV4EventTriggerInfos_Done_TemplatePath);
+            CIV4EventTriggerInfos_Done_Template = LoadXMLFile(relativeAssetPath + CIV4EventTriggerInfos_Done_TemplatePath);
             if( null == CIV4EventTriggerInfos_Done_Template )
             {
                 return false;
             }
 
-            CIV4GameText_Colonization_Events_utf8_template = LoadXMLFile(absoluteProgramPath + assetPathRelative + CIV4GameText_Colonization_Events_utf8_templatePath);
+            CIV4GameText_Colonization_Events_utf8_template = LoadXMLFile(relativeAssetPath + CIV4GameText_Colonization_Events_utf8_templatePath);
             if( null == CIV4GameText_Colonization_Events_utf8_template )
             {
                 return false;
