@@ -6,17 +6,24 @@
         xmlns:local="clr-namespace:WeThePeople_ModdingTool"
         mc:Ignorable="d"
         Title="WeThePeople_ModdingTool" Height="450" Width="800" Icon="/WtP_desktop_icon.ico">
-    <StackPanel Margin="10" HorizontalAlignment="Left">
-        <ComboBox Width="200" x:Name="ComboBox_Yield">
-            <ComboBoxItem IsSelected="true">YIELD_FOOD</ComboBoxItem>
-            <ComboBoxItem>YIELD_TIMBER</ComboBoxItem>
-            <ComboBoxItem>YIELD_HARDWOOD</ComboBoxItem>
-        </ComboBox>
-        <ComboBox Width="200" x:Name="ComboBox_Harbour">
-            <ComboBoxItem IsSelected="true">Europe</ComboBoxItem>
-            <ComboBoxItem>Africa</ComboBoxItem>
-            <ComboBoxItem>Port Royal</ComboBoxItem>
-        </ComboBox>
-        <Button Width="160" Height="80">Create</Button>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Top">
+            <ComboBox Margin="10" Width="200" x:Name="ComboBox_Yield" Selected="ComboBox_Yield_Selected">
+            </ComboBox>
+            <CheckBox x:Name="checkBox_Europe" FlowDirection="RightToLeft" Margin="10">Europe</CheckBox>
+            <CheckBox x:Name="checkBox_Afrika" FlowDirection="RightToLeft" Margin="10">Africa</CheckBox>
+            <CheckBox x:Name="checkBox_PortRoyal" FlowDirection="RightToLeft" Margin="10">Port Royal</CheckBox>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Width="200">
+            <Button Width="160" Height="40">Create</Button>
+        </StackPanel>
+    </Grid>
 </Window>
