@@ -35,8 +35,8 @@ namespace WeThePeople_ModdingTool
         public XmlDocument CIV4EventTriggerInfos_Done_Template;
         private String CIV4EventTriggerInfos_Done_TemplatePath = "\\XML\\Events\\CIV4EventTriggerInfos_Done_Template.xml";
 
-        public XmlDocument CIV4GameText_Colonization_Events_utf8_template;
-        private String CIV4GameText_Colonization_Events_utf8_templatePath = "\\XML\\Text\\CIV4GameText_Colonization_Events_utf8_template.xml";
+        public XmlDocument CIV4GameText_Colonization_Events_utf8_Template;
+        private String CIV4GameText_Colonization_Events_utf8_TemplatePath = "\\XML\\Text\\CIV4GameText_Colonization_Events_utf8_Template.xml";
 
         public String CvRandomEventInterface_Start_Template;
         private String CvRandomEventInterface_Start_TemplatePathAbsolute = "D:\\C_sharp\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\Python\\EntryPoints\\CvRandomEventInterface_Start_Template.py";
@@ -76,8 +76,8 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            CIV4GameText_Colonization_Events_utf8_template = LoadXMLFile(relativeAssetPath + CIV4GameText_Colonization_Events_utf8_templatePath);
-            if( null == CIV4GameText_Colonization_Events_utf8_template )
+            CIV4GameText_Colonization_Events_utf8_Template = LoadXMLFile(relativeAssetPath + CIV4GameText_Colonization_Events_utf8_TemplatePath);
+            if( null == CIV4GameText_Colonization_Events_utf8_Template )
             {
                 return false;
             }
@@ -99,7 +99,7 @@ namespace WeThePeople_ModdingTool
 
         private XmlDocument LoadXMLFile(String fileName)
         {
-            IO.XMLFileLoader parser = new IO.XMLFileLoader();
+            XMLFileLoader parser = new XMLFileLoader();
             return parser.LoadFile(fileName);
         }
 
