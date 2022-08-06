@@ -16,7 +16,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Top">
-            <ComboBox Margin="10" x:Name="ComboBox_Yield" SelectedItem="ComboBox_Yield_Selected">
+            <ComboBox Margin="10" x:Name="ComboBox_Yield" SelectionChanged="ComboBox_Yield_SelectionChanged" >
             </ComboBox>
             <CheckBox x:Name="checkBox_Europe" FlowDirection="RightToLeft" Margin="10">Europe</CheckBox>
             <CheckBox x:Name="checkBox_Afrika" FlowDirection="RightToLeft" Margin="10">Africa</CheckBox>

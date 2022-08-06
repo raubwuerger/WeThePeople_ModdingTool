@@ -34,6 +34,7 @@ namespace WeThePeople_ModdingTool
 
                 result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
             }
+
             YieldList yields = new YieldList();
 
             ComboBox_Yield.ItemsSource = yields.Yields;
@@ -43,7 +44,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        private void ComboBox_Yield_Selected(object sender, RoutedEventArgs e)
+        private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show(ComboBox_Yield.SelectedItem.ToString());
         }
