@@ -26,7 +26,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
 
         private void ShowMessageBox(string fileName)
         {
-            CommonMessageBox.Show_OK_Error("The file could not be opened! " + fileName, "Unable to open file!");
+            CommonMessageBox.Show_OK_Error("Unable to open file!", "The file could not be opened! " + fileName );
 
         }
     }

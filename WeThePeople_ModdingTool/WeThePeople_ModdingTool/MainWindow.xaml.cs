@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
 {
@@ -26,13 +27,7 @@ namespace WeThePeople_ModdingTool
             InitializeComponent();
             if( false == MainSettingsLoader.Instance.Init() )
             {
-                string messageBoxText = "Initialization failed! See log file!";
-                string caption = "Initialization failed!";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result;
-
-                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
             }
 
             YieldList yields = new YieldList();
