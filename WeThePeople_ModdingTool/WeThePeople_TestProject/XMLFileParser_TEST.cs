@@ -1,15 +1,15 @@
 using NUnit.Framework;
-using WeThePeople_ModdingTool;
+using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_TestProject
 {
     public class Tests
     {
-        WeThePeople_ModdingTool.IO.XMLFileLoader xmlFileParser;
+        XMLFileLoader xmlFileParser;
         [SetUp]
         public void Setup()
         {
-            xmlFileParser = new WeThePeople_ModdingTool.IO.XMLFileLoader();
+            xmlFileParser = new XMLFileLoader();
         }
 
         [Test]

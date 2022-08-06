@@ -26,13 +26,8 @@ namespace WeThePeople_ModdingTool.FileUtilities
 
         private void ShowMessageBox(string fileName)
         {
-            string messageBoxText = "The file could not be opened! " +fileName;
-            string caption = "Unable to open file!";
-            MessageBoxButton button = MessageBoxButton.OK;
-            MessageBoxImage icon = MessageBoxImage.Error;
-            MessageBoxResult result;
+            CommonMessageBox.Show_OK_Error("The file could not be opened! " + fileName, "Unable to open file!");
 
-            MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
         }
     }
 }

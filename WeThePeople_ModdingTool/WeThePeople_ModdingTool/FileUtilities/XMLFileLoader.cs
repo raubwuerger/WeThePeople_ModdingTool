@@ -7,10 +7,13 @@ namespace WeThePeople_ModdingTool.FileUtilities
 {
     public class XMLFileLoader
     {
+        string FileName;
+
         public XmlDocument LoadFile( string fileName )
         {
             try
             {
+                FileName = fileName;
                 XmlDocument doc = new XmlDocument();
                 doc.Load(fileName);
                 String nodeName;
@@ -22,8 +25,15 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch( Exception ex )
             {
+                ShowMessageBox(ex.Message);
                 return null;
             }
+        }
+        private void ShowMessageBox(string fileName)
+        {
+            string message = FileName + "\r\n" + fileName;
+            CommonMessageBox.Show_OK_Error("Unable to open file!", message);
+
         }
     }
 }

@@ -23,25 +23,25 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        private String assetPathRelative = "\\..\\..\\..\\templates\\Assets";
+        private string assetPathRelative = @"..\..\..\templates\Assets";
 
         public XmlDocument CIV4EventInfos_Start_Template;
-        private String CIV4EventInfos_Start_TemplatePath = "\\XML\\Events\\CIV4EventInfos_Start_Template.xml";
+        private string CIV4EventInfos_Start_TemplatePath = @"XML\Events\CIV4EventInfos_Start_Template.xml";
         public XmlDocument CIV4EventInfos_Done_Template;
-        private String CIV4EventInfos_Done_TemplatePath = "\\XML\\Events\\CIV4EventInfos_Done_Template.xml";
+        private string CIV4EventInfos_Done_TemplatePath = @"XML\Events\CIV4EventInfos_Done_Template.xml";
 
         public XmlDocument CIV4EventTriggerInfos_Start_Template;
-        private String CIV4EventTriggerInfos_Start_TemplatePath = "\\XML\\Events\\CIV4EventTriggerInfos_Start_Template.xml";
+        private string CIV4EventTriggerInfos_Start_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
         public XmlDocument CIV4EventTriggerInfos_Done_Template;
-        private String CIV4EventTriggerInfos_Done_TemplatePath = "\\XML\\Events\\CIV4EventTriggerInfos_Done_Template.xml";
+        private string CIV4EventTriggerInfos_Done_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Done_Template.xml";
 
         public XmlDocument CIV4GameText_Colonization_Events_utf8_Template;
-        private String CIV4GameText_Colonization_Events_utf8_TemplatePath = "\\XML\\Text\\CIV4GameText_Colonization_Events_utf8_Template.xml";
+        private string CIV4GameText_Colonization_Events_utf8_TemplatePath = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml";
 
-        public String CvRandomEventInterface_Start_Template;
-        private String CvRandomEventInterface_Start_TemplatePathAbsolute = "D:\\C_sharp\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\Python\\EntryPoints\\CvRandomEventInterface_Start_Template.py";
-        public String CvRandomEventInterface_Done_Template;
-        private String CvRandomEventInterface_Done_TemplatePathAbsolute = "D:\\C_sharp\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\templates\\Assets\\Python\\EntryPoints\\CvRandomEventInterface_Done_Template.py";
+        public string CvRandomEventInterface_Start_Template;
+        private string CvRandomEventInterface_Start_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
+        public string CvRandomEventInterface_Done_Template;
+        private string CvRandomEventInterface_Done_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
 
         public bool Init()
         {
@@ -49,46 +49,46 @@ namespace WeThePeople_ModdingTool
         }
         public bool LoadTemplates()
         {
-            var absoluteProgramPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            var relativeAssetPath = absoluteProgramPath + assetPathRelative;
+            string absoluteProgramPath = AppDomain.CurrentDomain.BaseDirectory;
+            string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
 
-            CIV4EventInfos_Start_Template = LoadXMLFile(relativeAssetPath + CIV4EventInfos_Start_TemplatePath);
+            CIV4EventInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath,CIV4EventInfos_Start_TemplatePath));
             if ( null == CIV4EventInfos_Start_Template )
             {
                 return false;
             }
 
-            CIV4EventInfos_Done_Template = LoadXMLFile(relativeAssetPath + CIV4EventInfos_Done_TemplatePath);
+            CIV4EventInfos_Done_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventInfos_Done_TemplatePath));
             if( null == CIV4EventInfos_Done_Template )
             {
                 return false;
             }
 
-            CIV4EventTriggerInfos_Start_Template = LoadXMLFile(relativeAssetPath + CIV4EventTriggerInfos_Start_TemplatePath);
+            CIV4EventTriggerInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventTriggerInfos_Start_TemplatePath));
             if( null == CIV4EventTriggerInfos_Start_Template )
             {
                 return false;
             }
 
-            CIV4EventTriggerInfos_Done_Template = LoadXMLFile(relativeAssetPath + CIV4EventTriggerInfos_Done_TemplatePath);
+            CIV4EventTriggerInfos_Done_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventTriggerInfos_Done_TemplatePath));
             if( null == CIV4EventTriggerInfos_Done_Template )
             {
                 return false;
             }
 
-            CIV4GameText_Colonization_Events_utf8_Template = LoadXMLFile(relativeAssetPath + CIV4GameText_Colonization_Events_utf8_TemplatePath);
+            CIV4GameText_Colonization_Events_utf8_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4GameText_Colonization_Events_utf8_TemplatePath));
             if( null == CIV4GameText_Colonization_Events_utf8_Template )
             {
                 return false;
             }
 
-            CvRandomEventInterface_Start_Template = LoadTextFile(CvRandomEventInterface_Start_TemplatePathAbsolute);
+            CvRandomEventInterface_Start_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath,CvRandomEventInterface_Start_TemplatePath));
             if ( null == CvRandomEventInterface_Start_Template )
             {
                 return false;
             }
 
-            CvRandomEventInterface_Done_Template = LoadTextFile(CvRandomEventInterface_Done_TemplatePathAbsolute);
+            CvRandomEventInterface_Done_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath, CvRandomEventInterface_Done_TemplatePath));
             if( null == CvRandomEventInterface_Done_Template )
             {
                 return false;
