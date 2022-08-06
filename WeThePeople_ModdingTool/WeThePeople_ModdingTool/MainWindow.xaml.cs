@@ -37,6 +37,10 @@ namespace WeThePeople_ModdingTool
             YieldList yields = new YieldList();
 
             ComboBox_Yield.ItemsSource = yields.Yields;
+            if( ComboBox_Yield.Items.Count > 0 )
+            {
+                ComboBox_Yield.SelectedItem = yields.Yields[0];
+            }
         }
 
         private void ComboBox_Yield_Selected(object sender, RoutedEventArgs e)
