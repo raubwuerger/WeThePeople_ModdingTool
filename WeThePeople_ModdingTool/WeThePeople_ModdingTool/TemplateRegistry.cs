@@ -45,7 +45,7 @@ namespace WeThePeople_ModdingTool
             {
                 return xmlDocuments.TryAdd(name, document);
             }
-            catch( ArgumentNullException argumentNullException)
+            catch( ArgumentNullException)
             {
                 CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
                 return false;
@@ -54,7 +54,28 @@ namespace WeThePeople_ModdingTool
 
         public bool RegisterTemplate(string name, string pythonContent)
         {
-            return false;
+            try
+            {
+                if (true == pythonFiles.ContainsKey(name))
+                {
+                    return false;
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
+
+            try
+            {
+                return pythonFiles.TryAdd(name, pythonContent);
+            }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
         }
     }
 }
