@@ -18,12 +18,13 @@
         <StackPanel VerticalAlignment="Top">
             <ComboBox Margin="10" x:Name="ComboBox_Yield" SelectionChanged="ComboBox_Yield_SelectionChanged" >
             </ComboBox>
-            <CheckBox x:Name="checkBox_Europe" FlowDirection="RightToLeft" Margin="10">Europe</CheckBox>
+            <CheckBox x:Name="checkBox_Europe" IsChecked="true" FlowDirection="RightToLeft" Margin="10">Europe</CheckBox>
             <CheckBox x:Name="checkBox_Afrika" FlowDirection="RightToLeft" Margin="10">Africa</CheckBox>
             <CheckBox x:Name="checkBox_PortRoyal" FlowDirection="RightToLeft" Margin="10">Port Royal</CheckBox>
+            <Button x:Name="button_LoadTemplates" Click="button_LoadTemplates_Click" Margin="10" Height="20">Init Templates</Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Width="200">
-            <Button Width="160" Height="40">Create</Button>
+            <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="40">Create Events</Button>
         </StackPanel>
     </Grid>
 </Window>

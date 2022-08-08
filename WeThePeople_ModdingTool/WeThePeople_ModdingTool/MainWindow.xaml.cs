@@ -43,5 +43,39 @@ namespace WeThePeople_ModdingTool
         {
             MessageBox.Show(ComboBox_Yield.SelectedItem.ToString());
         }
+
+        private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
+        {
+            if( false == AtLeastOneButtonChecked() )
+            {
+                CommonMessageBox.Show_OK_Warning("No Harbour seleceted!", "At least one harbour must be selected!");
+                return;
+            }
+        }
+
+        private bool AtLeastOneButtonChecked()
+        {
+            if (true == checkBox_Europe.IsChecked)
+            {
+                return true;
+            }
+
+            if (true == checkBox_Afrika.IsChecked)
+            {
+                return true;
+            }
+
+            if (true == checkBox_PortRoyal.IsChecked)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

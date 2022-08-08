@@ -16,5 +16,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             return MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        static public MessageBoxResult Show_OK_Warning(string caption, string messageBoxText)
+        {
+            return MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }
