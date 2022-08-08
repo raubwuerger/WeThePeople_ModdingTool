@@ -20,6 +20,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch (Exception ex)
             {
+                ShowMessageBox(ex.Message);
                 return null;
             }
         }
