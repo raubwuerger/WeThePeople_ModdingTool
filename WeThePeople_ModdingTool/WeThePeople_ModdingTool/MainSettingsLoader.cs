@@ -47,6 +47,7 @@ namespace WeThePeople_ModdingTool
         {
             return LoadTemplates();
         }
+        //TODO: Sollte in List überführt werden. Wenn die Anzahl an templates wächst muss nur ein weiterer Eintrag in die List eingefügt werden.
         public bool LoadTemplates()
         {
             string absoluteProgramPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -95,6 +96,32 @@ namespace WeThePeople_ModdingTool
             }
 
             return true;
+        }
+
+        //TODO: Nicht den Pfad sondern den Namen verwenden!!!
+        public bool RegisterTemplates()
+        {
+            if( false == RegisterDocument(CIV4EventInfos_Start_TemplatePath, CIV4EventInfos_Start_Template) )
+            {
+                return false;
+            }
+
+            if (false == RegisterPythonFile(CvRandomEventInterface_Start_TemplatePath, CvRandomEventInterface_Start_Template))
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        private bool RegisterDocument( string name, XmlDocument xmlDocument)
+        {
+            return TemplateRegistry.Instance.RegisterTemplate(name, xmlDocument);
+        }
+
+        private bool RegisterPythonFile(string name, string pythonFile)
+        {
+            return TemplateRegistry.Instance.RegisterTemplate(name, pythonFile);
         }
 
         private XmlDocument LoadXMLFile(String fileName)
