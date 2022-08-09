@@ -101,14 +101,31 @@ namespace WeThePeople_ModdingTool
         //TODO: Nicht den Pfad sondern den Namen verwenden!!!
         public bool RegisterTemplates()
         {
-            if( false == RegisterDocument(CIV4EventInfos_Start_TemplatePath, CIV4EventInfos_Start_Template) )
+            IDictionary<string,XmlDocument> xmlTemplates = new Dictionary<string, XmlDocument>();
+            xmlTemplates.Add(CIV4EventInfos_Start_TemplatePath, CIV4EventInfos_Start_Template);
+            xmlTemplates.Add(CIV4EventInfos_Done_TemplatePath, CIV4EventInfos_Done_Template);
+            xmlTemplates.Add(CIV4EventTriggerInfos_Start_TemplatePath, CIV4EventTriggerInfos_Start_Template);
+            xmlTemplates.Add(CIV4EventTriggerInfos_Done_TemplatePath, CIV4EventTriggerInfos_Done_Template);
+            xmlTemplates.Add(CIV4GameText_Colonization_Events_utf8_TemplatePath, CIV4GameText_Colonization_Events_utf8_Template);
+
+            foreach (KeyValuePair<string, XmlDocument> entry in xmlTemplates)
             {
-                return false;
+                if (false == RegisterDocument(entry.Key, entry.Value))
+                {
+                    return false;
+                }
             }
 
-            if (false == RegisterPythonFile(CvRandomEventInterface_Start_TemplatePath, CvRandomEventInterface_Start_Template))
+            IDictionary<string, string> pythonTemplates = new Dictionary<string, string>();
+            pythonTemplates.Add(CvRandomEventInterface_Start_TemplatePath, CvRandomEventInterface_Start_Template);
+            pythonTemplates.Add(CvRandomEventInterface_Done_TemplatePath, CvRandomEventInterface_Done_Template);
+
+            foreach (KeyValuePair<string, string> entry in pythonTemplates)
             {
-                return false;
+                if (false == RegisterPythonFile(entry.Key, entry.Value))
+                {
+                    return false;
+                }
             }
 
             return false;
