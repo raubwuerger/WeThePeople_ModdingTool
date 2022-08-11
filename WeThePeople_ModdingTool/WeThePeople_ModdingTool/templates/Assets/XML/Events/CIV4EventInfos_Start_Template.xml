@@ -1,10 +1,10 @@
 <EventInfo>
-	<Type>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Type>
-	<Description>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_START</Description>
+	<Type>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Type>
+	<Description>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_START</Description>
 	<LocalInfoText/>
 	<WorldNewsTexts/>
 	<OtherPlayerPopup/>
-	<QuestFailText>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_FAILED</QuestFailText>
+	<QuestFailText>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_FAILED</QuestFailText>
 	<bQuest>1</bQuest>
 	<bGlobal>0</bGlobal>
 	<bTeam>0</bTeam>
@@ -51,7 +51,7 @@
 	<PythonCallback/>
 	<PythonExpireCheck/>
 	<PythonCanDo/>
-	<PythonHelp>getHelpQuestStart$NATION_NORMAL$TradeYieldAndAmount</PythonHelp>
+	<PythonHelp>getHelpQuestStart$HARBOUR_NORMAL$TradeYieldAndAmount</PythonHelp>
 	<Button>,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 	<iAIValue>800</iAIValue>
 	<iGenericParameter1>$TRIGGER_START$</iGenericParameter1>

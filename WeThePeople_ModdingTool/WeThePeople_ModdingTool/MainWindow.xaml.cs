@@ -54,26 +54,34 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("No Harbour seleceted!", "At least one harbour must be selected!");
                 return;
             }
+            PrepareTemplates();
         }
 
         private bool AtLeastOneButtonChecked()
         {
+            HarbourList.Instance.Clear();
+
             if (true == checkBox_Europe.IsChecked)
             {
-                return true;
+                HarbourList.Instance.Harbours.Add(HarbourList.EUROPE);
             }
 
             if (true == checkBox_Afrika.IsChecked)
             {
-                return true;
+                HarbourList.Instance.Harbours.Add(HarbourList.AFRICA);
             }
 
             if (true == checkBox_PortRoyal.IsChecked)
             {
-                return true;
+                HarbourList.Instance.Harbours.Add(HarbourList.PORTROYAL);
             }
 
-            return false;
+            return HarbourList.Instance.Harbours.Count > 0;
+        }
+
+        private void PrepareTemplates()
+        {
+
         }
     }
 }

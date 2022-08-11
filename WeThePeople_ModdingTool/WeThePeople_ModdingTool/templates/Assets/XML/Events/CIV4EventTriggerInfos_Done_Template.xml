@@ -1,11 +1,11 @@
 <EventTriggerInfo>
-	<Type>EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
+	<Type>EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
 	<WorldNewsTexts>
-		<Text>TXT_KEY_WORLD_EVENTTRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
+		<Text>TXT_KEY_WORLD_EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
 	</WorldNewsTexts>
 	<TriggerTexts>
 		<TriggerText>
-			<Text>TXT_KEY_EVENT_TRIGGER_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
+			<Text>TXT_KEY_EVENT_TRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
 			<Era>NONE</Era>
 		</TriggerText>
 	</TriggerTexts>
@@ -42,12 +42,12 @@
 	<ImprovementsRequired/>
 	<RoutesRequired/>
 	<Events>
-		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Event>
-		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE1</Event>
-		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE2</Event>
+		<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Event>
+		<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE1</Event>
+		<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE2</Event>
 	</Events>
 	<PrereqEvents>
-		<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+		<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
 	</PrereqEvents>
 	<bPrereqEventPlot>1</bPrereqEventPlot>
 	<bRecurring>0</bRecurring>
@@ -65,7 +65,7 @@
 	<bFrontPopup>0</bFrontPopup>
 	<iCityFoodWeight>0</iCityFoodWeight>
 	<PythonCanDo/>
-	<PythonCanDoCity>canTrigger$NATION_NORMAL$TradeQuest_$YIELD$_DONE</PythonCanDoCity>
+	<PythonCanDoCity>canTrigger$HARBOUR_NORMAL$TradeQuest_$YIELD$_DONE</PythonCanDoCity>
 	<PythonCanDoUnit/>
 	<PythonCallback/>
 </EventTriggerInfo>

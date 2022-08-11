@@ -1,6 +1,6 @@
 <EventInfo>
-	<Type>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
-	<Description>TXT_KEY_EVENT_$NATION_UPPERCASE$_TRADE_QUEST_DONE</Description>
+	<Type>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
+	<Description>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_DONE</Description>
 	<LocalInfoText/>
 	<WorldNewsTexts/>
 	<OtherPlayerPopup/>
@@ -49,14 +49,14 @@
 	<EventTimes/>
 	<ClearEvents>
 		<EventChance>
-			<Event>EVENT_$NATION_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+			<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
 			<iEventChance>100</iEventChance>
 		</EventChance>
 	</ClearEvents>
-	<PythonCallback>applyQuestDone$NATION_NORMAL$TradePriceAndAttitude</PythonCallback>
+	<PythonCallback>applyQuestDone$HARBOUR_NORMAL$TradePriceAndAttitude</PythonCallback>
 	<PythonExpireCheck/>
 	<PythonCanDo/>
-	<PythonHelp>getHelpQuestDone$NATION_NORMAL$TradePriceAndAttitude</PythonHelp>
+	<PythonHelp>getHelpQuestDone$HARBOUR_NORMAL$TradePriceAndAttitude</PythonHelp>
 	<Button>,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 	<iAIValue>800</iAIValue>
 	<iGenericParameter1>5000</iGenericParameter1>
