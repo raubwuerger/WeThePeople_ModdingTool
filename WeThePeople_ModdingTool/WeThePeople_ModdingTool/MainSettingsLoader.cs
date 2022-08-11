@@ -23,7 +23,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        private string assetPathRelative = @"..\..\..\templates\Assets";
+        public string assetPathRelative = @"..\..\..\templates\Assets";
 
         public XmlDocument CIV4EventInfos_Start_Template;
         private string CIV4EventInfos_Start_TemplatePath = @"XML\Events\CIV4EventInfos_Start_Template.xml";
@@ -40,8 +40,10 @@ namespace WeThePeople_ModdingTool
 
         public string CvRandomEventInterface_Start_Template;
         private string CvRandomEventInterface_Start_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
+        public string CvRandomEventInterface_Start_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Start_";
         public string CvRandomEventInterface_Done_Template;
         private string CvRandomEventInterface_Done_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
+        public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";
 
         public XmlDocument YieldTypes;
         private string YieldTypesPath = @"..\..\..\templates\YieldTypes.xml";
@@ -177,5 +179,6 @@ namespace WeThePeople_ModdingTool
             YieldList.Instance.Yields = _yields;
             return YieldList.Instance.Yields.Count > 0;
         }
+
     }
 }

@@ -30,5 +30,23 @@ namespace WeThePeople_ModdingTool.FileUtilities
             CommonMessageBox.Show_OK_Error("Unable to open file!", "The file could not be opened! " + fileName );
 
         }
+
+        public bool Save( string fileName, string content )
+        {
+            if (true == File.Exists(fileName))
+            {
+                ShowMessageBox(fileName);
+                return false;
+            }
+            try
+            {
+                File.WriteAllText(fileName, content);
+                return true;
+            }
+            catch( Exception ex )
+            {
+                return false;
+            }
+        }
     }
 }

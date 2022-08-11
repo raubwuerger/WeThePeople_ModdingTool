@@ -44,7 +44,7 @@ namespace WeThePeople_ModdingTool
 
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
-
+            PrepareTemplates();
         }
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
@@ -54,7 +54,6 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("No Harbour seleceted!", "At least one harbour must be selected!");
                 return;
             }
-            PrepareTemplates();
         }
 
         private bool AtLeastOneButtonChecked()
@@ -81,7 +80,50 @@ namespace WeThePeople_ModdingTool
 
         private void PrepareTemplates()
         {
+            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template);
+            if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete), CvRandomEventInterface_Start_Processed) )
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
+            }
 
+            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
+            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete), CvRandomEventInterface_Done_Processed))
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+            }
+        }
+
+        private string CreatePathFileYield( string baseFile )
+        {
+            string absoluteProgramPath = AppDomain.CurrentDomain.BaseDirectory;
+            string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, MainSettingsLoader.Instance.assetPathRelative);
+            
+            string appendix = baseFile;
+            appendix += ComboBox_Yield.SelectedItem.ToString();
+            appendix += ".py";
+
+            return System.IO.Path.Combine(relativeAssetPath, appendix);
+        }
+
+        private string ProcessTemplate( string template )
+        {
+            PythonItemReplacer replacer = new PythonItemReplacer();
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourList.Instance.Harbours[0].ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
+
+            if (false == replacer.Replace(template))
+            {
+                return "";
+            }
+
+            return replacer.ReplacedString;
+        }
+
+        private bool SaveFile(string fileName, string pythonFile )
+        {
+            TextFileLoader textFileLoader = new TextFileLoader();
+            return textFileLoader.Save(fileName,pythonFile);
         }
     }
 }
