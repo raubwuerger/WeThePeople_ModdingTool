@@ -43,6 +43,9 @@ namespace WeThePeople_ModdingTool
         public string CvRandomEventInterface_Done_Template;
         private string CvRandomEventInterface_Done_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
 
+        public XmlDocument YieldTypes;
+        private string YieldTypesPath = @"..\..\..\templates\YieldTypes.xml";
+
         public bool Init()
         {
             return LoadTemplates();
@@ -91,6 +94,17 @@ namespace WeThePeople_ModdingTool
 
             CvRandomEventInterface_Done_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath, CvRandomEventInterface_Done_TemplatePath));
             if( null == CvRandomEventInterface_Done_Template )
+            {
+                return false;
+            }
+
+            YieldTypes = LoadXMLFile(YieldTypesPath);
+            if (null == YieldTypes)
+            {
+                return false;
+            }
+
+            if( false == InitYieldList(YieldTypes) )
             {
                 return false;
             }
@@ -151,6 +165,17 @@ namespace WeThePeople_ModdingTool
         {
             TextFileLoader textFileLoader = new TextFileLoader();
             return textFileLoader.LoadTextFile(fileName);
+        }
+
+        private bool InitYieldList( XmlDocument yields )
+        {
+            List<string> _yields = new List<string>();
+            foreach (XmlNode node in yields.DocumentElement.ChildNodes)
+            {
+                _yields.Add(node.InnerText);
+            }
+            YieldList.Instance.Yields = _yields;
+            return YieldList.Instance.Yields.Count > 0;
         }
     }
 }
