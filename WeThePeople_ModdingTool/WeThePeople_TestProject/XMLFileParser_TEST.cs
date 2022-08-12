@@ -5,53 +5,53 @@ namespace WeThePeople_TestProject
 {
     public class Tests
     {
-        XMLFileLoader xmlFileParser;
+        XMLFileUtility xmlFileParser;
         [SetUp]
         public void Setup()
         {
-            xmlFileParser = new XMLFileLoader();
+            xmlFileParser = new XMLFileUtility();
         }
 
         [Test]
         public void NullStringTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile(null));
+            Assert.IsNull(xmlFileParser.Load(null));
         }
 
         [Test]
         public void EmptyStringTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile(""));
+            Assert.IsNull(xmlFileParser.Load(""));
         }
 
         [Test]
         public void BlankStringTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile("    "));
+            Assert.IsNull(xmlFileParser.Load("    "));
         }
 
         [Test]
         public void FileNotFoundTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile("C:\\DieseDateiGibtEsNicht.xml"));
+            Assert.IsNull(xmlFileParser.Load("C:\\DieseDateiGibtEsNicht.xml"));
         }
 
         [Test]
         public void NotAnXMLFileTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\NotAnXMLFile.txt"));
+            Assert.IsNull(xmlFileParser.Load("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\NotAnXMLFile.txt"));
         }
 
         [Test]
         public void InvalidXMLFileTest()
         {
-            Assert.IsNull(xmlFileParser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\InValidXMLFile.xml"));
+            Assert.IsNull(xmlFileParser.Load("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\InValidXMLFile.xml"));
         }
 
         [Test]
         public void ValidXMLFileTest()
         {
-            Assert.IsNotNull(xmlFileParser.LoadFile("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\ValidXMLFile.xml"));
+            Assert.IsNotNull(xmlFileParser.Load("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\ValidXMLFile.xml"));
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Xml;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
-    public class XMLFileLoader
+    public class XMLFileUtility
     {
         string FileName;
 
-        public XmlDocument LoadFile( string fileName )
+        public XmlDocument Load( string fileName )
         {
             try
             {

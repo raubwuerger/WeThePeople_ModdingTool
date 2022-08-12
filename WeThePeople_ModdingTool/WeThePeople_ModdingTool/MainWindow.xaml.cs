@@ -122,7 +122,7 @@ namespace WeThePeople_ModdingTool
 
         private bool SaveFile(string fileName, string pythonFile )
         {
-            TextFileLoader textFileLoader = new TextFileLoader();
+            TextFileUtility textFileLoader = new TextFileUtility();
             return textFileLoader.Save(fileName,pythonFile);
         }
     }

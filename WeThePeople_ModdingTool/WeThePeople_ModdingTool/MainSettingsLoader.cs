@@ -159,14 +159,14 @@ namespace WeThePeople_ModdingTool
 
         private XmlDocument LoadXMLFile(String fileName)
         {
-            XMLFileLoader parser = new XMLFileLoader();
-            return parser.LoadFile(fileName);
+            XMLFileUtility parser = new XMLFileUtility();
+            return parser.Load(fileName);
         }
 
         private String LoadTextFile(String fileName)
         {
-            TextFileLoader textFileLoader = new TextFileLoader();
-            return textFileLoader.LoadTextFile(fileName);
+            TextFileUtility textFileLoader = new TextFileUtility();
+            return textFileLoader.Load(fileName);
         }
 
         private bool InitYieldList( XmlDocument yields )
