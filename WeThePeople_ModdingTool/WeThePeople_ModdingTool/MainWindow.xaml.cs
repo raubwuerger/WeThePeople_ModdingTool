@@ -80,13 +80,13 @@ namespace WeThePeople_ModdingTool
 
         private void PrepareTemplates()
         {
-            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template);
+            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template, HarbourList.Instance.Harbours[0]);
             if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete), CvRandomEventInterface_Start_Processed) )
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
 
-            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
+            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template, HarbourList.Instance.Harbours[0]);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete), CvRandomEventInterface_Done_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
@@ -105,11 +105,11 @@ namespace WeThePeople_ModdingTool
             return System.IO.Path.Combine(relativeAssetPath, appendix);
         }
 
-        private string ProcessTemplate( string template )
+        private string ProcessTemplate( string template, string harbour )
         {
             PythonItemReplacer replacer = new PythonItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourList.Instance.Harbours[0].ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, harbour);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, harbour.ToUpper());
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
 
             if (false == replacer.Replace(template))
