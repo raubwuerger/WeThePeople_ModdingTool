@@ -54,8 +54,8 @@
 	<PythonHelp>getHelpQuestStart$HARBOUR_NORMAL$TradeYieldAndAmount</PythonHelp>
 	<Button>,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 	<iAIValue>800</iAIValue>
-	<iGenericParameter1>$TRIGGER_START$</iGenericParameter1>
+	<iGenericParameter1>$TRIGGER_START_VALUE$</iGenericParameter1>
 	<iGenericParameter2>$YIELD$</iGenericParameter2>
-	<iGenericParameter3>$TRIGGER_DONE$</iGenericParameter3>
+	<iGenericParameter3>$TRIGGER_DONE_VALUE$</iGenericParameter3>
 	<iGenericParameter4>0</iGenericParameter4>
 </EventInfo>

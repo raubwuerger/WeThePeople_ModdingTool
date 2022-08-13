@@ -35,13 +35,11 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            StringBuilder builder = new StringBuilder(python);
             foreach (KeyValuePair<string, string> entry in ReplaceItems)
             {
-                builder.Replace(entry.Key, entry.Value);
+                replacedString = TextReplacer.replace(python, entry);
             }
 
-            replacedString = builder.ToString();
             return true;
         }
     }

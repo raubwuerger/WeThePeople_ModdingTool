@@ -13,7 +13,11 @@ namespace WeThePeople_ModdingTool
             get { return replaceItems; }
             set { replaceItems = value; }
         }
-        public bool ReplaceItem( XmlDocument xmlDocument )
+
+        private XmlDocument replacedXmlDocument;
+
+        public XmlDocument ReplacedContent { get => replacedXmlDocument; }
+        public bool Replace( XmlDocument xmlDocument )
         {
             if( null == xmlDocument )
             {
@@ -25,7 +29,19 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            return false;
+            XmlNodeList nodes = replacedXmlDocument.DocumentElement.SelectNodes("/EventInfo");
+
+            foreach (XmlNode node in nodes)
+            {
+
+            }
+
+            return true;
+        }
+
+        private string replaceText( string content, string item)
+        {
+            return null;
         }
     }
 }

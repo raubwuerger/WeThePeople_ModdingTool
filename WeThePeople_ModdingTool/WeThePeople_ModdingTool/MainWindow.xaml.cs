@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WeThePeople_ModdingTool.FileUtilities;
+using System.Xml;
 
 namespace WeThePeople_ModdingTool
 {
@@ -129,5 +130,23 @@ namespace WeThePeople_ModdingTool
             TextFileUtility textFileLoader = new TextFileUtility();
             return textFileLoader.Save(fileName,pythonFile);
         }
+
+        private XmlDocument ProcessTemplate(XmlDocument template, string harbour)
+        {
+            XMLItemReplacer replacer = new XMLItemReplacer();
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, harbour);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, harbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
+            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
+            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");
+
+            if (false == replacer.Replace(template))
+            {
+                return null;
+            }
+
+            return replacer.ReplacedContent;
+        }
+
     }
 }

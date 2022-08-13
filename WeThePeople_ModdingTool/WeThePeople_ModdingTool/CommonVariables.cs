@@ -15,6 +15,7 @@ namespace WeThePeople_ModdingTool
         public static string MESSAGE_BOX_UNABLE_SAVE_CAPTION = "Unable to save file!";
         public static string MESSAGE_BOX_OVERWRITE_CR = "Do you want to overwrite?\n\r";
 
+        public static string MESSAGE_BOX_EXCEPTION = "Exception occured!";
         public static string MESSAGE_BOX_EXCEPTION_CR = "Exception occured!\n\r";
     }
 }
