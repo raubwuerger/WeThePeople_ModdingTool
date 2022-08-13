@@ -14,28 +14,25 @@ namespace WeThePeople_ModdingTool.FileUtilities
             {
                 if( false == File.Exists(fileName) )
                 {
-                    ShowMessageBox(fileName);
+                    CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST_CR + fileName);
                 }
                 return File.ReadAllText(fileName,Encoding.UTF8);
             }
             catch (Exception ex)
             {
-                ShowMessageBox(ex.Message);
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return null;
             }
-        }
-
-        private void ShowMessageBox(string fileName)
-        {
-            CommonMessageBox.Show_OK_Error("Unable to open file!", "The file could not be opened! " + fileName );
         }
 
         public bool Save( string fileName, string content )
         {
             if (true == File.Exists(fileName))
             {
-                ShowMessageBox(fileName);
-                return false;
+                if( MessageBoxResult.No == CommonMessageBox.Show_YesNo(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_OVERWRITE_CR + fileName) )
+                {
+                    return false;
+                }
             }
             try
             {
@@ -44,6 +41,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch( Exception ex )
             {
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return false;
             }
         }

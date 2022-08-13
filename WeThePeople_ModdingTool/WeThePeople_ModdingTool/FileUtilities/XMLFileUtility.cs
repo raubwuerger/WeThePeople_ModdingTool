@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Windows;
 using System.Xml;
 
 namespace WeThePeople_ModdingTool.FileUtilities
@@ -11,6 +13,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
 
         public XmlDocument Load( string fileName )
         {
+            if (false == File.Exists(fileName))
+            {
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST_CR + fileName);
+            }
             try
             {
                 FileName = fileName;
@@ -25,14 +31,30 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch( Exception ex )
             {
-                ShowMessageBox(ex.Message);
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return null;
             }
         }
-        private void ShowMessageBox(string fileName)
+
+        public bool Save( string fileName, XmlDocument xmlDocument )
         {
-            string message = FileName + "\r\n" + fileName;
-            CommonMessageBox.Show_OK_Error("Unable to open file!", message);
+            if (true == File.Exists(fileName))
+            {
+                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_OVERWRITE_CR + fileName))
+                {
+                    return false;
+                }
+            }
+            try
+            {
+                xmlDocument.Save(fileName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
+                return false;
+            }
 
         }
     }

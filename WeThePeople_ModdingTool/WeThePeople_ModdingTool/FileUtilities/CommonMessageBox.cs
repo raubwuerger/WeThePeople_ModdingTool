@@ -21,5 +21,9 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             return MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+        static public MessageBoxResult Show_YesNo(string caption, string messageBoxText)
+        {
+            return MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+        }
     }
 }
