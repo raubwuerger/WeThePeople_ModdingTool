@@ -16,6 +16,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             if (false == File.Exists(fileName))
             {
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST_CR + fileName);
+                return null;
             }
             try
             {
