@@ -86,11 +86,15 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
 
+            textBlock_PythonStart.Text = CvRandomEventInterface_Start_Processed;
+
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template, HarbourList.Instance.Harbours[0]);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete), CvRandomEventInterface_Done_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
+
+            textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
         }
 
         private string CreatePathFileYield( string baseFile )

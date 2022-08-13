@@ -26,5 +26,23 @@
         <StackPanel VerticalAlignment="Bottom" Width="200">
             <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="40">Create Events</Button>
         </StackPanel>
+        <TabControl x:Name="tabControl_templates" Grid.Column="1">
+            <TabItem x:Name="TabItem_PythonStart" Header="PythonStart">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBlock_PythonStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabItem_PythonDone" Header="PythonDone">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBox_PythonDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="CIV4EventInfos_Done" Header="EventInfos_Done">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
