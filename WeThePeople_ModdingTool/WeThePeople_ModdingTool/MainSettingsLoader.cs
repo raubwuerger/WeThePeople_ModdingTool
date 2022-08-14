@@ -27,8 +27,11 @@ namespace WeThePeople_ModdingTool
 
         public XmlDocument CIV4EventInfos_Start_Template;
         private string CIV4EventInfos_Start_TemplatePath = @"XML\Events\CIV4EventInfos_Start_Template.xml";
+        public string CIV4EventInfos_Start_Concrete = @"XML\Events\CIV4EventInfos_Start_";
+
         public XmlDocument CIV4EventInfos_Done_Template;
         private string CIV4EventInfos_Done_TemplatePath = @"XML\Events\CIV4EventInfos_Done_Template.xml";
+        public string CIV4EventInfos_Done_Concrete = @"XML\Events\CIV4EventInfos_Done_";
 
         public XmlDocument CIV4EventTriggerInfos_Start_Template;
         private string CIV4EventTriggerInfos_Start_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
@@ -41,6 +44,7 @@ namespace WeThePeople_ModdingTool
         public string CvRandomEventInterface_Start_Template;
         private string CvRandomEventInterface_Start_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
         public string CvRandomEventInterface_Start_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Start_";
+
         public string CvRandomEventInterface_Done_Template;
         private string CvRandomEventInterface_Done_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
         public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";

@@ -114,40 +114,52 @@ namespace WeThePeople_ModdingTool
 
         private void PrepareTemplates()
         {
-            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template, HarbourList.Instance.Harbours[0]);
-            if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete), CvRandomEventInterface_Start_Processed) )
+            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template);
+            if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete, ".py"), CvRandomEventInterface_Start_Processed) )
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
-
             textBlock_PythonStart.Text = CvRandomEventInterface_Start_Processed;
 
-            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template, HarbourList.Instance.Harbours[0]);
-            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete), CvRandomEventInterface_Done_Processed))
+            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
+            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete, ".py"), CvRandomEventInterface_Done_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
-
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
+
+            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template);
+            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete, ".xml"), CIV4EventInfos_Start_Template_Processed))
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+            }
+            textBox_EventInfoStart.Text = CreateText(CIV4EventInfos_Start_Template_Processed);
+
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
+            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete, ".xml"), CIV4EventInfos_Done_Template_Processed))
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+            }
+            textBox_EventInfoDone.Text = CreateText(CIV4EventInfos_Done_Template_Processed);
         }
 
-        private string CreatePathFileYield( string baseFile )
+        private string CreatePathFileYield( string baseFile, string fileExtension )
         {
             string absoluteProgramPath = AppDomain.CurrentDomain.BaseDirectory;
             string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, MainSettingsLoader.Instance.assetPathRelative);
             
             string appendix = baseFile;
             appendix += ComboBox_Yield.SelectedItem.ToString();
-            appendix += ".py";
+            appendix += fileExtension;
 
             return System.IO.Path.Combine(relativeAssetPath, appendix);
         }
 
-        private string ProcessTemplate( string template, string harbour )
+        private string ProcessTemplate( string template )
         {
             PythonItemReplacer replacer = new PythonItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, harbour);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, harbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourList.Instance.Harbours[0].ToUpper());
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
 
             if (false == replacer.Replace(template))
@@ -160,15 +172,15 @@ namespace WeThePeople_ModdingTool
 
         private bool SaveFile(string fileName, string pythonFile )
         {
-            TextFileUtility textFileLoader = new TextFileUtility();
-            return textFileLoader.Save(fileName,pythonFile);
+            TextFileUtility textFileUtility = new TextFileUtility();
+            return textFileUtility.Save(fileName,pythonFile);
         }
 
-        private XmlDocument ProcessTemplate(XmlDocument template, string harbour)
+        private XmlDocument ProcessTemplate(XmlDocument template)
         {
             XMLItemReplacer replacer = new XMLItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, harbour);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, harbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourList.Instance.Harbours[0].ToUpper());
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");
@@ -181,5 +193,15 @@ namespace WeThePeople_ModdingTool
             return replacer.ReplacedContent;
         }
 
+        private bool SaveFile(string fileName, XmlDocument xmlDocument)
+        {
+            XMLFileUtility xmlFileUtility = new XMLFileUtility();
+            return xmlFileUtility.Save(fileName, xmlDocument);
+        }
+
+        private string CreateText(XmlDocument xmlDocument)
+        {
+            return xmlDocument.Name;
+        }
     }
 }

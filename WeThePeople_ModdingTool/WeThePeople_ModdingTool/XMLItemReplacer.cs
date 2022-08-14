@@ -29,19 +29,32 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
+            replacedXmlDocument = xmlDocument;
             XmlNodeList nodes = replacedXmlDocument.DocumentElement.SelectNodes("/EventInfo");
+            int count = nodes.Count;
 
             foreach (XmlNode node in nodes)
             {
-
+                XmlNodeList childs = node.ChildNodes;
+                foreach (XmlNode childNode in childs)
+                {
+                    string replacedText = replaceText(childNode.InnerText);
+                    childNode.InnerText = replacedText;
+                }
             }
 
             return true;
         }
 
-        private string replaceText( string content, string item)
+        private string replaceText( string content )
         {
-            return null;
+            string replacedText = content;
+            foreach (KeyValuePair<string, string> entry in ReplaceItems)
+            {
+                replacedText = TextReplacer.replace(replacedText, entry);
+            }
+
+            return replacedText;
         }
     }
 }
