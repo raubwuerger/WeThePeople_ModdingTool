@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using WeThePeople_ModdingTool;
 using WeThePeople_ModdingTool.FileUtilities;
 
@@ -6,52 +7,93 @@ namespace WeThePeople_TestProject
 {
     public class TextReplacer_Tests
     {
+        string replaceItem_Placeholder = "$TO_REPLACE$";
+        string replaceItem_PlaceholderNotMatching = "$NOT_MATCHING$";
+        string replaceItem_Value = "world!";
+        string contentWithoutPlaceholder = "Nothing to replace ...";
+        string contentWithwrongPlaceholder = "Hello $IM_WRONG$";
+        string contentValid = "Hello $TO_REPLACE$";
+        string contentValidReplaced = "Hello world!";
+
+        KeyValuePair<string, string> keyValuePair_null;
+        KeyValuePair<string, string> keyVakuePair_valid;
+        KeyValuePair<string, string> keyValuePair_bob;
+        KeyValuePair<string, string> keyValuePair_eve;
+
+        string contentValidManyPlaceholders = "Hello $TO_REPLACE$ We are $BOB$ and $EVE$!";
+        string contentValidManyPlaceholdersReplaced = "Hello world! We are bob and eve!";
+
+        IDictionary<string, string> replaceItemsNull;
+        IDictionary<string, string> replaceItemsEmpty;
+        IDictionary<string, string> replaceItemsOne;
+        IDictionary<string, string> replaceItemsMany;
+
         [SetUp]
         public void Setup()
         {
+            CommonMessageBox.ShowMessageBoxes = false;
+
+            keyVakuePair_valid = new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value);
+            keyValuePair_bob = new KeyValuePair<string, string>("$BOB$", "bob");
+            keyValuePair_eve = new KeyValuePair<string, string>("$EVE$", "eve");
+
+            replaceItemsEmpty = new Dictionary<string, string>();
+
+            replaceItemsOne = new Dictionary<string, string>();
+            replaceItemsOne.Add(keyVakuePair_valid);
+
+            replaceItemsMany = new Dictionary<string, string>();
+            replaceItemsMany.Add(keyVakuePair_valid);
+            replaceItemsMany.Add(keyValuePair_bob);
+            replaceItemsMany.Add(keyValuePair_eve);
         }
 
         [Test]
-        public void NullStringTest()
+        public void ContentNull_ReplaceItemNull_Test()
         {
-            
-            Assert.IsNull( TextReplacer.replace(null, null) );
+            Assert.IsNull( TextReplacer.replace(null, keyValuePair_null) );
         }
 
         [Test]
-        public void EmptyStringTest()
+        public void ContentEmpty_ReplaceItemNull_Test()
         {
-            Assert.IsNull(TextReplacer.replace("", null) );
+            Assert.IsNull(TextReplacer.replace("", keyValuePair_null) );
         }
 
         [Test]
-        public void BlankStringTest()
+        public void ContentEmpty_ReplaceItemEmpty_Test()
         {
-//            Assert.IsNull(xmlFileParser.Load("    "));
+            Assert.IsNull(TextReplacer.replace("", new KeyValuePair<string, string>("", "")));
         }
 
         [Test]
-        public void FileNotFoundTest()
+        public void ContentWithoutPlaceholder_ReplaceItemValid_Test()
         {
-//            Assert.IsNull(xmlFileParser.Load("C:\\DieseDateiGibtEsNicht.xml"));
+            Assert.AreNotEqual(contentValidReplaced, TextReplacer.replace(contentWithoutPlaceholder, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
         }
 
         [Test]
-        public void NotAnXMLFileTest()
+        public void ContentWithWrongPlaceholder_ReplaceItemValid_Test()
         {
-//            Assert.IsNull(xmlFileParser.Load("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\NotAnXMLFile.txt"));
+            Assert.AreNotEqual(contentValidReplaced, TextReplacer.replace(contentWithwrongPlaceholder, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
         }
 
         [Test]
-        public void InvalidXMLFileTest()
+        public void ContentValid_ReplaceItemNotMatching_Test()
         {
-//            Assert.IsNull(xmlFileParser.Load("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\InValidXMLFile.xml"));
+            Assert.AreNotEqual(contentValidReplaced, TextReplacer.replace(contentValid, new KeyValuePair<string, string>(replaceItem_PlaceholderNotMatching, replaceItem_Value)));
         }
 
         [Test]
-        public void ValidXMLFileTest()
+        public void ContentValid_ReplaceItemValid_Test()
         {
-//            Assert.IsNotNull(xmlFileParser.Load("D:\\C#\\WeThePeople_ModdingTool\\WeThePeople_ModdingTool\\WeThePeople_TestProject\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\testData\\ValidXMLFile.xml"));
+            Assert.AreEqual(contentValidReplaced, TextReplacer.replace(contentValid, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
+        }
+
+        [Test]
+        public void ContentValid_ReplaceItemsValid_Test()
+        {
+            Assert.AreEqual(contentValidManyPlaceholdersReplaced, TextReplacer.replace(contentValidManyPlaceholders, replaceItemsMany));
         }
     }
 }

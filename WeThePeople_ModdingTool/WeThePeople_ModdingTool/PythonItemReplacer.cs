@@ -35,9 +35,10 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
+            replacedString = python;
             foreach (KeyValuePair<string, string> entry in ReplaceItems)
             {
-                replacedString = TextReplacer.replace(python, entry);
+                replacedString = TextReplacer.replace(replacedString, entry);
             }
 
             return true;
