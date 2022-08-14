@@ -77,7 +77,7 @@ namespace WeThePeople_ModdingTool
 
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
-            PrepareTemplates();
+            CreateEvents();
         }
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
@@ -124,7 +124,7 @@ namespace WeThePeople_ModdingTool
             return HarbourList.Instance.Harbours.Count > 0;
         }
 
-        private void PrepareTemplates()
+        private void CreateEvents()
         {
             if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete, ".py"), textBox_PythonStart.Text))
             {
@@ -136,12 +136,11 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template);
+            XmlDocument CIV4EventInfos_Start_Template_Processed = LoadXMLFromTextbox(textBox_EventInfoStart);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete, ".xml"), CIV4EventInfos_Start_Template_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
-            textBox_EventInfoStart.Text = CreateText(CIV4EventInfos_Start_Template_Processed);
 
             XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete, ".xml"), CIV4EventInfos_Done_Template_Processed))
@@ -149,6 +148,21 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
             textBox_EventInfoDone.Text = CreateText(CIV4EventInfos_Done_Template_Processed);
+        }
+
+        private XmlDocument LoadXMLFromTextbox( TextBox textBox )
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            try
+            {
+                xmlDocument.LoadXml(textBox.Text);
+                return xmlDocument;
+            }
+            catch(Exception ex)
+            {
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION);
+                return xmlDocument;
+            }
         }
 
         private string CreatePathFileYield( string baseFile, string fileExtension )
@@ -275,5 +289,11 @@ namespace WeThePeople_ModdingTool
         {
             textBox_EventInfoDone.IsEnabled = false;
         }
+
+        private void button_EventInfoStart_validate_Click(object sender, RoutedEventArgs e)
+        {
+            XmlDocument xmlValid = LoadXMLFromTextbox(textBox_EventInfoStart);
+        }
+
     }
 }
