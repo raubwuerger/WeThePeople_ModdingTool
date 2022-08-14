@@ -19,9 +19,6 @@ using Serilog;
 
 namespace WeThePeople_ModdingTool
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -63,10 +60,10 @@ namespace WeThePeople_ModdingTool
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
             XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template);
-            textBox_EventInfoStart.Text = CreateText(CIV4EventInfos_Start_Template_Processed);
+            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
 
             XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
-            textBox_EventInfoDone.Text = CreateText(CIV4EventInfos_Done_Template_Processed);
+            textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
 
         }
 
@@ -104,32 +101,16 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = LoadXMLFromTextbox(textBox_EventInfoStart);
+            XmlDocument CIV4EventInfos_Start_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoStart.Text);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete, ".xml"), CIV4EventInfos_Start_Template_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
+            XmlDocument CIV4EventInfos_Done_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoDone.Text);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete, ".xml"), CIV4EventInfos_Done_Template_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
-            }
-            textBox_EventInfoDone.Text = CreateText(CIV4EventInfos_Done_Template_Processed);
-        }
-
-        private XmlDocument LoadXMLFromTextbox( TextBox textBox )
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            try
-            {
-                xmlDocument.LoadXml(textBox.Text);
-                return xmlDocument;
-            }
-            catch(Exception ex)
-            {
-                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION);
-                return xmlDocument;
             }
         }
 
@@ -189,35 +170,6 @@ namespace WeThePeople_ModdingTool
             return xmlFileUtility.Save(fileName, xmlDocument);
         }
 
-        private string CreateText(XmlDocument xmlDocument)
-        {
-            XmlNodeList nodes = xmlDocument.DocumentElement.SelectNodes("/EventInfo");
-
-            string formatedXML = String.Empty;
-            foreach (XmlNode node in nodes)
-            {
-                formatedXML += FormatXml(node);
-            }
-            return formatedXML;
-        }
-        private string FormatXml(XmlNode xmlNode)
-        {
-            StringBuilder bob = new StringBuilder();
-
-            // We will use stringWriter to push the formated xml into our StringBuilder bob.
-            using (StringWriter stringWriter = new StringWriter(bob))
-            {
-                // We will use the Formatting of our xmlTextWriter to provide our indentation.
-                using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stringWriter))
-                {
-                    xmlTextWriter.Formatting = Formatting.Indented;
-                    xmlNode.WriteTo(xmlTextWriter);
-                }
-            }
-
-            return bob.ToString();
-        }
-
         private void checkBox_PythonStart_Editable_Checked(object sender, RoutedEventArgs e)
         {
             textBox_PythonStart.IsEnabled = true;
@@ -260,8 +212,18 @@ namespace WeThePeople_ModdingTool
 
         private void button_EventInfoStart_validate_Click(object sender, RoutedEventArgs e)
         {
-            XmlDocument xmlValid = LoadXMLFromTextbox(textBox_EventInfoStart);
+            if( false == XMLHelper.IsXMLShapely(textBox_EventInfoStart.Text) )
+            {
+                CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
+            }
         }
 
+        private void button_EventInfoDone_validate_Click(object sender, RoutedEventArgs e)
+        {
+            if (false == XMLHelper.IsXMLShapely(textBox_EventInfoDone.Text))
+            {
+                CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
+            }
+        }
     }
 }

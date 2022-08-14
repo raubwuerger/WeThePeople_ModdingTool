@@ -79,6 +79,9 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="checkBox_EventInfoDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_EventInfoDone_Editable_Checked" Unchecked="checkBox_EventInfoDone_Editable_Unchecked" />
+                    <Button x:Name="button_EventInfoDone_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_EventInfoDone_validate_Click">
+                        Validate
+                    </Button>
                     <TextBox x:Name="textBox_EventInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
