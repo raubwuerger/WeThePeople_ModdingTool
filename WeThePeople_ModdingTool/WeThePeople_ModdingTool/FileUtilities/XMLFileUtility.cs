@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -15,7 +16,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             if (false == File.Exists(fileName))
             {
-                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST_CR + fileName);
+                Log.Warning(CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST + CommonVariables.COLON_BLANK + fileName);
                 return null;
             }
             try
@@ -32,6 +33,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch( Exception ex )
             {
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + fileName + CommonVariables.BLANK_MINUS_BLANK +ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return null;
             }
@@ -53,6 +55,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch (Exception ex)
             {
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + fileName + CommonVariables.BLANK_MINUS_BLANK +ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return false;
             }

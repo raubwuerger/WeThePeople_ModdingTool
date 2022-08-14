@@ -7,6 +7,11 @@ namespace WeThePeople_ModdingTool
     class CommonVariables
     {
         public static string CR = "\n\r";
+        public static string BLANK = " ";
+        public static string UNDERSCORE = "_";
+        public static string COLON = ":";
+        public static string COLON_BLANK = ": ";
+        public static string BLANK_MINUS_BLANK = " - ";
 
         public static string MESSAGE_BOX_UNABLE_OPEN_CAPTION = "Unable to open file!";
         public static string MESSAGE_BOX_FILE_DOESNT_EXIST = "The file doesn't exist!";

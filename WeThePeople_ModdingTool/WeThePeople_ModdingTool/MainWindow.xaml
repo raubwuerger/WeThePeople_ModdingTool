@@ -29,19 +29,27 @@
         <TabControl x:Name="tabControl_templates" Grid.Column="1">
             <TabItem x:Name="TabItem_PythonStart" Header="PythonStart">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBlock_PythonStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="106*"/>
+                        <ColumnDefinition Width="191*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="textBlock_PythonStart" Text="PythonStart..." TextWrapping="Wrap" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_PythonDone" Header="PythonDone">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_PythonDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                    <TextBox x:Name="textBox_PythonDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="PythonDone..." TextWrapping="Wrap" VerticalAlignment="Stretch"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosStart..." TextWrapping="Wrap" VerticalAlignment="Stretch" />
+                </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done" Header="EventInfos_Done">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBox_EventInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" />
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
