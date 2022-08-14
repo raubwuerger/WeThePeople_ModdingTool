@@ -27,7 +27,7 @@ namespace WeThePeople_ModdingTool
         public MainWindow()
         {
             InitializeComponent();
-            InitLoggingFramework();
+            LogFrameworkInitialzer.Init();
             if( false == MainSettingsLoader.Instance.Init() )
             {
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
@@ -39,38 +39,6 @@ namespace WeThePeople_ModdingTool
                 ComboBox_Yield.SelectedItem = YieldList.Instance.Yields[0];
             }
         }
-        private void InitLoggingFramework()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Console()
-                .WriteTo.File(GenerateLogFileName(), rollingInterval: RollingInterval.Day)
-                .CreateLogger();
-            CreateInitialLogMessage();
-        }
-
-        private string GenerateLogFileName()
-        {
-            DateTime dateTime = DateTime.UtcNow.Date;
-            string logFileName = "logs/";
-            logFileName += dateTime.ToString("yyyy-MM-dd");
-            logFileName += "_";
-            logFileName += System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            logFileName += ".log";
-            return logFileName;
-        }
-
-        private void CreateInitialLogMessage()
-        {
-            string initialLogMessage = ">>>>>>>>>> Started logging application: ";
-            initialLogMessage += System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            initialLogMessage += ":";
-            initialLogMessage += System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            initialLogMessage += " <<<<<<<<<<";
-            Log.Information(initialLogMessage);
-        }
-
-
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
