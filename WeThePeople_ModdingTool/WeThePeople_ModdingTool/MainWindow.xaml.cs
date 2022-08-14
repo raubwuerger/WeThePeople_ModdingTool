@@ -87,6 +87,19 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning("No Harbour seleceted!", "At least one harbour must be selected!");
                 return;
             }
+
+            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template);
+            textBox_PythonStart.Text = CvRandomEventInterface_Start_Processed;
+
+            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
+            textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
+
+            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template);
+            textBox_EventInfoStart.Text = CreateText(CIV4EventInfos_Start_Template_Processed);
+
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
+            textBox_EventInfoDone.Text = CreateText(CIV4EventInfos_Done_Template_Processed);
+
         }
 
         private bool AtLeastOneButtonChecked()
@@ -113,19 +126,15 @@ namespace WeThePeople_ModdingTool
 
         private void PrepareTemplates()
         {
-            string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template);
-            if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete, ".py"), CvRandomEventInterface_Start_Processed) )
+            if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete, ".py"), textBox_PythonStart.Text))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
-            textBox_PythonStart.Text = CvRandomEventInterface_Start_Processed;
 
-            string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
-            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete, ".py"), CvRandomEventInterface_Done_Processed))
+            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete, ".py"), textBox_PythonDone.Text))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
-            textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
             XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete, ".xml"), CIV4EventInfos_Start_Template_Processed))
