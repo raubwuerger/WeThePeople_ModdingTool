@@ -24,6 +24,8 @@ namespace WeThePeople_TestProject
             invalidXMLFile = System.IO.Path.Combine(relativeAssetPath, @"InValidXMLFile.xml");
             validXMLFile = System.IO.Path.Combine(relativeAssetPath, @"ValidXMLFile.xml");
 
+            CommonMessageBox.ShowMessageBoxes = false;
+
             xmlFileParser = new XMLFileUtility();
         }
 
