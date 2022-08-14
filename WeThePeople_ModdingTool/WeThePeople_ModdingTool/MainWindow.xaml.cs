@@ -73,7 +73,6 @@ namespace WeThePeople_ModdingTool
 
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(ComboBox_Yield.SelectedItem.ToString());
         }
 
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
@@ -119,7 +118,7 @@ namespace WeThePeople_ModdingTool
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
-            textBlock_PythonStart.Text = CvRandomEventInterface_Start_Processed;
+            textBox_PythonStart.Text = CvRandomEventInterface_Start_Processed;
 
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete, ".py"), CvRandomEventInterface_Done_Processed))
@@ -201,7 +200,71 @@ namespace WeThePeople_ModdingTool
 
         private string CreateText(XmlDocument xmlDocument)
         {
-            return xmlDocument.Name;
+            XmlNodeList nodes = xmlDocument.DocumentElement.SelectNodes("/EventInfo");
+
+            string formatedXML = String.Empty;
+            foreach (XmlNode node in nodes)
+            {
+                formatedXML += FormatXml(node);
+            }
+            return formatedXML;
+        }
+        private string FormatXml(XmlNode xmlNode)
+        {
+            StringBuilder bob = new StringBuilder();
+
+            // We will use stringWriter to push the formated xml into our StringBuilder bob.
+            using (StringWriter stringWriter = new StringWriter(bob))
+            {
+                // We will use the Formatting of our xmlTextWriter to provide our indentation.
+                using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stringWriter))
+                {
+                    xmlTextWriter.Formatting = Formatting.Indented;
+                    xmlNode.WriteTo(xmlTextWriter);
+                }
+            }
+
+            return bob.ToString();
+        }
+
+        private void checkBox_PythonStart_Editable_Checked(object sender, RoutedEventArgs e)
+        {
+            textBox_PythonStart.IsEnabled = true;
+        }
+
+        private void checkBox_PythonStart_Editable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBox_PythonStart.IsEnabled = false;
+        }
+
+        private void checkBox_PythonDone_Editable_Checked(object sender, RoutedEventArgs e)
+        {
+            textBox_PythonDone.IsEnabled = true;
+        }
+
+        private void checkBox_PythonDone_Editable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBox_PythonDone.IsEnabled = false;
+        }
+
+        private void checkBox_EventInfoStart_Editable_Checked(object sender, RoutedEventArgs e)
+        {
+            textBox_EventInfoStart.IsEnabled = true;
+        }
+
+        private void checkBox_EventInfoStart_Editable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBox_EventInfoStart.IsEnabled = false;
+        }
+
+        private void checkBox_EventInfoDone_Editable_Checked(object sender, RoutedEventArgs e)
+        {
+            textBox_EventInfoDone.IsEnabled = true;
+        }
+
+        private void checkBox_EventInfoDone_Editable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBox_EventInfoDone.IsEnabled = false;
         }
     }
 }

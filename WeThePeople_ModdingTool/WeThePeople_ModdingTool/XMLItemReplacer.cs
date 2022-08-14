@@ -31,7 +31,6 @@ namespace WeThePeople_ModdingTool
 
             replacedXmlDocument = xmlDocument;
             XmlNodeList nodes = replacedXmlDocument.DocumentElement.SelectNodes("/EventInfo");
-            int count = nodes.Count;
 
             foreach (XmlNode node in nodes)
             {

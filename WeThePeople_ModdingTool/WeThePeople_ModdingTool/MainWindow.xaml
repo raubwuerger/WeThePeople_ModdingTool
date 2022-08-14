@@ -28,27 +28,55 @@
         </StackPanel>
         <TabControl x:Name="tabControl_templates" Grid.Column="1">
             <TabItem x:Name="TabItem_PythonStart" Header="PythonStart">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="#FFE5E5E5" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="106*"/>
-                        <ColumnDefinition Width="191*"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="textBlock_PythonStart" Text="PythonStart..." TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_PythonStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_PythonStart_Editable_Checked" Unchecked="checkBox_PythonStart_Editable_Unchecked" />
+                    <TextBox x:Name="textBox_PythonStart" Grid.Column="0" Text="PythonStart..." TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_PythonDone" Header="PythonDone">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_PythonDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="PythonDone..." TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_PythonDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_PythonDone_Editable_Checked" Unchecked="checkBox_PythonDone_Editable_Unchecked" />
+                    <TextBox x:Name="textBox_PythonDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="PythonDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosStart..." TextWrapping="Wrap" VerticalAlignment="Stretch" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_EventInfoStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_EventInfoStart_Editable_Checked" Unchecked="checkBox_EventInfoStart_Editable_Unchecked" />
+                    <TextBox x:Name="textBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosStart..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done" Header="EventInfos_Done">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_EventInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_EventInfoDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_EventInfoDone_Editable_Checked" Unchecked="checkBox_EventInfoDone_Editable_Unchecked" />
+                    <TextBox x:Name="textBox_EventInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
         </TabControl>
