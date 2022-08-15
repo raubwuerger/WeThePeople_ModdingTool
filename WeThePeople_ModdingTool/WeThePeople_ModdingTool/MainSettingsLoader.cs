@@ -60,63 +60,64 @@ namespace WeThePeople_ModdingTool
         //TODO: Sollte in List überführt werden. Wenn die Anzahl an templates wächst muss nur ein weiterer Eintrag in die List eingefügt werden.
         public bool LoadTemplates()
         {
+            bool loadingTamplatesOk = true;
             string absoluteProgramPath = PathHelper.GetBasePath();
             string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
 
             CIV4EventInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath,CIV4EventInfos_Start_TemplatePath));
             if ( null == CIV4EventInfos_Start_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             CIV4EventInfos_Done_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventInfos_Done_TemplatePath));
             if( null == CIV4EventInfos_Done_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             CIV4EventTriggerInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventTriggerInfos_Start_TemplatePath));
             if( null == CIV4EventTriggerInfos_Start_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             CIV4EventTriggerInfos_Done_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventTriggerInfos_Done_TemplatePath));
             if( null == CIV4EventTriggerInfos_Done_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             CIV4GameText_Colonization_Events_utf8_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4GameText_Colonization_Events_utf8_TemplatePath));
             if( null == CIV4GameText_Colonization_Events_utf8_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             CvRandomEventInterface_Start_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath,CvRandomEventInterface_Start_TemplatePath));
             if ( null == CvRandomEventInterface_Start_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             CvRandomEventInterface_Done_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath, CvRandomEventInterface_Done_TemplatePath));
             if( null == CvRandomEventInterface_Done_Template )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
             YieldTypes = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
             if (null == YieldTypes)
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
-            if( false == InitYieldList(YieldTypes) )
+            if ( false == InitYieldList(YieldTypes) )
             {
-                return false;
+                loadingTamplatesOk = false;
             }
 
-            return true;
+            return loadingTamplatesOk;
         }
 
         //TODO: Nicht den Pfad sondern den Namen verwenden!!!
