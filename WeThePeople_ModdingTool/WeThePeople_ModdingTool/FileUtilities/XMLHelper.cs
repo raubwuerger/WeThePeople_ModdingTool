@@ -1,9 +1,9 @@
 ﻿using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
@@ -88,6 +88,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stringWriter))
                 {
                     xmlTextWriter.Formatting = Formatting.Indented;
+                    xmlTextWriter.Indentation = 4;
                     xmlNode.WriteTo(xmlTextWriter);
                 }
             }
