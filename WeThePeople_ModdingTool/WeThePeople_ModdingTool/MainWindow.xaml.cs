@@ -47,13 +47,13 @@ namespace WeThePeople_ModdingTool
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template);
+            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventInfo");
             textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
             textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
 
-            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template);
+            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
         }
 
@@ -131,7 +131,7 @@ namespace WeThePeople_ModdingTool
 
             if (false == replacer.Replace(template))
             {
-                return "";
+                return String.Empty;
             }
 
             return replacer.ReplacedString;
@@ -143,7 +143,7 @@ namespace WeThePeople_ModdingTool
             return textFileUtility.Save(fileName,pythonFile);
         }
 
-        private XmlDocument ProcessTemplate(XmlDocument template)
+        private XmlDocument ProcessTemplate(XmlDocument template, string rootNode)
         {
             XMLItemReplacer replacer = new XMLItemReplacer();
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
@@ -152,9 +152,11 @@ namespace WeThePeople_ModdingTool
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");
 
+            replacer.RootNode = rootNode;
+
             if (false == replacer.Replace(template))
             {
-                return null;
+                return new XmlDocument();
             }
 
             return replacer.ReplacedContent;

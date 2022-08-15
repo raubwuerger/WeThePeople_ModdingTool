@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
+using Serilog;
 
 namespace WeThePeople_ModdingTool
 {
@@ -17,21 +17,39 @@ namespace WeThePeople_ModdingTool
         private XmlDocument replacedXmlDocument;
 
         public XmlDocument ReplacedContent { get => replacedXmlDocument; }
+
+        private string rootNode = String.Empty;
+        
+        //"/EventInfo"
+        public string RootNode { get => rootNode; set => rootNode = value; }
+
         public bool Replace( XmlDocument xmlDocument )
         {
             if( null == xmlDocument )
             {
+                Log.Debug("XmlDocument is null!");
                 return false;
             }
 
             if( true == ReplaceItems.Count <= 0 )
             {
+                Log.Debug("ReplaceItems are not set! --> ReplaceItems");
+                return false;
+            }
+
+            if( rootNode.Equals(String.Empty) )
+            {
+                Log.Debug("RootNode not set! --> RootNode");
                 return false;
             }
 
             replacedXmlDocument = xmlDocument;
-            XmlNodeList nodes = replacedXmlDocument.DocumentElement.SelectNodes("/EventInfo");
 
+            return Replace(replacedXmlDocument.DocumentElement.SelectNodes(rootNode));
+        }
+
+        private bool Replace( XmlNodeList nodes )
+        {
             foreach (XmlNode node in nodes)
             {
                 XmlNodeList childs = node.ChildNodes;
@@ -41,7 +59,6 @@ namespace WeThePeople_ModdingTool
                     childNode.InnerText = replacedText;
                 }
             }
-
             return true;
         }
 
