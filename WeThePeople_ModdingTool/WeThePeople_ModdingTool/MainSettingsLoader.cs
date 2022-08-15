@@ -52,8 +52,11 @@ namespace WeThePeople_ModdingTool
         public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";
 
 
-        public XmlDocument YieldTypes;
-        private string YieldTypesPath = @"templates\YieldTypes.xml";
+        public XmlDocument YieldTypesDocument;
+        private string YieldTypesPath = @"templates\Civ4YieldInfos_OnlyTypes.xml";
+
+        public XmlDocument UnitClassesDocument;
+        private string UnitClassesPath = @"templates\CIV4UnitInfos_OnlyClasses.xml";
 
         public bool Init()
         {
@@ -108,13 +111,24 @@ namespace WeThePeople_ModdingTool
                 loadingTamplatesOk = false;
             }
 
-            YieldTypes = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
-            if (null == YieldTypes)
+            YieldTypesDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
+            if (null == YieldTypesDocument)
             {
                 loadingTamplatesOk = false;
             }
 
-            if ( false == InitYieldList(YieldTypes) )
+            if ( false == InitYieldList(YieldTypesDocument) )
+            {
+                loadingTamplatesOk = false;
+            }
+
+            UnitClassesDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, UnitClassesPath));
+            if( null == UnitClassesDocument )
+            {
+                loadingTamplatesOk = false;
+            }
+
+            if( false == InitUnitClasses(UnitClassesDocument) )
             {
                 loadingTamplatesOk = false;
             }
@@ -179,14 +193,24 @@ namespace WeThePeople_ModdingTool
 
         private bool InitYieldList( XmlDocument yields )
         {
-            List<string> _yields = new List<string>();
+            List<string> yieldTypes = new List<string>();
             foreach (XmlNode node in yields.DocumentElement.ChildNodes)
             {
-                _yields.Add(node.InnerText);
+                yieldTypes.Add(node.InnerText);
             }
-            YieldList.Instance.Yields = _yields;
-            return YieldList.Instance.Yields.Count > 0;
+            YieldTypeList.Instance.YieldTypes = yieldTypes;
+            return YieldTypeList.Instance.YieldTypes.Count > 0;
         }
 
+        private bool InitUnitClasses( XmlDocument units )
+        {
+            List<string> unitClasses = new List<string>();
+            foreach (XmlNode node in units.DocumentElement.ChildNodes)
+            {
+                unitClasses.Add(node.InnerText);
+            }
+            UnitClassList.Instance.UnitClasses = unitClasses;
+            return UnitClassList.Instance.UnitClasses.Count > 0;
+        }
     }
 }

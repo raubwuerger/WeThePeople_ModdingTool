@@ -1,4 +1,4 @@
-<YieldTypes>
+<Civ4YieldInfos>
 	<Type>YIELD_FOOD</Type>
 	<Type>YIELD_LUMBER</Type>
 	<Type>YIELD_HARDWOOD</Type>
@@ -95,4 +95,4 @@
 	<Type>YIELD_FIELD_WORKER_TOOLS</Type>
 	<Type>YIELD_HOUSEHOLD_GOODS</Type>
 	<Type>YIELD_LUXURY_GOODS</Type>
-</YieldTypes>
+</Civ4YieldInfos>

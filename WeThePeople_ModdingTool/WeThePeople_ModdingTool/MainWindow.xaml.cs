@@ -18,10 +18,10 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
             }
 
-            ComboBox_Yield.ItemsSource = YieldList.Instance.Yields;
+            ComboBox_Yield.ItemsSource = YieldTypeList.Instance.YieldTypes;
             if( ComboBox_Yield.Items.Count > 0 )
             {
-                ComboBox_Yield.SelectedItem = YieldList.Instance.Yields[0];
+                ComboBox_Yield.SelectedItem = YieldTypeList.Instance.YieldTypes[0];
             }
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
