@@ -15,13 +15,13 @@ namespace WeThePeople_ModdingTool.FileUtilities
             {
                 if( false == File.Exists(fileName) )
                 {
-                    Log.Warning(CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST + CommonVariables.COLON_BLANK + fileName);
+                    Log.Warning(CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST + CommonVariables.BLANK_MINUS_BLANK + fileName);
                 }
                 return File.ReadAllText(fileName,Encoding.UTF8);
             }
             catch (Exception ex)
             {
-                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + fileName + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return null;
             }
@@ -43,7 +43,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch( Exception ex )
             {
-                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + fileName + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
                 return false;
             }
