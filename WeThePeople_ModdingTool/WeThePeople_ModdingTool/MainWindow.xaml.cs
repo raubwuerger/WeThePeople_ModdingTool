@@ -47,11 +47,11 @@ namespace WeThePeople_ModdingTool
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventInfo");
-            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventTriggerInfo");
+            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
-            textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventTriggerInfo");
+            textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
             XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
@@ -151,6 +151,11 @@ namespace WeThePeople_ModdingTool
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");
+            replacer.ReplaceItems.Add(ReplaceItems.GOLD, "1000");
+            replacer.ReplaceItems.Add(ReplaceItems.UNIT_CLASS, "");
+            replacer.ReplaceItems.Add(ReplaceItems.UNIT_COUNT, "1");
+            replacer.ReplaceItems.Add(ReplaceItems.KING_RELATION, "1");
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD_PRICE, "1");
 
             replacer.RootNode = rootNode;
 
