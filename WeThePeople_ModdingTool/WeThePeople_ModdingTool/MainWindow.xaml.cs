@@ -12,6 +12,7 @@ namespace WeThePeople_ModdingTool
         {
             InitializeComponent();
             LogFrameworkInitialzer.Init();
+            CommandLineArgsParser.Parse();
             if( false == MainSettingsLoader.Instance.Init() )
             {
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WeThePeople_ModdingTool": {
+      "commandName": "Project",
+      "commandLineArgs": "RUNS_INSIDE_IDE"
+    }
+  }
+}

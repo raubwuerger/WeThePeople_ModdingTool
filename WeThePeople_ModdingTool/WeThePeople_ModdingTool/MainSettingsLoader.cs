@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Xml;
 using WeThePeople_ModdingTool.FileUtilities;
@@ -23,7 +24,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public string assetPathRelative = @"..\..\..\templates\Assets";
+        public string assetPathRelative = @"templates\Assets";
 
         public XmlDocument CIV4EventInfos_Start_Template;
         private string CIV4EventInfos_Start_TemplatePath = @"XML\Events\CIV4EventInfos_Start_Template.xml";
@@ -50,7 +51,7 @@ namespace WeThePeople_ModdingTool
         public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";
 
         public XmlDocument YieldTypes;
-        private string YieldTypesPath = @"..\..\..\templates\YieldTypes.xml";
+        private string YieldTypesPath = @"templates\YieldTypes.xml";
 
         public bool Init()
         {
@@ -59,7 +60,7 @@ namespace WeThePeople_ModdingTool
         //TODO: Sollte in List überführt werden. Wenn die Anzahl an templates wächst muss nur ein weiterer Eintrag in die List eingefügt werden.
         public bool LoadTemplates()
         {
-            string absoluteProgramPath = AppDomain.CurrentDomain.BaseDirectory;
+            string absoluteProgramPath = PathHelper.GetBasePath();
             string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
 
             CIV4EventInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath,CIV4EventInfos_Start_TemplatePath));
@@ -104,7 +105,7 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            YieldTypes = LoadXMLFile(YieldTypesPath);
+            YieldTypes = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
             if (null == YieldTypes)
             {
                 return false;
