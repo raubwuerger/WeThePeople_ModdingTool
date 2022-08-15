@@ -9,6 +9,15 @@ namespace WeThePeople_ModdingTool.FileUtilities
 {
     class XMLHelper
     {
+        private static bool showMessageBox = false;
+
+        public static XmlDocument CreateFromStringShowException(string xmlString)
+        {
+            showMessageBox = true;
+            XmlDocument xmlDocument = CreateFromString(xmlString);
+            showMessageBox = false;
+            return xmlDocument;
+        }
         public static XmlDocument CreateFromString( string xmlString )
         {
             XmlDocument xmlDocument = new XmlDocument();
@@ -20,14 +29,33 @@ namespace WeThePeople_ModdingTool.FileUtilities
             catch (Exception ex)
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + ex.Message);
+                if( true == showMessageBox )
+                {
+                    CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + CommonVariables.CR + ex.Message);
+                }
                 return null;
             }
+        }
+        public static bool IsXMLShapelyShowException(string xmlString)
+        {
+            showMessageBox = true;
+            XmlDocument xmlDocument = CreateFromString(xmlString);
+            showMessageBox = false;
+            return xmlDocument != null;
         }
 
         public static bool IsXMLShapely( string xmlString )
         {
             XmlDocument xmlDocument = CreateFromString(xmlString);
             return xmlDocument != null;
+        }
+
+        public static string FormatKeepIndentionShowException(XmlNodeList nodes)
+        {
+            showMessageBox = true;
+            string formated = FormatKeepIndention(nodes);
+            showMessageBox = false;
+            return formated;
         }
 
         public static string FormatKeepIndention( XmlNodeList nodes )
@@ -44,6 +72,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
             catch( Exception ex )
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + ex.Message);
+                if (true == showMessageBox)
+                {
+                    CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.MESSAGE_BOX_EXCEPTION +" Formatting failed!" + CommonVariables.CR + CommonVariables.CR + ex.Message);
+                }
                 return String.Empty;
             }
         }

@@ -22,7 +22,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             catch (Exception ex)
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + ex.Message);
-                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
                 return null;
             }
         }
@@ -44,7 +44,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             catch( Exception ex )
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
-                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + fileName + CommonVariables.CR + ex.Message);
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
                 return false;
             }
         }

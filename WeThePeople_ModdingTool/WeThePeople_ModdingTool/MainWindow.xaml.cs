@@ -208,17 +208,11 @@ namespace WeThePeople_ModdingTool
 
         private void button_EventInfoStart_validate_Click(object sender, RoutedEventArgs e)
         {
-            if( false == XMLHelper.IsXMLShapely(textBox_EventInfoStart.Text) )
-            {
-                CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
-            }
+            XMLHelper.IsXMLShapelyShowException(textBox_EventInfoStart.Text);
         }
         private void button_EventInfoDone_validate_Click(object sender, RoutedEventArgs e)
         {
-            if (false == XMLHelper.IsXMLShapely(textBox_EventInfoDone.Text))
-            {
-                CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
-            }
+            XMLHelper.IsXMLShapelyShowException(textBox_EventInfoDone.Text);
         }
 
         private void checkBox_CIV4GameText_Checked(object sender, RoutedEventArgs e)
@@ -233,11 +227,7 @@ namespace WeThePeople_ModdingTool
 
         private void button_CIV4GameText_validate_Click(object sender, RoutedEventArgs e)
         {
-            if (false == XMLHelper.IsXMLShapely(textBox_CIV4GameText.Text))
-            {
-                CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
-            }
-           
+            XMLHelper.IsXMLShapelyShowException(textBox_CIV4GameText.Text);
         }
     }
 }
