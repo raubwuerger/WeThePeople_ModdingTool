@@ -44,22 +44,27 @@ namespace WeThePeople_ModdingTool
             }
 
             replacedXmlDocument = xmlDocument;
-
-            return Replace(replacedXmlDocument.DocumentElement.SelectNodes(rootNode));
+            Replace(replacedXmlDocument.DocumentElement.SelectNodes(rootNode));
+            return true;
         }
 
-        private bool Replace( XmlNodeList nodes )
+        private void Replace( XmlNodeList nodes )
         {
             foreach (XmlNode node in nodes)
             {
                 XmlNodeList childs = node.ChildNodes;
                 foreach (XmlNode childNode in childs)
                 {
-                    string replacedText = replaceText(childNode.InnerText);
-                    childNode.InnerText = replacedText;
+                    if( true == childNode.HasChildNodes )
+                    {
+                        Replace(childNode.ChildNodes);
+                    }
+                    else 
+                    {
+                        childNode.InnerText = replaceText(childNode.InnerText);
+                    }
                 }
             }
-            return true;
         }
 
         private string replaceText( string content )
