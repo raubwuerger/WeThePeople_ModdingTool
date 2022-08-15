@@ -53,6 +53,8 @@ namespace WeThePeople_ModdingTool
             XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template);
             textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
 
+            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template);
+            textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
         }
 
         private bool AtLeastOneButtonChecked()
@@ -97,6 +99,12 @@ namespace WeThePeople_ModdingTool
 
             XmlDocument CIV4EventInfos_Done_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoDone.Text);
             if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete, ".xml"), CIV4EventInfos_Done_Template_Processed))
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+            }
+
+            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = XMLHelper.CreateFromString(textBox_CIV4GameText.Text);
+            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Concrete, ".xml"), CIV4GameText_Colonization_Events_utf8_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
@@ -205,13 +213,31 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
             }
         }
-
         private void button_EventInfoDone_validate_Click(object sender, RoutedEventArgs e)
         {
             if (false == XMLHelper.IsXMLShapely(textBox_EventInfoDone.Text))
             {
                 CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
             }
+        }
+
+        private void checkBox_CIV4GameText_Checked(object sender, RoutedEventArgs e)
+        {
+            textBox_CIV4GameText.IsEnabled = true;
+        }
+
+        private void checkBox_CIV4GameText_Unchecked(object sender, RoutedEventArgs e)
+        {
+            textBox_CIV4GameText.IsEnabled = false;
+        }
+
+        private void button_CIV4GameText_validate_Click(object sender, RoutedEventArgs e)
+        {
+            if (false == XMLHelper.IsXMLShapely(textBox_CIV4GameText.Text))
+            {
+                CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.XML_IS_NOT_SHAPELY);
+            }
+           
         }
     }
 }

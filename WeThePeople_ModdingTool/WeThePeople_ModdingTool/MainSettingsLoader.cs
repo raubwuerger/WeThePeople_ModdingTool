@@ -41,6 +41,7 @@ namespace WeThePeople_ModdingTool
 
         public XmlDocument CIV4GameText_Colonization_Events_utf8_Template;
         private string CIV4GameText_Colonization_Events_utf8_TemplatePath = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml";
+        public string CIV4GameText_Colonization_Events_utf8_Concrete = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
 
         public string CvRandomEventInterface_Start_Template;
         private string CvRandomEventInterface_Start_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
@@ -49,6 +50,7 @@ namespace WeThePeople_ModdingTool
         public string CvRandomEventInterface_Done_Template;
         private string CvRandomEventInterface_Done_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
         public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";
+
 
         public XmlDocument YieldTypes;
         private string YieldTypesPath = @"templates\YieldTypes.xml";
