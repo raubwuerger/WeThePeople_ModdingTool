@@ -16,12 +16,12 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Top">
-            <ComboBox Margin="10" x:Name="ComboBox_Yield" SelectionChanged="ComboBox_Yield_SelectionChanged" >
+            <ComboBox x:Name="ComboBox_Yield" SelectionChanged="ComboBox_Yield_SelectionChanged" Margin="10">
             </ComboBox>
-            <CheckBox x:Name="checkBox_Europe" IsChecked="true" FlowDirection="RightToLeft" Margin="10">Europe</CheckBox>
-            <CheckBox x:Name="checkBox_Afrika" FlowDirection="RightToLeft" Margin="10">Africa</CheckBox>
-            <CheckBox x:Name="checkBox_PortRoyal" FlowDirection="RightToLeft" Margin="10">Port Royal</CheckBox>
-            <Button x:Name="button_LoadTemplates" Click="button_LoadTemplates_Click" Margin="10" Height="20">Init Templates</Button>
+            <ComboBox x:Name="comboBox_Harbours" SelectionChanged="comboBox_Harbours_SelectionChanged" Margin="10"/>
+            <Button x:Name="button_LoadTemplates" Click="button_LoadTemplates_Click" Margin="10" Height="20" Content="Init Templates" IsEnabled="false"/>
+            <Button x:Name="button_CreateEventInfoStartXML" Click="button_CreateEventInfoStartXML_Click" Margin="10" Height="20" Content="Create Event InfoStart" IsEnabled="false"/>
+            <Button x:Name="button_button_AddEventInfoDone" Click="button_button_AddEventInfoDone_Click" Margin="10" Height="20" Content="Add Event InfoDone" IsEnabled="false"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Width="200">
             <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="40">Create Events</Button>

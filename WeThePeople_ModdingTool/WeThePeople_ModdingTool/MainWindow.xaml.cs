@@ -35,12 +35,6 @@ namespace WeThePeople_ModdingTool
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
         {
-            if( false == AtLeastOneButtonChecked() )
-            {
-                CommonMessageBox.Show_OK_Warning("No Harbour seleceted!", "At least one harbour must be selected!");
-                return;
-            }
-
             string CvRandomEventInterface_Start_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Template);
             textBox_PythonStart.Text = CvRandomEventInterface_Start_Processed;
 
@@ -55,28 +49,6 @@ namespace WeThePeople_ModdingTool
 
             XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
-        }
-
-        private bool AtLeastOneButtonChecked()
-        {
-            HarbourList.Instance.Clear();
-
-            if (true == checkBox_Europe.IsChecked)
-            {
-                HarbourList.Instance.Harbours.Add(HarbourList.EUROPE);
-            }
-
-            if (true == checkBox_Afrika.IsChecked)
-            {
-                HarbourList.Instance.Harbours.Add(HarbourList.AFRICA);
-            }
-
-            if (true == checkBox_PortRoyal.IsChecked)
-            {
-                HarbourList.Instance.Harbours.Add(HarbourList.PORTROYAL);
-            }
-
-            return HarbourList.Instance.Harbours.Count > 0;
         }
 
         private void CreateEvents()
@@ -235,6 +207,21 @@ namespace WeThePeople_ModdingTool
         private void button_CIV4GameText_validate_Click(object sender, RoutedEventArgs e)
         {
             XMLHelper.IsXMLShapelyShowException(textBox_CIV4GameText.Text);
+        }
+
+        private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void comboBox_Harbours_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

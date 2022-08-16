@@ -36,8 +36,11 @@ namespace WeThePeople_ModdingTool
 
         public XmlDocument CIV4EventTriggerInfos_Start_Template;
         private string CIV4EventTriggerInfos_Start_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
+        public string CIV4EventTriggerInfos_Start_Concrete = @"XML\Events\CIV4EventTriggerInfos_Start_";
+
         public XmlDocument CIV4EventTriggerInfos_Done_Template;
         private string CIV4EventTriggerInfos_Done_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Done_Template.xml";
+        public string CIV4EventTriggerInfos_Done_Concrete = @"XML\Events\CIV4EventTriggerInfos_Done_";
 
         public XmlDocument CIV4GameText_Colonization_Events_utf8_Template;
         private string CIV4GameText_Colonization_Events_utf8_TemplatePath = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml";
