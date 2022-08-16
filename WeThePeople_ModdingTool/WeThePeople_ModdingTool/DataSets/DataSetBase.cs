@@ -6,10 +6,10 @@ namespace WeThePeople_ModdingTool.DataSets
 {
     public class DataSetBase
     {
-        public string TemplatePathRelativ;
-        public string TemplatePathAbsolute;
         public string TemplatName;
+        public string TemplateFileNameRelativ;
+        public string TemplateFileNameAbsolute;
         public string TemplatFileExtension;
-        public string ConcreteFileName;
+        public string TemplateFileNameConcrete;
     }
 }

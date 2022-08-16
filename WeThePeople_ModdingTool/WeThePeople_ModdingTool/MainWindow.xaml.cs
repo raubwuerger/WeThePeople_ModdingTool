@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using WeThePeople_ModdingTool.FileUtilities;
 using System.Xml;
 using WeThePeople_ModdingTool.Windows;
+using WeThePeople_ModdingTool.Factories;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool
 {
@@ -12,8 +14,10 @@ namespace WeThePeople_ModdingTool
     {
         private string selectedYieldType;
         private string selectedHarbour;
+
         private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
+//        private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
         public MainWindow()
         {
             InitializeComponent();
@@ -89,45 +93,48 @@ namespace WeThePeople_ModdingTool
 
         private void CreateEvents()
         {
-            if ( false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete), ".py"), textBox_PythonStart.Text))
+            if ( false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start)), textBox_PythonStart.Text))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
 
-            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete), ".py"), textBox_PythonDone.Text))
+            if (false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done)), textBox_PythonDone.Text))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoStart.Text);
-            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete), ".xml"), CIV4EventInfos_Start_Template_Processed))
+            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start)), XMLHelper.CreateFromString(TriggerInfoStart_TextBox.Text)))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoDone.Text);
-            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete), ".xml"), CIV4EventInfos_Done_Template_Processed))
+            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done)), XMLHelper.CreateFromString(TriggerInfoDone_TextBox.Text)))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
-            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = XMLHelper.CreateFromString(textBox_CIV4GameText.Text);
-            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Concrete), ".xml"), CIV4GameText_Colonization_Events_utf8_Processed))
+            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start)), XMLHelper.CreateFromString(textBox_EventInfoStart.Text)))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
+
+            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done)), XMLHelper.CreateFromString(textBox_EventInfoDone.Text)))
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+            }
+
+            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText)), XMLHelper.CreateFromString(textBox_CIV4GameText.Text)))
+            {
+                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+            }
+
         }
 
-        private string CreatePathFileYield( string baseFile, string fileExtension )
+        private string CreatePathFileConcrete(DataSetBase dataSetBase)
         {
-            string absoluteProgramPath = AppDomain.CurrentDomain.BaseDirectory;
-            string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, MainSettingsLoader.Instance.assetPathRelative);
-            
-            string appendix = baseFile;
-            appendix += selectedYieldType;
-            appendix += fileExtension;
-
-            return System.IO.Path.Combine(relativeAssetPath, appendix);
+            string concreteFileName = selectedYieldType;
+            concreteFileName += dataSetBase.TemplatFileExtension;
+            return dataSetBase.TemplateFileNameConcrete + concreteFileName;
         }
 
         private string ProcessTemplate( string template )

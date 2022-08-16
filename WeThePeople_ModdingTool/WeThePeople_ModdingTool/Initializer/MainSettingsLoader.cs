@@ -27,7 +27,6 @@ namespace WeThePeople_ModdingTool
         }
 
         public string assetPathRelative = @"templates\Assets";
-        public string relativeAssetPath;
 
         public XmlDocument CIV4EventInfos_Start_Template;
         public string CIV4EventInfos_Start_Concrete = @"XML\Events\CIV4EventInfos_Start_";
@@ -45,13 +44,10 @@ namespace WeThePeople_ModdingTool
         public string CIV4GameText_Colonization_Events_utf8_Concrete = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
 
         public string CvRandomEventInterface_Start_Template;
-        private string CvRandomEventInterface_Start_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
         public string CvRandomEventInterface_Start_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Start_";
 
         public string CvRandomEventInterface_Done_Template;
-        private string CvRandomEventInterface_Done_TemplatePath = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
         public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";
-
 
         public XmlDocument YieldTypesDocument;
         private string YieldTypesPath = @"templates\Civ4YieldInfos_OnlyTypes.xml";
@@ -71,40 +67,36 @@ namespace WeThePeople_ModdingTool
         {
             bool loadingTamplatesOk = true;
             string absoluteProgramPath = PathHelper.GetBasePath();
-            relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
-            DataSetFactory dataSetXMLFactory = new DataSetFactory();
 
-            DataSetXML dataSetEventInfos_Start = dataSetXMLFactory.CreateEventInfos_Start();
+            DataSetFactory dataSetFactory = new DataSetFactory();
+
+            DataSetXML dataSetEventInfos_Start = dataSetFactory.CreateEventInfos_Start();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
             CIV4EventInfos_Start_Template = dataSetEventInfos_Start.XmlDocumentObject;
 
-            DataSetXML dataSetEventInfos_Done = dataSetXMLFactory.CreateEventInfos_Done();
-            TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
+            DataSetXML dataSetEventInfos_Done = dataSetFactory.CreateEventInfos_Done();
+            TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Done);
             CIV4EventInfos_Done_Template = dataSetEventInfos_Done.XmlDocumentObject;
 
-            DataSetXML dataSetEventTriggerInfos_Start = dataSetXMLFactory.CreateEventTriggerInfos_Start();
+            DataSetXML dataSetEventTriggerInfos_Start = dataSetFactory.CreateEventTriggerInfos_Start();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Start);
             CIV4EventTriggerInfos_Start_Template = dataSetEventTriggerInfos_Start.XmlDocumentObject;
 
-            DataSetXML dataSetEventTriggerInfos_Done = dataSetXMLFactory.CreateEventTriggerInfos_Done();
+            DataSetXML dataSetEventTriggerInfos_Done = dataSetFactory.CreateEventTriggerInfos_Done();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Done);
             CIV4EventTriggerInfos_Done_Template = dataSetEventTriggerInfos_Done.XmlDocumentObject;
 
-            DataSetXML dataSetEventGameText = dataSetXMLFactory.CreateEventGameText();
+            DataSetXML dataSetEventGameText = dataSetFactory.CreateEventGameText();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventGameText);
             CIV4GameText_Colonization_Events_utf8_Template = dataSetEventGameText.XmlDocumentObject;
 
-            CvRandomEventInterface_Start_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath,CvRandomEventInterface_Start_TemplatePath));
-            if ( null == CvRandomEventInterface_Start_Template )
-            {
-                loadingTamplatesOk = false;
-            }
+            DataSetPython dataSetRandomEventStart = dataSetFactory.CreateRandomEventStart();
+            TemplateRepository.Instance.RegisterTemplate(dataSetRandomEventStart);
+            CvRandomEventInterface_Start_Template = dataSetRandomEventStart.PythonContent;
 
-            CvRandomEventInterface_Done_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath, CvRandomEventInterface_Done_TemplatePath));
-            if( null == CvRandomEventInterface_Done_Template )
-            {
-                loadingTamplatesOk = false;
-            }
+            DataSetPython dataSetRandomEventDone = dataSetFactory.CreateRandomEventDone();
+            TemplateRepository.Instance.RegisterTemplate(dataSetRandomEventDone);
+            CvRandomEventInterface_Done_Template = dataSetRandomEventDone.PythonContent;
 
             YieldTypesDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
             if (null == YieldTypesDocument)
@@ -146,12 +138,6 @@ namespace WeThePeople_ModdingTool
         {
             XMLFileUtility parser = new XMLFileUtility();
             return parser.Load(fileName);
-        }
-
-        private String LoadTextFile(String fileName)
-        {
-            TextFileUtility textFileLoader = new TextFileUtility();
-            return textFileLoader.Load(fileName);
         }
 
         private bool InitYieldList( XmlDocument yields )

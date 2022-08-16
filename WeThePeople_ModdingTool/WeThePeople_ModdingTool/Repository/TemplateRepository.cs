@@ -25,7 +25,7 @@ namespace WeThePeople_ModdingTool
         }
 
         private IDictionary<string, DataSetXML> xmlDocuments = new Dictionary<string, DataSetXML>();
-        private IDictionary<string, string> pythonFiles = new Dictionary< string, string>();
+        private IDictionary<string, DataSetPython> pythonFiles = new Dictionary< string, DataSetPython>();
 
         public bool RegisterTemplate( DataSetXML dataSetXML )
         {
@@ -53,11 +53,11 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public bool RegisterTemplate(string name, string pythonContent)
+        public bool RegisterTemplate( DataSetPython dataSetPython )
         {
             try
             {
-                if (true == pythonFiles.ContainsKey(name))
+                if (true == pythonFiles.ContainsKey(dataSetPython.TemplatName))
                 {
                     return false;
                 }
@@ -70,13 +70,27 @@ namespace WeThePeople_ModdingTool
 
             try
             {
-                return pythonFiles.TryAdd(name, pythonContent);
+                return pythonFiles.TryAdd(dataSetPython.TemplatName, dataSetPython);
             }
             catch (ArgumentNullException)
             {
                 CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
                 return false;
             }
+        }
+
+        public DataSetXML FindByNameXML( string name )
+        {
+            DataSetXML dataSetXML;
+            xmlDocuments.TryGetValue(name, out dataSetXML);
+            return dataSetXML;
+        }
+
+        public DataSetPython FindByNamePython(string name)
+        {
+            DataSetPython dataSetPython;
+            pythonFiles.TryGetValue(name, out dataSetPython);
+            return dataSetPython;
         }
     }
 }

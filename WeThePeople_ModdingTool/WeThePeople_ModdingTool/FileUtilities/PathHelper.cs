@@ -21,10 +21,15 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static string GetFullAssetPath( string asset )
+        public static string GetFullAssetFileName( string asset )
         {
             string assetPathAbsolute = Path.Combine(GetBasePath(), AssetPathRelative);
             return Path.Combine(assetPathAbsolute, asset);
+        }
+
+        public static string GetFullAssetPath()
+        {
+            return Path.Combine(GetBasePath(), AssetPathRelative);
         }
     }
 }
