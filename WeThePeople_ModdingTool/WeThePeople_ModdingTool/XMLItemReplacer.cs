@@ -52,17 +52,13 @@ namespace WeThePeople_ModdingTool
         {
             foreach (XmlNode node in nodes)
             {
-                XmlNodeList childs = node.ChildNodes;
-                foreach (XmlNode childNode in childs)
+                if( true == node.HasChildNodes )
                 {
-                    if( true == childNode.HasChildNodes )
-                    {
-                        Replace(childNode.ChildNodes);
-                    }
-                    else 
-                    {
-                        childNode.InnerText = replaceText(childNode.InnerText);
-                    }
+                    Replace(node.ChildNodes);
+                }
+                else 
+                {
+                    node.InnerText = replaceText(node.InnerText);
                 }
             }
         }
