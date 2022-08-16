@@ -8,6 +8,8 @@ namespace WeThePeople_ModdingTool
 {
     public partial class MainWindow : Window
     {
+        private string selectedYieldType;
+        private string selectedHarbour;
         public MainWindow()
         {
             InitializeComponent();
@@ -23,11 +25,21 @@ namespace WeThePeople_ModdingTool
             {
                 ComboBox_Yield.SelectedItem = YieldTypeRepository.Instance.YieldTypes[0];
             }
+
+            comboBox_Harbours.ItemsSource = HarbourRepository.Instance.Harbours;
+            if( comboBox_Harbours.Items.Count > 0 )
+            {
+                comboBox_Harbours.SelectedItem = HarbourRepository.Instance.Harbours[0];
+            }
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            selectedYieldType = ComboBox_Yield.SelectedItem.ToString();
         }
-
+        private void comboBox_Harbours_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedHarbour = comboBox_Harbours.SelectedItem.ToString();
+        }
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
             CreateEvents();
@@ -88,7 +100,7 @@ namespace WeThePeople_ModdingTool
             string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, MainSettingsLoader.Instance.assetPathRelative);
             
             string appendix = baseFile;
-            appendix += ComboBox_Yield.SelectedItem.ToString();
+            appendix += selectedYieldType;
             appendix += fileExtension;
 
             return System.IO.Path.Combine(relativeAssetPath, appendix);
@@ -97,9 +109,9 @@ namespace WeThePeople_ModdingTool
         private string ProcessTemplate( string template )
         {
             PythonItemReplacer replacer = new PythonItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourRepository.Instance.Harbours[0]);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourRepository.Instance.Harbours[0].ToUpper());
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
 
             if (false == replacer.Replace(template))
             {
@@ -118,9 +130,9 @@ namespace WeThePeople_ModdingTool
         private XmlDocument ProcessTemplate(XmlDocument template, string rootNode)
         {
             XMLItemReplacer replacer = new XMLItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourRepository.Instance.Harbours[0]);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourRepository.Instance.Harbours[0].ToUpper());
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");
             replacer.ReplaceItems.Add(ReplaceItems.GOLD, "1000");
@@ -219,9 +231,5 @@ namespace WeThePeople_ModdingTool
 
         }
 
-        private void comboBox_Harbours_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
