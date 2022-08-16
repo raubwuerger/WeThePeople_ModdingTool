@@ -174,12 +174,12 @@ namespace WeThePeople_ModdingTool
 
         private bool RegisterDocument( string name, XmlDocument xmlDocument)
         {
-            return TemplateRegistry.Instance.RegisterTemplate(name, xmlDocument);
+            return TemplateRepository.Instance.RegisterTemplate(name, xmlDocument);
         }
 
         private bool RegisterPythonFile(string name, string pythonFile)
         {
-            return TemplateRegistry.Instance.RegisterTemplate(name, pythonFile);
+            return TemplateRepository.Instance.RegisterTemplate(name, pythonFile);
         }
 
         private XmlDocument LoadXMLFile(String fileName)
@@ -201,8 +201,8 @@ namespace WeThePeople_ModdingTool
             {
                 yieldTypes.Add(node.InnerText);
             }
-            YieldTypeList.Instance.YieldTypes = yieldTypes;
-            return YieldTypeList.Instance.YieldTypes.Count > 0;
+            YieldTypeRepository.Instance.YieldTypes = yieldTypes;
+            return YieldTypeRepository.Instance.YieldTypes.Count > 0;
         }
 
         private bool InitUnitClasses( XmlDocument units )
@@ -212,8 +212,8 @@ namespace WeThePeople_ModdingTool
             {
                 unitClasses.Add(node.InnerText);
             }
-            UnitClassList.Instance.UnitClasses = unitClasses;
-            return UnitClassList.Instance.UnitClasses.Count > 0;
+            UnitClassRepository.Instance.UnitClasses = unitClasses;
+            return UnitClassRepository.Instance.UnitClasses.Count > 0;
         }
     }
 }

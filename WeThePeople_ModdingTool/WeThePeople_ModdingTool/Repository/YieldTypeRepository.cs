@@ -4,15 +4,15 @@ using System.Text;
 
 namespace WeThePeople_ModdingTool
 {
-    public sealed class YieldTypeList
+    public sealed class YieldTypeRepository
     {
-        private static readonly YieldTypeList instance = new YieldTypeList();
+        private static readonly YieldTypeRepository instance = new YieldTypeRepository();
 
-        static YieldTypeList()
+        static YieldTypeRepository()
         {
         }
 
-        public static YieldTypeList Instance
+        public static YieldTypeRepository Instance
         {
             get
             {

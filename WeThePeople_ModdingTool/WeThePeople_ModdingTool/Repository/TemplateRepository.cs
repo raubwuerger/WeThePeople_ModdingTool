@@ -6,16 +6,16 @@ using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
 {
-    public sealed class TemplateRegistry
+    public sealed class TemplateRepository
     {
 
-        private static readonly TemplateRegistry instance = new TemplateRegistry();
+        private static readonly TemplateRepository instance = new TemplateRepository();
 
-        static TemplateRegistry()
+        static TemplateRepository()
         {
         }
 
-        public static TemplateRegistry Instance
+        public static TemplateRepository Instance
         {
             get
             {

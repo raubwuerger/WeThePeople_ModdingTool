@@ -18,10 +18,10 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
             }
 
-            ComboBox_Yield.ItemsSource = YieldTypeList.Instance.YieldTypes;
+            ComboBox_Yield.ItemsSource = YieldTypeRepository.Instance.YieldTypes;
             if( ComboBox_Yield.Items.Count > 0 )
             {
-                ComboBox_Yield.SelectedItem = YieldTypeList.Instance.YieldTypes[0];
+                ComboBox_Yield.SelectedItem = YieldTypeRepository.Instance.YieldTypes[0];
             }
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,8 +97,8 @@ namespace WeThePeople_ModdingTool
         private string ProcessTemplate( string template )
         {
             PythonItemReplacer replacer = new PythonItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourList.Instance.Harbours[0].ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourRepository.Instance.Harbours[0]);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourRepository.Instance.Harbours[0].ToUpper());
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
 
             if (false == replacer.Replace(template))
@@ -118,8 +118,8 @@ namespace WeThePeople_ModdingTool
         private XmlDocument ProcessTemplate(XmlDocument template, string rootNode)
         {
             XMLItemReplacer replacer = new XMLItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourList.Instance.Harbours[0]);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourList.Instance.Harbours[0].ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, HarbourRepository.Instance.Harbours[0]);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, HarbourRepository.Instance.Harbours[0].ToUpper());
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, ComboBox_Yield.SelectedItem.ToString());
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
             replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");

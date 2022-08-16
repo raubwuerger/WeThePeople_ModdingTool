@@ -4,15 +4,15 @@ using System.Text;
 
 namespace WeThePeople_ModdingTool
 {
-    public sealed class UnitClassList
+    public sealed class UnitClassRepository
     {
-        private static readonly UnitClassList instance = new UnitClassList();
+        private static readonly UnitClassRepository instance = new UnitClassRepository();
 
-        static UnitClassList()
+        static UnitClassRepository()
         {
         }
 
-        public static UnitClassList Instance
+        public static UnitClassRepository Instance
         {
             get
             {

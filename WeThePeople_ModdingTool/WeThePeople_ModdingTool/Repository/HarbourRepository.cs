@@ -4,15 +4,15 @@ using System.Text;
 
 namespace WeThePeople_ModdingTool
 {
-    public sealed class HarbourList
+    public sealed class HarbourRepository
     {
-        private static readonly HarbourList instance = new HarbourList();
+        private static readonly HarbourRepository instance = new HarbourRepository();
 
-        static HarbourList()
+        static HarbourRepository()
         {
         }
 
-        public static HarbourList Instance
+        public static HarbourRepository Instance
         {
             get
             {
