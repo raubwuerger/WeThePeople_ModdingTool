@@ -24,12 +24,12 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void button_Cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
         }
 
         private void button_Ok_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = true;
         }
     }
 }

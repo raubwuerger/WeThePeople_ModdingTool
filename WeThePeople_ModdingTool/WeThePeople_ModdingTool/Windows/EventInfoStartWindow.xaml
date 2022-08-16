@@ -1,0 +1,30 @@
+﻿<Window x:Class="WeThePeople_ModdingTool.Windows.EventInfoStartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
+        mc:Ignorable="d"
+        Title="EventInfoStartWindow" Height="152" Width="400"
+        ResizeMode="NoResize" 
+        WindowStyle="None">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Label VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2">Create EventStart XML</Label>
+        <Label VerticalAlignment="Center" Grid.Row="1">Start value:</Label>
+        <TextBox x:Name="StartValue_TextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
+        <Label VerticalAlignment="Center" Grid.Row="2">Done value:</Label>
+        <TextBox x:Name="DoneValue_TextBox" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
+        <Button x:Name="EventInfoStart_Ok" Click="EventInfoStart_Ok_Click" Grid.Row="3" Grid.Column="2" Content="OK" HorizontalAlignment="Left" Width="80" Height="20" Margin="4,4,4,4"/>
+        <Button x:Name="EventInfoStart_Cancel" Click="EventInfoStart_Cancel_Click" Grid.Row="3" Grid.Column="2" Content="Cancel" HorizontalAlignment="Right" Width="80" Height="20" Margin="4,4,4,4"/>
+    </Grid>
+</Window>

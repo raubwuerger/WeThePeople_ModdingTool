@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using WeThePeople_ModdingTool.FileUtilities;
 using System.Xml;
+using WeThePeople_ModdingTool.Windows;
 
 namespace WeThePeople_ModdingTool
 {
@@ -74,42 +75,44 @@ namespace WeThePeople_ModdingTool
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
-            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Start_Template, "/EventTriggerInfo");
+            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplateCommon(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Start_Template, "/EventTriggerInfo");
             TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Done_Template, "/EventTriggerInfo");
+            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplateCommon(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Done_Template, "/EventTriggerInfo");
             TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
+            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplateCommon(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
+
+            button_CreateEventInfoStartXML.IsEnabled = true;
         }
 
         private void CreateEvents()
         {
-            if( false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete, ".py"), textBox_PythonStart.Text))
+            if ( false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CvRandomEventInterface_Start_Concrete), ".py"), textBox_PythonStart.Text))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
             }
 
-            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete, ".py"), textBox_PythonDone.Text))
+            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CvRandomEventInterface_Done_Concrete), ".py"), textBox_PythonDone.Text))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
             XmlDocument CIV4EventInfos_Start_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoStart.Text);
-            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete, ".xml"), CIV4EventInfos_Start_Template_Processed))
+            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CIV4EventInfos_Start_Concrete), ".xml"), CIV4EventInfos_Start_Template_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
             XmlDocument CIV4EventInfos_Done_Template_Processed = XMLHelper.CreateFromString(textBox_EventInfoDone.Text);
-            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete, ".xml"), CIV4EventInfos_Done_Template_Processed))
+            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CIV4EventInfos_Done_Concrete), ".xml"), CIV4EventInfos_Done_Template_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
 
             XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = XMLHelper.CreateFromString(textBox_CIV4GameText.Text);
-            if (false == SaveFile(CreatePathFileYield(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Concrete, ".xml"), CIV4GameText_Colonization_Events_utf8_Processed))
+            if (false == SaveFile(CreatePathFileYield(System.IO.Path.Combine(MainSettingsLoader.Instance.relativeAssetPath, MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Concrete), ".xml"), CIV4GameText_Colonization_Events_utf8_Processed))
             {
                 CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
             }
@@ -148,7 +151,7 @@ namespace WeThePeople_ModdingTool
             return textFileUtility.Save(fileName,pythonFile);
         }
 
-        private XmlDocument ProcessTemplate(XmlDocument template, string rootNode)
+        private XmlDocument ProcessTemplateCommon(XmlDocument template, string rootNode)
         {
             XMLItemReplacer replacer = new XMLItemReplacer();
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
@@ -171,6 +174,49 @@ namespace WeThePeople_ModdingTool
 
             return replacer.ReplacedContent;
         }
+
+        private XmlDocument ProcessTemplateEventInfoStart(XmlDocument template, string rootNode)
+        {
+            XMLItemReplacer replacer = new XMLItemReplacer();
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
+            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_START_VALUE, "100");
+            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_DONE_VALUE, "1000");
+
+            replacer.RootNode = rootNode;
+
+            if (false == replacer.Replace(template))
+            {
+                return new XmlDocument();
+            }
+
+            return replacer.ReplacedContent;
+        }
+
+        private XmlDocument ProcessTemplateEventInfoDone(XmlDocument template, string rootNode)
+        {
+            XMLItemReplacer replacer = new XMLItemReplacer();
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
+            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
+            replacer.ReplaceItems.Add(ReplaceItems.GOLD, "1000");
+            replacer.ReplaceItems.Add(ReplaceItems.UNIT_CLASS, "");
+            replacer.ReplaceItems.Add(ReplaceItems.UNIT_COUNT, "1");
+            replacer.ReplaceItems.Add(ReplaceItems.UNIT_EXPERIENCE, "20");
+            replacer.ReplaceItems.Add(ReplaceItems.KING_RELATION, "1");
+            replacer.ReplaceItems.Add(ReplaceItems.YIELD_PRICE, "1");
+
+            replacer.RootNode = rootNode;
+
+            if (false == replacer.Replace(template))
+            {
+                return new XmlDocument();
+            }
+
+            return replacer.ReplacedContent;
+        }
+
 
         private bool SaveFile(string fileName, XmlDocument xmlDocument)
         {
@@ -242,14 +288,30 @@ namespace WeThePeople_ModdingTool
 
         private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
         {
-            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventInfo");
+            EventInfoStartWindow eventInfoStartWindow = new EventInfoStartWindow();
+            if( false == eventInfoStartWindow.ShowDialog() )
+            {
+                return;
+            }
+
+            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplateEventInfoStart(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventInfo");
             textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            CIV4EventInfos_Start.Visibility = Visibility.Visible;
+            button_button_AddEventInfoDone.IsEnabled = true;
         }
 
         private void button_button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
         {
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
+            EventInfoDoneWindow eventInfoDoneWindow = new EventInfoDoneWindow();
+            if( false == eventInfoDoneWindow.ShowDialog() )
+            {
+                return;
+            }
+
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplateEventInfoDone(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
             textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+
+            CIV4EventInfos_Done.Visibility = Visibility.Visible;
         }
     }
 }

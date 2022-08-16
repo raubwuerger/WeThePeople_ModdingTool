@@ -25,6 +25,7 @@ namespace WeThePeople_ModdingTool
         }
 
         public string assetPathRelative = @"templates\Assets";
+        public string relativeAssetPath;
 
         public XmlDocument CIV4EventInfos_Start_Template;
         private string CIV4EventInfos_Start_TemplatePath = @"XML\Events\CIV4EventInfos_Start_Template.xml";
@@ -73,7 +74,7 @@ namespace WeThePeople_ModdingTool
         {
             bool loadingTamplatesOk = true;
             string absoluteProgramPath = PathHelper.GetBasePath();
-            string relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
+            relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
 
             CIV4EventInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath,CIV4EventInfos_Start_TemplatePath));
             if ( null == CIV4EventInfos_Start_Template )
