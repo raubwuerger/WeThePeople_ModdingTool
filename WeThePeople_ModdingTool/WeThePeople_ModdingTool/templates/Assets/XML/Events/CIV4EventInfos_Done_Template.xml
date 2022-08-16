@@ -19,7 +19,7 @@
 	<UnitClass>$UNIT_CLASS$</UnitClass>
 	<iNumFreeUnits>$UNIT_COUNT$</iNumFreeUnits>
 	<bDisbandUnit>0</bDisbandUnit>
-	<iUnitExperience>0</iUnitExperience>
+	<iUnitExperience>$UNIT_EXPERIENCE$</iUnitExperience>
 	<iUnitImmobileTurns>0</iUnitImmobileTurns>
 	<UnitPromotion/>
 	<UnitName/>
