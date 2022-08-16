@@ -74,10 +74,10 @@ namespace WeThePeople_ModdingTool
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
-            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventTriggerInfo");
+            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Start_Template, "/EventTriggerInfo");
             TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventTriggerInfo");
+            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Done_Template, "/EventTriggerInfo");
             TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
             XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
