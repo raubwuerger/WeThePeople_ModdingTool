@@ -8,7 +8,7 @@ using Serilog;
 
 namespace WeThePeople_ModdingTool.Factories
 {
-    public class DataSetXMLFactory
+    public class DataSetFactory
     {
         private static string FileExtension = ".xml";
         private static string RootNodeEventInfo = "/EventInfo";

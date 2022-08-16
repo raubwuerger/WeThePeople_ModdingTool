@@ -5,14 +5,9 @@ using System.Xml;
 
 namespace WeThePeople_ModdingTool.DataSets
 {
-    public class DataSetXML
+    public class DataSetXML : DataSetBase
     {
         public XmlDocument XmlDocumentObject;
-        public string TemplatePathRelativ;
-        public string TemplatePathAbsolute;
-        public string TemplatName;
-        public string TemplatFileExtension;
-        public string ConcreteFileName;
         public string RootNode;
     }
 }

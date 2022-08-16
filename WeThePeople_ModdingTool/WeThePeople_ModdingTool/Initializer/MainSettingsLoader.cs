@@ -72,12 +72,11 @@ namespace WeThePeople_ModdingTool
             bool loadingTamplatesOk = true;
             string absoluteProgramPath = PathHelper.GetBasePath();
             relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
-            DataSetXMLFactory dataSetXMLFactory = new DataSetXMLFactory();
+            DataSetFactory dataSetXMLFactory = new DataSetFactory();
 
             DataSetXML dataSetEventInfos_Start = dataSetXMLFactory.CreateEventInfos_Start();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
             CIV4EventInfos_Start_Template = dataSetEventInfos_Start.XmlDocumentObject;
-
 
             DataSetXML dataSetEventInfos_Done = dataSetXMLFactory.CreateEventInfos_Done();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
@@ -141,17 +140,6 @@ namespace WeThePeople_ModdingTool
             }
 
             return loadingTamplatesOk;
-        }
-
-        private bool RegisterDocument( string name, XmlDocument xmlDocument)
-        {
-            return false;
-//            return TemplateRepository.Instance.RegisterTemplate(name, xmlDocument);
-        }
-
-        private bool RegisterPythonFile(string name, string pythonFile)
-        {
-            return TemplateRepository.Instance.RegisterTemplate(name, pythonFile);
         }
 
         private XmlDocument LoadXMLFile(String fileName)
