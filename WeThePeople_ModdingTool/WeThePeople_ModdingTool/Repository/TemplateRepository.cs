@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
@@ -23,14 +24,14 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        private IDictionary<string, XmlDocument> xmlDocuments = new Dictionary<string, XmlDocument>();
+        private IDictionary<string, DataSetXML> xmlDocuments = new Dictionary<string, DataSetXML>();
         private IDictionary<string, string> pythonFiles = new Dictionary< string, string>();
 
-        public bool RegisterTemplate( string name, XmlDocument document )
+        public bool RegisterTemplate( DataSetXML dataSetXML )
         {
             try
             {
-                if (true == xmlDocuments.ContainsKey(name))
+                if (true == xmlDocuments.ContainsKey(dataSetXML.TemplatName))
                 {
                     return false;
                 }
@@ -43,7 +44,7 @@ namespace WeThePeople_ModdingTool
 
             try
             {
-                return xmlDocuments.TryAdd(name, document);
+                return xmlDocuments.TryAdd(dataSetXML.TemplatName, dataSetXML);
             }
             catch( ArgumentNullException)
             {

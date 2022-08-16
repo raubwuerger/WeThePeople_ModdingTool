@@ -4,6 +4,8 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml;
+using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
@@ -28,23 +30,18 @@ namespace WeThePeople_ModdingTool
         public string relativeAssetPath;
 
         public XmlDocument CIV4EventInfos_Start_Template;
-        private string CIV4EventInfos_Start_TemplatePath = @"XML\Events\CIV4EventInfos_Start_Template.xml";
         public string CIV4EventInfos_Start_Concrete = @"XML\Events\CIV4EventInfos_Start_";
 
         public XmlDocument CIV4EventInfos_Done_Template;
-        private string CIV4EventInfos_Done_TemplatePath = @"XML\Events\CIV4EventInfos_Done_Template.xml";
         public string CIV4EventInfos_Done_Concrete = @"XML\Events\CIV4EventInfos_Done_";
 
         public XmlDocument CIV4EventTriggerInfos_Start_Template;
-        private string CIV4EventTriggerInfos_Start_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
         public string CIV4EventTriggerInfos_Start_Concrete = @"XML\Events\CIV4EventTriggerInfos_Start_";
 
         public XmlDocument CIV4EventTriggerInfos_Done_Template;
-        private string CIV4EventTriggerInfos_Done_TemplatePath = @"XML\Events\CIV4EventTriggerInfos_Done_Template.xml";
         public string CIV4EventTriggerInfos_Done_Concrete = @"XML\Events\CIV4EventTriggerInfos_Done_";
 
         public XmlDocument CIV4GameText_Colonization_Events_utf8_Template;
-        private string CIV4GameText_Colonization_Events_utf8_TemplatePath = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml";
         public string CIV4GameText_Colonization_Events_utf8_Concrete = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
 
         public string CvRandomEventInterface_Start_Template;
@@ -75,36 +72,28 @@ namespace WeThePeople_ModdingTool
             bool loadingTamplatesOk = true;
             string absoluteProgramPath = PathHelper.GetBasePath();
             relativeAssetPath = System.IO.Path.Combine(absoluteProgramPath, assetPathRelative);
+            DataSetXMLFactory dataSetXMLFactory = new DataSetXMLFactory();
 
-            CIV4EventInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath,CIV4EventInfos_Start_TemplatePath));
-            if ( null == CIV4EventInfos_Start_Template )
-            {
-                loadingTamplatesOk = false;
-            }
+            DataSetXML dataSetEventInfos_Start = dataSetXMLFactory.CreateEventInfos_Start();
+            TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
+            CIV4EventInfos_Start_Template = dataSetEventInfos_Start.XmlDocumentObject;
 
-            CIV4EventInfos_Done_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventInfos_Done_TemplatePath));
-            if( null == CIV4EventInfos_Done_Template )
-            {
-                loadingTamplatesOk = false;
-            }
 
-            CIV4EventTriggerInfos_Start_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventTriggerInfos_Start_TemplatePath));
-            if( null == CIV4EventTriggerInfos_Start_Template )
-            {
-                loadingTamplatesOk = false;
-            }
+            DataSetXML dataSetEventInfos_Done = dataSetXMLFactory.CreateEventInfos_Done();
+            TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
+            CIV4EventInfos_Done_Template = dataSetEventInfos_Done.XmlDocumentObject;
 
-            CIV4EventTriggerInfos_Done_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4EventTriggerInfos_Done_TemplatePath));
-            if( null == CIV4EventTriggerInfos_Done_Template )
-            {
-                loadingTamplatesOk = false;
-            }
+            DataSetXML dataSetEventTriggerInfos_Start = dataSetXMLFactory.CreateEventTriggerInfos_Start();
+            TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Start);
+            CIV4EventTriggerInfos_Start_Template = dataSetEventTriggerInfos_Start.XmlDocumentObject;
 
-            CIV4GameText_Colonization_Events_utf8_Template = LoadXMLFile(System.IO.Path.Combine(relativeAssetPath, CIV4GameText_Colonization_Events_utf8_TemplatePath));
-            if( null == CIV4GameText_Colonization_Events_utf8_Template )
-            {
-                loadingTamplatesOk = false;
-            }
+            DataSetXML dataSetEventTriggerInfos_Done = dataSetXMLFactory.CreateEventTriggerInfos_Done();
+            TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Done);
+            CIV4EventTriggerInfos_Done_Template = dataSetEventTriggerInfos_Done.XmlDocumentObject;
+
+            DataSetXML dataSetEventGameText = dataSetXMLFactory.CreateEventGameText();
+            TemplateRepository.Instance.RegisterTemplate(dataSetEventGameText);
+            CIV4GameText_Colonization_Events_utf8_Template = dataSetEventGameText.XmlDocumentObject;
 
             CvRandomEventInterface_Start_Template = LoadTextFile(System.IO.Path.Combine(relativeAssetPath,CvRandomEventInterface_Start_TemplatePath));
             if ( null == CvRandomEventInterface_Start_Template )
@@ -154,42 +143,10 @@ namespace WeThePeople_ModdingTool
             return loadingTamplatesOk;
         }
 
-        //TODO: Nicht den Pfad sondern den Namen verwenden!!!
-        public bool RegisterTemplates()
-        {
-            IDictionary<string,XmlDocument> xmlTemplates = new Dictionary<string, XmlDocument>();
-            xmlTemplates.Add(CIV4EventInfos_Start_TemplatePath, CIV4EventInfos_Start_Template);
-            xmlTemplates.Add(CIV4EventInfos_Done_TemplatePath, CIV4EventInfos_Done_Template);
-            xmlTemplates.Add(CIV4EventTriggerInfos_Start_TemplatePath, CIV4EventTriggerInfos_Start_Template);
-            xmlTemplates.Add(CIV4EventTriggerInfos_Done_TemplatePath, CIV4EventTriggerInfos_Done_Template);
-            xmlTemplates.Add(CIV4GameText_Colonization_Events_utf8_TemplatePath, CIV4GameText_Colonization_Events_utf8_Template);
-
-            foreach (KeyValuePair<string, XmlDocument> entry in xmlTemplates)
-            {
-                if (false == RegisterDocument(entry.Key, entry.Value))
-                {
-                    return false;
-                }
-            }
-
-            IDictionary<string, string> pythonTemplates = new Dictionary<string, string>();
-            pythonTemplates.Add(CvRandomEventInterface_Start_TemplatePath, CvRandomEventInterface_Start_Template);
-            pythonTemplates.Add(CvRandomEventInterface_Done_TemplatePath, CvRandomEventInterface_Done_Template);
-
-            foreach (KeyValuePair<string, string> entry in pythonTemplates)
-            {
-                if (false == RegisterPythonFile(entry.Key, entry.Value))
-                {
-                    return false;
-                }
-            }
-
-            return false;
-        }
-
         private bool RegisterDocument( string name, XmlDocument xmlDocument)
         {
-            return TemplateRepository.Instance.RegisterTemplate(name, xmlDocument);
+            return false;
+//            return TemplateRepository.Instance.RegisterTemplate(name, xmlDocument);
         }
 
         private bool RegisterPythonFile(string name, string pythonFile)
