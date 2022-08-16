@@ -20,12 +20,12 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public static string EUROPE = "Europe";
-        public static string EUROPE_UPPERCASE = "EUROPE";
-        public static string AFRICA = "Afric";
-        public static string AFRICA_UPPERCASE = "AFRICA";
-        public static string PORTROYAL = "PortRoyal";
-        public static string PORTROYAL_UPPERCASE = "PORTROYAL";
+        private static string EUROPE = "Europe";
+        private static string EUROPE_UPPERCASE = "EUROPE";
+        private static string AFRICA = "Afric";
+        private static string AFRICA_UPPERCASE = "AFRICA";
+        private static string PORTROYAL = "PortRoyal";
+        private static string PORTROYAL_UPPERCASE = "PORTROYAL";
 
         private List<String> harbours = new List<string>();
 

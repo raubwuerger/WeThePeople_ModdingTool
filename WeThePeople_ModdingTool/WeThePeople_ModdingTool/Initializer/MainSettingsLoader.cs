@@ -61,6 +61,9 @@ namespace WeThePeople_ModdingTool
         public XmlDocument UnitClassesDocument;
         private string UnitClassesPath = @"templates\CIV4UnitInfos_OnlyClasses.xml";
 
+        public XmlDocument HarboursDocument;
+        private string HarboursDocumentPath = @"templates\Harbours.xml";
+
         public bool Init()
         {
             return LoadTemplates();
@@ -132,6 +135,17 @@ namespace WeThePeople_ModdingTool
             }
 
             if( false == InitUnitClasses(UnitClassesDocument) )
+            {
+                loadingTamplatesOk = false;
+            }
+
+            HarboursDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, HarboursDocumentPath));
+            if( null == HarboursDocument )
+            {
+                loadingTamplatesOk = false;
+            }
+
+            if( false == InitHarbours(HarboursDocument) )
             {
                 loadingTamplatesOk = false;
             }
@@ -214,6 +228,17 @@ namespace WeThePeople_ModdingTool
             }
             UnitClassRepository.Instance.UnitClasses = unitClasses;
             return UnitClassRepository.Instance.UnitClasses.Count > 0;
+        }
+
+        private bool InitHarbours( XmlDocument harbours )
+        {
+            List<string> _harbours = new List<string>();
+            foreach (XmlNode node in harbours.DocumentElement.ChildNodes)
+            {
+                _harbours.Add(node.InnerText);
+            }
+            HarbourRepository.Instance.Harbours = _harbours;
+            return HarbourRepository.Instance.Harbours.Count > 0;
         }
     }
 }
