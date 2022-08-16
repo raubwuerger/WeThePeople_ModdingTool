@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool"
         mc:Ignorable="d"
-        Title="WeThePeople_ModdingTool" Height="450" Width="800" Icon="/WtP_desktop_icon.ico">
+        Title="WeThePeople_ModdingTool" Height="1024" Width="1280" Icon="/WtP_desktop_icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -35,7 +35,7 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="checkBox_PythonStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_PythonStart_Editable_Checked" Unchecked="checkBox_PythonStart_Editable_Unchecked" />
+                    <CheckBox x:Name="checkBox_PythonStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
                     <TextBox x:Name="textBox_PythonStart" Grid.Column="0" Text="PythonStart..." TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
@@ -48,11 +48,11 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="checkBox_PythonDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_PythonDone_Editable_Checked" Unchecked="checkBox_PythonDone_Editable_Unchecked" />
+                    <CheckBox x:Name="checkBox_PythonDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
                     <TextBox x:Name="textBox_PythonDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="PythonDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start">
+            <TabItem x:Name="TriggerInfoStart_TabItem" Header="TriggerInfoStart">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -61,14 +61,14 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="checkBox_EventInfoStart_Editable" Width="80" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Checked="checkBox_EventInfoStart_Editable_Checked" Unchecked="checkBox_EventInfoStart_Editable_Unchecked" />
-                    <Button x:Name="button_EventInfoStart_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_EventInfoStart_validate_Click">
+                    <CheckBox x:Name="TriggerInfoStart_Editable_CheckBox" Width="80" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
+                    <Button x:Name="TriggerInfoStart_Validation_Button" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosStart..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
+                    <TextBox x:Name="TriggerInfoStart_TextBox" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TriggerInfoStart..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done" Header="EventInfos_Done">
+            <TabItem x:Name="TriggerInfoDone_TabItem" Header="TriggerInfoDone">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -77,11 +77,11 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="checkBox_EventInfoDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_EventInfoDone_Editable_Checked" Unchecked="checkBox_EventInfoDone_Editable_Unchecked" />
-                    <Button x:Name="button_EventInfoDone_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_EventInfoDone_validate_Click">
+                    <CheckBox x:Name="TriggerInfoDone_Editable_CheckBox" Width="80" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
+                    <Button x:Name="TriggerInfoDone_Validation_Button" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
+                    <TextBox x:Name="TriggerInfoDone_TextBox" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="TriggerInfoDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4GameText" Header="CIV4GameText_Colopedia">
@@ -93,11 +93,43 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="checkBox_CIV4GameText" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_CIV4GameText_Checked"  Unchecked="checkBox_CIV4GameText_Unchecked" />
-                    <Button x:Name="button_CIV4GameText_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_CIV4GameText_validate_Click">
+                    <CheckBox x:Name="checkBox_CIV4GameText" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked"  Unchecked="checkBox_Unchecked" />
+                    <Button x:Name="button_CIV4GameText_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
                     <TextBox x:Name="textBox_CIV4GameText" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start" Visibility="Hidden">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_EventInfoStart_Editable" Width="80" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
+                    <Button x:Name="button_EventInfoStart_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
+                        Validate
+                    </Button>
+                    <TextBox x:Name="textBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosStart..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="CIV4EventInfos_Done" Header="EventInfos_Done" Visibility="Hidden" >
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_EventInfoDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
+                    <Button x:Name="button_EventInfoDone_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
+                        Validate
+                    </Button>
+                    <TextBox x:Name="textBox_EventInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="EventInfosDone..." TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False"/>
                 </Grid>
             </TabItem>
         </TabControl>

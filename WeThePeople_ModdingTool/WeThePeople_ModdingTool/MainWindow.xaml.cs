@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
 using WeThePeople_ModdingTool.FileUtilities;
 using System.Xml;
 
@@ -10,11 +11,14 @@ namespace WeThePeople_ModdingTool
     {
         private string selectedYieldType;
         private string selectedHarbour;
+        private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
+        private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
         public MainWindow()
         {
             InitializeComponent();
             LogFrameworkInitialzer.Init();
             CommandLineArgsParser.Parse();
+            InitMapping();
             if( false == MainSettingsLoader.Instance.Init() )
             {
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
@@ -31,6 +35,23 @@ namespace WeThePeople_ModdingTool
             {
                 comboBox_Harbours.SelectedItem = HarbourRepository.Instance.Harbours[0];
             }
+        }
+
+        private void InitMapping()
+        {
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonStart_Editable, textBox_PythonStart);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonDone_Editable, textBox_PythonDone);
+            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoStart_Editable_CheckBox, TriggerInfoStart_TextBox);
+            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoDone_Editable_CheckBox, TriggerInfoDone_TextBox);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_Editable, textBox_EventInfoDone);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoStart_Editable, textBox_EventInfoStart);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_CIV4GameText, textBox_CIV4GameText);
+
+            ButtonTextBox_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TriggerInfoStart_TextBox);
+            ButtonTextBox_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TriggerInfoDone_TextBox);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoStart_validate, textBox_EventInfoStart);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_validate, textBox_EventInfoDone);
+            ButtonTextBox_Validation_Mapping.Add(button_CIV4GameText_validate, textBox_CIV4GameText);
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -53,11 +74,11 @@ namespace WeThePeople_ModdingTool
             string CvRandomEventInterface_Done_Processed = ProcessTemplate(MainSettingsLoader.Instance.CvRandomEventInterface_Done_Template);
             textBox_PythonDone.Text = CvRandomEventInterface_Done_Processed;
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventInfo");
-            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventTriggerInfo");
+            TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
-            textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventTriggerInfo");
+            TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
             XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
@@ -157,79 +178,78 @@ namespace WeThePeople_ModdingTool
             return xmlFileUtility.Save(fileName, xmlDocument);
         }
 
-        private void checkBox_PythonStart_Editable_Checked(object sender, RoutedEventArgs e)
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
-            textBox_PythonStart.IsEnabled = true;
+            TextBox textBox = GetTextBox(e.Source as CheckBox);
+            if (null == textBox)
+            {
+                return;
+            }
+            textBox.IsEnabled = true;
         }
 
-        private void checkBox_PythonStart_Editable_Unchecked(object sender, RoutedEventArgs e)
+        private void checkBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            textBox_PythonStart.IsEnabled = false;
+            TextBox textBox = GetTextBox(e.Source as CheckBox);
+            if (null == textBox)
+            {
+                return;
+            }
+            textBox.IsEnabled = false;
         }
 
-        private void checkBox_PythonDone_Editable_Checked(object sender, RoutedEventArgs e)
+        private TextBox GetTextBox( CheckBox checkBox )
         {
-            textBox_PythonDone.IsEnabled = true;
+            if( null == checkBox )
+            {
+                return null;
+            }
+
+            TextBox textBox;
+            if( false == CheckBoxTextBox_Enable_Mapping.TryGetValue(checkBox, out textBox) )
+            {
+                return null;
+            }
+
+            return textBox;
         }
 
-        private void checkBox_PythonDone_Editable_Unchecked(object sender, RoutedEventArgs e)
+        private void button_Validation(object sender, RoutedEventArgs e)
         {
-            textBox_PythonDone.IsEnabled = false;
+            TextBox textBox = GetTextBox(e.Source as Button);
+            if (null == textBox)
+            {
+                return;
+            }
+            XMLHelper.IsXMLShapelyShowException(textBox.Text);
         }
 
-        private void checkBox_EventInfoStart_Editable_Checked(object sender, RoutedEventArgs e)
+        private TextBox GetTextBox(Button button)
         {
-            textBox_EventInfoStart.IsEnabled = true;
-        }
+            if (null == button)
+            {
+                return null;
+            }
 
-        private void checkBox_EventInfoStart_Editable_Unchecked(object sender, RoutedEventArgs e)
-        {
-            textBox_EventInfoStart.IsEnabled = false;
-        }
+            TextBox textBox;
+            if (false == ButtonTextBox_Validation_Mapping.TryGetValue(button, out textBox))
+            {
+                return null;
+            }
 
-        private void checkBox_EventInfoDone_Editable_Checked(object sender, RoutedEventArgs e)
-        {
-            textBox_EventInfoDone.IsEnabled = true;
-        }
-
-        private void checkBox_EventInfoDone_Editable_Unchecked(object sender, RoutedEventArgs e)
-        {
-            textBox_EventInfoDone.IsEnabled = false;
-        }
-
-        private void button_EventInfoStart_validate_Click(object sender, RoutedEventArgs e)
-        {
-            XMLHelper.IsXMLShapelyShowException(textBox_EventInfoStart.Text);
-        }
-        private void button_EventInfoDone_validate_Click(object sender, RoutedEventArgs e)
-        {
-            XMLHelper.IsXMLShapelyShowException(textBox_EventInfoDone.Text);
-        }
-
-        private void checkBox_CIV4GameText_Checked(object sender, RoutedEventArgs e)
-        {
-            textBox_CIV4GameText.IsEnabled = true;
-        }
-
-        private void checkBox_CIV4GameText_Unchecked(object sender, RoutedEventArgs e)
-        {
-            textBox_CIV4GameText.IsEnabled = false;
-        }
-
-        private void button_CIV4GameText_validate_Click(object sender, RoutedEventArgs e)
-        {
-            XMLHelper.IsXMLShapelyShowException(textBox_CIV4GameText.Text);
+            return textBox;
         }
 
         private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
         {
-
+            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Start_Template, "/EventInfo");
+            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
         }
 
         private void button_button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
         {
-
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
+            textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
         }
-
     }
 }
