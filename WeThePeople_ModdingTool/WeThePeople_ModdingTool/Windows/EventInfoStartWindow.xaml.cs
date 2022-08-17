@@ -10,7 +10,7 @@ namespace WeThePeople_ModdingTool.Windows
     /// </summary>
     public partial class EventInfoStartWindow : Window
     {
-        private DataSetEventInfoStart dataSetEventInfoStart;
+        private DataSetEventInfoStart dataSetEventInfoStart = new DataSetEventInfoStart();
         public DataSetEventInfoStart DataSetEventInfoStart
         {
             get {

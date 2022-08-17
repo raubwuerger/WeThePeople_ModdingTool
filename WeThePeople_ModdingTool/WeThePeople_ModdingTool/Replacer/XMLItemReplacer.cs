@@ -2,49 +2,43 @@
 using System.Collections.Generic;
 using System.Xml;
 using Serilog;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool
 {
     public class XMLItemReplacer
     {
-        private IDictionary<string, string> replaceItems = new Dictionary<string, string>();
-        public IDictionary<string, string> ReplaceItems
-        {
-            get { return replaceItems; }
-            set { replaceItems = value; }
-        }
-
         private XmlDocument replacedXmlDocument;
-
         public XmlDocument ReplacedContent { get => replacedXmlDocument; }
 
-        private string rootNode = String.Empty;
-        
-        //"/EventInfo"
-        public string RootNode { get => rootNode; set => rootNode = value; }
-
-        public bool Replace( XmlDocument xmlDocument )
+        private DataSetXML dataSetXML;
+        public XMLItemReplacer( DataSetXML dataSetXMLObject )
         {
-            if( null == xmlDocument )
+            dataSetXML = dataSetXMLObject;
+        }
+
+        public bool Replace()
+        {
+            if( null == dataSetXML.XmlDocumentTemplate )
             {
                 Log.Debug("XmlDocument is null!");
                 return false;
             }
 
-            if( true == ReplaceItems.Count <= 0 )
+            if( true == dataSetXML.TemplateReplaceItems.Count <= 0 )
             {
-                Log.Debug("ReplaceItems are not set! --> ReplaceItems");
+                Log.Debug("ReplaceItems are empty in dataSet! " +dataSetXML.TemplateName);
                 return false;
             }
 
-            if( rootNode.Equals(String.Empty) )
+            if(dataSetXML.XmlRootNode.Equals(String.Empty) )
             {
                 Log.Debug("RootNode not set! --> RootNode");
                 return false;
             }
 
-            replacedXmlDocument = xmlDocument;
-            Replace(replacedXmlDocument.DocumentElement.SelectNodes(rootNode));
+            replacedXmlDocument = dataSetXML.XmlDocumentTemplate;
+            Replace(replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlRootNode));
             return true;
         }
 
@@ -66,7 +60,7 @@ namespace WeThePeople_ModdingTool
         private string replaceText( string content )
         {
             string replacedText = content;
-            foreach (KeyValuePair<string, string> entry in ReplaceItems)
+            foreach (KeyValuePair<string, string> entry in dataSetXML.TemplateReplaceItems)
             {
                 replacedText = TextReplacer.replace(replacedText, entry);
             }

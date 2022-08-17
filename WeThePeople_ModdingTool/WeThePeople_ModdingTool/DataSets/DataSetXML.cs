@@ -7,7 +7,8 @@ namespace WeThePeople_ModdingTool.DataSets
 {
     public class DataSetXML : DataSetBase
     {
-        public XmlDocument XmlDocumentObject;
-        public string RootNode;
+        public XmlDocument XmlDocumentTemplate;
+        public XmlDocument XmlDocumentProcessed;
+        public string XmlRootNode;
     }
 }

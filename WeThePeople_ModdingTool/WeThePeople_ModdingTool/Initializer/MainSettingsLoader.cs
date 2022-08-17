@@ -72,31 +72,31 @@ namespace WeThePeople_ModdingTool
 
             DataSetXML dataSetEventInfos_Start = dataSetFactory.CreateEventInfos_Start();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
-            CIV4EventInfos_Start_Template = dataSetEventInfos_Start.XmlDocumentObject;
+            CIV4EventInfos_Start_Template = dataSetEventInfos_Start.XmlDocumentTemplate;
 
             DataSetXML dataSetEventInfos_Done = dataSetFactory.CreateEventInfos_Done();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Done);
-            CIV4EventInfos_Done_Template = dataSetEventInfos_Done.XmlDocumentObject;
+            CIV4EventInfos_Done_Template = dataSetEventInfos_Done.XmlDocumentTemplate;
 
             DataSetXML dataSetEventTriggerInfos_Start = dataSetFactory.CreateEventTriggerInfos_Start();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Start);
-            CIV4EventTriggerInfos_Start_Template = dataSetEventTriggerInfos_Start.XmlDocumentObject;
+            CIV4EventTriggerInfos_Start_Template = dataSetEventTriggerInfos_Start.XmlDocumentTemplate;
 
             DataSetXML dataSetEventTriggerInfos_Done = dataSetFactory.CreateEventTriggerInfos_Done();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Done);
-            CIV4EventTriggerInfos_Done_Template = dataSetEventTriggerInfos_Done.XmlDocumentObject;
+            CIV4EventTriggerInfos_Done_Template = dataSetEventTriggerInfos_Done.XmlDocumentTemplate;
 
             DataSetXML dataSetEventGameText = dataSetFactory.CreateEventGameText();
             TemplateRepository.Instance.RegisterTemplate(dataSetEventGameText);
-            CIV4GameText_Colonization_Events_utf8_Template = dataSetEventGameText.XmlDocumentObject;
+            CIV4GameText_Colonization_Events_utf8_Template = dataSetEventGameText.XmlDocumentTemplate;
 
             DataSetPython dataSetRandomEventStart = dataSetFactory.CreateRandomEventStart();
             TemplateRepository.Instance.RegisterTemplate(dataSetRandomEventStart);
-            CvRandomEventInterface_Start_Template = dataSetRandomEventStart.PythonContent;
+            CvRandomEventInterface_Start_Template = dataSetRandomEventStart.PythonContentTemplate;
 
             DataSetPython dataSetRandomEventDone = dataSetFactory.CreateRandomEventDone();
             TemplateRepository.Instance.RegisterTemplate(dataSetRandomEventDone);
-            CvRandomEventInterface_Done_Template = dataSetRandomEventDone.PythonContent;
+            CvRandomEventInterface_Done_Template = dataSetRandomEventDone.PythonContentTemplate;
 
             YieldTypesDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
             if (null == YieldTypesDocument)

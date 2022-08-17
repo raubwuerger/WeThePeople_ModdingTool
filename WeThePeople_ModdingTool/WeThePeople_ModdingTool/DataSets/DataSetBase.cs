@@ -6,7 +6,7 @@ namespace WeThePeople_ModdingTool.DataSets
 {
     public class DataSetBase
     {
-        public string TemplatName;
+        public string TemplateName;
         public string TemplateFileNameRelativ;
         public string TemplateFileNameAbsolute;
         public string TemplateFileExtension;

@@ -31,7 +31,7 @@ namespace WeThePeople_ModdingTool
         {
             try
             {
-                if (true == xmlDocuments.ContainsKey(dataSetXML.TemplatName))
+                if (true == xmlDocuments.ContainsKey(dataSetXML.TemplateName))
                 {
                     return false;
                 }
@@ -44,7 +44,7 @@ namespace WeThePeople_ModdingTool
 
             try
             {
-                return xmlDocuments.TryAdd(dataSetXML.TemplatName, dataSetXML);
+                return xmlDocuments.TryAdd(dataSetXML.TemplateName, dataSetXML);
             }
             catch( ArgumentNullException)
             {
@@ -57,7 +57,7 @@ namespace WeThePeople_ModdingTool
         {
             try
             {
-                if (true == pythonFiles.ContainsKey(dataSetPython.TemplatName))
+                if (true == pythonFiles.ContainsKey(dataSetPython.TemplateName))
                 {
                     return false;
                 }
@@ -70,7 +70,7 @@ namespace WeThePeople_ModdingTool
 
             try
             {
-                return pythonFiles.TryAdd(dataSetPython.TemplatName, dataSetPython);
+                return pythonFiles.TryAdd(dataSetPython.TemplateName, dataSetPython);
             }
             catch (ArgumentNullException)
             {

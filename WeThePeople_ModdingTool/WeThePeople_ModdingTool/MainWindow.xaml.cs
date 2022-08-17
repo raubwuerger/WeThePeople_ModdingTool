@@ -160,7 +160,8 @@ namespace WeThePeople_ModdingTool
 
         private XmlDocument ProcessTemplateCommon(XmlDocument template, string rootNode)
         {
-            XMLItemReplacer replacer = new XMLItemReplacer();
+            return null;
+/*            XMLItemReplacer replacer = new XMLItemReplacer();
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
             replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
@@ -180,10 +181,13 @@ namespace WeThePeople_ModdingTool
             }
 
             return replacer.ReplacedContent;
+*/
         }
 
         private XmlDocument ProcessTemplateEventInfoStart( DataSetXML dataSetXML )
         {
+            return null;
+/*
             XMLItemReplacer replacer = new XMLItemReplacer();
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
@@ -199,10 +203,13 @@ namespace WeThePeople_ModdingTool
             }
 
             return replacer.ReplacedContent;
+*/
         }
 
         private XmlDocument ProcessTemplateEventInfoDone(XmlDocument template, string rootNode)
         {
+            return null;
+/*
             XMLItemReplacer replacer = new XMLItemReplacer();
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
             replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
@@ -222,6 +229,7 @@ namespace WeThePeople_ModdingTool
             }
 
             return replacer.ReplacedContent;
+*/
         }
 
 
@@ -296,14 +304,18 @@ namespace WeThePeople_ModdingTool
         private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
         {
             EventInfoStartWindow eventInfoStartWindow = new EventInfoStartWindow();
-            eventInfoStartWindow.DataSetEventInfoStart = new DataSetEventInfoStart();
             if ( false == eventInfoStartWindow.ShowDialog() )
             {
                 return;
             }
 
-            XmlDocument CIV4EventInfos_Start_Template_Processed = ProcessTemplateEventInfoStart( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start) );
-            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            DataSetEventInfoStart dataSetEventInfo = eventInfoStartWindow.DataSetEventInfoStart;
+            DataSetXML dataSetEventInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start);
+            dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_START] = dataSetEventInfo.GetTriggerValueStart();
+            dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_DONE] = dataSetEventInfo.GetTriggerValueDone();
+
+            dataSetEventInfos_Start.XmlDocumentProcessed = ProcessTemplateEventInfoStart(dataSetEventInfos_Start);
+            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(dataSetEventInfos_Start.XmlDocumentProcessed.SelectNodes(dataSetEventInfos_Start.XmlRootNode));
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
             button_button_AddEventInfoDone.IsEnabled = true;
         }
