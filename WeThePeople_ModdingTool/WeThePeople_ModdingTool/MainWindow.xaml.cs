@@ -187,7 +187,7 @@ namespace WeThePeople_ModdingTool
             {
                 return;
             }
-            textBox.IsEnabled = true;
+            textBox.IsReadOnly = false;
         }
 
         private void checkBox_Unchecked(object sender, RoutedEventArgs e)
@@ -197,7 +197,7 @@ namespace WeThePeople_ModdingTool
             {
                 return;
             }
-            textBox.IsEnabled = false;
+            textBox.IsReadOnly = true;
         }
 
         private TextBox GetTextBox( CheckBox checkBox )
