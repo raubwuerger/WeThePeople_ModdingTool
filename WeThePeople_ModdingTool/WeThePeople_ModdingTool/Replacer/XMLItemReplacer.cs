@@ -52,12 +52,12 @@ namespace WeThePeople_ModdingTool
                 }
                 else 
                 {
-                    node.InnerText = replaceText(node.InnerText);
+                    node.InnerText = ReplaceText(node.InnerText);
                 }
             }
         }
 
-        private string replaceText( string content )
+        private string ReplaceText( string content )
         {
             string replacedText = content;
             foreach (KeyValuePair<string, string> entry in dataSetXML.TemplateReplaceItems)

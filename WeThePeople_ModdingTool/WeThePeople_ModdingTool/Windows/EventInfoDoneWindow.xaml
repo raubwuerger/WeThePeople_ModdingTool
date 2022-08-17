@@ -21,17 +21,17 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label>Gold:</Label>
-        <TextBox x:Name="textBox_Gold" Grid.Column="2"></TextBox>
+        <TextBox x:Name="textBox_Gold" Grid.Column="2" PreviewTextInput="PreviewTextInput"></TextBox>
         <Label Grid.Row="1">Unit class:</Label>
         <ComboBox x:Name="comboBox_UnitClass"  Grid.Column="2" Grid.Row="1"></ComboBox>
         <Label Grid.Row="2">Unit count:</Label>
         <ComboBox x:Name="comboBox_UnitCount" Grid.Column="2" Grid.Row="2"></ComboBox>
         <Label Grid.Row="3">Unit experience:</Label>
-        <TextBox x:Name="textBox_UnitExperiance" Grid.Column="2"></TextBox>
+        <TextBox x:Name="textBox_UnitExperiance" Grid.Column="2" Grid.Row="3" PreviewTextInput="PreviewTextInput"></TextBox>
         <Label Grid.Row="4">Relation King:</Label>
-        <TextBox x:Name="textBox_RelationKing" Grid.Column="2"></TextBox>
+        <ComboBox x:Name="comboBox_RelationKing" Grid.Column="2" Grid.Row="4"></ComboBox>
         <Label Grid.Row="5">Yield price:</Label>
-        <TextBox x:Name="textBox_YieldPrice" Grid.Column="2"></TextBox>
+        <ComboBox x:Name="comboBox_YieldPrice" Grid.Column="2" Grid.Row="5"></ComboBox>
         <Button x:Name="button_Cancel" Click="button_Cancel_Click" Grid.Row="6" Grid.Column="2" Content="Cancel" HorizontalAlignment="Right" Width="120" Height="40" Margin="4,4,4,4"/>
         <Button x:Name="button_Ok" Click="button_Ok_Click" Grid.Row="6" Grid.Column="2" Content="OK" HorizontalAlignment="Left" Width="120" Height="40" Margin="4,4,4,4"/>
     </Grid>

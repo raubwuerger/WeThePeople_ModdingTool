@@ -1,25 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.Windows
 {
-    /// <summary>
-    /// Interaction logic for EventInfoDoneWindow.xaml
-    /// </summary>
     public partial class EventInfoDoneWindow : Window
     {
+        private DataSetEventInfoDone dataSetEventInfoDone = new DataSetEventInfoDone();
+        public DataSetEventInfoDone DataSetEventInfoStart
+        {
+            get
+            {
+                GetFromGUI();
+                return dataSetEventInfoDone;
+            }
+            set
+            {
+                SetDataToGUI();
+                dataSetEventInfoDone = value;
+            }
+        }
+
         public EventInfoDoneWindow()
         {
             InitializeComponent();
+            SetDataToGUI();
+            InitGUIElements();
+        }
+
+        private void InitGUIElements()
+        {
+            comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClasses;
+            if (comboBox_UnitClass.Items.Count > 0)
+            {
+                comboBox_UnitClass.SelectedItem = UnitClassRepository.Instance.UnitClasses[0];
+            }
+
+            for( int i=0;i<100;i++ )
+            {
+                comboBox_UnitCount.Items.Add(i.ToString());
+            }
+
+            for( int i=-9;i<10;i++)
+            {
+                comboBox_RelationKing.Items.Add(i.ToString());
+                comboBox_YieldPrice.Items.Add(i.ToString());
+            }
+
         }
 
         private void button_Cancel_Click(object sender, RoutedEventArgs e)
@@ -30,6 +58,31 @@ namespace WeThePeople_ModdingTool.Windows
         private void button_Ok_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void SetDataToGUI()
+        {
+            textBox_Gold.Text = dataSetEventInfoDone.GetGold();
+            comboBox_UnitClass.SelectedItem = dataSetEventInfoDone.GetUnitClass();
+            comboBox_UnitCount.SelectedItem = dataSetEventInfoDone.GetUnitCount();
+            textBox_UnitExperiance.Text = dataSetEventInfoDone.GetUnitExperience();
+            comboBox_RelationKing.SelectedItem = dataSetEventInfoDone.GetKingRelation();
+            comboBox_YieldPrice.SelectedItem = dataSetEventInfoDone.GetYieldPrice();
+        }
+
+        private void GetFromGUI()
+        {
+            dataSetEventInfoDone.SetGold(textBox_Gold.Text);
+            dataSetEventInfoDone.SetUnitClass(comboBox_UnitClass.SelectedItem.ToString());
+            dataSetEventInfoDone.SetUnitCount(comboBox_UnitCount.SelectedItem.ToString());
+            dataSetEventInfoDone.SetUnitExperience(textBox_UnitExperiance.Text);
+            dataSetEventInfoDone.SetKingRelation(comboBox_RelationKing.SelectedItem.ToString());
+            dataSetEventInfoDone.SetYieldPrice(comboBox_YieldPrice.SelectedItem.ToString());
         }
     }
 }
