@@ -62,7 +62,7 @@ namespace WeThePeople_ModdingTool
             string replacedText = content;
             foreach (KeyValuePair<string, string> entry in dataSetXML.TemplateReplaceItems)
             {
-                replacedText = TextReplacer.replace(replacedText, entry);
+                replacedText = TextReplacer.Replace(replacedText, entry);
             }
 
             return replacedText;

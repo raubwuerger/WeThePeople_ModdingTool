@@ -51,49 +51,49 @@ namespace WeThePeople_TestProject
         [Test]
         public void ContentNull_ReplaceItemNull_Test()
         {
-            Assert.IsNull( TextReplacer.replace(null, keyValuePair_null) );
+            Assert.IsNull( TextReplacer.Replace(null, keyValuePair_null) );
         }
 
         [Test]
         public void ContentEmpty_ReplaceItemNull_Test()
         {
-            Assert.IsNull(TextReplacer.replace("", keyValuePair_null) );
+            Assert.IsNull(TextReplacer.Replace("", keyValuePair_null) );
         }
 
         [Test]
         public void ContentEmpty_ReplaceItemEmpty_Test()
         {
-            Assert.IsNull(TextReplacer.replace("", new KeyValuePair<string, string>("", "")));
+            Assert.IsNull(TextReplacer.Replace("", new KeyValuePair<string, string>("", "")));
         }
 
         [Test]
         public void ContentWithoutPlaceholder_ReplaceItemValid_Test()
         {
-            Assert.AreNotEqual(contentValidReplaced, TextReplacer.replace(contentWithoutPlaceholder, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
+            Assert.AreNotEqual(contentValidReplaced, TextReplacer.Replace(contentWithoutPlaceholder, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
         }
 
         [Test]
         public void ContentWithWrongPlaceholder_ReplaceItemValid_Test()
         {
-            Assert.AreNotEqual(contentValidReplaced, TextReplacer.replace(contentWithwrongPlaceholder, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
+            Assert.AreNotEqual(contentValidReplaced, TextReplacer.Replace(contentWithwrongPlaceholder, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
         }
 
         [Test]
         public void ContentValid_ReplaceItemNotMatching_Test()
         {
-            Assert.AreNotEqual(contentValidReplaced, TextReplacer.replace(contentValid, new KeyValuePair<string, string>(replaceItem_PlaceholderNotMatching, replaceItem_Value)));
+            Assert.AreNotEqual(contentValidReplaced, TextReplacer.Replace(contentValid, new KeyValuePair<string, string>(replaceItem_PlaceholderNotMatching, replaceItem_Value)));
         }
 
         [Test]
         public void ContentValid_ReplaceItemValid_Test()
         {
-            Assert.AreEqual(contentValidReplaced, TextReplacer.replace(contentValid, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
+            Assert.AreEqual(contentValidReplaced, TextReplacer.Replace(contentValid, new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value)));
         }
 
         [Test]
         public void ContentValid_ReplaceItemsValid_Test()
         {
-            Assert.AreEqual(contentValidManyPlaceholdersReplaced, TextReplacer.replace(contentValidManyPlaceholders, replaceItemsMany));
+            Assert.AreEqual(contentValidManyPlaceholdersReplaced, TextReplacer.Replace(contentValidManyPlaceholders, replaceItemsMany));
         }
     }
 }

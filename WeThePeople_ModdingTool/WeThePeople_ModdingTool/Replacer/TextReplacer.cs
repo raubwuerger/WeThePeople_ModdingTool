@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 using WeThePeople_ModdingTool.FileUtilities;
 using Serilog;
+using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool
 {
     public class TextReplacer
     {
-        public static string replace( string content, KeyValuePair<string, string> replaceItem )
+        public static string Replace( string content, KeyValuePair<string, string> replaceItem )
         {
-            Log.Debug("Content to replace : " + content);
+            if( true == StringValidator.IsNullOrWhiteSpace(replaceItem.Value) )
+            {
+                Log.Debug("Replace item value is invalid! " + replaceItem.Key);
+                return null;
+            }
+
+            Log.Debug("Content to replace : " + content +" - key: " +replaceItem.Key +" - value: " +replaceItem.Value);
             StringBuilder builder = new StringBuilder(content);
             try
             {
@@ -25,7 +32,7 @@ namespace WeThePeople_ModdingTool
                 return null;
             }
         }
-        public static string replace(string content, IDictionary<string, string> replaceItems )
+        public static string Replace(string content, IDictionary<string, string> replaceItems )
         {
             StringBuilder builder = new StringBuilder(content);
             try

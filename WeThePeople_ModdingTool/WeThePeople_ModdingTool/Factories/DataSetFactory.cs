@@ -30,6 +30,11 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Events\CIV4EventInfos_Start_");
             dataSetXML.XmlRootNode = RootNodeEventInfo;
             dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_START, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_DONE, "");
             return dataSetXML;
         }
 
@@ -41,6 +46,17 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Events\CIV4EventInfos_Done_");
             dataSetXML.XmlRootNode = RootNodeEventInfo;
             dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.GOLD, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_CLASS, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_COUNT, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_EXPERIENCE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.KING_RELATION, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD_PRICE, "");
+
             return dataSetXML;
         }
 
@@ -52,6 +68,10 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Events\CIV4EventTriggerInfos_Start_");
             dataSetXML.XmlRootNode = RootNodeEventTriggerInfo;
             dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+
             return dataSetXML;
         }
         public DataSetXML CreateEventTriggerInfos_Done()
@@ -62,6 +82,10 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Events\CIV4EventTriggerInfos_Done_");
             dataSetXML.XmlRootNode = RootNodeEventTriggerInfo;
             dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+
             return dataSetXML;
         }
 
@@ -73,6 +97,9 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_");
             dataSetXML.XmlRootNode = RootNodeEventTriggerInfo;
             dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
             return dataSetXML;
         }
 
@@ -83,7 +110,9 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileNameAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"Python\EntryPoints\CvRandomEventInterface_Start_");
             dataSetPython.PythonContentTemplate = LoadFileText(dataSetPython);
-            SetReplaceItems(dataSetPython);
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
             return dataSetPython;
         }
         public DataSetPython CreateRandomEventDone()
@@ -93,7 +122,9 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileNameAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"Python\EntryPoints\CvRandomEventInterface_Done_");
             dataSetPython.PythonContentTemplate = LoadFileText(dataSetPython);
-            SetReplaceItems(dataSetPython);
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
             return dataSetPython;
         }
 
@@ -125,13 +156,6 @@ namespace WeThePeople_ModdingTool.Factories
         {
             TextFileUtility textFileLoader = new TextFileUtility();
             return textFileLoader.Load( dataSetBase.TemplateFileNameAbsolute );
-        }
-
-        private void SetReplaceItems( DataSetPython dataSetPython )
-        {
-            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
-            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
-            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
         }
 
     }

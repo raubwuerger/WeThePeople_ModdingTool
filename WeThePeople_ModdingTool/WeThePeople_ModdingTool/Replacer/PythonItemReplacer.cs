@@ -38,7 +38,7 @@ namespace WeThePeople_ModdingTool
             replacedString = dataSetPython.PythonContentTemplate;
             foreach (KeyValuePair<string, string> entry in dataSetPython.TemplateReplaceItems)
             {
-                replacedString = TextReplacer.replace(replacedString, entry);
+                replacedString = TextReplacer.Replace(replacedString, entry);
             }
 
             return true;

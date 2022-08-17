@@ -25,5 +25,8 @@ namespace WeThePeople_ModdingTool
 
         public static string MESSAGE_BOX_EXCEPTION = "Exception occured!";
         public static string MESSAGE_BOX_EXCEPTION_CR = "Exception occured!\n\r";
+
+        public static string FAILED_SAVING_FILE = "Failed saving file!";
+        public static string UNABLE_TO_SAVE_FILE = "Unable to save file";
     }
 }

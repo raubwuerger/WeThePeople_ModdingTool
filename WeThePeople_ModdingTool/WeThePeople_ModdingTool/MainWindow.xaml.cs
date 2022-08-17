@@ -78,13 +78,13 @@ namespace WeThePeople_ModdingTool
             string RandomEvent_Done_Replaced = ProcessTemplate( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done) );
             textBox_PythonDone.Text = RandomEvent_Done_Replaced;
 
-            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplateCommon(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Start_Template, "/EventTriggerInfo");
+            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplate( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start) );
             TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplateCommon(MainSettingsLoader.Instance.CIV4EventTriggerInfos_Done_Template, "/EventTriggerInfo");
+            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplate( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done) );
             TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplateCommon(MainSettingsLoader.Instance.CIV4GameText_Colonization_Events_utf8_Template, "/Civ4GameText");
+            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText) );
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
 
             button_CreateEventInfoStartXML.IsEnabled = true;
@@ -94,37 +94,37 @@ namespace WeThePeople_ModdingTool
         {
             if ( false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start)), textBox_PythonStart.Text))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " +"");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE +"");
             }
 
             if (false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done)), textBox_PythonDone.Text))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
             if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start)), XMLHelper.CreateFromString(TriggerInfoStart_TextBox.Text)))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
             if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done)), XMLHelper.CreateFromString(TriggerInfoDone_TextBox.Text)))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
             if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start)), XMLHelper.CreateFromString(textBox_EventInfoStart.Text)))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
             if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done)), XMLHelper.CreateFromString(textBox_EventInfoDone.Text)))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
             if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText)), XMLHelper.CreateFromString(textBox_CIV4GameText.Text)))
             {
-                CommonMessageBox.Show_OK_Warning("Failed saving file!", "Unable to save file! " + "");
+                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
         }
@@ -152,86 +152,27 @@ namespace WeThePeople_ModdingTool
             return replacer.ReplacedString;
         }
 
+        private XmlDocument ProcessTemplate(DataSetXML dataSetXML)
+        {
+            dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = selectedHarbour;
+            dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_UPPERCASE] = selectedHarbour.ToUpper();
+            dataSetXML.TemplateReplaceItems[ReplaceItems.YIELD] = selectedYieldType;
+
+            XMLItemReplacer replacer = new XMLItemReplacer(dataSetXML);
+
+            if (false == replacer.Replace())
+            {
+                return new XmlDocument();
+            }
+
+            return replacer.ReplacedContent;
+        }
+
         private bool SaveFile(string fileName, string pythonFile )
         {
             TextFileUtility textFileUtility = new TextFileUtility();
             return textFileUtility.Save(fileName,pythonFile);
         }
-
-        private XmlDocument ProcessTemplateCommon(XmlDocument template, string rootNode)
-        {
-            return null;
-/*            XMLItemReplacer replacer = new XMLItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
-            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_START, "100");
-            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_DONE, "1000");
-            replacer.ReplaceItems.Add(ReplaceItems.GOLD, "1000");
-            replacer.ReplaceItems.Add(ReplaceItems.UNIT_CLASS, "");
-            replacer.ReplaceItems.Add(ReplaceItems.UNIT_COUNT, "1");
-            replacer.ReplaceItems.Add(ReplaceItems.KING_RELATION, "1");
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD_PRICE, "1");
-
-            replacer.RootNode = rootNode;
-
-            if (false == replacer.Replace(template))
-            {
-                return new XmlDocument();
-            }
-
-            return replacer.ReplacedContent;
-*/
-        }
-
-        private XmlDocument ProcessTemplateEventInfoStart( DataSetXML dataSetXML )
-        {
-            return null;
-/*
-            XMLItemReplacer replacer = new XMLItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
-            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_START, "100");
-            replacer.ReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_DONE, "1000");
-
-            replacer.RootNode = dataSetXML.RootNode;
-
-            if (false == replacer.Replace(dataSetXML.XmlDocumentObject))
-            {
-                return new XmlDocument();
-            }
-
-            return replacer.ReplacedContent;
-*/
-        }
-
-        private XmlDocument ProcessTemplateEventInfoDone(XmlDocument template, string rootNode)
-        {
-            return null;
-/*
-            XMLItemReplacer replacer = new XMLItemReplacer();
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, selectedHarbour);
-            replacer.ReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, selectedHarbour.ToUpper());
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD, selectedYieldType);
-            replacer.ReplaceItems.Add(ReplaceItems.GOLD, "1000");
-            replacer.ReplaceItems.Add(ReplaceItems.UNIT_CLASS, "");
-            replacer.ReplaceItems.Add(ReplaceItems.UNIT_COUNT, "1");
-            replacer.ReplaceItems.Add(ReplaceItems.UNIT_EXPERIENCE, "20");
-            replacer.ReplaceItems.Add(ReplaceItems.KING_RELATION, "1");
-            replacer.ReplaceItems.Add(ReplaceItems.YIELD_PRICE, "1");
-
-            replacer.RootNode = rootNode;
-
-            if (false == replacer.Replace(template))
-            {
-                return new XmlDocument();
-            }
-
-            return replacer.ReplacedContent;
-*/
-        }
-
 
         private bool SaveFile(string fileName, XmlDocument xmlDocument)
         {
@@ -314,7 +255,7 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_START] = dataSetEventInfo.GetTriggerValueStart();
             dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_DONE] = dataSetEventInfo.GetTriggerValueDone();
 
-            dataSetEventInfos_Start.XmlDocumentProcessed = ProcessTemplateEventInfoStart(dataSetEventInfos_Start);
+            dataSetEventInfos_Start.XmlDocumentProcessed = ProcessTemplate(dataSetEventInfos_Start);
             textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(dataSetEventInfos_Start.XmlDocumentProcessed.SelectNodes(dataSetEventInfos_Start.XmlRootNode));
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
             button_button_AddEventInfoDone.IsEnabled = true;
@@ -328,7 +269,9 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplateEventInfoDone(MainSettingsLoader.Instance.CIV4EventInfos_Done_Template, "/EventInfo");
+            DataSetXML dataSetEventInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done);
+
+            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(dataSetEventInfos_Done);
             textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
 
             CIV4EventInfos_Done.Visibility = Visibility.Visible;
