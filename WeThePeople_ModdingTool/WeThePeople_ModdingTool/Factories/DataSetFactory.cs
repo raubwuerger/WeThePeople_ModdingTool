@@ -83,6 +83,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileNameAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"Python\EntryPoints\CvRandomEventInterface_Start_");
             dataSetPython.PythonContent = LoadFileText(dataSetPython);
+            SetReplaceItems(dataSetPython);
             return dataSetPython;
         }
         public DataSetPython CreateRandomEventDone()
@@ -92,6 +93,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileNameAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"Python\EntryPoints\CvRandomEventInterface_Done_");
             dataSetPython.PythonContent = LoadFileText(dataSetPython);
+            SetReplaceItems(dataSetPython);
             return dataSetPython;
         }
 
@@ -99,7 +101,7 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetXML dataSetXML = new DataSetXML();
             dataSetXML.TemplatName = templateName;
-            dataSetXML.TemplatFileExtension = FileExtensionXML;
+            dataSetXML.TemplateFileExtension = FileExtensionXML;
             dataSetXML.TemplateFileNameConcrete = "";
             return dataSetXML;
         }
@@ -108,7 +110,7 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetPython dataSetPython = new DataSetPython();
             dataSetPython.TemplatName = templateName;
-            dataSetPython.TemplatFileExtension = FileExtensionPython;
+            dataSetPython.TemplateFileExtension = FileExtensionPython;
             dataSetPython.TemplateFileNameConcrete = "";
             return dataSetPython;
         }
@@ -123,6 +125,13 @@ namespace WeThePeople_ModdingTool.Factories
         {
             TextFileUtility textFileLoader = new TextFileUtility();
             return textFileLoader.Load( dataSetBase.TemplateFileNameAbsolute );
+        }
+
+        private void SetReplaceItems( DataSetPython dataSetPython )
+        {
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSetPython.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
         }
 
     }

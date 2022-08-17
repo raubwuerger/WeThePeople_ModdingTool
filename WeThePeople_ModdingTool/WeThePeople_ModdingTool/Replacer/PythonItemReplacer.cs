@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool
 {
     public class PythonItemReplacer
     {
-        private IDictionary<string, string> replaceItems = new Dictionary<string, string>();
-        public IDictionary<string, string> ReplaceItems
+        private DataSetPython dataSetPython;
+
+        public PythonItemReplacer( DataSetPython dataSetPythonObject )
         {
-            get { return replaceItems; }
-            set { replaceItems = value; }
+            dataSetPython = dataSetPythonObject;
         }
 
         public string ReplacedString { get => replacedString; }
@@ -20,23 +21,22 @@ namespace WeThePeople_ModdingTool
         public void Init()
         {
             replacedString = null;
-            replaceItems.Clear();
         }
 
-        public bool Replace(string python)
+        public bool Replace()
         {
-            if (null == python)
+            if (null == dataSetPython)
             {
                 return false;
             }
 
-            if (true == ReplaceItems.Count <= 0)
+            if (true == dataSetPython.TemplateReplaceItems.Count <= 0)
             {
                 return false;
             }
 
-            replacedString = python;
-            foreach (KeyValuePair<string, string> entry in ReplaceItems)
+            replacedString = dataSetPython.PythonContent;
+            foreach (KeyValuePair<string, string> entry in dataSetPython.TemplateReplaceItems)
             {
                 replacedString = TextReplacer.replace(replacedString, entry);
             }

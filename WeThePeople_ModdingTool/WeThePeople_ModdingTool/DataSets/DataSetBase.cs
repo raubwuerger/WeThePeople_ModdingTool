@@ -9,7 +9,8 @@ namespace WeThePeople_ModdingTool.DataSets
         public string TemplatName;
         public string TemplateFileNameRelativ;
         public string TemplateFileNameAbsolute;
-        public string TemplatFileExtension;
+        public string TemplateFileExtension;
         public string TemplateFileNameConcrete;
+        public IDictionary<string, string> TemplateReplaceItems = new Dictionary<string, string>();
     }
 }

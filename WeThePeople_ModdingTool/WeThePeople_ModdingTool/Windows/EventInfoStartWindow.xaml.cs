@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.Windows
 {
@@ -18,6 +10,21 @@ namespace WeThePeople_ModdingTool.Windows
     /// </summary>
     public partial class EventInfoStartWindow : Window
     {
+        private DataSetEventInfoStart dataSetEventInfoStart;
+        public DataSetEventInfoStart DataSetEventInfoStart
+        {
+            get {
+                    dataSetEventInfoStart.SetTriggerValueStart(StartValue_TextBox.Text);
+                    dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
+                    return dataSetEventInfoStart; 
+                }
+            set 
+                {
+                    StartValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueStart();
+                    DoneValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueDone();
+                    dataSetEventInfoStart = value; 
+                }
+        }
         public EventInfoStartWindow()
         {
             InitializeComponent();
