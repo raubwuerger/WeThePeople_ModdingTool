@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using WeThePeople_ModdingTool.DataSets;
@@ -55,14 +57,6 @@ namespace WeThePeople_ModdingTool.Windows
         {
             dataSetEventInfoStart.SetTriggerValueStart(StartValue_TextBox.Text);
             dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
-        }
-
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
         }
     }
 }
