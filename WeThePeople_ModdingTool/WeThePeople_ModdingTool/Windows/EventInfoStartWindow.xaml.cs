@@ -14,20 +14,19 @@ namespace WeThePeople_ModdingTool.Windows
         public DataSetEventInfoStart DataSetEventInfoStart
         {
             get {
-                    dataSetEventInfoStart.SetTriggerValueStart(StartValue_TextBox.Text);
-                    dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
-                    return dataSetEventInfoStart; 
+                GetFromGUI();
+                return dataSetEventInfoStart; 
                 }
             set 
                 {
-                    StartValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueStart();
-                    DoneValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueDone();
-                    dataSetEventInfoStart = value; 
+                SetDataToGUI();
+                dataSetEventInfoStart = value; 
                 }
         }
         public EventInfoStartWindow()
         {
             InitializeComponent();
+            SetDataToGUI();
         }
 
         private void EventInfoStart_Ok_Click(object sender, RoutedEventArgs e)
@@ -45,5 +44,18 @@ namespace WeThePeople_ModdingTool.Windows
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void SetDataToGUI()
+        {
+            StartValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueStart();
+            DoneValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueDone();
+        }
+
+        private void GetFromGUI()
+        {
+            dataSetEventInfoStart.SetTriggerValueStart(StartValue_TextBox.Text);
+            dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
+        }
+
     }
 }

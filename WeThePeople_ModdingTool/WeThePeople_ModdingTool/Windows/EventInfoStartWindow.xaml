@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
         mc:Ignorable="d"
-        Title="EventInfoStartWindow" Height="152" Width="400"
+        Title="EventInfoStartWindow" Height="172" Width="400"
         ResizeMode="NoResize" 
         WindowStyle="None">
     <Grid>
@@ -14,12 +14,12 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Label VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2">Create EventStart XML</Label>
+        <Label x:Name="EventInfoStart_Header" VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2">Create EventStart XML</Label>
         <Label VerticalAlignment="Center" Grid.Row="1">Start value:</Label>
         <TextBox x:Name="StartValue_TextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
         <Label VerticalAlignment="Center" Grid.Row="2">Done value:</Label>
