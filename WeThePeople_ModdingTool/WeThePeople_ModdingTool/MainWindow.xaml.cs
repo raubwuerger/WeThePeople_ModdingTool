@@ -258,6 +258,7 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Start.XmlDocumentProcessed = ProcessTemplate(dataSetEventInfos_Start);
             textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(dataSetEventInfos_Start.XmlDocumentProcessed.SelectNodes(dataSetEventInfos_Start.XmlRootNode));
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
+            tabControl_templates.SelectedItem = CIV4EventInfos_Start;
             button_button_AddEventInfoDone.IsEnabled = true;
         }
 
@@ -281,6 +282,7 @@ namespace WeThePeople_ModdingTool
             XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(dataSetEventInfos_Done);
             textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
             CIV4EventInfos_Done.Visibility = Visibility.Visible;
+            tabControl_templates.SelectedItem = CIV4EventInfos_Done;
         }
     }
 }
