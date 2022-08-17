@@ -57,5 +57,12 @@ namespace WeThePeople_ModdingTool.Windows
             dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
         }
 
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
     }
 }

@@ -6,6 +6,11 @@ namespace WeThePeople_ModdingTool.Validators
 {
     public class StringValidator
     {
+        public static bool IsNull(string rhs)
+        {
+            return rhs == null;
+        }
+
         public static bool IsNullOrEmpty( string rhs )
         {
             return string.IsNullOrEmpty(rhs);

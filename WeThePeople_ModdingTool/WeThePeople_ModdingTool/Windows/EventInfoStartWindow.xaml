@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
         mc:Ignorable="d"
-        Title="EventInfoStartWindow" Height="172" Width="400"
+        Title="EventInfoStartWindow" Height="172" Width="248"
         ResizeMode="NoResize" 
-        WindowStyle="None">
-    <Grid>
+        WindowStyle="None"
+        MouseMove="Window_MouseMove">
+    <Grid Margin="4,4,4,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -24,7 +25,7 @@
         <TextBox x:Name="StartValue_TextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
         <Label VerticalAlignment="Center" Grid.Row="2">Done value:</Label>
         <TextBox x:Name="DoneValue_TextBox" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
-        <Button x:Name="EventInfoStart_Ok" Click="EventInfoStart_Ok_Click" Grid.Row="3" Grid.Column="2" Content="OK" HorizontalAlignment="Left" Width="80" Height="20" Margin="4,4,4,4"/>
-        <Button x:Name="EventInfoStart_Cancel" Click="EventInfoStart_Cancel_Click" Grid.Row="3" Grid.Column="2" Content="Cancel" HorizontalAlignment="Right" Width="80" Height="20" Margin="4,4,4,4"/>
+        <Button x:Name="EventInfoStart_Ok" Click="EventInfoStart_Ok_Click" Grid.Row="3" Grid.Column="0" Content="OK" HorizontalAlignment="Left" Width="80" Height="20" Margin="4,4,4,4"  IsDefault="True"/>
+        <Button x:Name="EventInfoStart_Cancel" Click="EventInfoStart_Cancel_Click" Grid.Row="3" Grid.Column="2" Content="Cancel" HorizontalAlignment="Right" Width="80" Height="20" Margin="4,4,4,4" IsCancel="True"/>
     </Grid>
 </Window>

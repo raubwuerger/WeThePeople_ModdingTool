@@ -34,7 +34,7 @@ namespace WeThePeople_ModdingTool.DataSets
             return unitClass.Value;
         }
 
-        private KeyValuePair<string, string> unitCount = new KeyValuePair<string, string>(ReplaceItems.UNIT_COUNT, "");
+        private KeyValuePair<string, string> unitCount = new KeyValuePair<string, string>(ReplaceItems.UNIT_COUNT, "0");
         public KeyValuePair<string, string> UnitCount
         {
             get { return unitCount; }
@@ -48,7 +48,7 @@ namespace WeThePeople_ModdingTool.DataSets
             return unitCount.Value;
         }
 
-        private KeyValuePair<string, string> unitExperience = new KeyValuePair<string, string>(ReplaceItems.UNIT_EXPERIENCE, "");
+        private KeyValuePair<string, string> unitExperience = new KeyValuePair<string, string>(ReplaceItems.UNIT_EXPERIENCE, "0");
         public KeyValuePair<string, string> UnitExperience
         {
             get { return unitExperience; }
@@ -62,7 +62,7 @@ namespace WeThePeople_ModdingTool.DataSets
             return unitExperience.Value;
         }
 
-        private KeyValuePair<string, string> kingRelation = new KeyValuePair<string, string>(ReplaceItems.KING_RELATION, "");
+        private KeyValuePair<string, string> kingRelation = new KeyValuePair<string, string>(ReplaceItems.KING_RELATION, "0");
         public KeyValuePair<string, string> KingRelation
         {
             get { return kingRelation; }
@@ -76,7 +76,7 @@ namespace WeThePeople_ModdingTool.DataSets
             return kingRelation.Value;
         }
 
-        private KeyValuePair<string, string> yieldPrice = new KeyValuePair<string, string>(ReplaceItems.YIELD_PRICE, "");
+        private KeyValuePair<string, string> yieldPrice = new KeyValuePair<string, string>(ReplaceItems.YIELD_PRICE, "0");
         public KeyValuePair<string, string> YieldPrice
         {
             get { return yieldPrice; }

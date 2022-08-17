@@ -1,14 +1,16 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.Windows
 {
     public partial class EventInfoDoneWindow : Window
     {
         private DataSetEventInfoDone dataSetEventInfoDone = new DataSetEventInfoDone();
-        public DataSetEventInfoDone DataSetEventInfoStart
+        public DataSetEventInfoDone DataSetEventInfoDone
         {
             get
             {
@@ -25,17 +27,13 @@ namespace WeThePeople_ModdingTool.Windows
         public EventInfoDoneWindow()
         {
             InitializeComponent();
-            SetDataToGUI();
             InitGUIElements();
+            SetDataToGUI();
         }
 
         private void InitGUIElements()
         {
             comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClasses;
-            if (comboBox_UnitClass.Items.Count > 0)
-            {
-                comboBox_UnitClass.SelectedItem = UnitClassRepository.Instance.UnitClasses[0];
-            }
 
             for( int i=0;i<100;i++ )
             {
@@ -47,7 +45,6 @@ namespace WeThePeople_ModdingTool.Windows
                 comboBox_RelationKing.Items.Add(i.ToString());
                 comboBox_YieldPrice.Items.Add(i.ToString());
             }
-
         }
 
         private void button_Cancel_Click(object sender, RoutedEventArgs e)
@@ -78,11 +75,26 @@ namespace WeThePeople_ModdingTool.Windows
         private void GetFromGUI()
         {
             dataSetEventInfoDone.SetGold(textBox_Gold.Text);
-            dataSetEventInfoDone.SetUnitClass(comboBox_UnitClass.SelectedItem.ToString());
+            if( -1 != comboBox_UnitClass.SelectedIndex )
+            {
+                dataSetEventInfoDone.SetUnitClass(comboBox_UnitClass.SelectedItem.ToString());
+            }
+            else            
+            {
+                dataSetEventInfoDone.SetUnitClass("");
+            }
             dataSetEventInfoDone.SetUnitCount(comboBox_UnitCount.SelectedItem.ToString());
             dataSetEventInfoDone.SetUnitExperience(textBox_UnitExperiance.Text);
             dataSetEventInfoDone.SetKingRelation(comboBox_RelationKing.SelectedItem.ToString());
             dataSetEventInfoDone.SetYieldPrice(comboBox_YieldPrice.SelectedItem.ToString());
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

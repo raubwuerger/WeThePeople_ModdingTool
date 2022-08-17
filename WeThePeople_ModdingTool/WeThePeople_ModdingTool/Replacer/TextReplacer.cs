@@ -11,10 +11,10 @@ namespace WeThePeople_ModdingTool
     {
         public static string Replace( string content, KeyValuePair<string, string> replaceItem )
         {
-            if( true == StringValidator.IsNullOrWhiteSpace(replaceItem.Value) )
+            if( true == StringValidator.IsNull(replaceItem.Value) )
             {
                 Log.Debug("Replace item value is invalid! " + replaceItem.Key);
-                return null;
+                return content;
             }
 
             Log.Debug("Content to replace : " + content +" - key: " +replaceItem.Key +" - value: " +replaceItem.Value);

@@ -5,34 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
         mc:Ignorable="d"
-        Title="EventInfoDoneWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+        Title="EventInfoDoneWindow" Height="284" Width="248"
+        ResizeMode="NoResize" 
+        WindowStyle="None"
+        MouseMove="Window_MouseMove">
+    <Grid Margin="4,4,4,4">
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+        <Grid.RowDefinitions >
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Label>Gold:</Label>
-        <TextBox x:Name="textBox_Gold" Grid.Column="2" PreviewTextInput="PreviewTextInput"></TextBox>
-        <Label Grid.Row="1">Unit class:</Label>
-        <ComboBox x:Name="comboBox_UnitClass"  Grid.Column="2" Grid.Row="1"></ComboBox>
-        <Label Grid.Row="2">Unit count:</Label>
-        <ComboBox x:Name="comboBox_UnitCount" Grid.Column="2" Grid.Row="2"></ComboBox>
-        <Label Grid.Row="3">Unit experience:</Label>
-        <TextBox x:Name="textBox_UnitExperiance" Grid.Column="2" Grid.Row="3" PreviewTextInput="PreviewTextInput"></TextBox>
-        <Label Grid.Row="4">Relation King:</Label>
-        <ComboBox x:Name="comboBox_RelationKing" Grid.Column="2" Grid.Row="4"></ComboBox>
-        <Label Grid.Row="5">Yield price:</Label>
-        <ComboBox x:Name="comboBox_YieldPrice" Grid.Column="2" Grid.Row="5"></ComboBox>
-        <Button x:Name="button_Cancel" Click="button_Cancel_Click" Grid.Row="6" Grid.Column="2" Content="Cancel" HorizontalAlignment="Right" Width="120" Height="40" Margin="4,4,4,4"/>
-        <Button x:Name="button_Ok" Click="button_Ok_Click" Grid.Row="6" Grid.Column="2" Content="OK" HorizontalAlignment="Left" Width="120" Height="40" Margin="4,4,4,4"/>
+        <Label x:Name="EventInfoDone_Header" VerticalAlignment="Center" Grid.ColumnSpan="2">Create Event Info Done 1</Label>
+        <Label Grid.Row="1">Gold:</Label>
+        <TextBox x:Name="textBox_Gold" Grid.Column="2" Grid.Row="1" PreviewTextInput="PreviewTextInput" Margin="4,4,4,4"></TextBox>
+        <Label Grid.Row="2">Unit class:</Label>
+        <ComboBox x:Name="comboBox_UnitClass"  Grid.Column="2" Grid.Row="2" Margin="4,4,4,4"></ComboBox>
+        <Label Grid.Row="3">Unit count:</Label>
+        <ComboBox x:Name="comboBox_UnitCount" Grid.Column="2" Grid.Row="3" Margin="4,4,4,4"></ComboBox>
+        <Label Grid.Row="4">Unit experience:</Label>
+        <TextBox x:Name="textBox_UnitExperiance" Grid.Column="2" Grid.Row="4" PreviewTextInput="PreviewTextInput" Margin="4,4,4,4"></TextBox>
+        <Label Grid.Row="5">Relation King:</Label>
+        <ComboBox x:Name="comboBox_RelationKing" Grid.Column="2" Grid.Row="5" Margin="4,4,4,4"></ComboBox>
+        <Label Grid.Row="6">Yield price:</Label>
+        <ComboBox x:Name="comboBox_YieldPrice" Grid.Column="2" Grid.Row="6" Margin="4,4,4,4"></ComboBox>
+        <Button x:Name="button_Ok" Click="button_Ok_Click" Grid.Row="7" Grid.Column="0" Content="OK" HorizontalAlignment="Left" Width="112" Height="30" Margin="4,4,4,4" IsDefault="True"/>
+        <Button x:Name="button_Cancel" Click="button_Cancel_Click" Grid.Row="7" Grid.Column="1" Content="Cancel" HorizontalAlignment="Right" Width="112" Height="30" Margin="4,4,4,4" IsCancel="True"/>
     </Grid>
 </Window>

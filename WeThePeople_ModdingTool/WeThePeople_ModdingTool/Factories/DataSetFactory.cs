@@ -51,12 +51,12 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
-            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.GOLD, "");
-            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_CLASS, "");
-            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_COUNT, "");
-            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_EXPERIENCE, "");
-            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.KING_RELATION, "");
-            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD_PRICE, "");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.GOLD, "0");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_CLASS, "UNITCLASS_NONE");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_COUNT, "0");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.UNIT_EXPERIENCE, "0");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.KING_RELATION, "0");
+            dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD_PRICE, "0");
 
             return dataSetXML;
         }
