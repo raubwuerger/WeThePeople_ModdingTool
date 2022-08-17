@@ -37,7 +37,7 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            replacedXmlDocument = dataSetXML.XmlDocumentTemplate;
+            replacedXmlDocument = (XmlDocument)dataSetXML.XmlDocumentTemplate.Clone();
             Replace(replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlRootNode));
             return true;
         }
