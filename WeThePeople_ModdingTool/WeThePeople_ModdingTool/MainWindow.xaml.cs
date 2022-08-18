@@ -76,20 +76,26 @@ namespace WeThePeople_ModdingTool
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
         {
-            string RandomEvent_Start_Replaced = eventProcessor.Process( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start) );
-            textBox_PythonStart.Text = RandomEvent_Start_Replaced;
+            textBox_PythonStart.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start));
+            textBox_PythonDone.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done));
 
-            string RandomEvent_Done_Replaced = eventProcessor.Process( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done) );
-            textBox_PythonDone.Text = RandomEvent_Done_Replaced;
+            DataSetXML dataSetXMLTriggerInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start);
+            if( true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Start) )
+            {
+                TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(dataSetXMLTriggerInfos_Start.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXMLTriggerInfos_Start.XmlRootNode));
+            }
 
-            XmlDocument CIV4TriggerInfos_Start_Template_Processed = eventProcessor.Process( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start) );
-            TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
+            DataSetXML dataSetXMLTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
+            if (true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Done))
+            {
+                TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(dataSetXMLTriggerInfos_Done.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXMLTriggerInfos_Done.XmlRootNode));
+            }
 
-            XmlDocument CIV4TriggerInfos_Done_Template_Processed = eventProcessor.Process( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done) );
-            TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
-
-            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = eventProcessor.Process(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText) );
-            textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
+            DataSetXML dataSetGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            if( true == eventProcessor.ProcessAndSet(dataSetGameText) )
+            {
+                textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(dataSetGameText.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetGameText.XmlRootNode));
+            }
 
             button_CreateEventInfoStartXML.IsEnabled = true;
         }

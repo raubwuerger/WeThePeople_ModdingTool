@@ -41,11 +41,23 @@ namespace WeThePeople_ModdingTool.Processors
             return replacer.ReplacedString;
         }
 
+        public bool ProcessAndSet(DataSetXML dataSetXML)
+        {
+            XmlDocument processed = Process(dataSetXML);
+            if( null == processed )
+            {
+                return false;
+            }
+
+            dataSetXML.XmlDocumentProcessed = processed;
+            return true;
+        }
+
         public XmlDocument Process(DataSetXML dataSetXML)
         {
             if (false == IsInitialized())
             {
-                return new XmlDocument();
+                return null;
             }
 
             dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = harbour;
@@ -56,7 +68,7 @@ namespace WeThePeople_ModdingTool.Processors
 
             if (false == replacer.Replace())
             {
-                return new XmlDocument();
+                return null;
             }
 
             return replacer.ReplacedContent;
