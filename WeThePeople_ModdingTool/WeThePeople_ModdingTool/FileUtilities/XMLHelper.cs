@@ -87,8 +87,8 @@ namespace WeThePeople_ModdingTool.FileUtilities
             {
                 using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stringWriter))
                 {
-                    xmlTextWriter.Formatting = Formatting.Indented;
                     xmlTextWriter.Indentation = 4;
+                    xmlTextWriter.Formatting = Formatting.Indented;
                     xmlNode.WriteTo(xmlTextWriter);
                 }
             }

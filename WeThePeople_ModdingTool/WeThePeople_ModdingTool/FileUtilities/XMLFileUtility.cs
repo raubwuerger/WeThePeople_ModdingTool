@@ -24,11 +24,6 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 FileName = fileName;
                 XmlDocument doc = new XmlDocument();
                 doc.Load(fileName);
-                String nodeName;
-                foreach (XmlNode node in doc.DocumentElement.ChildNodes)
-                {
-                    nodeName = node.InnerText;
-                }
                 return doc;
             }
             catch( Exception ex )
