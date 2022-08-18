@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.FileUtilities;
+using WeThePeople_ModdingTool.Helper;
 using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.Windows
@@ -54,6 +56,24 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void button_Ok_Click(object sender, RoutedEventArgs e)
         {
+            if( false == IsAtLeastOneInputValid() )
+            {
+                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "No changes made!\n\rDo you want to proceed?"))
+                {
+                    return;
+                }
+            }
+            else 
+            {
+                if (false == IsUnitCreationValid())
+                {
+                    if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "Unit invalid!\n\r Do you want to proceed?"))
+                    {
+                        return;
+                    }
+                }
+            }
+
             DialogResult = true;
         }
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -89,12 +109,109 @@ namespace WeThePeople_ModdingTool.Windows
             dataSetEventInfoDone.SetYieldPrice(comboBox_YieldPrice.SelectedItem.ToString());
         }
 
-        private void Window_MouseMove(object sender, MouseEventArgs e)
+        private bool IsAtLeastOneInputValid()
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if( true == IsGoldValid() )
             {
-                DragMove();
+                return true;
             }
+
+            if( true == IsUnitClassValid() )
+            {
+                return true;
+            }
+
+            if (true == IsUnitCountValid())
+            {
+                return true;
+            }
+
+            if (true == IsUnitExperienceValid())
+            {
+                return true;
+            }
+
+            if (true == IsKingRelationValid())
+            {
+                return true;
+            }
+
+            if (true == IsYieldPriceValid())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsUnitCreationValid()
+        {
+            if( false == IsUnitClassValid() && false == IsUnitCountValid() && false == IsUnitExperienceValid() )
+            {
+                return true;
+            }
+
+            if( IsUnitClassValid() && (IsUnitCountValid() || IsUnitExperienceValid()) )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsUnitClassValid()
+        {
+            if( comboBox_UnitClass.SelectedItem == null )
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsUnitCountValid()
+        {
+            if( comboBox_UnitCount.SelectedItem == null )
+            {
+                return false;
+            }
+
+            if( StringValidator.IsNullOrWhiteSpace(comboBox_UnitCount.SelectedItem.ToString()) )
+            {
+                return false;
+            }
+
+            return StringHelper.IsNumberGreaterZero(comboBox_UnitCount.SelectedItem.ToString());
+        }
+
+        private bool IsUnitExperienceValid()
+        {
+            if( true == StringValidator.IsNullOrWhiteSpace(textBox_UnitExperiance.Text) )
+            {
+                return false;
+            }
+
+            return StringHelper.IsNumberGreaterZero(textBox_UnitExperiance.Text);
+        }
+
+        private bool IsGoldValid()
+        {
+            if( true == StringValidator.IsNullOrWhiteSpace(textBox_Gold.Text) )
+            {
+                return false;
+            }
+
+            return StringHelper.IsNumberGreaterZero(textBox_Gold.Text);
+        }
+
+        private bool IsKingRelationValid()
+        {
+            return false == "0".Equals(comboBox_RelationKing.SelectedItem.ToString());
+        }
+
+        private bool IsYieldPriceValid()
+        {
+            return false == "0".Equals(comboBox_YieldPrice.SelectedItem.ToString());
         }
     }
 }

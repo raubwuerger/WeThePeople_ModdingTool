@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.FileUtilities;
+using WeThePeople_ModdingTool.Helper;
+using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.Windows
 {
@@ -33,6 +36,21 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void EventInfoStart_Ok_Click(object sender, RoutedEventArgs e)
         {
+            if( false == IsAtLeastOneInputValid() )
+            {
+                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "No changes made!\n\rDo you want to proceed?"))
+                {
+                    return;
+                }
+            }
+            else 
+            {
+                if( false == IsRelationStartDoneValueValid() )
+                {
+                    CommonMessageBox.Show_OK_Error("Input not valid!","StartValue is equal or greater DoneValue!");
+                    return;
+                }
+            }
             DialogResult = true;
         }
 
@@ -57,6 +75,47 @@ namespace WeThePeople_ModdingTool.Windows
         {
             dataSetEventInfoStart.SetTriggerValueStart(StartValue_TextBox.Text);
             dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
+        }
+
+        private bool IsAtLeastOneInputValid()
+        {
+            if( true == IsStartValueValid() )
+            {
+                return true;
+            }
+
+            if( true == IsDoneValueValid() )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsRelationStartDoneValueValid()
+        {
+            int startValue;
+            if( false == StringHelper.StringToInteger(StartValue_TextBox.Text, out startValue) )
+            {
+                return false;
+            }
+
+            int doneValue;
+            if (false == StringHelper.StringToInteger(DoneValue_TextBox.Text, out doneValue))
+            {
+                return false;
+            }
+
+            return doneValue > startValue;
+        }
+
+        private bool IsStartValueValid()
+        {
+            return StringHelper.IsNumberGreaterZero(StartValue_TextBox.Text);
+        }
+        private bool IsDoneValueValid()
+        {
+            return StringHelper.IsNumberGreaterZero(DoneValue_TextBox.Text);
         }
     }
 }
