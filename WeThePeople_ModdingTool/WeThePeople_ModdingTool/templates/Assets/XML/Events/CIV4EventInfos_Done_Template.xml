@@ -59,7 +59,7 @@
 	<PythonHelp>getHelpQuestDone$HARBOUR_NORMAL$TradePriceAndAttitude</PythonHelp>
 	<Button>,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,5</Button>
 	<iAIValue>800</iAIValue>
-	<iGenericParameter1>5000</iGenericParameter1>
+	<iGenericParameter1>1000</iGenericParameter1>
 	<iGenericParameter2>$YIELD$</iGenericParameter2>
 	<iGenericParameter3>$KING_RELATION$</iGenericParameter3>
 	<iGenericParameter4>$YIELD_PRICE$</iGenericParameter4>
