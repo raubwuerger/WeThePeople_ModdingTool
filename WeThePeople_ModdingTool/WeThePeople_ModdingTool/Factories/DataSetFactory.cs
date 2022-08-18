@@ -23,6 +23,9 @@ namespace WeThePeople_ModdingTool.Factories
         private static string RootNode_EventInfo = "/EventInfo";
         private static string RootNode_EventTriggerInfo = "/EventTriggerInfo";
         private static string RootNode_Civ4GameText = "/Civ4GameText";
+
+        private static int EventInfoDoneIndex = 0;
+
         public DataSetXML CreateEventInfos_Start()
         {
             DataSetXML dataSetXML = CreateBaseXML(EventInfos_Start);
@@ -41,7 +44,8 @@ namespace WeThePeople_ModdingTool.Factories
 
         public DataSetXML CreateEventInfos_Done()
         {
-            DataSetXML dataSetXML = CreateBaseXML(EventInfos_Done);
+            EventInfoDoneIndex++;
+            DataSetXML dataSetXML = CreateBaseXML(EventInfos_Done +"_" +EventInfoDoneIndex.ToString());
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Done_Template.xml";
             dataSetXML.TemplateFileNameAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Events\CIV4EventInfos_Done_");

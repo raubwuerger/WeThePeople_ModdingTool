@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
@@ -99,5 +100,42 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return stringBuilder.ToString();
         }
 
+        public static XmlNode FindNodeByName( XmlNodeList nodes, string nodeName )
+        {
+            foreach (XmlNode node in nodes)
+            {
+                if (node.Name.Equals(nodeName))
+                {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        public static XmlNodeList GetRootNodeListProcessedXML( DataSetXML dataSetXML )
+        {
+            if( false == DataSetValidator.ValidateFull(dataSetXML) )
+            {
+                return null;
+            }
+
+            return dataSetXML.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXML.XmlRootNode);
+        }
+
+        public static XmlNodeList GetFirstChildRootNodeList( DataSetXML dataSetXML )
+        {
+            XmlNodeList xmlNodeList = GetRootNodeListProcessedXML(dataSetXML);
+            if( null == xmlNodeList )
+            {
+                return null;
+            }
+
+            return xmlNodeList[0].ChildNodes;
+        }
+
+        public static bool ContainsInnerNode( XmlNode xmlNode, string innerText )
+        {
+            return xmlNode.InnerText.Equals(innerText);
+        }
     }
 }

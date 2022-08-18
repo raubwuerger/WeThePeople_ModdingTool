@@ -78,7 +78,6 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
         }
-
         public DataSetXML FindByNameXML( string name )
         {
             DataSetXML dataSetXML;

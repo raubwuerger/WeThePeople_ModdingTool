@@ -8,6 +8,8 @@ using WeThePeople_ModdingTool.Windows;
 using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Processors;
+using WeThePeople_ModdingTool.Validators;
+using System.Diagnostics;
 
 namespace WeThePeople_ModdingTool
 {
@@ -20,6 +22,9 @@ namespace WeThePeople_ModdingTool
         private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Delete_Mapping = new Dictionary<Button, TextBox>();
+
+        public object StringUtility { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -96,19 +101,19 @@ namespace WeThePeople_ModdingTool
             DataSetXML dataSetXMLTriggerInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start);
             if( true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Start) )
             {
-                TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(dataSetXMLTriggerInfos_Start.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXMLTriggerInfos_Start.XmlRootNode));
+                TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Start));
             }
 
             DataSetXML dataSetXMLTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
             if (true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Done))
             {
-                TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(dataSetXMLTriggerInfos_Done.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXMLTriggerInfos_Done.XmlRootNode));
+                TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Done));
             }
 
             DataSetXML dataSetGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
             if( true == eventProcessor.ProcessAndSet(dataSetGameText) )
             {
-                textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(dataSetGameText.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetGameText.XmlRootNode));
+                textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetGameText));
             }
 
             button_CreateEventInfoStartXML.IsEnabled = true;
@@ -217,6 +222,11 @@ namespace WeThePeople_ModdingTool
             {
                 return;
             }
+
+            if( true == WeThePeople_ModdingTool.Validators.StringValidator.IsNullOrWhiteSpace(textBox.Text) )
+            {
+                return;
+            }
             XMLHelper.IsXMLShapelyShowMessageBox(textBox.Text);
         }
 
@@ -250,13 +260,13 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_DONE] = dataSetEventInfo.GetTriggerValueDone();
 
             dataSetEventInfos_Start.XmlDocumentProcessed = eventProcessor.Process(dataSetEventInfos_Start);
-            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(dataSetEventInfos_Start.XmlDocumentProcessed.SelectNodes(dataSetEventInfos_Start.XmlRootNode));
+            textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Start) );
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Start;
             button_button_AddEventInfoDone.IsEnabled = true;
         }
 
-        private void button_button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
+        private void button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
         {
             EventInfoDoneWindow eventInfoDoneWindow = new EventInfoDoneWindow();
             if( false == eventInfoDoneWindow.ShowDialog() )
@@ -265,7 +275,7 @@ namespace WeThePeople_ModdingTool
             }
 
             DataSetEventInfoDone dataSetEventInfoDone = eventInfoDoneWindow.DataSetEventInfoDone;
-            DataSetXML dataSetEventInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done);
+            DataSetXML dataSetEventInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done +"_1");
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.GOLD] = dataSetEventInfoDone.GetGold();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_CLASS] = dataSetEventInfoDone.GetUnitClass();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_COUNT] = dataSetEventInfoDone.GetUnitCount();
@@ -273,15 +283,65 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.KING_RELATION] = dataSetEventInfoDone.GetKingRelation();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.YIELD_PRICE] = dataSetEventInfoDone.GetYieldPrice();
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = eventProcessor.Process(dataSetEventInfos_Done);
-            textBox_EventInfoDone_1.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            if( false == eventProcessor.ProcessAndSet(dataSetEventInfos_Done) )
+            {
+                return;
+            }
+            textBox_EventInfoDone_1.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Done));
             CIV4EventInfos_Done_1.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Done_1;
+
+            UpdateEventTriggerInfoDone();
         }
 
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        static string NODE_EVENTS = "Events";
+        static string NODE_EVENT = "Event";
+        static string NODE_TYPE = "Type";
+        private bool UpdateEventTriggerInfoDone()
+        {
+            DataSetXML dataSetEventTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
+            
+            XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetEventTriggerInfos_Done), NODE_EVENTS);
+            if( null == nodeEvents )
+            {
+                return false;
+            }
+
+            DataSetXML eventInfoDone = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done + "_" + "1");
+            XmlNode xmlNodeEvent = dataSetEventTriggerInfos_Done.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, NODE_EVENT, null);
+            xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(eventInfoDone);
+
+            if( true == XMLHelper.ContainsInnerNode(nodeEvents, xmlNodeEvent.InnerText) )
+            {
+                return true;
+            }
+
+            XmlNode nodeAdded = nodeEvents.AppendChild(xmlNodeEvent);
+            TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventTriggerInfos_Done) );
+
+            return true;
+        }
+
+        private string GetEventInfoDoneTypeName( DataSetXML dataSetXML )
+        {
+            XmlNodeList rootNodeList = XMLHelper.GetRootNodeListProcessedXML(dataSetXML);
+            if( rootNodeList.Count != 1 )
+            {
+                return String.Empty;
+            }
+
+            XmlNode xmlNodeType = GetEventInfoDoneType(rootNodeList[0].ChildNodes );
+            return xmlNodeType.InnerText;
+        }
+
+        private XmlNode GetEventInfoDoneType( XmlNodeList xmlNodeList )
+        {
+            return XMLHelper.FindNodeByName(xmlNodeList,NODE_TYPE);
         }
     }
 }

@@ -72,6 +72,21 @@ namespace WeThePeople_ModdingTool.Validators
             return validationOK;
         }
 
+        public static bool ValidateFull( DataSetXML dataSetXML )
+        {
+            if( false == Validate(dataSetXML) )
+            {
+                return false;
+            }
+
+            if( null == dataSetXML.XmlDocumentProcessed )
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public static bool Validate( DataSetPython dataSetPython )
         {
             bool validationOK = true;
