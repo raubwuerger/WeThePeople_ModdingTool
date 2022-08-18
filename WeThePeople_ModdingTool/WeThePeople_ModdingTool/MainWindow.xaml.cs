@@ -67,7 +67,7 @@ namespace WeThePeople_ModdingTool
         }
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
-            CreateEvents();
+            SaveCreatedEventFiles();
         }
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
@@ -90,7 +90,7 @@ namespace WeThePeople_ModdingTool
             button_CreateEventInfoStartXML.IsEnabled = true;
         }
 
-        private void CreateEvents()
+        private void SaveCreatedEventFiles()
         {
             if ( false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start)), textBox_PythonStart.Text))
             {
@@ -132,6 +132,8 @@ namespace WeThePeople_ModdingTool
         private string CreatePathFileConcrete(DataSetBase dataSetBase)
         {
             string concreteFileName = selectedYieldType;
+            concreteFileName += "_";
+            concreteFileName += selectedHarbour.ToUpper();
             concreteFileName += dataSetBase.TemplateFileExtension;
             return dataSetBase.TemplateFileNameConcrete + concreteFileName;
         }
