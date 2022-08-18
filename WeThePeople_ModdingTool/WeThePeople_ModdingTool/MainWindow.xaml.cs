@@ -7,6 +7,7 @@ using System.Xml;
 using WeThePeople_ModdingTool.Windows;
 using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.Processors;
 
 namespace WeThePeople_ModdingTool
 {
@@ -14,6 +15,7 @@ namespace WeThePeople_ModdingTool
     {
         private string selectedYieldType;
         private string selectedHarbour;
+        EventProcessor eventProcessor = new EventProcessor();
 
         private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
@@ -60,10 +62,12 @@ namespace WeThePeople_ModdingTool
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedYieldType = ComboBox_Yield.SelectedItem.ToString();
+            eventProcessor.YieldType = selectedYieldType;
         }
         private void comboBox_Harbours_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedHarbour = comboBox_Harbours.SelectedItem.ToString();
+            eventProcessor.Harbour = selectedHarbour;
         }
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
@@ -72,19 +76,19 @@ namespace WeThePeople_ModdingTool
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
         {
-            string RandomEvent_Start_Replaced = ProcessTemplate( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start) );
+            string RandomEvent_Start_Replaced = eventProcessor.Process( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start) );
             textBox_PythonStart.Text = RandomEvent_Start_Replaced;
 
-            string RandomEvent_Done_Replaced = ProcessTemplate( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done) );
+            string RandomEvent_Done_Replaced = eventProcessor.Process( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done) );
             textBox_PythonDone.Text = RandomEvent_Done_Replaced;
 
-            XmlDocument CIV4TriggerInfos_Start_Template_Processed = ProcessTemplate( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start) );
+            XmlDocument CIV4TriggerInfos_Start_Template_Processed = eventProcessor.Process( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start) );
             TriggerInfoStart_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Start_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4TriggerInfos_Done_Template_Processed = ProcessTemplate( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done) );
+            XmlDocument CIV4TriggerInfos_Done_Template_Processed = eventProcessor.Process( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done) );
             TriggerInfoDone_TextBox.Text = XMLHelper.FormatKeepIndention(CIV4TriggerInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventTriggerInfo"));
 
-            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = ProcessTemplate(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText) );
+            XmlDocument CIV4GameText_Colonization_Events_utf8_Processed = eventProcessor.Process(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText) );
             textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(CIV4GameText_Colonization_Events_utf8_Processed.DocumentElement.SelectNodes("/Civ4GameText"));
 
             button_CreateEventInfoStartXML.IsEnabled = true;
@@ -136,38 +140,6 @@ namespace WeThePeople_ModdingTool
             concreteFileName += selectedHarbour.ToUpper();
             concreteFileName += dataSetBase.TemplateFileExtension;
             return dataSetBase.TemplateFileNameConcrete + concreteFileName;
-        }
-
-        private string ProcessTemplate( DataSetPython dataSetPython )
-        {
-            dataSetPython.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = selectedHarbour;
-            dataSetPython.TemplateReplaceItems[ReplaceItems.HARBOUR_UPPERCASE] = selectedHarbour.ToUpper();
-            dataSetPython.TemplateReplaceItems[ReplaceItems.YIELD] = selectedYieldType;
-
-            PythonItemReplacer replacer = new PythonItemReplacer(dataSetPython);
-
-            if (false == replacer.Replace())
-            {
-                return String.Empty;
-            }
-
-            return replacer.ReplacedString;
-        }
-
-        private XmlDocument ProcessTemplate(DataSetXML dataSetXML)
-        {
-            dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = selectedHarbour;
-            dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_UPPERCASE] = selectedHarbour.ToUpper();
-            dataSetXML.TemplateReplaceItems[ReplaceItems.YIELD] = selectedYieldType;
-
-            XMLItemReplacer replacer = new XMLItemReplacer(dataSetXML);
-
-            if (false == replacer.Replace())
-            {
-                return new XmlDocument();
-            }
-
-            return replacer.ReplacedContent;
         }
 
         private bool SaveFile(string fileName, string pythonFile )
@@ -257,7 +229,7 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_START] = dataSetEventInfo.GetTriggerValueStart();
             dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_DONE] = dataSetEventInfo.GetTriggerValueDone();
 
-            dataSetEventInfos_Start.XmlDocumentProcessed = ProcessTemplate(dataSetEventInfos_Start);
+            dataSetEventInfos_Start.XmlDocumentProcessed = eventProcessor.Process(dataSetEventInfos_Start);
             textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention(dataSetEventInfos_Start.XmlDocumentProcessed.SelectNodes(dataSetEventInfos_Start.XmlRootNode));
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Start;
@@ -281,7 +253,7 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.KING_RELATION] = dataSetEventInfoDone.GetKingRelation();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.YIELD_PRICE] = dataSetEventInfoDone.GetYieldPrice();
 
-            XmlDocument CIV4EventInfos_Done_Template_Processed = ProcessTemplate(dataSetEventInfos_Done);
+            XmlDocument CIV4EventInfos_Done_Template_Processed = eventProcessor.Process(dataSetEventInfos_Done);
             textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
             CIV4EventInfos_Done.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Done;
