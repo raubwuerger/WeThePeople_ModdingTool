@@ -91,5 +91,18 @@ namespace WeThePeople_ModdingTool
             pythonFiles.TryGetValue(name, out dataSetPython);
             return dataSetPython;
         }
+
+        public void Reset()
+        {
+            foreach(KeyValuePair<string, DataSetXML> entry in xmlDocuments)
+            {
+                entry.Value.XmlDocumentProcessed = new XmlDocument();
+            }
+
+            foreach(KeyValuePair<string, DataSetPython> entry in pythonFiles)
+            {
+                entry.Value.PythonContentProcessed = String.Empty;
+            }
+        }
     }
 }

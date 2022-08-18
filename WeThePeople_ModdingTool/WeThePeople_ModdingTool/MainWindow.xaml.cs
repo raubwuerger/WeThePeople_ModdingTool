@@ -116,7 +116,33 @@ namespace WeThePeople_ModdingTool
                 textBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetGameText));
             }
 
+            ComboBox_Yield.IsEnabled = false;
+            comboBox_Harbours.IsEnabled = false;
             button_CreateEventInfoStartXML.IsEnabled = true;
+        }
+
+        private void button_RestTemplates_Click(object sender, RoutedEventArgs e)
+        {
+            TemplateRepository.Instance.Reset();
+            ClearTextBoxes();
+            ComboBox_Yield.IsEnabled = true;
+            comboBox_Harbours.IsEnabled = true;
+            button_CreateEventInfoStartXML.IsEnabled = false;
+            button_AddEventInfoDone.IsEnabled = false;
+            CIV4EventInfos_Start.Visibility = Visibility.Hidden;
+            CIV4EventInfos_Done_1.Visibility = Visibility.Hidden;
+            CIV4EventInfos_Done_2.Visibility = Visibility.Hidden;
+            CIV4EventInfos_Done_3.Visibility = Visibility.Hidden;
+            CIV4EventInfos_Done_4.Visibility = Visibility.Hidden;
+            CIV4EventInfos_Done_5.Visibility = Visibility.Hidden;
+        }
+
+        private void ClearTextBoxes()
+        {
+            foreach(KeyValuePair<CheckBox, TextBox> entry in CheckBoxTextBox_Enable_Mapping)
+            {
+                entry.Value.Text = String.Empty;
+            }
         }
 
         private void SaveCreatedEventFiles()
@@ -263,7 +289,7 @@ namespace WeThePeople_ModdingTool
             textBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Start) );
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Start;
-            button_button_AddEventInfoDone.IsEnabled = true;
+            button_AddEventInfoDone.IsEnabled = true;
         }
 
         private void button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
