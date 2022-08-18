@@ -49,14 +49,14 @@ namespace WeThePeople_ModdingTool
             CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonDone_Editable, textBox_PythonDone);
             CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoStart_Editable_CheckBox, TriggerInfoStart_TextBox);
             CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoDone_Editable_CheckBox, TriggerInfoDone_TextBox);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_Editable, textBox_EventInfoDone);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_1_Editable, textBox_EventInfoDone_1);
             CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoStart_Editable, textBox_EventInfoStart);
             CheckBoxTextBox_Enable_Mapping.Add(checkBox_CIV4GameText, textBox_CIV4GameText);
 
             ButtonTextBox_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TriggerInfoStart_TextBox);
             ButtonTextBox_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TriggerInfoDone_TextBox);
             ButtonTextBox_Validation_Mapping.Add(button_EventInfoStart_validate, textBox_EventInfoStart);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_validate, textBox_EventInfoDone);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_1_validate, textBox_EventInfoDone_1);
             ButtonTextBox_Validation_Mapping.Add(button_CIV4GameText_validate, textBox_CIV4GameText);
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -127,7 +127,7 @@ namespace WeThePeople_ModdingTool
                 CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
 
-            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done)), XMLHelper.CreateFromString(textBox_EventInfoDone.Text)))
+            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done)), XMLHelper.CreateFromString(textBox_EventInfoDone_1.Text)))
             {
                 CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
             }
@@ -260,9 +260,9 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.YIELD_PRICE] = dataSetEventInfoDone.GetYieldPrice();
 
             XmlDocument CIV4EventInfos_Done_Template_Processed = eventProcessor.Process(dataSetEventInfos_Done);
-            textBox_EventInfoDone.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
-            CIV4EventInfos_Done.Visibility = Visibility.Visible;
-            tabControl_templates.SelectedItem = CIV4EventInfos_Done;
+            textBox_EventInfoDone_1.Text = XMLHelper.FormatKeepIndention(CIV4EventInfos_Done_Template_Processed.DocumentElement.SelectNodes("/EventInfo"));
+            CIV4EventInfos_Done_1.Visibility = Visibility.Visible;
+            tabControl_templates.SelectedItem = CIV4EventInfos_Done_1;
         }
     }
 }
