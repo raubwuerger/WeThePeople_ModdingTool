@@ -24,6 +24,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
             try
             {
                 xmlDocument.LoadXml(xmlString);
+                if (true == showMessageBox)
+                {
+                    CommonMessageBox.Show_Info("Information!", CommonVariables.VALIDATION_SUCCEEDED_CR +CommonVariables.XML_IS_SHAPELY);
+                }
                 return xmlDocument;
             }
             catch (Exception ex)
@@ -36,7 +40,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 return null;
             }
         }
-        public static bool IsXMLShapelyShowException(string xmlString)
+        public static bool IsXMLShapelyShowMessageBox(string xmlString)
         {
             showMessageBox = true;
             XmlDocument xmlDocument = CreateFromString(xmlString);

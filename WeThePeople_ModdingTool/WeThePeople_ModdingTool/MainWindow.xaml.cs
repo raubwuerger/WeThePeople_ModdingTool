@@ -203,7 +203,7 @@ namespace WeThePeople_ModdingTool
             {
                 return;
             }
-            XMLHelper.IsXMLShapelyShowException(textBox.Text);
+            XMLHelper.IsXMLShapelyShowMessageBox(textBox.Text);
         }
 
         private TextBox GetTextBox(Button button)

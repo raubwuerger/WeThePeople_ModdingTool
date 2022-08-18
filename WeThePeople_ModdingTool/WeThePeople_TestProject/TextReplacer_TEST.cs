@@ -31,7 +31,7 @@ namespace WeThePeople_TestProject
         [SetUp]
         public void Setup()
         {
-            CommonMessageBox.ShowMessageBoxes = false;
+            CommonMessageBox.ShowMessageBoxesNotForUnitTests = false;
 
             keyVakuePair_valid = new KeyValuePair<string, string>(replaceItem_Placeholder, replaceItem_Value);
             keyValuePair_bob = new KeyValuePair<string, string>("$BOB$", "bob");
