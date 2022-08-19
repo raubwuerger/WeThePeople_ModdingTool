@@ -136,6 +136,7 @@ namespace WeThePeople_ModdingTool
 
             ComboBox_Yield.IsEnabled = false;
             comboBox_Harbours.IsEnabled = false;
+            button_LoadTemplates.IsEnabled = false;
             button_CreateEventInfoStartXML.IsEnabled = true;
         }
 
@@ -147,6 +148,7 @@ namespace WeThePeople_ModdingTool
             comboBox_Harbours.IsEnabled = true;
             button_CreateEventInfoStartXML.IsEnabled = false;
             button_AddEventInfoDone.IsEnabled = false;
+            button_LoadTemplates.IsEnabled = true;
             CIV4EventInfos_Start.Visibility = Visibility.Hidden;
             CIV4EventInfos_Done_1.Visibility = Visibility.Hidden;
             CIV4EventInfos_Done_2.Visibility = Visibility.Hidden;
