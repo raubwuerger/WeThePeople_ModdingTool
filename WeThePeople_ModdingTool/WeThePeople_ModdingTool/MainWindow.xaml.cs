@@ -53,34 +53,45 @@ namespace WeThePeople_ModdingTool
 
         private void InitMapping()
         {
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonStart_Editable, textBox_PythonStart);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonDone_Editable, textBox_PythonDone);
-            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoStart_Editable_CheckBox, TextBox_TriggerInfoStart);
-            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoDone_Editable_CheckBox, TextBox_TriggerInfoDone);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoStart_Editable, TextBox_EventInfoStart);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_CIV4GameText, TextBox_CIV4GameText);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_1_Editable, TextBox_EventInfoDone_1);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_2_Editable, TextBox_EventInfoDone_2);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_3_Editable, TextBox_EventInfoDone_3);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_4_Editable, TextBox_EventInfoDone_4);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_5_Editable, TextBox_EventInfoDone_5);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonStart_Editable, TextBox_Python_Start);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonDone_Editable, TextBox_Python_Done);
+            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoStart_Editable_CheckBox, TextBox_TriggerInfo_Start);
+            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoDone_Editable_CheckBox, TextBox_TriggerInfo_Done);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoStart_Editable, TextBox_EventInfo_Start);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_CIV4GameText, TextBox_EventGameText);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_1_Editable, TextBox_EventInfo_Done_1);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_2_Editable, TextBox_EventInfo_Done_2);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_3_Editable, TextBox_EventInfo_Done_3);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_4_Editable, TextBox_EventInfo_Done_4);
+            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_5_Editable, TextBox_EventInfo_Done_5);
 
-            ButtonTextBox_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TextBox_TriggerInfoStart);
-            ButtonTextBox_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TextBox_TriggerInfoDone);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoStart_validate, TextBox_EventInfoStart);
-            ButtonTextBox_Validation_Mapping.Add(button_CIV4GameText_validate, TextBox_CIV4GameText);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_1_validate, TextBox_EventInfoDone_1);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_2_validate, TextBox_EventInfoDone_2);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_3_validate, TextBox_EventInfoDone_3);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_4_validate, TextBox_EventInfoDone_4);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_5_validate, TextBox_EventInfoDone_5);
+            ButtonTextBox_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TextBox_TriggerInfo_Start);
+            ButtonTextBox_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TextBox_TriggerInfo_Done);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoStart_validate, TextBox_EventInfo_Start);
+            ButtonTextBox_Validation_Mapping.Add(button_CIV4GameText_validate, TextBox_EventGameText);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_1_validate, TextBox_EventInfo_Done_1);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_2_validate, TextBox_EventInfo_Done_2);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_3_validate, TextBox_EventInfo_Done_3);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_4_validate, TextBox_EventInfo_Done_4);
+            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_5_validate, TextBox_EventInfo_Done_5);
 
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_2_delete, TextBox_EventInfoDone_2);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_3_delete, TextBox_EventInfoDone_3);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_4_delete, TextBox_EventInfoDone_4);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_5_delete, TextBox_EventInfoDone_5);
+            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_2_delete, TextBox_EventInfo_Done_2);
+            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_3_delete, TextBox_EventInfo_Done_3);
+            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_4_delete, TextBox_EventInfo_Done_4);
+            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_5_delete, TextBox_EventInfo_Done_5);
 
-//            DataSetXML_TextBox_Mapping.Add( TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start),  )
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start), TextBox_EventInfo_Start);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText), TextBox_EventGameText);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start), TextBox_TriggerInfo_Start);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done), TextBox_TriggerInfo_Done);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_1), TextBox_EventInfo_Done_1);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_2), TextBox_EventInfo_Done_2);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_3), TextBox_EventInfo_Done_3);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_4), TextBox_EventInfo_Done_4);
+            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_5), TextBox_EventInfo_Done_5);
+
+            DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
+            DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -99,25 +110,25 @@ namespace WeThePeople_ModdingTool
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
         {
-            textBox_PythonStart.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start));
-            textBox_PythonDone.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done));
+            TextBox_Python_Start.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start));
+            TextBox_Python_Done.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done));
 
             DataSetXML dataSetXMLTriggerInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start);
             if( true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Start) )
             {
-                TextBox_TriggerInfoStart.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Start));
+                TextBox_TriggerInfo_Start.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Start));
             }
 
             DataSetXML dataSetXMLTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
             if (true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Done))
             {
-                TextBox_TriggerInfoDone.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Done));
+                TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Done));
             }
 
             DataSetXML dataSetGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
             if( true == eventProcessor.ProcessAndSet(dataSetGameText) )
             {
-                TextBox_CIV4GameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetGameText));
+                TextBox_EventGameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetGameText));
             }
 
             ComboBox_Yield.IsEnabled = false;
@@ -155,6 +166,19 @@ namespace WeThePeople_ModdingTool
             eventCreator.YieldType = selectedYieldType;
             eventCreator.Harbour = selectedHarbour;
             eventCreator.Create();
+        }
+
+        private void PutDataToDataSet()
+        {
+            foreach(KeyValuePair<DataSetXML, TextBox> entry in DataSetXML_TextBox_Mapping )
+            {
+                entry.Key.XmlDocumentProcessed.LoadXml(entry.Value.Text);
+            }
+
+            foreach (KeyValuePair<DataSetPython, TextBox> entry in DataSetPython_TextBox_Mapping)
+            {
+                entry.Key.PythonContentProcessed = entry.Value.Text;
+            }
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)
@@ -238,7 +262,7 @@ namespace WeThePeople_ModdingTool
             dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_DONE] = dataSetEventInfo.GetTriggerValueDone();
 
             dataSetEventInfos_Start.XmlDocumentProcessed = eventProcessor.Process(dataSetEventInfos_Start);
-            TextBox_EventInfoStart.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Start) );
+            TextBox_EventInfo_Start.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Start) );
             CIV4EventInfos_Start.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Start;
             button_AddEventInfoDone.IsEnabled = true;
@@ -265,7 +289,7 @@ namespace WeThePeople_ModdingTool
             {
                 return;
             }
-            TextBox_EventInfoDone_1.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Done));
+            TextBox_EventInfo_Done_1.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Done));
             CIV4EventInfos_Done_1.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = CIV4EventInfos_Done_1;
 
@@ -300,7 +324,7 @@ namespace WeThePeople_ModdingTool
             }
 
             XmlNode nodeAdded = nodeEvents.AppendChild(xmlNodeEvent);
-            TextBox_TriggerInfoDone.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventTriggerInfos_Done) );
+            TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventTriggerInfos_Done) );
 
             return true;
         }

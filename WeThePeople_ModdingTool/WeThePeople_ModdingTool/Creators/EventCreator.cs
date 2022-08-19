@@ -50,12 +50,12 @@ namespace WeThePeople_ModdingTool
 
         private bool IsValid()
         {
-            if( false == StringValidator.IsNullOrWhiteSpace(harbour) )
+            if( true == StringValidator.IsNullOrWhiteSpace(harbour) )
             {
                 return false;
             }
 
-            if (false == StringValidator.IsNullOrWhiteSpace(yieldType))
+            if( true == StringValidator.IsNullOrWhiteSpace(yieldType) )
             {
                 return false;
             }
