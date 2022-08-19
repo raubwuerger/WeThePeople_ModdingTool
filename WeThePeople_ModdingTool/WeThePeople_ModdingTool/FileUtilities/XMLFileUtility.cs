@@ -12,7 +12,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
     {
         string FileName;
 
-        public XmlDocument Load( string fileName )
+        public XmlDocument Load(string fileName)
         {
             if (false == File.Exists(fileName))
             {
@@ -26,15 +26,15 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 doc.Load(fileName);
                 return doc;
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
-                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK +ex.Message);
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
                 return null;
             }
         }
 
-        public bool Save( string fileName, XmlDocument xmlDocument )
+        public bool Save(string fileName, XmlDocument xmlDocument)
         {
             if (true == File.Exists(fileName))
             {
@@ -50,11 +50,18 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             catch (Exception ex)
             {
-                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION +CommonVariables.BLANK_MINUS_BLANK +ex.Message);
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
                 return false;
             }
 
+        }
+
+        public bool SaveCreatePath(string fileName, XmlDocument xmlDocument)
+        {
+            string path = Path.GetDirectoryName(fileName);
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+            return Save(fileName, xmlDocument);
         }
     }
 }

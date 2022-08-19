@@ -29,7 +29,7 @@ namespace WeThePeople_ModdingTool.Validators
                 validationOK = false;
             }
 
-            if (StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateFileNameAbsolute))
+            if (StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateFileNameAndPathAbsolute))
             {
                 Log.Debug("DataSetBase.TemplateFileNameAbsolute is invalid!");
                 validationOK = false;
@@ -41,7 +41,7 @@ namespace WeThePeople_ModdingTool.Validators
                 validationOK = false;
             }
 
-            if (StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateFileNameConcrete))
+            if (StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateFileNameAndPathProcessed))
             {
                 Log.Debug("DataSetBase.TemplateFileNameConcrete is invalid!");
                 validationOK = false;

@@ -105,6 +105,7 @@ namespace WeThePeople_ModdingTool
         }
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
+            PutDataToDataSet();
             SaveCreatedEventFiles();
         }
 
@@ -172,7 +173,10 @@ namespace WeThePeople_ModdingTool
         {
             foreach(KeyValuePair<DataSetXML, TextBox> entry in DataSetXML_TextBox_Mapping )
             {
-                entry.Key.XmlDocumentProcessed.LoadXml(entry.Value.Text);
+                if( true == XMLHelper.IsXMLShapely(entry.Value.Text) )
+                {
+                    entry.Key.XmlDocumentProcessed.LoadXml(entry.Value.Text);
+                }
             }
 
             foreach (KeyValuePair<DataSetPython, TextBox> entry in DataSetPython_TextBox_Mapping)

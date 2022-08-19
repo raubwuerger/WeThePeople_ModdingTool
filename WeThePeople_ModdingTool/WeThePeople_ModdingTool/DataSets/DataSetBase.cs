@@ -8,9 +8,10 @@ namespace WeThePeople_ModdingTool.DataSets
     {
         public string TemplateName;
         public string TemplateFileNameRelativ;
-        public string TemplateFileNameAbsolute;
+        public string TemplateFileNameAndPathAbsolute;
         public string TemplateFileExtension;
-        public string TemplateFileNameConcrete;
+        public string TemplateFileNameProcessed;
+        public string TemplateFileNameAndPathProcessed;
         public IDictionary<string, string> TemplateReplaceItems = new Dictionary<string, string>();
     }
 }

@@ -37,6 +37,10 @@ namespace WeThePeople_ModdingTool
 
             foreach(KeyValuePair<string,DataSetXML> entry in TemplateRepository.Instance.XmlDocuments )
             {
+                if( entry.Value.XmlDocumentProcessed == null )
+                {
+                    continue;
+                }
                 SaveFile( PathHelper.CombinePathAndFileName(baseBath, CreateConcreteFileName(entry.Value)), entry.Value.XmlDocumentProcessed );
             }
 
@@ -64,21 +68,21 @@ namespace WeThePeople_ModdingTool
         }
         private string CreateConcreteFileName(DataSetBase dataSetBase)
         {
-            string concreteFileName = yieldType;
-            concreteFileName += "_";
-            concreteFileName += harbour.ToUpper();
-            concreteFileName += dataSetBase.TemplateFileExtension;
-            return dataSetBase.TemplateFileNameConcrete + concreteFileName;
+            string processedAppendix = yieldType;
+            processedAppendix += "_";
+            processedAppendix += harbour.ToUpper();
+            processedAppendix += dataSetBase.TemplateFileExtension;
+            return dataSetBase.TemplateFileNameProcessed + processedAppendix;
         }
         private bool SaveFile(string fileName, string pythonFile)
         {
             TextFileUtility textFileUtility = new TextFileUtility();
-            return textFileUtility.Save(fileName, pythonFile);
+            return textFileUtility.SaveCreatePath(fileName, pythonFile);
         }
         private bool SaveFile(string fileName, XmlDocument xmlDocument)
         {
             XMLFileUtility xmlFileUtility = new XMLFileUtility();
-            return xmlFileUtility.Save(fileName, xmlDocument);
+            return xmlFileUtility.SaveCreatePath(fileName, xmlDocument);
         }
 
     }

@@ -48,5 +48,12 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 return false;
             }
         }
+
+        public bool SaveCreatePath( string fileName, string content )
+        {
+            string path = Path.GetDirectoryName(fileName);
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+            return Save(fileName, content);
+        }
     }
 }
