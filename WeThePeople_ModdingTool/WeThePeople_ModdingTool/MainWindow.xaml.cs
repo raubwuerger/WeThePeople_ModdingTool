@@ -24,6 +24,7 @@ namespace WeThePeople_ModdingTool
         private IDictionary<Button, TextBox> ButtonTextBox_Delete_Mapping = new Dictionary<Button, TextBox>();
         private IDictionary<DataSetXML, TextBox> DataSetXML_TextBox_Mapping = new Dictionary<DataSetXML, TextBox>();
         private IDictionary<DataSetPython, TextBox> DataSetPython_TextBox_Mapping = new Dictionary<DataSetPython, TextBox>();
+        private List<KeyValuePair<TextBox,TabItem>> EventInfoDone_TextBox_List = new List<KeyValuePair<TextBox,TabItem>>();
 
         public object StringUtility { get; private set; }
 
@@ -84,14 +85,15 @@ namespace WeThePeople_ModdingTool
             DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText), TextBox_EventGameText);
             DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start), TextBox_TriggerInfo_Start);
             DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done), TextBox_TriggerInfo_Done);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_1), TextBox_EventInfo_Done_1);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_2), TextBox_EventInfo_Done_2);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_3), TextBox_EventInfo_Done_3);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_4), TextBox_EventInfo_Done_4);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_5), TextBox_EventInfo_Done_5);
 
             DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
             DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
+
+            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox,TabItem>(TextBox_EventInfo_Done_1, CIV4EventInfos_Done_1));
+            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_2, CIV4EventInfos_Done_2));
+            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_3, CIV4EventInfos_Done_3));
+            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_4, CIV4EventInfos_Done_4));
+            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_5, CIV4EventInfos_Done_5));
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -280,24 +282,46 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
+            KeyValuePair<TextBox, TabItem> keyValuePair = GetCorrespondingTextBox();
+
+            DataSetXML dataSetEventInfos_Done = CreateDataSetXML_EventInfosDone();
             DataSetEventInfoDone dataSetEventInfoDone = eventInfoDoneWindow.DataSetEventInfoDone;
-            DataSetXML dataSetEventInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_1);
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.GOLD] = dataSetEventInfoDone.GetGold();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_CLASS] = dataSetEventInfoDone.GetUnitClass();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_COUNT] = dataSetEventInfoDone.GetUnitCount();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_EXPERIENCE] = dataSetEventInfoDone.GetUnitExperience();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.KING_RELATION] = dataSetEventInfoDone.GetKingRelation();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.YIELD_PRICE] = dataSetEventInfoDone.GetYieldPrice();
+            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.DONE_INDEX] = GetDoneIndex();
 
-            if( false == eventProcessor.ProcessAndSet(dataSetEventInfos_Done) )
+            if ( false == eventProcessor.ProcessAndSet(dataSetEventInfos_Done) )
             {
                 return;
             }
-            TextBox_EventInfo_Done_1.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Done));
-            CIV4EventInfos_Done_1.Visibility = Visibility.Visible;
-            tabControl_templates.SelectedItem = CIV4EventInfos_Done_1;
 
-            UpdateEventTriggerInfoDone();
+            keyValuePair.Key.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Done));
+            keyValuePair.Value.Visibility = Visibility.Visible;
+            tabControl_templates.SelectedItem = keyValuePair.Value;
+
+            UpdateEventTriggerInfoDone(dataSetEventInfos_Done);
+        }
+
+        private string GetDoneIndex()
+        {
+            return TemplateRepository.Instance.XmlDocumentEventDone.Count.ToString();
+        }
+
+        private KeyValuePair<TextBox,TabItem> GetCorrespondingTextBox()
+        {
+            return EventInfoDone_TextBox_List[TemplateRepository.Instance.XmlDocumentEventDone.Count];
+        }
+
+        private DataSetXML CreateDataSetXML_EventInfosDone()
+        {
+            DataSetFactory dataSetFactory = new DataSetFactory();
+            DataSetXML eventInfoDone = dataSetFactory.CreateEventInfo_Done();
+            TemplateRepository.Instance.RegisterTemplateEventDone(eventInfoDone);
+            return eventInfoDone;
         }
 
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
@@ -308,27 +332,26 @@ namespace WeThePeople_ModdingTool
         static string NODE_EVENTS = "Events";
         static string NODE_EVENT = "Event";
         static string NODE_TYPE = "Type";
-        private bool UpdateEventTriggerInfoDone()
+        private bool UpdateEventTriggerInfoDone( DataSetXML dataSetXML_EventInfoDone )
         {
-            DataSetXML dataSetEventTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            
-            XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetEventTriggerInfos_Done), NODE_EVENTS);
+            DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
+            XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(eventTriggerInfo_Done), NODE_EVENTS);
             if( null == nodeEvents )
             {
                 return false;
             }
 
-            DataSetXML eventInfoDone = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_1);
-            XmlNode xmlNodeEvent = dataSetEventTriggerInfos_Done.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, NODE_EVENT, null);
-            xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(eventInfoDone);
+            XmlNode xmlNodeEvent = dataSetXML_EventInfoDone.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, NODE_EVENT, eventTriggerInfo_Done.XmlDocumentProcessed.NamespaceURI);
+            xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(dataSetXML_EventInfoDone);
 
             if( true == XMLHelper.ContainsInnerNode(nodeEvents, xmlNodeEvent.InnerText) )
             {
                 return true;
             }
 
-            XmlNode nodeAdded = nodeEvents.AppendChild(xmlNodeEvent);
-            TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventTriggerInfos_Done) );
+            XmlNode importedNode = eventTriggerInfo_Done.XmlDocumentProcessed.ImportNode(xmlNodeEvent, true);
+            nodeEvents.AppendChild(importedNode);
+            TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done) );
 
             return true;
         }

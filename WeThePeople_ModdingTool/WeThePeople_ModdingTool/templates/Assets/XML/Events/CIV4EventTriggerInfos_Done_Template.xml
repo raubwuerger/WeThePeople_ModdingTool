@@ -42,7 +42,6 @@
 	<ImprovementsRequired/>
 	<RoutesRequired/>
 	<Events>
-		<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Event>
 	</Events>
 	<PrereqEvents>
 		<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>

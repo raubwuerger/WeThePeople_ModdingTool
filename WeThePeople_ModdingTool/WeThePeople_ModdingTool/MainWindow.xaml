@@ -117,7 +117,7 @@
                     <TextBox x:Name="TextBox_EventInfo_Start" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_1" Header="EventInfos_Done_1" Visibility="Visible" >
+            <TabItem x:Name="CIV4EventInfos_Done_1" Header="EventInfos_Done_1" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -133,7 +133,7 @@
                     <TextBox x:Name="TextBox_EventInfo_Done_1" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_2" Header="EventInfos_Done_2" Visibility="Visible" >
+            <TabItem x:Name="CIV4EventInfos_Done_2" Header="EventInfos_Done_2" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

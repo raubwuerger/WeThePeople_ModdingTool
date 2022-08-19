@@ -44,7 +44,6 @@ namespace WeThePeople_ModdingTool
             DataSetFactory dataSetFactory = new DataSetFactory();
 
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventInfos_Start() );
-            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventInfos_Done());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventTriggerInfos_Start());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventTriggerInfos_Done());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventGameText());

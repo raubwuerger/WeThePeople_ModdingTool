@@ -45,20 +45,9 @@ namespace WeThePeople_ModdingTool.Factories
             return dataSetXML;
         }
 
-        public List<DataSetXML> CreateEventInfos_Done()
+        public DataSetXML CreateEventInfo_Done()
         {
-            List<DataSetXML> dataSetXMLs = new List<DataSetXML>();
-            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_1));
-            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_2));
-            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_3));
-            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_4));
-            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_5));
-            return dataSetXMLs;
-        }
-
-        private DataSetXML CreateEventInfo_Done( string name )
-        {
-            DataSetXML dataSetXML = CreateBaseXML(name);
+            DataSetXML dataSetXML = CreateBaseXML(CreateNameEventInfoDone());
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Done_Template.xml";
             dataSetXML.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Done_";
@@ -77,6 +66,44 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD_PRICE, "0");
 
             return dataSetXML;
+        }
+
+        private string CreateNameEventInfoDone()
+        {
+            IDictionary<string, DataSetXML> registered = TemplateRepository.Instance.XmlDocumentEventDone;
+            if( registered.Count == 0 )
+            {
+                return EventInfos_Done_1;
+            }
+            else if ( registered.Count == 1 )
+            {
+                return EventInfos_Done_2;
+            }
+            else if (registered.Count == 2)
+            {
+                return EventInfos_Done_3;
+            }
+            else if (registered.Count == 3)
+            {
+                return EventInfos_Done_4;
+            }
+            else if (registered.Count == 4)
+            {
+                return EventInfos_Done_5;
+            }
+            return String.Empty;
+        }
+
+        private bool FindStringInList( string toFind, IDictionary<string, DataSetXML> source )
+        {
+            foreach (KeyValuePair<string, DataSetXML> entry in source)
+            {
+                if( entry.Equals(toFind) )
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public DataSetXML CreateEventTriggerInfos_Start()

@@ -24,6 +24,12 @@ namespace WeThePeople_ModdingTool
             }
         }
 
+        private IDictionary<string, DataSetXML> xmlDocumentEventDone = new Dictionary<string, DataSetXML>();
+        public System.Collections.Generic.IDictionary<string, WeThePeople_ModdingTool.DataSets.DataSetXML> XmlDocumentEventDone
+        {
+            get { return xmlDocumentEventDone; }
+        }
+
         private IDictionary<string, DataSetXML> xmlDocuments = new Dictionary<string, DataSetXML>();
         public System.Collections.Generic.IDictionary<string, WeThePeople_ModdingTool.DataSets.DataSetXML> XmlDocuments
         {
@@ -35,17 +41,30 @@ namespace WeThePeople_ModdingTool
             get { return pythonFiles; }
         }
 
-        public bool RegisterTemplate(List<DataSetXML> dataSetXMLs)
+        public bool RegisterTemplateEventDone( DataSetXML dataSetXML)
         {
-            foreach( DataSetXML entry in dataSetXMLs )
+            try
             {
-                if( false == RegisterTemplate(entry) )
+                if (true == xmlDocumentEventDone.ContainsKey(dataSetXML.TemplateName))
                 {
                     return false;
                 }
             }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
 
-            return true;
+            try
+            {
+                return xmlDocumentEventDone.TryAdd(dataSetXML.TemplateName, dataSetXML);
+            }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
         }
 
         public bool RegisterTemplate( DataSetXML dataSetXML )
