@@ -66,7 +66,7 @@
                     <Button x:Name="TriggerInfoStart_Validation_Button" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TriggerInfoStart_TextBox" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_TriggerInfoStart" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TriggerInfoDone_TabItem" Header="TriggerInfoDone">
@@ -82,7 +82,7 @@
                     <Button x:Name="TriggerInfoDone_Validation_Button" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TriggerInfoDone_TextBox" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_TriggerInfoDone" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4GameText" Header="CIV4GameText_Colopedia">
@@ -98,7 +98,7 @@
                     <Button x:Name="button_CIV4GameText_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_CIV4GameText" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True"  VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_CIV4GameText" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True"  VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start" Visibility="Hidden">
@@ -114,7 +114,7 @@
                     <Button x:Name="button_EventInfoStart_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_EventInfoStart" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done_1" Header="EventInfos_Done_1" Visibility="Visible" >
@@ -130,7 +130,7 @@
                     <Button x:Name="button_EventInfoDone_1_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoDone_1" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_EventInfoDone_1" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done_2" Header="EventInfos_Done_2" Visibility="Visible" >
@@ -147,7 +147,7 @@
                     <Button x:Name="button_EventInfoDone_2_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoDone_2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_EventInfoDone_2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done_3" Header="EventInfos_Done_3" Visibility="Hidden" >
@@ -164,7 +164,7 @@
                     <Button x:Name="button_EventInfoDone_3_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoDone_3" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_EventInfoDone_3" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done_4" Header="EventInfos_Done_4" Visibility="Hidden" >
@@ -181,7 +181,7 @@
                     <Button x:Name="button_EventInfoDone_4_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoDone_4" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_EventInfoDone_4" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Done_5" Header="EventInfos_Done_5" Visibility="Hidden" >
@@ -198,7 +198,7 @@
                     <Button x:Name="button_EventInfoDone_5_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="textBox_EventInfoDone_5" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBox_EventInfoDone_5" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
         </TabControl>
