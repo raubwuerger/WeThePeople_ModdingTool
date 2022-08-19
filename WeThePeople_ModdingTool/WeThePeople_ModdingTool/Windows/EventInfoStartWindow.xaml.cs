@@ -117,5 +117,15 @@ namespace WeThePeople_ModdingTool.Windows
         {
             return StringHelper.IsNumberGreaterZero(DoneValue_TextBox.Text);
         }
+
+        private void button_StartValue_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            StartValue_TextBox.Text = "100";
+        }
+
+        private void button_DoneValue_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            DoneValue_TextBox.Text = "1000";
+        }
     }
 }

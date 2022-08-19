@@ -213,5 +213,35 @@ namespace WeThePeople_ModdingTool.Windows
         {
             return false == "0".Equals(comboBox_YieldPrice.SelectedItem.ToString());
         }
+
+        private void button_Gold_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_Gold.Text = "0";
+        }
+
+        private void button_UnitClass_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            comboBox_UnitClass.SelectedIndex = -1;
+        }
+
+        private void button_UnitCount_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            comboBox_UnitCount.SelectedIndex = -1;
+        }
+
+        private void button_UnitExperience_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_UnitExperiance.Text = "0";
+        }
+
+        private void button_RelationKing_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            comboBox_RelationKing.SelectedIndex = -1;
+        }
+
+        private void button_YieldPrice_Clear_Click(object sender, RoutedEventArgs e)
+        {
+            comboBox_YieldPrice.SelectedIndex = -1;
+        }
     }
 }

@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
         mc:Ignorable="d"
-        Title="Create EventStart XML" Width="268" Height="170" 
+        Title="Create EventStart XML" Width="272" Height="170" 
         ResizeMode="NoResize" 
         WindowStyle="ToolWindow">
     <Grid Margin="4,4,4,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="122" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -21,9 +21,11 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Label VerticalAlignment="Center" Grid.Row="1">Start value:</Label>
-        <TextBox x:Name="StartValue_TextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
+        <TextBox x:Name="StartValue_TextBox" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Width="80" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
+        <Button x:Name="button_StartValue_Clear" Grid.Column="1" Grid.Row="1" Margin="4,4,4,4" Width="30" HorizontalAlignment="Right" Click="button_StartValue_Clear_Click">X</Button>
         <Label VerticalAlignment="Center" Grid.Row="2">Done value:</Label>
-        <TextBox x:Name="DoneValue_TextBox" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
+        <TextBox x:Name="DoneValue_TextBox" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Width="80" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>
+        <Button x:Name="button_DoneValue_Clear" Grid.Column="2" Grid.Row="2" Margin="4,4,4,4" Width="30" HorizontalAlignment="Right" Click="button_DoneValue_Clear_Click">X</Button>
         <Rectangle Fill="Black" Height="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="4,4,4,4"/>
         <Button x:Name="EventInfoStart_Ok" Click="EventInfoStart_Ok_Click" Grid.Row="4" Grid.Column="0" Content="OK" HorizontalAlignment="Left" Width="80" Height="20" Margin="4,4,4,4"  IsDefault="True"/>
         <Button x:Name="EventInfoStart_Cancel" Click="EventInfoStart_Cancel_Click" Grid.Row="4" Grid.Column="2" Content="Cancel" HorizontalAlignment="Right" Width="80" Height="20" Margin="4,4,4,4" IsCancel="True"/>
