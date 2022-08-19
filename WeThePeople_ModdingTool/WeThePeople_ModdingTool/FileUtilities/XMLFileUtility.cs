@@ -23,6 +23,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             {
                 FileName = fileName;
                 XmlDocument doc = new XmlDocument();
+                doc.PreserveWhitespace = false;
                 doc.Load(fileName);
                 return doc;
             }
@@ -45,7 +46,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             try
             {
-                xmlDocument.Save(fileName);
+                SaveFormattedXml(xmlDocument,fileName, Encoding.UTF8);
                 return true;
             }
             catch (Exception ex)
@@ -62,6 +63,29 @@ namespace WeThePeople_ModdingTool.FileUtilities
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
             return Save(fileName, xmlDocument);
+        }
+
+        public void SaveFormattedXml(XmlDocument doc, String outputPath, Encoding encoding)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = "\t";
+            settings.NewLineChars = "\r\n";
+            settings.NewLineHandling = NewLineHandling.Replace;
+
+            using (MemoryStream memstream = new MemoryStream())
+            using (StreamWriter sr = new StreamWriter(memstream, encoding))
+            using (XmlWriter writer = XmlWriter.Create(sr, settings))
+            using (FileStream fileWriter = new FileStream(outputPath, FileMode.Create))
+            {
+                if (doc.ChildNodes.Count > 0 && doc.ChildNodes[0] is XmlProcessingInstruction)
+                {
+                    doc.RemoveChild(doc.ChildNodes[0]);
+                }
+                doc.Save(writer);
+                writer.Flush();
+                fileWriter.Write(memstream.GetBuffer(), 0, (Int32)memstream.Length);
+            }
         }
     }
 }
