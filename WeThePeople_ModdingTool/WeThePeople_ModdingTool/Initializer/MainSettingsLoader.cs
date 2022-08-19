@@ -87,6 +87,9 @@ namespace WeThePeople_ModdingTool
             {
                 yieldTypes.Add(node.InnerText);
             }
+
+            yieldTypes.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
+
             YieldTypeRepository.Instance.YieldTypes = yieldTypes;
             return YieldTypeRepository.Instance.YieldTypes.Count > 0;
         }
@@ -104,6 +107,9 @@ namespace WeThePeople_ModdingTool
             {
                 unitClasses.Add(node.InnerText);
             }
+
+            unitClasses.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
+
             UnitClassRepository.Instance.UnitClasses = unitClasses;
             return UnitClassRepository.Instance.UnitClasses.Count > 0;
         }

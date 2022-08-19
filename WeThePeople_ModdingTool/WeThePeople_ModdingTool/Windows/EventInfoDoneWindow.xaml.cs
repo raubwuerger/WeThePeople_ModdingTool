@@ -37,7 +37,7 @@ namespace WeThePeople_ModdingTool.Windows
         {
             comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClasses;
 
-            for( int i=0;i<100;i++ )
+            for( int i=0;i<=100;i++ )
             {
                 comboBox_UnitCount.Items.Add(i.ToString());
             }
