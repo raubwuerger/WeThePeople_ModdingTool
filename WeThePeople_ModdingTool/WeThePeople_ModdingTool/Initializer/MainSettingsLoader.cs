@@ -26,36 +26,10 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public string assetPathRelative = @"templates\Assets";
-
-        public XmlDocument CIV4EventInfos_Start_Template;
-        public string CIV4EventInfos_Start_Concrete = @"XML\Events\CIV4EventInfos_Start_";
-
-        public XmlDocument CIV4EventInfos_Done_Template;
-        public string CIV4EventInfos_Done_Concrete = @"XML\Events\CIV4EventInfos_Done_";
-
-        public XmlDocument CIV4EventTriggerInfos_Start_Template;
-        public string CIV4EventTriggerInfos_Start_Concrete = @"XML\Events\CIV4EventTriggerInfos_Start_";
-
-        public XmlDocument CIV4EventTriggerInfos_Done_Template;
-        public string CIV4EventTriggerInfos_Done_Concrete = @"XML\Events\CIV4EventTriggerInfos_Done_";
-
-        public XmlDocument CIV4GameText_Colonization_Events_utf8_Template;
-        public string CIV4GameText_Colonization_Events_utf8_Concrete = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
-
-        public string CvRandomEventInterface_Start_Template;
-        public string CvRandomEventInterface_Start_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Start_";
-
-        public string CvRandomEventInterface_Done_Template;
-        public string CvRandomEventInterface_Done_Concrete = @"Python\EntryPoints\CvRandomEventInterface_Done_";
-
-        public XmlDocument YieldTypesDocument;
         private string YieldTypesPath = @"templates\Civ4YieldInfos_OnlyTypes.xml";
 
-        public XmlDocument UnitClassesDocument;
         private string UnitClassesPath = @"templates\CIV4UnitInfos_OnlyClasses.xml";
 
-        public XmlDocument HarboursDocument;
         private string HarboursDocumentPath = @"templates\Harbours.xml";
 
         public bool Init()
@@ -66,67 +40,28 @@ namespace WeThePeople_ModdingTool
         public bool LoadTemplates()
         {
             bool loadingTamplatesOk = true;
-            string absoluteProgramPath = PathHelper.GetBasePath();
 
             DataSetFactory dataSetFactory = new DataSetFactory();
 
-            DataSetXML dataSetEventInfos_Start = dataSetFactory.CreateEventInfos_Start();
-            TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Start);
-            CIV4EventInfos_Start_Template = dataSetEventInfos_Start.XmlDocumentTemplate;
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventInfos_Start() );
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventInfos_Done());
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventTriggerInfos_Start());
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventTriggerInfos_Done());
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventGameText());
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateRandomEventStart());
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateRandomEventDone());
 
-            DataSetXML dataSetEventInfos_Done = dataSetFactory.CreateEventInfos_Done();
-            TemplateRepository.Instance.RegisterTemplate(dataSetEventInfos_Done);
-            CIV4EventInfos_Done_Template = dataSetEventInfos_Done.XmlDocumentTemplate;
-
-            DataSetXML dataSetEventTriggerInfos_Start = dataSetFactory.CreateEventTriggerInfos_Start();
-            TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Start);
-            CIV4EventTriggerInfos_Start_Template = dataSetEventTriggerInfos_Start.XmlDocumentTemplate;
-
-            DataSetXML dataSetEventTriggerInfos_Done = dataSetFactory.CreateEventTriggerInfos_Done();
-            TemplateRepository.Instance.RegisterTemplate(dataSetEventTriggerInfos_Done);
-            CIV4EventTriggerInfos_Done_Template = dataSetEventTriggerInfos_Done.XmlDocumentTemplate;
-
-            DataSetXML dataSetEventGameText = dataSetFactory.CreateEventGameText();
-            TemplateRepository.Instance.RegisterTemplate(dataSetEventGameText);
-            CIV4GameText_Colonization_Events_utf8_Template = dataSetEventGameText.XmlDocumentTemplate;
-
-            DataSetPython dataSetRandomEventStart = dataSetFactory.CreateRandomEventStart();
-            TemplateRepository.Instance.RegisterTemplate(dataSetRandomEventStart);
-            CvRandomEventInterface_Start_Template = dataSetRandomEventStart.PythonContentTemplate;
-
-            DataSetPython dataSetRandomEventDone = dataSetFactory.CreateRandomEventDone();
-            TemplateRepository.Instance.RegisterTemplate(dataSetRandomEventDone);
-            CvRandomEventInterface_Done_Template = dataSetRandomEventDone.PythonContentTemplate;
-
-            YieldTypesDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, YieldTypesPath));
-            if (null == YieldTypesDocument)
+            if ( false == InitYieldList() )
             {
                 loadingTamplatesOk = false;
             }
 
-            if ( false == InitYieldList(YieldTypesDocument) )
+            if( false == InitUnitClasses() )
             {
                 loadingTamplatesOk = false;
             }
 
-            UnitClassesDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, UnitClassesPath));
-            if( null == UnitClassesDocument )
-            {
-                loadingTamplatesOk = false;
-            }
-
-            if( false == InitUnitClasses(UnitClassesDocument) )
-            {
-                loadingTamplatesOk = false;
-            }
-
-            HarboursDocument = LoadXMLFile(System.IO.Path.Combine(absoluteProgramPath, HarboursDocumentPath));
-            if( null == HarboursDocument )
-            {
-                loadingTamplatesOk = false;
-            }
-
-            if( false == InitHarbours(HarboursDocument) )
+            if( false == InitHarbours() )
             {
                 loadingTamplatesOk = false;
             }
@@ -136,14 +71,20 @@ namespace WeThePeople_ModdingTool
 
         private XmlDocument LoadXMLFile(String fileName)
         {
-            XMLFileUtility parser = new XMLFileUtility();
-            return parser.Load(fileName);
+            XMLFileUtility xmlFileUtility = new XMLFileUtility();
+            return xmlFileUtility.Load(fileName);
         }
 
-        private bool InitYieldList( XmlDocument yields )
+        private bool InitYieldList()
         {
+            XmlDocument yieldTypesDocument = LoadXMLFile(PathHelper.GetBasePathCombine(YieldTypesPath));
+            if (null == yieldTypesDocument)
+            {
+                return false;
+            }
+
             List<string> yieldTypes = new List<string>();
-            foreach (XmlNode node in yields.DocumentElement.ChildNodes)
+            foreach (XmlNode node in yieldTypesDocument.DocumentElement.ChildNodes)
             {
                 yieldTypes.Add(node.InnerText);
             }
@@ -151,10 +92,16 @@ namespace WeThePeople_ModdingTool
             return YieldTypeRepository.Instance.YieldTypes.Count > 0;
         }
 
-        private bool InitUnitClasses( XmlDocument units )
+        private bool InitUnitClasses()
         {
+            XmlDocument unitClassesDocument = LoadXMLFile(PathHelper.GetBasePathCombine(UnitClassesPath));
+            if (null == unitClassesDocument)
+            {
+                return false;
+            }
+
             List<string> unitClasses = new List<string>();
-            foreach (XmlNode node in units.DocumentElement.ChildNodes)
+            foreach (XmlNode node in unitClassesDocument.DocumentElement.ChildNodes)
             {
                 unitClasses.Add(node.InnerText);
             }
@@ -162,14 +109,20 @@ namespace WeThePeople_ModdingTool
             return UnitClassRepository.Instance.UnitClasses.Count > 0;
         }
 
-        private bool InitHarbours( XmlDocument harbours )
+        private bool InitHarbours()
         {
-            List<string> _harbours = new List<string>();
-            foreach (XmlNode node in harbours.DocumentElement.ChildNodes)
+            XmlDocument harboursDocument = LoadXMLFile(PathHelper.GetBasePathCombine(HarboursDocumentPath));
+            if (null == harboursDocument)
             {
-                _harbours.Add(node.InnerText);
+                return false;
             }
-            HarbourRepository.Instance.Harbours = _harbours;
+
+            List<string> harbours = new List<string>();
+            foreach (XmlNode node in harboursDocument.DocumentElement.ChildNodes)
+            {
+                harbours.Add(node.InnerText);
+            }
+            HarbourRepository.Instance.Harbours = harbours;
             return HarbourRepository.Instance.Harbours.Count > 0;
         }
     }

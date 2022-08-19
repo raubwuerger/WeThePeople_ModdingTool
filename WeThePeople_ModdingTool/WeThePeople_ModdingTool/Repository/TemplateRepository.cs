@@ -25,7 +25,28 @@ namespace WeThePeople_ModdingTool
         }
 
         private IDictionary<string, DataSetXML> xmlDocuments = new Dictionary<string, DataSetXML>();
+        public System.Collections.Generic.IDictionary<string, WeThePeople_ModdingTool.DataSets.DataSetXML> XmlDocuments
+        {
+            get { return xmlDocuments; }
+        }
         private IDictionary<string, DataSetPython> pythonFiles = new Dictionary< string, DataSetPython>();
+        public System.Collections.Generic.IDictionary<string, WeThePeople_ModdingTool.DataSets.DataSetPython> PythonFiles
+        {
+            get { return pythonFiles; }
+        }
+
+        public bool RegisterTemplate(List<DataSetXML> dataSetXMLs)
+        {
+            foreach( DataSetXML entry in dataSetXMLs )
+            {
+                if( false == RegisterTemplate(entry) )
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public bool RegisterTemplate( DataSetXML dataSetXML )
         {

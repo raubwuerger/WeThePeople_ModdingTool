@@ -21,6 +21,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
+        public static string GetBasePathCombine( string path )
+        {
+            return Path.Combine(GetBasePath(), path);
+        }
+
         public static string GetFullAssetFileName( string asset )
         {
             string assetPathAbsolute = Path.Combine(GetBasePath(), AssetPathRelative);
@@ -30,6 +35,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
         public static string GetFullAssetPath()
         {
             return Path.Combine(GetBasePath(), AssetPathRelative);
+        }
+
+        public static string CombinePathAndFileName( string path, string filename )
+        {
+            return Path.Combine(path, filename);
         }
     }
 }

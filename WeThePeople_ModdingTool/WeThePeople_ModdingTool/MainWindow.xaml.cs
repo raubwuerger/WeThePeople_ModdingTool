@@ -22,6 +22,8 @@ namespace WeThePeople_ModdingTool
         private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Delete_Mapping = new Dictionary<Button, TextBox>();
+        private IDictionary<DataSetXML, TextBox> DataSetXML_TextBox_Mapping = new Dictionary<DataSetXML, TextBox>();
+        private IDictionary<DataSetPython, TextBox> DataSetPython_TextBox_Mapping = new Dictionary<DataSetPython, TextBox>();
 
         public object StringUtility { get; private set; }
 
@@ -30,11 +32,11 @@ namespace WeThePeople_ModdingTool
             InitializeComponent();
             LogFrameworkInitialzer.Init();
             CommandLineArgsParser.Parse();
-            InitMapping();
             if( false == MainSettingsLoader.Instance.Init() )
             {
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
             }
+            InitMapping();
 
             ComboBox_Yield.ItemsSource = YieldTypeRepository.Instance.YieldTypes;
             if( ComboBox_Yield.Items.Count > 0 )
@@ -77,6 +79,8 @@ namespace WeThePeople_ModdingTool
             ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_3_delete, textBox_EventInfoDone_3);
             ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_4_delete, textBox_EventInfoDone_4);
             ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_5_delete, textBox_EventInfoDone_5);
+
+//            DataSetXML_TextBox_Mapping.Add()
         }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -147,62 +151,10 @@ namespace WeThePeople_ModdingTool
 
         private void SaveCreatedEventFiles()
         {
-            if ( false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start)), textBox_PythonStart.Text))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE +"");
-            }
-
-            if (false == SaveFile(CreatePathFileConcrete( TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done)), textBox_PythonDone.Text))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
-            }
-
-            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start)), XMLHelper.CreateFromString(TriggerInfoStart_TextBox.Text)))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
-            }
-
-            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done)), XMLHelper.CreateFromString(TriggerInfoDone_TextBox.Text)))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
-            }
-
-            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start)), XMLHelper.CreateFromString(textBox_EventInfoStart.Text)))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
-            }
-
-            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done)), XMLHelper.CreateFromString(textBox_EventInfoDone_1.Text)))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
-            }
-
-            if (false == SaveFile(CreatePathFileConcrete(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText)), XMLHelper.CreateFromString(textBox_CIV4GameText.Text)))
-            {
-                CommonMessageBox.Show_OK_Warning(CommonVariables.FAILED_SAVING_FILE, CommonVariables.UNABLE_TO_SAVE_FILE + "");
-            }
-
-        }
-
-        private string CreatePathFileConcrete(DataSetBase dataSetBase)
-        {
-            string concreteFileName = selectedYieldType;
-            concreteFileName += "_";
-            concreteFileName += selectedHarbour.ToUpper();
-            concreteFileName += dataSetBase.TemplateFileExtension;
-            return dataSetBase.TemplateFileNameConcrete + concreteFileName;
-        }
-
-        private bool SaveFile(string fileName, string pythonFile )
-        {
-            TextFileUtility textFileUtility = new TextFileUtility();
-            return textFileUtility.Save(fileName,pythonFile);
-        }
-
-        private bool SaveFile(string fileName, XmlDocument xmlDocument)
-        {
-            XMLFileUtility xmlFileUtility = new XMLFileUtility();
-            return xmlFileUtility.Save(fileName, xmlDocument);
+            EventCreator eventCreator = new EventCreator();
+            eventCreator.YieldType = selectedYieldType;
+            eventCreator.Harbour = selectedHarbour;
+            eventCreator.Create();
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)
@@ -301,7 +253,7 @@ namespace WeThePeople_ModdingTool
             }
 
             DataSetEventInfoDone dataSetEventInfoDone = eventInfoDoneWindow.DataSetEventInfoDone;
-            DataSetXML dataSetEventInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done +"_1");
+            DataSetXML dataSetEventInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_1);
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.GOLD] = dataSetEventInfoDone.GetGold();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_CLASS] = dataSetEventInfoDone.GetUnitClass();
             dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_COUNT] = dataSetEventInfoDone.GetUnitCount();
@@ -338,7 +290,7 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            DataSetXML eventInfoDone = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done + "_" + "1");
+            DataSetXML eventInfoDone = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Done_1);
             XmlNode xmlNodeEvent = dataSetEventTriggerInfos_Done.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, NODE_EVENT, null);
             xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(eventInfoDone);
 

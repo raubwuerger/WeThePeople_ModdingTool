@@ -10,21 +10,23 @@ namespace WeThePeople_ModdingTool.Factories
 {
     public class DataSetFactory
     {
-        public static string EventInfos_Start = "EventInfos_Start";
-        public static string EventInfos_Done = "EventInfos_Done";
         public static string EventTriggerInfos_Start = "EventTriggerInfos_Start";
         public static string EventTriggerInfos_Done = "EventTriggerInfos_Done";
         public static string EventGameText = "EventGameText";
         public static string RandomEvent_Start = "RandomEvent_Start";
         public static string RandomEvent_Done = "RandomEvent_Done";
+        public static string EventInfos_Start = "EventInfos_Start";
+        public static string EventInfos_Done_1 = "EventInfos_Done_1";
+        public static string EventInfos_Done_2 = "EventInfos_Done_2";
+        public static string EventInfos_Done_3 = "EventInfos_Done_3";
+        public static string EventInfos_Done_4 = "EventInfos_Done_4";
+        public static string EventInfos_Done_5 = "EventInfos_Done_5";
 
         private static string FileExtensionXML = ".xml";
         private static string FileExtensionPython = ".py";
         private static string RootNode_EventInfo = "/EventInfo";
         private static string RootNode_EventTriggerInfo = "/EventTriggerInfo";
         private static string RootNode_Civ4GameText = "/Civ4GameText";
-
-        private static int EventInfoDoneIndex = 0;
 
         public DataSetXML CreateEventInfos_Start()
         {
@@ -42,10 +44,20 @@ namespace WeThePeople_ModdingTool.Factories
             return dataSetXML;
         }
 
-        public DataSetXML CreateEventInfos_Done()
+        public List<DataSetXML> CreateEventInfos_Done()
         {
-            EventInfoDoneIndex++;
-            DataSetXML dataSetXML = CreateBaseXML(EventInfos_Done +"_" +EventInfoDoneIndex.ToString());
+            List<DataSetXML> dataSetXMLs = new List<DataSetXML>();
+            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_1));
+            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_2));
+            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_3));
+            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_4));
+            dataSetXMLs.Add(CreateEventInfo_Done(EventInfos_Done_5));
+            return dataSetXMLs;
+        }
+
+        private DataSetXML CreateEventInfo_Done( string name )
+        {
+            DataSetXML dataSetXML = CreateBaseXML(name);
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Done_Template.xml";
             dataSetXML.TemplateFileNameAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameConcrete = PathHelper.GetFullAssetFileName(@"XML\Events\CIV4EventInfos_Done_");
@@ -159,8 +171,8 @@ namespace WeThePeople_ModdingTool.Factories
 
         private String LoadFileText( DataSetBase dataSetBase )
         {
-            TextFileUtility textFileLoader = new TextFileUtility();
-            return textFileLoader.Load( dataSetBase.TemplateFileNameAbsolute );
+            TextFileUtility textFileUtility = new TextFileUtility();
+            return textFileUtility.Load( dataSetBase.TemplateFileNameAbsolute );
         }
 
     }
