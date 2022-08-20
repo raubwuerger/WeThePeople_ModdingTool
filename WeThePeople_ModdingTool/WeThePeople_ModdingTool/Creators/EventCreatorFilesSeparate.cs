@@ -21,6 +21,13 @@ namespace WeThePeople_ModdingTool
         {
             set { yieldType = value; }
         }
+
+        private string savePath;
+        public string SavePath
+        {
+            set { savePath = value; }
+        }
+
         public bool Create()
         {
             if( false == IsValid() )
@@ -28,26 +35,18 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if( System.Windows.Forms.DialogResult.OK != dialog.ShowDialog() )
-            {
-                return false;
-            }
-
-            string baseBath = dialog.SelectedPath;
-
             foreach(KeyValuePair<string,DataSetXML> entry in TemplateRepository.Instance.XmlDocuments )
             {
                 if( entry.Value.XmlDocumentProcessed == null )
                 {
                     continue;
                 }
-                SaveFile( PathHelper.CombinePathAndFileName(baseBath, CreateConcreteFileName(entry.Value)), entry.Value.XmlDocumentProcessed );
+                XMLFileUtility.SaveCreatePath( PathHelper.CombinePathAndFileName(savePath, CreateConcreteFileName(entry.Value)), entry.Value.XmlDocumentProcessed);
             }
 
             foreach (KeyValuePair<string, DataSetPython> entry in TemplateRepository.Instance.PythonFiles)
             {
-                SaveFile(PathHelper.CombinePathAndFileName(baseBath, CreateConcreteFileName(entry.Value)), entry.Value.PythonContentProcessed);
+                TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePath, CreateConcreteFileName(entry.Value)), entry.Value.PythonContentProcessed);
             }
 
             return true;
@@ -65,6 +64,11 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
+            if( true == StringValidator.IsNullOrWhiteSpace(savePath) )
+            {
+                return false;
+            }
+
             return true;
         }
         private string CreateConcreteFileName(DataSetBase dataSetBase)
@@ -75,16 +79,5 @@ namespace WeThePeople_ModdingTool
             processedAppendix += dataSetBase.TemplateFileExtension;
             return dataSetBase.TemplateFileNameProcessed + processedAppendix;
         }
-        private bool SaveFile(string fileName, string pythonFile)
-        {
-            TextFileUtility textFileUtility = new TextFileUtility();
-            return textFileUtility.SaveCreatePath(fileName, pythonFile);
-        }
-        private bool SaveFile(string fileName, XmlDocument xmlDocument)
-        {
-            XMLFileUtility xmlFileUtility = new XMLFileUtility();
-            return xmlFileUtility.SaveCreatePath(fileName, xmlDocument);
-        }
-
     }
 }

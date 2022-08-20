@@ -168,9 +168,17 @@ namespace WeThePeople_ModdingTool
 
         private void SaveCreatedEventFiles()
         {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (System.Windows.Forms.DialogResult.OK != dialog.ShowDialog())
+            {
+                return;
+            }
+
             IEventCreator creator = new EventCreatorFilesSeparate();
             creator.YieldType = selectedYieldType;
             creator.Harbour = selectedHarbour;
+            creator.SavePath = dialog.SelectedPath;
+
             creator.Create();
         }
 

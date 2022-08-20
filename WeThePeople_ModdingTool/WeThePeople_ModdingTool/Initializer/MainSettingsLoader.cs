@@ -68,15 +68,9 @@ namespace WeThePeople_ModdingTool
             return loadingTamplatesOk;
         }
 
-        private XmlDocument LoadXMLFile(String fileName)
-        {
-            XMLFileUtility xmlFileUtility = new XMLFileUtility();
-            return xmlFileUtility.Load(fileName);
-        }
-
         private bool InitYieldList()
         {
-            XmlDocument yieldTypesDocument = LoadXMLFile(PathHelper.GetBasePathCombine(YieldTypesPath));
+            XmlDocument yieldTypesDocument = XMLFileUtility.Load(PathHelper.GetBasePathCombine(YieldTypesPath));
             if (null == yieldTypesDocument)
             {
                 return false;
@@ -96,7 +90,7 @@ namespace WeThePeople_ModdingTool
 
         private bool InitUnitClasses()
         {
-            XmlDocument unitClassesDocument = LoadXMLFile(PathHelper.GetBasePathCombine(UnitClassesPath));
+            XmlDocument unitClassesDocument = XMLFileUtility.Load(PathHelper.GetBasePathCombine(UnitClassesPath));
             if (null == unitClassesDocument)
             {
                 return false;
@@ -116,7 +110,7 @@ namespace WeThePeople_ModdingTool
 
         private bool InitHarbours()
         {
-            XmlDocument harboursDocument = LoadXMLFile(PathHelper.GetBasePathCombine(HarboursDocumentPath));
+            XmlDocument harboursDocument = XMLFileUtility.Load(PathHelper.GetBasePathCombine(HarboursDocumentPath));
             if (null == harboursDocument)
             {
                 return false;

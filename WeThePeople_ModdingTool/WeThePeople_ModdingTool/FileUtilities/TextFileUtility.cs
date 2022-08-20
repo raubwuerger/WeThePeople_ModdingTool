@@ -4,12 +4,13 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using Serilog;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
     public class TextFileUtility
     {
-        public string Load(string fileName)
+        public static string Load(string fileName)
         {
             try
             {
@@ -27,7 +28,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public bool Save( string fileName, string content )
+        public static bool Save( string fileName, string content )
         {
             if (true == File.Exists(fileName))
             {
@@ -49,11 +50,16 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public bool SaveCreatePath( string fileName, string content )
+        public static bool SaveCreatePath( string fileName, string content )
         {
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
             return Save(fileName, content);
+        }
+
+        public static String LoadFileText(DataSetBase dataSetBase)
+        {
+            return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
         }
     }
 }

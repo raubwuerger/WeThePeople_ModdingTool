@@ -8,11 +8,16 @@ namespace WeThePeople_ModdingTool.Creators
     {
         public string Harbour
         {
-            set {}
+            set { }
         }
         public string YieldType
         {
-            set {}
+            set { }
+        }
+
+        public string SavePath
+        {
+            set { }
         }
 
         public bool Create();

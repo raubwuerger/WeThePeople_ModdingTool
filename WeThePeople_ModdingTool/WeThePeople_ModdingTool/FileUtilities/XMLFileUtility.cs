@@ -5,14 +5,15 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Xml;
+using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
     public class XMLFileUtility
     {
-        string FileName;
+        static string FileName;
 
-        public XmlDocument Load(string fileName)
+        public static XmlDocument Load(string fileName)
         {
             if (false == File.Exists(fileName))
             {
@@ -35,7 +36,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public bool Save(string fileName, XmlDocument xmlDocument)
+        public static bool Save(string fileName, XmlDocument xmlDocument)
         {
             if (true == File.Exists(fileName))
             {
@@ -57,15 +58,14 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
 
         }
-
-        public bool SaveCreatePath(string fileName, XmlDocument xmlDocument)
+        public static bool SaveCreatePath(string fileName, XmlDocument xmlDocument)
         {
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
             return Save(fileName, xmlDocument);
         }
 
-        public void SaveFormattedXml(XmlDocument doc, String outputPath, Encoding encoding)
+        public static void SaveFormattedXml(XmlDocument doc, String outputPath, Encoding encoding)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
@@ -87,5 +87,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 fileWriter.Write(memstream.GetBuffer(), 0, (Int32)memstream.Length);
             }
         }
+
+        public static XmlDocument LoadFileXML(DataSetBase dataSetBase)
+        {
+            return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
+        }
+
     }
 }

@@ -36,7 +36,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Start_";
             dataSetXML.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameProcessed);
             dataSetXML.XmlRootNode = RootNode_EventInfo;
-            dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSetXML);
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
@@ -53,7 +53,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Done_";
             dataSetXML.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameProcessed);
             dataSetXML.XmlRootNode = RootNode_EventInfo;
-            dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSetXML);
 
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -114,7 +114,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventTriggerInfos_Start_";
             dataSetXML.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameProcessed);
             dataSetXML.XmlRootNode = RootNode_EventTriggerInfo;
-            dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSetXML);
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
@@ -129,7 +129,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventTriggerInfos_Done_";
             dataSetXML.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameProcessed);
             dataSetXML.XmlRootNode = RootNode_EventTriggerInfo;
-            dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSetXML);
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
@@ -145,7 +145,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetXML.TemplateFileNameProcessed = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
             dataSetXML.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameProcessed);
             dataSetXML.XmlRootNode = RootNode_Civ4GameText;
-            dataSetXML.XmlDocumentTemplate = LoadFileXML(dataSetXML);
+            dataSetXML.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSetXML);
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetXML.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
@@ -159,7 +159,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameProcessed = @"Python\EntryPoints\CvRandomEventInterface_Start_";
             dataSetPython.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameProcessed);
-            dataSetPython.PythonContentTemplate = LoadFileText(dataSetPython);
+            dataSetPython.PythonContentTemplate = TextFileUtility.LoadFileText(dataSetPython);
             dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetPython.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
@@ -172,7 +172,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameProcessed = @"Python\EntryPoints\CvRandomEventInterface_Done_";
             dataSetPython.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameProcessed);
-            dataSetPython.PythonContentTemplate = LoadFileText(dataSetPython);
+            dataSetPython.PythonContentTemplate = TextFileUtility.LoadFileText(dataSetPython);
             dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSetPython.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSetPython.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
@@ -195,18 +195,6 @@ namespace WeThePeople_ModdingTool.Factories
             dataSetPython.TemplateFileExtension = FileExtensionPython;
             dataSetPython.TemplateFileNameAndPathProcessed = "";
             return dataSetPython;
-        }
-
-        private XmlDocument LoadFileXML( DataSetBase dataSetBase )
-        {
-            XMLFileUtility fileUtility = new XMLFileUtility();
-            return fileUtility.Load(dataSetBase.TemplateFileNameAndPathAbsolute);
-        }
-
-        private String LoadFileText( DataSetBase dataSetBase )
-        {
-            TextFileUtility textFileUtility = new TextFileUtility();
-            return textFileUtility.Load( dataSetBase.TemplateFileNameAndPathAbsolute );
         }
 
     }

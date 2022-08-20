@@ -103,5 +103,22 @@ namespace WeThePeople_ModdingTool.Validators
 
             return validationOK;
         }
+
+        public static bool ValidateFull(DataSetPython dataSetPython)
+        {
+            bool validationOK = true;
+            if (false == Validate(dataSetPython))
+            {
+                validationOK = false;
+            }
+
+            if (StringValidator.IsNullOrWhiteSpace(dataSetPython.PythonContentProcessed))
+            {
+                Log.Debug("DataSetXML.PythonContentProcessed is invalid!");
+                validationOK = false;
+            }
+
+            return validationOK;
+        }
     }
 }
