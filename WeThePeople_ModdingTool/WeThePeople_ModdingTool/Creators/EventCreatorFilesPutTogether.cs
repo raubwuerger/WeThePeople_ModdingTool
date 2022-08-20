@@ -49,11 +49,13 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
+            string savePathExtended = PathHelper.CombineAssetPathShortAndFileName(savePath);
+
             string concatenatedFiles = dataSetPythonStart.PythonContentProcessed;
             concatenatedFiles += CommonVariables.CR;
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
-            return TextFileUtility.SaveCreatePath(savePath, concatenatedFiles);
+            return TextFileUtility.SaveCreatePath(savePathExtended, concatenatedFiles);
 
         }
 

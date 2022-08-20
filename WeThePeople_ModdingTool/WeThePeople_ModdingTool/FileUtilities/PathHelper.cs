@@ -9,6 +9,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
     {
         public static string AssetPathRelative = @"templates\Assets";
         public static string AssetPathFull = Path.Combine(GetBasePath(), AssetPathRelative);
+        public static string AssetPathShort = @"Assets";
         public static string GetBasePath()
         {
             if( CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE) )
@@ -40,6 +41,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
         public static string CombinePathAndFileName( string path, string filename )
         {
             return Path.Combine(path, filename);
+        }
+
+        public static string CombineAssetPathShortAndFileName( string filename )
+        {
+            return Path.Combine( filename, AssetPathShort );
         }
     }
 }

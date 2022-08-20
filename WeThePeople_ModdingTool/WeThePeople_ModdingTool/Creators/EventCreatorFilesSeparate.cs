@@ -35,18 +35,29 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            foreach(KeyValuePair<string,DataSetXML> entry in TemplateRepository.Instance.XmlDocuments )
+            string savePathExtended = PathHelper.CombineAssetPathShortAndFileName(savePath);
+
+            foreach (KeyValuePair<string,DataSetXML> entry in TemplateRepository.Instance.XmlDocuments )
             {
                 if( entry.Value.XmlDocumentProcessed == null )
                 {
                     continue;
                 }
-                XMLFileUtility.SaveCreatePath( PathHelper.CombinePathAndFileName(savePath, CreateConcreteFileName(entry.Value)), entry.Value.XmlDocumentProcessed);
+                XMLFileUtility.SaveCreatePath( PathHelper.CombinePathAndFileName(savePathExtended, CreateConcreteFileName(entry.Value)), entry.Value.XmlDocumentProcessed);
+            }
+
+            foreach (KeyValuePair<string, DataSetXML> entry in TemplateRepository.Instance.XmlDocumentEventDone)
+            {
+                if (entry.Value.XmlDocumentProcessed == null)
+                {
+                    continue;
+                }
+                XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, CreateConcreteFileName(entry.Value)), entry.Value.XmlDocumentProcessed);
             }
 
             foreach (KeyValuePair<string, DataSetPython> entry in TemplateRepository.Instance.PythonFiles)
             {
-                TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePath, CreateConcreteFileName(entry.Value)), entry.Value.PythonContentProcessed);
+                TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, CreateConcreteFileName(entry.Value)), entry.Value.PythonContentProcessed);
             }
 
             return true;
