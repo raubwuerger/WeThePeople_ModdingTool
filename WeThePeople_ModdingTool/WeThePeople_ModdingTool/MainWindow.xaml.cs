@@ -170,7 +170,7 @@ namespace WeThePeople_ModdingTool
             EventCreator eventCreator = new EventCreator();
             eventCreator.YieldType = selectedYieldType;
             eventCreator.Harbour = selectedHarbour;
-            eventCreator.Create();
+            eventCreator.CreateSingleFiles();
         }
 
         private void PutDataToDataSet()

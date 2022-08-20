@@ -20,7 +20,7 @@ namespace WeThePeople_ModdingTool
         {
             set { yieldType = value; }
         }
-        public bool Create()
+        public bool CreateSingleFiles()
         {
             if( false == IsValid() )
             {
