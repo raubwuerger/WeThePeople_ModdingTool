@@ -168,7 +168,7 @@ namespace WeThePeople_ModdingTool
 
         private void SaveCreatedEventFiles()
         {
-            IEventCreator creator = new EventCreatorSeparateFiles();
+            IEventCreator creator = new EventCreatorFilesSeparate();
             creator.YieldType = selectedYieldType;
             creator.Harbour = selectedHarbour;
             creator.Create();

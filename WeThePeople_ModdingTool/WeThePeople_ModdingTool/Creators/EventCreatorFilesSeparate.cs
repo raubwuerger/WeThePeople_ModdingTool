@@ -9,7 +9,7 @@ using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool
 {
-    public class EventCreatorSeparateFiles : IEventCreator
+    public class EventCreatorFilesSeparate : IEventCreator
     {
         private string harbour;
         public string Harbour
