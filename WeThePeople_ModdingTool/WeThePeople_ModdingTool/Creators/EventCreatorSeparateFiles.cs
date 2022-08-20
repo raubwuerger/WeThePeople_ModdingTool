@@ -8,7 +8,7 @@ using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool
 {
-    public class EventCreator
+    public class EventCreatorSeparateFiles
     {
         private string harbour;
         public string Harbour
