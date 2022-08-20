@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
         mc:Ignorable="d"
-        Title="CreateSingleFiles EventStart XML" Width="272" Height="170" 
+        Title="CreateSeparateFiles EventStart XML" Width="272" Height="170" 
         ResizeMode="NoResize" 
         WindowStyle="ToolWindow">
     <Grid Margin="4,4,4,4">
