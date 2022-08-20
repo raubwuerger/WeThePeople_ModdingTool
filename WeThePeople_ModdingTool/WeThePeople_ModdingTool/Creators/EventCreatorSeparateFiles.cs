@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using WeThePeople_ModdingTool.Creators;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool
 {
-    public class EventCreatorSeparateFiles
+    public class EventCreatorSeparateFiles : IEventCreator
     {
         private string harbour;
         public string Harbour

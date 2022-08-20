@@ -10,6 +10,7 @@ using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Processors;
 using WeThePeople_ModdingTool.Validators;
 using System.Diagnostics;
+using WeThePeople_ModdingTool.Creators;
 
 namespace WeThePeople_ModdingTool
 {
@@ -167,10 +168,10 @@ namespace WeThePeople_ModdingTool
 
         private void SaveCreatedEventFiles()
         {
-            EventCreatorSeparateFiles eventCreator = new EventCreatorSeparateFiles();
-            eventCreator.YieldType = selectedYieldType;
-            eventCreator.Harbour = selectedHarbour;
-            eventCreator.CreateSingleFiles();
+            IEventCreator creator = new EventCreatorSeparateFiles();
+            creator.YieldType = selectedYieldType;
+            creator.Harbour = selectedHarbour;
+            creator.Create();
         }
 
         private void PutDataToDataSet()
