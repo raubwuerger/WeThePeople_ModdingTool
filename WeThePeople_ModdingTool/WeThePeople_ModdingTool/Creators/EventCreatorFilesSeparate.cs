@@ -47,7 +47,7 @@ namespace WeThePeople_ModdingTool
                 {
                     continue;
                 }
-                XMLFileUtility.SaveCreatePath( PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileName(this, entry.Value)), entry.Value.XmlDocumentProcessed);
+                XMLFileUtility.SaveCreatePath( PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNameSeparate(this, entry.Value)), entry.Value.XmlDocumentProcessed);
             }
 
             foreach (KeyValuePair<string, DataSetXML> entry in TemplateRepository.Instance.XmlDocumentEventDone)
@@ -56,12 +56,12 @@ namespace WeThePeople_ModdingTool
                 {
                     continue;
                 }
-                XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileName(this, entry.Value)), entry.Value.XmlDocumentProcessed);
+                XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNameSeparate(this, entry.Value)), entry.Value.XmlDocumentProcessed);
             }
 
             foreach (KeyValuePair<string, DataSetPython> entry in TemplateRepository.Instance.PythonFiles)
             {
-                TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileName(this, entry.Value)), entry.Value.PythonContentProcessed);
+                TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNameSeparate(this, entry.Value)), entry.Value.PythonContentProcessed);
             }
 
             return true;

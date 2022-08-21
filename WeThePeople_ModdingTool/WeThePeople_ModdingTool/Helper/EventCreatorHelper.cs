@@ -29,7 +29,7 @@ namespace WeThePeople_ModdingTool.Helper
             return true;
         }
 
-        public static string CreateConcreteFileName( IEventCreator eventCreator, DataSetBase dataSetBase )
+        public static string CreateConcreteFileNameSeparate( IEventCreator eventCreator, DataSetBase dataSetBase )
         {
             string processedAppendix = eventCreator.YieldType;
             processedAppendix += "_";
@@ -38,5 +38,10 @@ namespace WeThePeople_ModdingTool.Helper
             return dataSetBase.TemplateFileNameProcessed + processedAppendix;
         }
 
+        //Hack!!!
+        public static string CreateConcreteFileNamePutTogether( DataSetBase dataSetBase )
+        {
+            return dataSetBase.TemplateNameCIV4;
+        }
     }
 }

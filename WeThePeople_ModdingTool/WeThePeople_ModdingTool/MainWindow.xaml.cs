@@ -174,7 +174,8 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
-            IEventCreator creator = new EventCreatorFilesSeparate();
+//                        IEventCreator creator = new EventCreatorFilesSeparate();
+            IEventCreator creator = new EventCreatorFilesPutTogether();
             creator.YieldType = selectedYieldType;
             creator.Harbour = selectedHarbour;
             creator.SavePath = dialog.SelectedPath;

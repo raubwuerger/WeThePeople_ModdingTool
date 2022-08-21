@@ -31,6 +31,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventInfos_Start()
         {
             DataSetXML dataSetXML = CreateBaseXML(EventInfos_Start);
+            dataSetXML.TemplateNameCIV4 = "CIV4EventInfos.xml";
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Start_Template.xml";
             dataSetXML.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Start_";
@@ -48,6 +49,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventInfo_Done()
         {
             DataSetXML dataSetXML = CreateBaseXML(CreateNameEventInfoDone());
+            dataSetXML.TemplateNameCIV4 = "CIV4EventInfos.xml";
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Done_Template.xml";
             dataSetXML.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Done_";
@@ -109,6 +111,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventTriggerInfos_Start()
         {
             DataSetXML dataSetXML = CreateBaseXML(EventTriggerInfos_Start);
+            dataSetXML.TemplateNameCIV4 = "CIV4EventTriggerInfos.xml";
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
             dataSetXML.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventTriggerInfos_Start_";
@@ -124,6 +127,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventTriggerInfos_Done()
         {
             DataSetXML dataSetXML = CreateBaseXML(EventTriggerInfos_Done);
+            dataSetXML.TemplateNameCIV4 = "CIV4EventTriggerInfos.xml";
             dataSetXML.TemplateFileNameRelativ = @"XML\Events\CIV4EventTriggerInfos_Done_Template.xml";
             dataSetXML.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameProcessed = @"XML\Events\CIV4EventTriggerInfos_Done_";
@@ -140,6 +144,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventGameText()
         {
             DataSetXML dataSetXML = CreateBaseXML(EventGameText);
+            dataSetXML.TemplateNameCIV4 = "CIV4GameText_Colonization_Events_utf8.xml";
             dataSetXML.TemplateFileNameRelativ = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml";
             dataSetXML.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetXML.TemplateFileNameRelativ);
             dataSetXML.TemplateFileNameProcessed = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
@@ -155,6 +160,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetPython CreateRandomEventStart()
         {
             DataSetPython dataSetPython = CreateBasePython(RandomEvent_Start);
+            dataSetPython.TemplateNameCIV4 = "CvRandomEventInterface.py";
             dataSetPython.TemplateFileNameRelativ = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
             dataSetPython.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameProcessed = @"Python\EntryPoints\CvRandomEventInterface_Start_";
@@ -168,6 +174,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetPython CreateRandomEventDone()
         {
             DataSetPython dataSetPython = CreateBasePython(RandomEvent_Done);
+            dataSetPython.TemplateNameCIV4 = "CvRandomEventInterface.py";
             dataSetPython.TemplateFileNameRelativ = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
             dataSetPython.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSetPython.TemplateFileNameRelativ);
             dataSetPython.TemplateFileNameProcessed = @"Python\EntryPoints\CvRandomEventInterface_Done_";
