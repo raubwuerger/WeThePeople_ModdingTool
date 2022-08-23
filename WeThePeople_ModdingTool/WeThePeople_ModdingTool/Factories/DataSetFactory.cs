@@ -26,7 +26,10 @@ namespace WeThePeople_ModdingTool.Factories
         private static string FileExtensionPython = ".py";
         private static string RootNode_EventInfo = "/EventInfo";
         private static string RootNode_EventTriggerInfo = "/EventTriggerInfo";
-        private static string RootNode_Civ4GameText = "/Civ4GameText";
+
+        public static string RootNode_Civ4GameText = "/Civ4GameText";
+        public static string RootNode_EventInfos = "/EventInfos";
+        public static string RootNode_EventTriggerInfos = "/EventTriggerInfos";
 
         public DataSetXML CreateEventInfos_Start()
         {

@@ -79,44 +79,69 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool ConcatenateXMLFiles()
         {
-            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
-            XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombineAssetPathShortAndFileName(savePath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventGameText)), eventGameText.XmlDocumentProcessed);
-
+            if( false == CreateCiv4GameText() )
             {
-                List<DataSetXML> eventTriggerInfos = new List<DataSetXML>();
-                eventTriggerInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start));
-                eventTriggerInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done));
-
-                XmlDocument concatenated = Concatenate(eventTriggerInfos);
-                if ( null == concatenated )
-                {
-                    return false;
-                }
-
-                XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombineAssetPathShortAndFileName(savePath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventTriggerInfos[0])),concatenated);
+                return false;
             }
 
+            if( false == CreateEventTriggerInfo() )
             {
-                List<DataSetXML> eventEventInfos = new List<DataSetXML>();
-                eventEventInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start));
-                foreach ( KeyValuePair<string, DataSetXML> entry in TemplateRepository.Instance.XmlDocumentEventDone )
-                {
-                    eventEventInfos.Add(entry.Value);
-                }
-
-                XmlDocument concatenated = Concatenate(eventEventInfos);
-                if (null == concatenated)
-                {
-                    return false;
-                }
-
-                XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombineAssetPathShortAndFileName(savePath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventEventInfos[0])), concatenated);
+                return false;
             }
 
             return true;
         }
 
-        private XmlDocument Concatenate( List<DataSetXML> listToConcatenate )
+        private bool CreateCiv4GameText()
+        {
+            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombineAssetPathShortAndFileName(savePath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventGameText)), eventGameText.XmlDocumentProcessed);
+        }
+
+        private bool CreateEventTriggerInfo()
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlElement root = xmlDocument.CreateElement(DataSetFactory.RootNode_EventTriggerInfos);
+            xmlDocument.AppendChild(root);
+
+            List<DataSetXML> dataSetXMLs = new List<DataSetXML>();
+            dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start));
+            dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done));
+
+            //Todo Insert xmlDocument at first
+            XmlDocument concatenated = Concatenate(DataSetConverter.CreateList(dataSetXMLs));
+            if (null == concatenated)
+            {
+                return false;
+            }
+
+            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombineAssetPathShortAndFileName(savePath), EventCreatorHelper.CreateConcreteFileNamePutTogether(dataSetXMLs[0])), concatenated);
+        }
+
+        private bool CreateEventInfo()
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlElement root = xmlDocument.CreateElement(DataSetFactory.RootNode_EventTriggerInfos);
+            xmlDocument.AppendChild(root);
+
+            List<DataSetXML> eventEventInfos = new List<DataSetXML>();
+            eventEventInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start));
+            foreach (KeyValuePair<string, DataSetXML> entry in TemplateRepository.Instance.XmlDocumentEventDone)
+            {
+                eventEventInfos.Add(entry.Value);
+            }
+
+            //Todo Insert xmlDocument at first
+            XmlDocument concatenated = Concatenate( DataSetConverter.CreateList(eventEventInfos) );
+            if (null == concatenated)
+            {
+                return false;
+            }
+
+            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombineAssetPathShortAndFileName(savePath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventEventInfos[0])), concatenated);
+        }
+
+        private XmlDocument Concatenate( List<XmlDocument> listToConcatenate )
         {
             if( listToConcatenate.Count < 0 )
             {
@@ -125,13 +150,13 @@ namespace WeThePeople_ModdingTool.Creators
 
             if (listToConcatenate.Count == 1)
             {
-                return listToConcatenate[0].XmlDocumentProcessed;
+                return listToConcatenate[0];
             }
 
-            XmlDocument concatenated = listToConcatenate[0].XmlDocumentProcessed;
+            XmlDocument concatenated = listToConcatenate[0];
             for ( int i=0;i<listToConcatenate.Count - 1;i++ )
             {
-                concatenated = Concatenate(concatenated, listToConcatenate[i+1].XmlDocumentProcessed);
+                concatenated = Concatenate(concatenated, listToConcatenate[i+1]);
             }
 
             return concatenated;
