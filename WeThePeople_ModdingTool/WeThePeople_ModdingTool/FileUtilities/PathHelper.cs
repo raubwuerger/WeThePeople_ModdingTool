@@ -47,5 +47,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             return Path.Combine( filename, AssetPathShort );
         }
+
+        public static string CombinePaths( string pathFirst, string pathSecond )
+        {
+            return Path.Combine(pathFirst, pathSecond);
+        }
     }
 }

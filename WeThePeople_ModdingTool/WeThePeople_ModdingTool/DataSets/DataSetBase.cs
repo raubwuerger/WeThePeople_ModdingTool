@@ -13,6 +13,7 @@ namespace WeThePeople_ModdingTool.DataSets
         public string TemplateFileExtension;
         public string TemplateFileNameProcessed;
         public string TemplateFileNameAndPathProcessed;
+        public string BaseAssetPath;
         public IDictionary<string, string> TemplateReplaceItems = new Dictionary<string, string>();
     }
 }
