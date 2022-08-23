@@ -89,6 +89,11 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
+            if( false == CreateEventInfo() )
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -100,16 +105,14 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool CreateEventTriggerInfo()
         {
-            XmlDocument xmlDocument = new XmlDocument();
-            XmlElement root = xmlDocument.CreateElement(DataSetFactory.RootNode_EventTriggerInfos);
-            xmlDocument.AppendChild(root);
-
             List<DataSetXML> dataSetXMLs = new List<DataSetXML>();
             dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start));
             dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done));
 
-            //Todo Insert xmlDocument at first
-            XmlDocument concatenated = Concatenate(DataSetConverter.CreateList(dataSetXMLs));
+            List<XmlDocument> xmlDocuments = new List<XmlDocument>();
+            xmlDocuments.Add(CreateDocument(DataSetFactory.RootNodeBase_EventTriggerInfos));
+            xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
+            XmlDocument concatenated = Concatenate(xmlDocuments);
             if (null == concatenated)
             {
                 return false;
@@ -120,10 +123,6 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool CreateEventInfo()
         {
-            XmlDocument xmlDocument = new XmlDocument();
-            XmlElement root = xmlDocument.CreateElement(DataSetFactory.RootNode_EventTriggerInfos);
-            xmlDocument.AppendChild(root);
-
             List<DataSetXML> eventEventInfos = new List<DataSetXML>();
             eventEventInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start));
             foreach (KeyValuePair<string, DataSetXML> entry in TemplateRepository.Instance.XmlDocumentEventDone)
@@ -131,8 +130,10 @@ namespace WeThePeople_ModdingTool.Creators
                 eventEventInfos.Add(entry.Value);
             }
 
-            //Todo Insert xmlDocument at first
-            XmlDocument concatenated = Concatenate( DataSetConverter.CreateList(eventEventInfos) );
+            List<XmlDocument> xmlDocuments = new List<XmlDocument>();
+            xmlDocuments.Add(CreateDocument(DataSetFactory.RootNodeBase_EventInfos));
+            xmlDocuments.AddRange(DataSetConverter.CreateList(eventEventInfos));
+            XmlDocument concatenated = Concatenate(xmlDocuments);
             if (null == concatenated)
             {
                 return false;
@@ -167,6 +168,14 @@ namespace WeThePeople_ModdingTool.Creators
             XmlNode importedDocument = baseXML.ImportNode(addXML.DocumentElement, true);
             baseXML.DocumentElement.AppendChild(importedDocument);
             return baseXML;
+        }
+
+        private XmlDocument CreateDocument( string rootNode )
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlElement root = xmlDocument.CreateElement(rootNode);
+            xmlDocument.AppendChild(root);
+            return xmlDocument;
         }
     }
 }
