@@ -157,7 +157,13 @@ namespace WeThePeople_ModdingTool.Creators
             XmlDocument concatenated = listToConcatenate[0];
             for ( int i=0;i<listToConcatenate.Count - 1;i++ )
             {
-                concatenated = Concatenate(concatenated, listToConcatenate[i+1]);
+                //TODO: Die Ausgangslage ist schon nicht sauber! Warum ist in der Liste ein null-Object?
+                int newIndex = i + 1;
+                if(listToConcatenate[newIndex] == null || listToConcatenate[newIndex].DocumentElement == null || newIndex >= listToConcatenate.Count )
+                {
+                    break;
+                }
+                concatenated = Concatenate(concatenated, listToConcatenate[newIndex]);
             }
 
             return concatenated;

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeThePeople_ModdingTool"
         mc:Ignorable="d"
-        Title="WeThePeople_ModdingTool" Height="1024" Width="1280" Icon="/WtP_desktop_icon.ico">
+        Title="WeThePeople_ModdingTool" Height="1024" Width="1280" Icon="/WtP_desktop_icon.ico"
+        WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

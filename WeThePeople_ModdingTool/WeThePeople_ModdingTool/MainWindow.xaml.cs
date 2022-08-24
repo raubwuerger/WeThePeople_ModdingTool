@@ -51,6 +51,7 @@ namespace WeThePeople_ModdingTool
             {
                 comboBox_Harbours.SelectedItem = HarbourRepository.Instance.Harbours[0];
             }
+            SetItemVisibility();
         }
 
         private void InitMapping()
@@ -96,6 +97,11 @@ namespace WeThePeople_ModdingTool
             EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_4, CIV4EventInfos_Done_4));
             EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_5, CIV4EventInfos_Done_5));
         }
+
+        private void SetItemVisibility()
+        {
+            button_CreateEvents.IsEnabled = false;
+        }
         private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedYieldType = ComboBox_Yield.SelectedItem.ToString();
@@ -139,6 +145,7 @@ namespace WeThePeople_ModdingTool
             comboBox_Harbours.IsEnabled = false;
             button_LoadTemplates.IsEnabled = false;
             button_CreateEventInfoStartXML.IsEnabled = true;
+            button_CreateEvents.IsEnabled = true;
         }
 
         private void button_RestTemplates_Click(object sender, RoutedEventArgs e)
@@ -150,6 +157,7 @@ namespace WeThePeople_ModdingTool
             button_CreateEventInfoStartXML.IsEnabled = false;
             button_AddEventInfoDone.IsEnabled = false;
             button_LoadTemplates.IsEnabled = true;
+            button_CreateEvents.IsEnabled = false;
             CIV4EventInfos_Start.Visibility = Visibility.Hidden;
             CIV4EventInfos_Done_1.Visibility = Visibility.Hidden;
             CIV4EventInfos_Done_2.Visibility = Visibility.Hidden;
