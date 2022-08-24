@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:WeThePeople_ModdingTool.Windows"
         mc:Ignorable="d"
         Title="EventInfoDoneWindow" Height="294" Width="382"
+        Background="AntiqueWhite"
         ResizeMode="NoResize" 
-        WindowStyle="ToolWindow"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         >
     <Grid Margin="4,4,4,4">
         <Grid.ColumnDefinitions >
