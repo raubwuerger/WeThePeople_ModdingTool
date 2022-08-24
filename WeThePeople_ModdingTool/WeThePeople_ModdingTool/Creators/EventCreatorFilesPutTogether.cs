@@ -74,7 +74,7 @@ namespace WeThePeople_ModdingTool.Creators
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
             string savePathExtended = PathHelper.CombinePaths(savePath,dataSetPythonDone.BaseAssetPath);
-            return TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNamePutTogether(dataSetPythonStart)), concatenatedFiles );
+            return TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNamePutTogether( this, dataSetPythonStart)), concatenatedFiles );
         }
 
         private bool ConcatenateXMLFiles()
@@ -100,7 +100,7 @@ namespace WeThePeople_ModdingTool.Creators
         private bool CreateCiv4GameText()
         {
             DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
-            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(savePath,eventGameText.BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventGameText)), eventGameText.XmlDocumentProcessed);
+            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(savePath,eventGameText.BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventGameText)), eventGameText.XmlDocumentProcessed);
         }
 
         private bool CreateEventTriggerInfo()
@@ -118,7 +118,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(savePath, dataSetXMLs[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(dataSetXMLs[0])), concatenated);
+            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(savePath, dataSetXMLs[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetXMLs[0])), concatenated);
         }
 
         private bool CreateEventInfo()
@@ -139,7 +139,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(savePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(eventEventInfos[0])), concatenated);
+            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(savePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventEventInfos[0])), concatenated);
         }
 
         private XmlDocument Concatenate( List<XmlDocument> listToConcatenate )

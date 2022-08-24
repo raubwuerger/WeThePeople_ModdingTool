@@ -38,10 +38,14 @@ namespace WeThePeople_ModdingTool.Helper
             return dataSetBase.TemplateFileNameProcessed + processedAppendix;
         }
 
-        //Hack!!!
-        public static string CreateConcreteFileNamePutTogether( DataSetBase dataSetBase )
+        public static string CreateConcreteFileNamePutTogether(IEventCreator eventCreator, DataSetBase dataSetBase )
         {
-            return dataSetBase.TemplateNameCIV4;
+            string processedAppendix = "_";
+            processedAppendix += eventCreator.YieldType;
+            processedAppendix += "_";
+            processedAppendix += eventCreator.Harbour.ToUpper();
+            processedAppendix += dataSetBase.TemplateFileExtension;
+            return dataSetBase.TemplateNameWithoutExtension + processedAppendix;
         }
     }
 }
