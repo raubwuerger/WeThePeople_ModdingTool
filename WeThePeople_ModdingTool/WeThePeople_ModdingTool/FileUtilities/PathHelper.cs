@@ -52,5 +52,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             return Path.Combine(pathFirst, pathSecond);
         }
+        
+        public static void CreatePath(string path)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+        }
     }
 }

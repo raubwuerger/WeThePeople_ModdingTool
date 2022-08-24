@@ -58,6 +58,21 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
 
         }
+        public static bool SaveForce(string fileName, XmlDocument xmlDocument)
+        {
+            try
+            {
+                SaveFormattedXml(xmlDocument, fileName, Encoding.UTF8);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
+                return false;
+            }
+
+        }
         public static bool SaveCreatePath(string fileName, XmlDocument xmlDocument)
         {
             string path = Path.GetDirectoryName(fileName);

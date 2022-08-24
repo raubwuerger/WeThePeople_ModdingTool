@@ -50,6 +50,21 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
+        public static bool SaveForce(string fileName, string content)
+        {
+            try
+            {
+                File.WriteAllText(fileName, content);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
+                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
+                return false;
+            }
+        }
+
         public static bool SaveCreatePath( string fileName, string content )
         {
             string path = Path.GetDirectoryName(fileName);
@@ -61,5 +76,6 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
         }
+
     }
 }
