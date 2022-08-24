@@ -67,7 +67,7 @@ namespace WeThePeople_ModdingTool.Windows
             {
                 if (false == IsUnitCreationValid())
                 {
-                    if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "Unit invalid!\n\rDo you want to proceed?"))
+                    if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "Unit creation invalid!\n\rDo you want to proceed?"))
                     {
                         return;
                     }
