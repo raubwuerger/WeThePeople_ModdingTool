@@ -11,7 +11,6 @@ namespace WeThePeople_TestProject
         string invalidXMLFile;
         string validXMLFile;
 
-        XMLFileUtility xmlFileParser;
         [SetUp]
         public void Setup()
         {
@@ -26,49 +25,48 @@ namespace WeThePeople_TestProject
 
             CommonMessageBox.ShowMessageBoxesNotForUnitTests = false;
 
-            xmlFileParser = new XMLFileUtility();
         }
 
         [Test]
         public void NullStringTest()
         {
-            Assert.IsNull(xmlFileParser.Load(null));
+            Assert.IsNull(XMLFileUtility.Load(null));
         }
 
         [Test]
         public void EmptyStringTest()
         {
-            Assert.IsNull(xmlFileParser.Load(""));
+            Assert.IsNull(XMLFileUtility.Load(""));
         }
 
         [Test]
         public void BlankStringTest()
         {
-            Assert.IsNull(xmlFileParser.Load("    "));
+            Assert.IsNull(XMLFileUtility.Load("    "));
         }
 
         [Test]
         public void FileNotFoundTest()
         {
-            Assert.IsNull(xmlFileParser.Load(nonExistingFile));
+            Assert.IsNull(XMLFileUtility.Load(nonExistingFile));
         }
 
         [Test]
         public void NotAnXMLFileTest()
         {
-            Assert.IsNull(xmlFileParser.Load(notAnXMLFile));
+            Assert.IsNull(XMLFileUtility.Load(notAnXMLFile));
         }
 
         [Test]
         public void InvalidXMLFileTest()
         {
-            Assert.IsNull(xmlFileParser.Load(invalidXMLFile));
+            Assert.IsNull(XMLFileUtility.Load(invalidXMLFile));
         }
 
         [Test]
         public void ValidXMLFileTest()
         {
-            Assert.IsNotNull(xmlFileParser.Load(validXMLFile));
+            Assert.IsNotNull(XMLFileUtility.Load(validXMLFile));
         }
     }
 }

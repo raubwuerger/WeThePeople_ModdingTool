@@ -118,7 +118,7 @@
                     <TextBox x:Name="TextBox_EventInfo_Start" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_1" Header="EventInfos_Done_1" Visibility="Hidden" >
+            <TabItem x:Name="TabItem_EventInfo_Done_1" Header="EventInfos_Done_1" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -128,13 +128,14 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="checkBox_EventInfoDone_1_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
+                    <Button x:Name="button_EventInfoDone_1_delete" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Content="Delete" Margin="0,0,84,0" Click="button_EventInfoDone_delete"/>
                     <Button x:Name="button_EventInfoDone_1_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
                     <TextBox x:Name="TextBox_EventInfo_Done_1" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_2" Header="EventInfos_Done_2" Visibility="Hidden" >
+            <TabItem x:Name="TabItem_EventInfo_Done_2" Header="EventInfos_Done_2" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -151,7 +152,7 @@
                     <TextBox x:Name="TextBox_EventInfo_Done_2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_3" Header="EventInfos_Done_3" Visibility="Hidden" >
+            <TabItem x:Name="TabItem_EventInfo_Done_3" Header="EventInfos_Done_3" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -168,7 +169,7 @@
                     <TextBox x:Name="TextBox_EventInfo_Done_3" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_4" Header="EventInfos_Done_4" Visibility="Hidden" >
+            <TabItem x:Name="TabItem_EventInfo_Done_4" Header="EventInfos_Done_4" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -185,7 +186,7 @@
                     <TextBox x:Name="TextBox_EventInfo_Done_4" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="CIV4EventInfos_Done_5" Header="EventInfos_Done_5" Visibility="Hidden" >
+            <TabItem x:Name="TabItem_EventInfo_Done_5" Header="EventInfos_Done_5" Visibility="Hidden" >
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
