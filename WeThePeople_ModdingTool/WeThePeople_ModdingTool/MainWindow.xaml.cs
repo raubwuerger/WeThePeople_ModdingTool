@@ -325,7 +325,7 @@ namespace WeThePeople_ModdingTool
             keyValuePair.Value.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = keyValuePair.Value;
 
-            UpdateEventTriggerInfoDone(dataSetEventInfos_Done);
+            AddEventTriggerInfoDone(dataSetEventInfos_Done);
         }
 
         private string GetDoneIndex()
@@ -356,9 +356,36 @@ namespace WeThePeople_ModdingTool
 
             tabItem.Visibility = Visibility.Hidden;
             string eventInfoDoneToDelete = GetTextNameOfEventInfoDone(tabItem.Name);
-            TemplateRepository.Instance.UnRegisterTemplateEventDone(eventInfoDoneToDelete);
+            DataSetXML dataSetXML = TemplateRepository.Instance.UnRegisterTemplateEventDone(eventInfoDoneToDelete);
+            if( null == dataSetXML )
+            {
+                return;
+            }
 
+            RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), NODE_TYPE));
         }
+
+        private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete )
+        {
+            DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
+            XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(eventTriggerInfo_Done), NODE_EVENTS);
+            if (null == nodeEvents)
+            {
+                return false;
+            }
+
+            foreach( XmlNode child in nodeEvents.ChildNodes )
+            {
+                if( child.InnerText.Equals(nodeNameToDelete.InnerText) )
+                {
+                    nodeEvents.RemoveChild(child);
+                    TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done));
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         private TabItem GetTextBoxDelete( Button button )
         {
@@ -378,13 +405,13 @@ namespace WeThePeople_ModdingTool
 
         private string GetTextNameOfEventInfoDone( string tabItemName )
         {
-            return tabItemName.Substring(7);
+            return tabItemName.Substring(8);
         }
 
         static string NODE_EVENTS = "Events";
         static string NODE_EVENT = "Event";
         static string NODE_TYPE = "Type";
-        private bool UpdateEventTriggerInfoDone( DataSetXML dataSetXML_EventInfoDone )
+        private bool AddEventTriggerInfoDone( DataSetXML dataSetXML_EventInfoDone )
         {
             DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
             XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(eventTriggerInfo_Done), NODE_EVENTS);
@@ -416,11 +443,11 @@ namespace WeThePeople_ModdingTool
                 return String.Empty;
             }
 
-            XmlNode xmlNodeType = GetEventInfoDoneType(rootNodeList[0].ChildNodes );
+            XmlNode xmlNodeType = GetEventInfoDoneNode_TYPE(rootNodeList[0].ChildNodes );
             return xmlNodeType.InnerText;
         }
 
-        private XmlNode GetEventInfoDoneType( XmlNodeList xmlNodeList )
+        private XmlNode GetEventInfoDoneNode_TYPE( XmlNodeList xmlNodeList )
         {
             return XMLHelper.FindNodeByName(xmlNodeList,NODE_TYPE);
         }

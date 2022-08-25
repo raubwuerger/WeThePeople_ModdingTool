@@ -67,16 +67,23 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public bool UnRegisterTemplateEventDone(string unregister)
+        public DataSetXML UnRegisterTemplateEventDone(string unregister)
         {
             try
             {
-                return xmlDocumentEventDone.Remove(unregister);
+                DataSetXML dataSetXML;
+                if( false == xmlDocumentEventDone.TryGetValue(unregister, out dataSetXML) )
+                {
+                    return null;
+                }
+
+                xmlDocumentEventDone.Remove(unregister);
+                return dataSetXML;
             }
             catch (ArgumentNullException)
             {
                 CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
-                return false;
+                return null;
             }
         }
 
@@ -106,29 +113,20 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public bool UnRegisterTemplate(DataSetXML dataSetXML)
+        public DataSetXML UnRegisterTemplate(DataSetXML dataSetXML)
         {
             try
             {
-                if (false == xmlDocuments.ContainsKey(dataSetXML.TemplateName))
+                if( false == xmlDocuments.Remove(dataSetXML.TemplateName) )
                 {
-                    return true;
+                    return null;
                 }
+                return dataSetXML;
             }
             catch (ArgumentNullException)
             {
                 CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
-                return false;
-            }
-
-            try
-            {
-                return xmlDocuments.Remove(dataSetXML.TemplateName);
-            }
-            catch (ArgumentNullException)
-            {
-                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
-                return false;
+                return null;
             }
         }
 
