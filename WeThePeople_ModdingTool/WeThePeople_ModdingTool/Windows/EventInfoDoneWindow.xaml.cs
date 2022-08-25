@@ -151,7 +151,7 @@ namespace WeThePeople_ModdingTool.Windows
                 return true;
             }
 
-            if( IsUnitClassValid() && (IsUnitCountValid() || IsUnitExperienceValid()) )
+            if( IsUnitClassValid() && (IsUnitCountValid() )
             {
                 return true;
             }
