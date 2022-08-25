@@ -11,6 +11,7 @@ using WeThePeople_ModdingTool.Processors;
 using WeThePeople_ModdingTool.Validators;
 using System.Diagnostics;
 using WeThePeople_ModdingTool.Creators;
+using WeThePeople_ModdingTool.Helper;
 
 namespace WeThePeople_ModdingTool
 {
@@ -354,7 +355,12 @@ namespace WeThePeople_ModdingTool
             }
 
             tabItem.Visibility = Visibility.Hidden;
-
+            TextBox textBox = VisualHierarchyHelper.FindChild<TextBox>(tabItem, "TextBox_EventInfo_Done_1");
+            if( null == textBox )
+            {
+                return;
+            }
+            textBox.Visibility = Visibility.Hidden;
         }
 
         private TabItem GetTextBoxDelete( Button button )
