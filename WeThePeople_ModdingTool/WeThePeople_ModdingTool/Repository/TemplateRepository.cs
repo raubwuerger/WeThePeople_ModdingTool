@@ -67,6 +67,19 @@ namespace WeThePeople_ModdingTool
             }
         }
 
+        public bool UnRegisterTemplateEventDone(string unregister)
+        {
+            try
+            {
+                return xmlDocumentEventDone.Remove(unregister);
+            }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
+        }
+
         public bool RegisterTemplate( DataSetXML dataSetXML )
         {
             try
@@ -87,6 +100,32 @@ namespace WeThePeople_ModdingTool
                 return xmlDocuments.TryAdd(dataSetXML.TemplateName, dataSetXML);
             }
             catch( ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
+        }
+
+        public bool UnRegisterTemplate(DataSetXML dataSetXML)
+        {
+            try
+            {
+                if (false == xmlDocuments.ContainsKey(dataSetXML.TemplateName))
+                {
+                    return true;
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return false;
+            }
+
+            try
+            {
+                return xmlDocuments.Remove(dataSetXML.TemplateName);
+            }
+            catch (ArgumentNullException)
             {
                 CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
                 return false;
@@ -144,5 +183,6 @@ namespace WeThePeople_ModdingTool
                 entry.Value.PythonContentProcessed = String.Empty;
             }
         }
+
     }
 }

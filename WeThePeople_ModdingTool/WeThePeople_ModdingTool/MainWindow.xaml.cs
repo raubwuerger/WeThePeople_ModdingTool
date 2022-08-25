@@ -355,12 +355,9 @@ namespace WeThePeople_ModdingTool
             }
 
             tabItem.Visibility = Visibility.Hidden;
-            TextBox textBox = VisualHierarchyHelper.FindChild<TextBox>(tabItem, "TextBox_EventInfo_Done_1");
-            if( null == textBox )
-            {
-                return;
-            }
-            textBox.Visibility = Visibility.Hidden;
+            string eventInfoDoneToDelete = GetTextNameOfEventInfoDone(tabItem.Name);
+            TemplateRepository.Instance.UnRegisterTemplateEventDone(eventInfoDoneToDelete);
+
         }
 
         private TabItem GetTextBoxDelete( Button button )
@@ -377,6 +374,11 @@ namespace WeThePeople_ModdingTool
             }
 
             return tabItem;
+        }
+
+        private string GetTextNameOfEventInfoDone( string tabItemName )
+        {
+            return tabItemName.Substring(7);
         }
 
         static string NODE_EVENTS = "Events";

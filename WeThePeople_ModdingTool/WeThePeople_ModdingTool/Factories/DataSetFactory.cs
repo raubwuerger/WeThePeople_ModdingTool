@@ -15,12 +15,12 @@ namespace WeThePeople_ModdingTool.Factories
         public static string EventGameText = "EventGameText";
         public static string RandomEvent_Start = "RandomEvent_Start";
         public static string RandomEvent_Done = "RandomEvent_Done";
-        public static string EventInfos_Start = "EventInfos_Start";
-        public static string EventInfos_Done_1 = "EventInfos_Done_1";
-        public static string EventInfos_Done_2 = "EventInfos_Done_2";
-        public static string EventInfos_Done_3 = "EventInfos_Done_3";
-        public static string EventInfos_Done_4 = "EventInfos_Done_4";
-        public static string EventInfos_Done_5 = "EventInfos_Done_5";
+        public static string EventInfos_Start = "EventInfo_Start";
+        public static string EventInfos_Done_1 = "EventInfo_Done_1";
+        public static string EventInfos_Done_2 = "EventInfo_Done_2";
+        public static string EventInfos_Done_3 = "EventInfo_Done_3";
+        public static string EventInfos_Done_4 = "EventInfo_Done_4";
+        public static string EventInfos_Done_5 = "EventInfo_Done_5";
 
         private static string FileExtensionXML = ".xml";
         private static string FileExtensionPython = ".py";
