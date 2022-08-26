@@ -16,6 +16,8 @@ DisableProgramGroupPage=yes
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+OutputBaseFilename=WeThePeople_ModdingTool
+SetupIconFile=WtP_desktop_icon.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
