@@ -7,21 +7,21 @@
     <TEXT>
         <Tag>TXT_KEY_WORLD_EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Tag>
         <English>We have managed to become the dominant leader in the trade of [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] from $HARBOUR_NORMAL$.</English>
-        <German>Uns ist es gelungen der dominante Marktführer für den Handel mit $HARBOUR_NORMAL$ [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] zu werden.</German>
+        <German>Uns ist es gelungen der dominante Marktführer für den Handel mit [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] für $HARBOUR_NORMAL$ zu werden.</German>
     </TEXT>
     <TEXT>
         <Tag>TXT_KEY_EVENT_TRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Tag>
         <English>Our colonists are thrilled with the first shipments of [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] from $HARBOUR_NORMAL$.</English>
-        <German>Die Bürger unserer Kolonien sind vom ersten Handel mit $HARBOUR_NORMAL$ [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] begeistert.</German>
+        <German>Die Bürger unserer Kolonien sind vom ersten Handel mit [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] nach $HARBOUR_NORMAL$ begeistert.</German>
     </TEXT>
     <TEXT>
         <Tag>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_FAILED</Tag>
         <English>Another colonial power first succeeded in cornering the market in the colonies for [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] from $HARBOUR_NORMAL$.</English>
-        <German>Einer anderen Kolonialmacht ist es zuerst gelungen den Markt in den Kolonien für $HARBOUR_NORMAL$ [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] zu beherrschen.</German>
+        <German>Einer anderen Kolonialmacht ist es zuerst gelungen den Markt in den Kolonien für $HARBOUR_NORMAL$ mit [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] zu beherrschen.</German>
     </TEXT>
     <TEXT>
         <Tag>TXT_KEY_EVENT_TRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Tag>
         <English>We have managed to become the dominant leader in the trade of [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] from $HARBOUR_NORMAL$.</English>
-        <German>Uns ist es gelungen der dominante Marktführer für den Handel mit $HARBOUR_NORMAL$ [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] zu werden.</German>
+        <German>Uns ist es gelungen der dominante Marktführer für den Handel mit $HARBOUR_NORMAL$ für [COLOR_FONT_GOLD]$YIELD$[COLOR_REVERT] zu werden.</German>
     </TEXT>
 </Civ4GameText>
