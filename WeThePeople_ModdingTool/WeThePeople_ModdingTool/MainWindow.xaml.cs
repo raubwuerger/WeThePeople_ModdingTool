@@ -116,7 +116,7 @@ namespace WeThePeople_ModdingTool
         }
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
-            PutDataToDataSet();
+            UpdateDataSets();
             SaveCreatedEventFiles();
         }
 
@@ -199,7 +199,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        private void PutDataToDataSet()
+        private void UpdateDataSets()
         {
             foreach(KeyValuePair<DataSetXML, TextBox> entry in DataSetXML_TextBox_Mapping )
             {
@@ -284,23 +284,9 @@ namespace WeThePeople_ModdingTool
 
         private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
         {
-            EventInfoStartWindow eventInfoStartWindow = new EventInfoStartWindow();
-            if ( false == eventInfoStartWindow.ShowDialog() )
-            {
-                return;
-            }
-
-            DataSetEventInfoStart dataSetEventInfo = eventInfoStartWindow.DataSetEventInfoStart;
-            DataSetXML dataSetEventInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start);
-            dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_START] = dataSetEventInfo.GetTriggerValueStart();
-            dataSetEventInfos_Start.TemplateReplaceItems[ReplaceItems.TRIGGER_VALUE_DONE] = dataSetEventInfo.GetTriggerValueDone();
-
-            dataSetEventInfos_Start.XmlDocumentProcessed = eventProcessor.Process(dataSetEventInfos_Start);
-            Debug.Assert(dataSetEventInfos_Start.XmlDocumentProcessed != null,"Should succeed!s");
-            TextBox_EventInfo_Start.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Start) );
-            CIV4EventInfos_Start.Visibility = Visibility.Visible;
-            tabControl_templates.SelectedItem = CIV4EventInfos_Start;
-            button_AddEventInfoDone.IsEnabled = true;
+            EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
+            IEventCreator eventCreator = eventCreatorFactory.CreateEventInfoStart(this);
+            eventCreator.Create();
         }
 
         private void button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)

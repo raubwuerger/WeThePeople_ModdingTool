@@ -4,25 +4,28 @@ using System.Text;
 
 namespace WeThePeople_ModdingTool.Creators
 {
-    public interface IEventCreator
+    public abstract class IEventCreator
     {
+        private string harbour;
         public string Harbour
         {
-            get;
-            set;
+            get { return harbour; }
+            set { harbour = value; }
         }
+        private string yieldType;
         public string YieldType
         {
-            get;
-            set;
+            get { return yieldType; }
+            set { yieldType = value; }
         }
 
+        private string savePath;
         public string SavePath
         {
-            get;
-            set;
+            get { return savePath; }
+            set { savePath = value; }
         }
 
-        public bool Create();
+        public abstract bool Create();
     }
 }

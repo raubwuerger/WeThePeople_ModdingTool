@@ -28,12 +28,6 @@ namespace WeThePeople_TestProject
         }
 
         [Test]
-        public void FindShouldSucceedNewMethod()
-        {
-            Assert.IsNotNull(XMLHelper.GetElementById(xmlDocument.DocumentElement, findeEvents));
-        }
-
-        [Test]
         public void FindShouldAlsoSucceed()
         {
             Assert.IsNotNull(XMLHelper.FindNodeByName(xmlDocument.DocumentElement.SelectNodes(RootNode_EventTriggerInfo), findeEvents));

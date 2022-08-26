@@ -12,34 +12,14 @@ namespace WeThePeople_ModdingTool
 {
     public class EventCreatorFilesSeparate : IEventCreator
     {
-        private string harbour;
-        public string Harbour
-        {
-            get { return harbour; }
-            set { harbour = value; }
-        }
-        private string yieldType;
-        public string YieldType
-        {
-            get { return yieldType; }
-            set { yieldType = value; }
-        }
-
-        private string savePath;
-        public string SavePath
-        {
-            get { return savePath; }
-            set { savePath = value; }
-        }
-
-        public bool Create()
+        public override bool Create()
         {
             if( false == EventCreatorHelper.IsValid(this) )
             {
                 return false;
             }
 
-            string savePathExtended = PathHelper.CombineAssetPathShortAndFileName(savePath);
+            string savePathExtended = PathHelper.CombineAssetPathShortAndFileName(SavePath);
 
             foreach (KeyValuePair<string,DataSetXML> entry in TemplateRepository.Instance.XmlDocuments )
             {
