@@ -118,7 +118,6 @@ namespace WeThePeople_ModdingTool.Creators
             dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done));
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
-            xmlDocuments.Add(CreateDocument(Subnode_EventTriggerInfos));
             xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
             XmlDocument concatenated = Concatenate(xmlDocuments);
             if (null == concatenated)
@@ -139,7 +138,6 @@ namespace WeThePeople_ModdingTool.Creators
             }
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
-            xmlDocuments.Add(CreateDocument(Subnode_EventInfos));
             xmlDocuments.AddRange(DataSetConverter.CreateList(eventEventInfos));
             XmlDocument concatenated = Concatenate(xmlDocuments);
             if (null == concatenated)
@@ -184,12 +182,5 @@ namespace WeThePeople_ModdingTool.Creators
             return baseXML;
         }
 
-        private XmlDocument CreateDocument( string rootNode )
-        {
-            XmlDocument xmlDocument = new XmlDocument();
-            XmlElement root = xmlDocument.CreateElement(rootNode);
-            xmlDocument.AppendChild(root);
-            return xmlDocument;
-        }
     }
 }

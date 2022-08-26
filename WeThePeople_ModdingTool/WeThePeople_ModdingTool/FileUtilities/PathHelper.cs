@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
-    class PathHelper
+    public class PathHelper
     {
         public static string AssetPathRelative = @"templates\Assets";
         public static string AssetPathFull = Path.Combine(GetBasePath(), AssetPathRelative);
@@ -22,6 +22,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
+        public static string GetBasePath_Test()
+        {
+            return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+        }
         public static string GetBasePathCombine( string path )
         {
             return Path.Combine(GetBasePath(), path);
@@ -32,6 +36,12 @@ namespace WeThePeople_ModdingTool.FileUtilities
             string assetPathAbsolute = Path.Combine(GetBasePath(), AssetPathRelative);
             return Path.Combine(assetPathAbsolute, asset);
         }
+        public static string GetFullAssetFileName_Test(string asset)
+        {
+            string assetPathAbsolute = Path.Combine(GetBasePath_Test(), AssetPathRelative);
+            return Path.Combine(assetPathAbsolute, asset);
+        }
+
 
         public static string GetFullAssetPath()
         {

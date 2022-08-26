@@ -184,13 +184,19 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
-//                        IEventCreator creator = new EventCreatorFilesSeparate();
             IEventCreator creator = new EventCreatorFilesPutTogether();
             creator.YieldType = selectedYieldType;
             creator.Harbour = selectedHarbour;
             creator.SavePath = dialog.SelectedPath;
 
-            creator.Create();
+            if( false == creator.Create() )
+            {
+                CommonMessageBox.Show_OK_Error("Operation failed!", "Creating events failed!\r\nSee log file.");
+            }
+            else
+            {
+                CommonMessageBox.Show_Info("Operation succeeded!", "Creating events was successful!");
+            }
         }
 
         private void PutDataToDataSet()
@@ -369,24 +375,25 @@ namespace WeThePeople_ModdingTool
         private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete )
         {
             DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(eventTriggerInfo_Done), NODE_EVENTS);
-            if (null == nodeEvents)
+            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(NODE_EVENTS);
+            if (nodeEvents.Count != 1)
             {
                 return false;
             }
 
-            foreach( XmlNode child in nodeEvents.ChildNodes )
+            XmlNode nodeEvent = nodeEvents[0];
+
+            foreach ( XmlNode child in nodeEvent.ChildNodes )
             {
                 if( child.InnerText.Equals(nodeNameToDelete.InnerText) )
                 {
-                    nodeEvents.RemoveChild(child);
+                    nodeEvent.RemoveChild(child);
                     TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done));
                     return true;
                 }
             }
             return false;
         }
-
 
         private TabItem GetTextBoxDelete( Button button )
         {
@@ -415,22 +422,24 @@ namespace WeThePeople_ModdingTool
         private bool AddEventTriggerInfoDone( DataSetXML dataSetXML_EventInfoDone )
         {
             DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            XmlNode nodeEvents = XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(eventTriggerInfo_Done), NODE_EVENTS);
-            if( null == nodeEvents )
+            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(NODE_EVENTS);
+            if( nodeEvents.Count != 1 )
             {
                 return false;
             }
 
+            XmlNode nodeEvent = nodeEvents[0];
+
             XmlNode xmlNodeEvent = dataSetXML_EventInfoDone.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, NODE_EVENT, eventTriggerInfo_Done.XmlDocumentProcessed.NamespaceURI);
             xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(dataSetXML_EventInfoDone);
 
-            if( true == XMLHelper.ContainsInnerNode(nodeEvents, xmlNodeEvent.InnerText) )
+            if( true == XMLHelper.ContainsInnerNode(nodeEvent, xmlNodeEvent.InnerText) )
             {
                 return true;
             }
 
             XmlNode importedNode = eventTriggerInfo_Done.XmlDocumentProcessed.ImportNode(xmlNodeEvent, true);
-            nodeEvents.AppendChild(importedNode);
+            nodeEvent.AppendChild(importedNode);
             TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done) );
 
             return true;

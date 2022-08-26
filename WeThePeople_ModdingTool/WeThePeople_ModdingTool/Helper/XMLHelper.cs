@@ -8,7 +8,7 @@ using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
-    class XMLHelper
+    public class XMLHelper
     {
         private static bool showMessageBox = false;
 
@@ -115,6 +115,22 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             return null;
         }
+
+        public static XmlNode FindNodeByName(XmlNode node, string nodeName)
+        {
+            if (node.Name.Equals(nodeName) )
+            {
+                return node;
+            }
+
+            XmlNodeList children = node.ChildNodes;
+            foreach (XmlNode child in children)
+            {
+                FindNodeByName(child, nodeName);
+            }
+            return null;
+        }
+
 
         public static XmlNodeList GetRootNodeListProcessedXML( DataSetXML dataSetXML )
         {
