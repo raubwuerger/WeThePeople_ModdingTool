@@ -18,6 +18,7 @@ SolidCompression=yes
 WizardStyle=modern
 OutputBaseFilename=WeThePeople_ModdingTool
 SetupIconFile=WtP_desktop_icon.ico
+UninstallDisplayIcon=WtP_desktop_icon.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -34,6 +35,7 @@ Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeo
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\WeThePeople_ModdingTool.deps.json"; DestDir: "{app}\program"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\WeThePeople_ModdingTool.dll"; DestDir: "{app}\program"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\WeThePeople_ModdingTool.runtimeconfig.json"; DestDir: "{app}\program"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WtP_desktop_icon.ico"; DestDir: "{app}\program"; Flags: ignoreversion
 
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\CIV4UnitInfos_OnlyClasses.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Civ4YieldInfos_OnlyTypes.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
@@ -55,8 +57,8 @@ Root: HKA; Subkey: "Software\Classes\WeThePeople_ModdingToolFile.exe\shell\open\
 Root: HKA; Subkey: "Software\Classes\Applications\WeThePeople_ModdingTool.exe\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
 
 [Icons]
-Name: "{autoprograms}\WeThePeople_ModdingTool"; Filename: "{app}\WeThePeople_ModdingTool.exe"
-Name: "{autodesktop}\WeThePeople_ModdingTool"; Filename: "{app}\WeThePeople_ModdingTool.exe"; Tasks: desktopicon
+Name: "{autoprograms}\WeThePeople_ModdingTool"; Filename: "{app}\program\WeThePeople_ModdingTool.exe"; IconFilename: "{app}\program\WtP_desktop_icon.ico"
+Name: "{autodesktop}\WeThePeople_ModdingTool"; Filename: "{app}\program\WeThePeople_ModdingTool.exe"; Tasks: desktopicon; IconFilename: "{app}\program\WtP_desktop_icon.ico"
 
 [Run]
 Filename: "{app}\program\WeThePeople_ModdingTool.exe"; Description: "{cm:LaunchProgram,WeThePeople_ModdingTool}"; Flags: nowait postinstall skipifsilent
