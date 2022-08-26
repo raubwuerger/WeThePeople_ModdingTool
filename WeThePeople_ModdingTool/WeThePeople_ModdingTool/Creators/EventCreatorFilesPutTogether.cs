@@ -13,6 +13,14 @@ namespace WeThePeople_ModdingTool.Creators
 {
     public class EventCreatorFilesPutTogether : IEventCreator
     {
+        public static string RootNodeBase_Civ4GameText = "Civ4GameText";
+
+        public static string RootNode_CIV4EVENTTRIGGERINFOS = "Civ4EventTriggerInfos";
+        public static string Subnode_EventTriggerInfos = "EventTriggerInfos";
+
+        public static string RootNode_CIV4EVENTINFOS = "Civ4EventInfos";
+        public static string Subnode_EventInfos = "EventInfos";
+
         private string harbour;
         public string Harbour
         {
@@ -110,7 +118,7 @@ namespace WeThePeople_ModdingTool.Creators
             dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done));
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
-            xmlDocuments.Add(CreateDocument(DataSetFactory.RootNodeBase_EventTriggerInfos));
+            xmlDocuments.Add(CreateDocument(Subnode_EventTriggerInfos));
             xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
             XmlDocument concatenated = Concatenate(xmlDocuments);
             if (null == concatenated)
@@ -131,7 +139,7 @@ namespace WeThePeople_ModdingTool.Creators
             }
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
-            xmlDocuments.Add(CreateDocument(DataSetFactory.RootNodeBase_EventInfos));
+            xmlDocuments.Add(CreateDocument(Subnode_EventInfos));
             xmlDocuments.AddRange(DataSetConverter.CreateList(eventEventInfos));
             XmlDocument concatenated = Concatenate(xmlDocuments);
             if (null == concatenated)

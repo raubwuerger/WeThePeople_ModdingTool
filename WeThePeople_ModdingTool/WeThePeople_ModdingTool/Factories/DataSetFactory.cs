@@ -28,10 +28,6 @@ namespace WeThePeople_ModdingTool.Factories
         private static string RootNode_EventTriggerInfo = "/EventTriggerInfo";
         private static string RootNode_Civ4GameText = "/Civ4GameText";
 
-        public static string RootNodeBase_Civ4GameText = "Civ4GameText";
-        public static string RootNodeBase_EventInfos = "EventInfos";
-        public static string RootNodeBase_EventTriggerInfos = "EventTriggerInfos";
-
         public DataSetPython CreateRandomEventStart()
         {
             DataSetPython dataSet = CreateBasePython(RandomEvent_Start);
