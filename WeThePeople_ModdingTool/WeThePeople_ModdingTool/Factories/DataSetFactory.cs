@@ -24,9 +24,12 @@ namespace WeThePeople_ModdingTool.Factories
 
         private static string FileExtensionXML = ".xml";
         private static string FileExtensionPython = ".py";
-        private static string RootNode_EventInfo = "/EventInfo";
-        private static string RootNode_EventTriggerInfo = "/EventTriggerInfo";
+        private static string RootNode_EventInfo = "/Civ4EventInfos";
+        private static string ConcreteNode_EventInfo = "EventInfo";
+        private static string RootNode_EventTriggerInfo = "/Civ4EventTriggerInfos";
+        private static string ConcreteNode_EventTriggerInfo = "EventTriggerInfo";
         private static string RootNode_Civ4GameText = "/Civ4GameText";
+        private static string ConcreteNode_Civ4GameText = "Civ4GameText";
 
         public DataSetPython CreateRandomEventStart()
         {
@@ -71,6 +74,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
             dataSet.BaseAssetPath = @"Assets\XML\Events";
             dataSet.XmlRootNode = RootNode_EventTriggerInfo;
+            dataSet.XmlConcreteNode = ConcreteNode_EventTriggerInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -89,6 +93,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
             dataSet.BaseAssetPath = @"Assets\XML\Events";
             dataSet.XmlRootNode = RootNode_EventTriggerInfo;
+            dataSet.XmlConcreteNode = ConcreteNode_EventTriggerInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -108,6 +113,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
             dataSet.BaseAssetPath = @"Assets\XML\Text";
             dataSet.XmlRootNode = RootNode_Civ4GameText;
+            dataSet.XmlConcreteNode = ConcreteNode_Civ4GameText;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -126,6 +132,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
             dataSet.BaseAssetPath = @"Assets\XML\Events"; 
             dataSet.XmlRootNode = RootNode_EventInfo;
+            dataSet.XmlConcreteNode = ConcreteNode_EventInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -146,6 +153,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.BaseAssetPath = @"Assets\XML\Events";
             dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
             dataSet.XmlRootNode = RootNode_EventInfo;
+            dataSet.XmlConcreteNode = ConcreteNode_EventInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");

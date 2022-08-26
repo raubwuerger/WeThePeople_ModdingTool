@@ -10,5 +10,6 @@ namespace WeThePeople_ModdingTool.DataSets
         public XmlDocument XmlDocumentTemplate;
         public XmlDocument XmlDocumentProcessed;
         public string XmlRootNode;
+        public string XmlConcreteNode;
     }
 }

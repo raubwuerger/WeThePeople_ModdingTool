@@ -108,6 +108,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 {
                     return node;
                 }
+                if ( node.HasChildNodes == true )
+                {
+                    return FindNodeByName(node.ChildNodes,nodeName);
+                }
             }
             return null;
         }

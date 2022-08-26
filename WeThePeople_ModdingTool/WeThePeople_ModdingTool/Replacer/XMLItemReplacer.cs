@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using Serilog;
 using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
 {
@@ -38,7 +39,14 @@ namespace WeThePeople_ModdingTool
             }
 
             replacedXmlDocument = (XmlDocument)dataSetXML.XmlDocumentTemplate.Clone();
-            Replace(replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlRootNode));
+            XmlNodeList rootNodes = replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlRootNode);
+            XmlNode concreteNode = XMLHelper.FindNodeByName(rootNodes, dataSetXML.XmlConcreteNode);
+            if( null == concreteNode )
+            {
+                Log.Debug("Concrete node not found! " + dataSetXML.XmlConcreteNode);
+                return false;
+            }
+            Replace(concreteNode.ChildNodes);
             return true;
         }
 
