@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 using WeThePeople_ModdingTool.Creators;
 using WeThePeople_ModdingTool.Processors;
 
@@ -18,6 +19,30 @@ namespace WeThePeople_ModdingTool.Factories
             eventCreatorEventInfoStart.ButtonAddEventInfoDone = mainWindow.button_AddEventInfoDone;
 
             return eventCreatorEventInfoStart;
+        }
+
+        public IEventCreator CreateEventInfoDone( MainWindow mainWindow )
+        {
+            EventCreatorEventInfoDone eventCreatorEventInfoDone = new EventCreatorEventInfoDone();
+            eventCreatorEventInfoDone.EventProcessor = CreateEventProcessor(mainWindow);
+            eventCreatorEventInfoDone.Button_CreateEvents = mainWindow.button_CreateEvents;
+            eventCreatorEventInfoDone.EventInfoDone_TextBox_List = CreateEventInfoDoneTextBoxTabItemList(mainWindow);
+            eventCreatorEventInfoDone.TabControl_templates = mainWindow.tabControl_templates;
+            eventCreatorEventInfoDone.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
+
+            return eventCreatorEventInfoDone;
+        }
+
+        private List<KeyValuePair<TextBox, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
+        {
+            List<KeyValuePair<TextBox, TabItem>> list = new List<KeyValuePair<TextBox, TabItem>>();
+
+            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_1, mainWindow.TabItem_EventInfo_Done_1));
+            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_2, mainWindow.TabItem_EventInfo_Done_2));
+            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_3, mainWindow.TabItem_EventInfo_Done_3));
+            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_4, mainWindow.TabItem_EventInfo_Done_4));
+            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_5, mainWindow.TabItem_EventInfo_Done_5));
+            return list;
         }
 
         private EventProcessor CreateEventProcessor( MainWindow mainWindow )

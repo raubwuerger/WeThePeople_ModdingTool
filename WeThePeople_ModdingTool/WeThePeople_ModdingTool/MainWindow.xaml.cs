@@ -93,7 +93,7 @@ namespace WeThePeople_ModdingTool
             DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
             DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
 
-            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox,TabItem>(TextBox_EventInfo_Done_1, TabItem_EventInfo_Done_1));
+            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_1, TabItem_EventInfo_Done_1));
             EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_2, TabItem_EventInfo_Done_2));
             EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_3, TabItem_EventInfo_Done_3));
             EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_4, TabItem_EventInfo_Done_4));
@@ -286,60 +286,21 @@ namespace WeThePeople_ModdingTool
         {
             EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
             IEventCreator eventCreator = eventCreatorFactory.CreateEventInfoStart(this);
-            eventCreator.Create();
+            if( false == eventCreator.Create() )
+            {
+                CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoStart failed!\r\nSee log file.");
+            }
         }
 
         private void button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
         {
-            EventInfoDoneWindow eventInfoDoneWindow = new EventInfoDoneWindow();
-            if( false == eventInfoDoneWindow.ShowDialog() )
+            EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
+            IEventCreator eventCreator = eventCreatorFactory.CreateEventInfoDone(this);
+            if( false == eventCreator.Create() )
             {
-                return;
+                CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoDone failed!\r\nSee log file.");
             }
 
-            KeyValuePair<TextBox, TabItem> keyValuePair = GetCorrespondingTextBox();
-
-            DataSetXML dataSetEventInfos_Done = CreateDataSetXML_EventInfosDone();
-            DataSetEventInfoDone dataSetEventInfoDone = eventInfoDoneWindow.DataSetEventInfoDone;
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.GOLD] = dataSetEventInfoDone.GetGold();
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_CLASS] = dataSetEventInfoDone.GetUnitClass();
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_COUNT] = dataSetEventInfoDone.GetUnitCount();
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.UNIT_EXPERIENCE] = dataSetEventInfoDone.GetUnitExperience();
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.KING_RELATION] = dataSetEventInfoDone.GetKingRelation();
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.YIELD_PRICE] = dataSetEventInfoDone.GetYieldPrice();
-            dataSetEventInfos_Done.TemplateReplaceItems[ReplaceItems.DONE_INDEX] = GetDoneIndex();
-
-            if ( false == eventProcessor.ProcessAndSet(dataSetEventInfos_Done) )
-            {
-                return;
-            }
-
-            keyValuePair.Key.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventInfos_Done));
-            keyValuePair.Value.Visibility = Visibility.Visible;
-            tabControl_templates.SelectedItem = keyValuePair.Value;
-
-            if( true == AddEventTriggerInfoDone(dataSetEventInfos_Done) )
-            {
-                button_CreateEvents.IsEnabled = true;
-            }
-        }
-
-        private string GetDoneIndex()
-        {
-            return TemplateRepository.Instance.XmlDocumentEventDone.Count.ToString();
-        }
-
-        private KeyValuePair<TextBox,TabItem> GetCorrespondingTextBox()
-        {
-            return EventInfoDone_TextBox_List[TemplateRepository.Instance.XmlDocumentEventDone.Count];
-        }
-
-        private DataSetXML CreateDataSetXML_EventInfosDone()
-        {
-            DataSetFactory dataSetFactory = new DataSetFactory();
-            DataSetXML eventInfoDone = dataSetFactory.CreateEventInfo_Done();
-            TemplateRepository.Instance.RegisterTemplateEventDone(eventInfoDone);
-            return eventInfoDone;
         }
 
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
@@ -358,13 +319,13 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
-            RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), NODE_TYPE));
+            RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.NODE_TYPE));
         }
 
         private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete )
         {
             DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(NODE_EVENTS);
+            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_EVENTS);
             if (nodeEvents.Count != 1)
             {
                 return false;
@@ -405,50 +366,5 @@ namespace WeThePeople_ModdingTool
             return tabItemName.Substring(8);
         }
 
-        static string NODE_EVENTS = "Events";
-        static string NODE_EVENT = "Event";
-        static string NODE_TYPE = "Type";
-        private bool AddEventTriggerInfoDone( DataSetXML dataSetXML_EventInfoDone )
-        {
-            DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(NODE_EVENTS);
-            if( nodeEvents.Count != 1 )
-            {
-                return false;
-            }
-
-            XmlNode nodeEvent = nodeEvents[0];
-
-            XmlNode xmlNodeEvent = dataSetXML_EventInfoDone.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, NODE_EVENT, eventTriggerInfo_Done.XmlDocumentProcessed.NamespaceURI);
-            xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(dataSetXML_EventInfoDone);
-
-            if( true == XMLHelper.ContainsInnerNode(nodeEvent, xmlNodeEvent.InnerText) )
-            {
-                return true;
-            }
-
-            XmlNode importedNode = eventTriggerInfo_Done.XmlDocumentProcessed.ImportNode(xmlNodeEvent, true);
-            nodeEvent.AppendChild(importedNode);
-            TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention( XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done) );
-
-            return true;
-        }
-
-        private string GetEventInfoDoneTypeName( DataSetXML dataSetXML )
-        {
-            XmlNodeList rootNodeList = XMLHelper.GetRootNodeListProcessedXML(dataSetXML);
-            if( rootNodeList.Count != 1 )
-            {
-                return String.Empty;
-            }
-
-            XmlNode xmlNodeType = GetEventInfoDoneNode_TYPE(rootNodeList[0].ChildNodes );
-            return xmlNodeType.InnerText;
-        }
-
-        private XmlNode GetEventInfoDoneNode_TYPE( XmlNodeList xmlNodeList )
-        {
-            return XMLHelper.FindNodeByName(xmlNodeList,NODE_TYPE);
-        }
     }
 }

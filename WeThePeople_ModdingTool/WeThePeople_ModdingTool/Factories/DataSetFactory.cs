@@ -22,6 +22,10 @@ namespace WeThePeople_ModdingTool.Factories
         public static string EventInfos_Done_4 = "EventInfo_Done_4";
         public static string EventInfos_Done_5 = "EventInfo_Done_5";
 
+        public static string NODE_EVENTS = "Events";
+        public static string NODE_EVENT = "Event";
+        public static string NODE_TYPE = "Type";
+
         private static string FileExtensionXML = ".xml";
         private static string FileExtensionPython = ".py";
         private static string RootNode_EventInfo = "/Civ4EventInfos";
