@@ -176,7 +176,9 @@ namespace WeThePeople_ModdingTool
                 entry.Value.XmlDocumentProcessed = new XmlDocument();
             }
 
-            foreach(KeyValuePair<string, DataSetPython> entry in pythonFiles)
+            xmlDocumentEventDone.Clear();
+
+            foreach (KeyValuePair<string, DataSetPython> entry in pythonFiles)
             {
                 entry.Value.PythonContentProcessed = String.Empty;
             }

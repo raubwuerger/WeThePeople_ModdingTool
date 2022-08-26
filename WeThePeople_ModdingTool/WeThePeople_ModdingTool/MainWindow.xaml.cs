@@ -147,7 +147,7 @@ namespace WeThePeople_ModdingTool
             comboBox_Harbours.IsEnabled = false;
             button_LoadTemplates.IsEnabled = false;
             button_CreateEventInfoStartXML.IsEnabled = true;
-            button_CreateEvents.IsEnabled = true;
+            button_CreateEvents.IsEnabled = false;
         }
 
         private void button_RestTemplates_Click(object sender, RoutedEventArgs e)
@@ -332,7 +332,10 @@ namespace WeThePeople_ModdingTool
             keyValuePair.Value.Visibility = Visibility.Visible;
             tabControl_templates.SelectedItem = keyValuePair.Value;
 
-            AddEventTriggerInfoDone(dataSetEventInfos_Done);
+            if( true == AddEventTriggerInfoDone(dataSetEventInfos_Done) )
+            {
+                button_CreateEvents.IsEnabled = true;
+            }
         }
 
         private string GetDoneIndex()

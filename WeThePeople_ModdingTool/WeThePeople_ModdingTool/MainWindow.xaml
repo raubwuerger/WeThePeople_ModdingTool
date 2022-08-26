@@ -25,7 +25,7 @@
             <Button x:Name="button_AddEventInfoDone" Click="button_AddEventInfoDone_Click" Margin="10" Height="20" Content="Add Event InfoDone" IsEnabled="false"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Width="200">
-            <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="40">Create Events</Button>
+            <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="40" IsEnabled="False">Create Events</Button>
         </StackPanel>
         <TabControl x:Name="tabControl_templates" Grid.Column="1">
             <TabItem x:Name="TabItem_PythonStart" Header="PythonStart">
