@@ -310,7 +310,6 @@ namespace WeThePeople_ModdingTool
             }
             return false;
         }
-
         private TabItem GetTextBoxDelete( Button button )
         {
             if (null == button)
@@ -326,7 +325,6 @@ namespace WeThePeople_ModdingTool
 
             return tabItem;
         }
-
         private string GetTextNameOfEventInfoDone( string tabItemName )
         {
             return tabItemName.Substring(8);
