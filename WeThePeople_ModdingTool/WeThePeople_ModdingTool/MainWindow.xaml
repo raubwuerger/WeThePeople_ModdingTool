@@ -17,8 +17,8 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Top">
-            <ComboBox x:Name="ComboBox_Yield" SelectionChanged="ComboBox_Yield_SelectionChanged" Margin="10"/>
-            <ComboBox x:Name="comboBox_Harbours" SelectionChanged="comboBox_Harbours_SelectionChanged" Margin="10"/>
+            <ComboBox x:Name="ComboBox_Yield" Margin="10"/>
+            <ComboBox x:Name="comboBox_Harbours" Margin="10"/>
             <Button x:Name="button_LoadTemplates" Click="button_LoadTemplates_Click" Margin="10" Height="20" Content="Init Templates" IsEnabled="true"/>
             <Button x:Name="button_ResetTemplates" Click="button_RestTemplates_Click" Margin="10" Height="20" Content="Reset Templates" IsEnabled="true"/>
             <Button x:Name="button_CreateEventInfoStartXML" Click="button_CreateEventInfoStartXML_Click" Margin="10" Height="20" Content="Create Event InfoStart" IsEnabled="false"/>

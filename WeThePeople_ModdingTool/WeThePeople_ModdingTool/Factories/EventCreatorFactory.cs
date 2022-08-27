@@ -58,6 +58,14 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorBaseEvents;
         }
 
+        public EventCreatorRemoveEventTriggerInfoDone CreateEventCreatorRemoveEventTriggerInfoDone( MainWindow mainWindow )
+        {
+            EventCreatorRemoveEventTriggerInfoDone eventCreatorRemoveEventTriggerInfoDone = new EventCreatorRemoveEventTriggerInfoDone();
+            eventCreatorRemoveEventTriggerInfoDone.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
+            eventCreatorRemoveEventTriggerInfoDone.TabItem = mainWindow.tabItemToDelete;
+            return eventCreatorRemoveEventTriggerInfoDone;
+        }
+
         private List<KeyValuePair<TextBox, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
         {
             List<KeyValuePair<TextBox, TabItem>> list = new List<KeyValuePair<TextBox, TabItem>>();

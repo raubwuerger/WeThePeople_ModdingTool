@@ -17,9 +17,7 @@ namespace WeThePeople_ModdingTool
 {
     public partial class MainWindow : Window
     {
-        private string selectedYieldType;
-        private string selectedHarbour;
-        EventProcessor eventProcessor = new EventProcessor();
+        public TabItem tabItemToDelete;
 
         private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
         private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
@@ -96,16 +94,6 @@ namespace WeThePeople_ModdingTool
         private void SetItemVisibility()
         {
             button_CreateEvents.IsEnabled = false;
-        }
-        private void ComboBox_Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedYieldType = ComboBox_Yield.SelectedItem.ToString();
-            eventProcessor.YieldType = selectedYieldType;
-        }
-        private void comboBox_Harbours_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedHarbour = comboBox_Harbours.SelectedItem.ToString();
-            eventProcessor.Harbour = selectedHarbour;
         }
         private void button_CreateEvents_Click(object sender, RoutedEventArgs e)
         {
@@ -266,51 +254,25 @@ namespace WeThePeople_ModdingTool
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoDone failed!\r\nSee log file.");
             }
-
         }
 
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
         {
-            TabItem tabItem = GetTextBoxDelete(e.Source as Button);
-            if( null == tabItem )
+            tabItemToDelete = GetTextBoxDelete(e.Source as Button);
+            if( null == tabItemToDelete)
             {
                 return;
             }
 
-            tabItem.Visibility = Visibility.Hidden;
-            string eventInfoDoneToDelete = GetTextNameOfEventInfoDone(tabItem.Name);
-            DataSetXML dataSetXML = TemplateRepository.Instance.UnRegisterTemplateEventDone(eventInfoDoneToDelete);
-            if( null == dataSetXML )
+            EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
+            EventCreatorBase eventCreator = eventCreatorFactory.CreateEventCreatorRemoveEventTriggerInfoDone(this);
+            if (false == eventCreator.Create())
             {
-                return;
+                CommonMessageBox.Show_OK_Error("Operation failed!", "Removing EventInfoDone_X from EventInfoTriggerDone failed!\r\nSee log file.");
             }
-
-            RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.NODE_TYPE));
         }
 
-        private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete )
-        {
-            DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_EVENTS);
-            if (nodeEvents.Count != 1)
-            {
-                return false;
-            }
-
-            XmlNode nodeEvent = nodeEvents[0];
-
-            foreach ( XmlNode child in nodeEvent.ChildNodes )
-            {
-                if( child.InnerText.Equals(nodeNameToDelete.InnerText) )
-                {
-                    nodeEvent.RemoveChild(child);
-                    TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done));
-                    return true;
-                }
-            }
-            return false;
-        }
-        private TabItem GetTextBoxDelete( Button button )
+        public TabItem GetTextBoxDelete( Button button )
         {
             if (null == button)
             {
@@ -325,10 +287,5 @@ namespace WeThePeople_ModdingTool
 
             return tabItem;
         }
-        private string GetTextNameOfEventInfoDone( string tabItemName )
-        {
-            return tabItemName.Substring(8);
-        }
-
     }
 }
