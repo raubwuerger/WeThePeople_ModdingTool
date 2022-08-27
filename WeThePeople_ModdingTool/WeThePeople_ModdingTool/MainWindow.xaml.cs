@@ -115,32 +115,13 @@ namespace WeThePeople_ModdingTool
 
         private void button_LoadTemplates_Click(object sender, RoutedEventArgs e)
         {
-            TextBox_Python_Start.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start));
-            TextBox_Python_Done.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done));
+            EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
+            EventCreatorBase eventCreatorBaseEvents = eventCreatorFactory.CreateEventCreatorBaseEvents(this);
 
-            DataSetXML dataSetXMLTriggerInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start);
-            if( true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Start) )
+            if (false == eventCreatorBaseEvents.Create())
             {
-                TextBox_TriggerInfo_Start.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Start));
+                CommonMessageBox.Show_OK_Error("Operation failed!", "Creating events failed!\r\nSee log file.");
             }
-
-            DataSetXML dataSetXMLTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
-            if (true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Done))
-            {
-                TextBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Done));
-            }
-
-            DataSetXML dataSetGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
-            if( true == eventProcessor.ProcessAndSet(dataSetGameText) )
-            {
-                TextBox_EventGameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetGameText));
-            }
-
-            ComboBox_Yield.IsEnabled = false;
-            comboBox_Harbours.IsEnabled = false;
-            button_LoadTemplates.IsEnabled = false;
-            button_CreateEventInfoStartXML.IsEnabled = true;
-            button_CreateEvents.IsEnabled = false;
         }
 
         private void button_RestTemplates_Click(object sender, RoutedEventArgs e)

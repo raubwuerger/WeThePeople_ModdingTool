@@ -41,6 +41,23 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorFilesPutTogether;
         }
 
+        public EventCreatorBaseEvents CreateEventCreatorBaseEvents( MainWindow mainWindow )
+        {
+            EventCreatorBaseEvents eventCreatorBaseEvents = new EventCreatorBaseEvents();
+            eventCreatorBaseEvents.EventProcessor = CreateEventProcessor(mainWindow);
+            eventCreatorBaseEvents.ComboBox_Harbours = mainWindow.comboBox_Harbours;
+            eventCreatorBaseEvents.ComboBox_Yield = mainWindow.ComboBox_Yield;
+            eventCreatorBaseEvents.Button_CreateEventInfoStartXML = mainWindow.button_CreateEventInfoStartXML;
+            eventCreatorBaseEvents.Button_CreateEvents = mainWindow.button_CreateEvents;
+            eventCreatorBaseEvents.Button_LoadTemplates = mainWindow.button_LoadTemplates;
+            eventCreatorBaseEvents.TextBox_EventGameText = mainWindow.TextBox_EventGameText;
+            eventCreatorBaseEvents.TextBox_Python_Done = mainWindow.TextBox_Python_Done;
+            eventCreatorBaseEvents.TextBox_Python_Start = mainWindow.TextBox_Python_Start;
+            eventCreatorBaseEvents.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
+            eventCreatorBaseEvents.TextBox_TriggerInfo_Start = mainWindow.TextBox_TriggerInfo_Start;
+            return eventCreatorBaseEvents;
+        }
+
         private List<KeyValuePair<TextBox, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
         {
             List<KeyValuePair<TextBox, TabItem>> list = new List<KeyValuePair<TextBox, TabItem>>();
