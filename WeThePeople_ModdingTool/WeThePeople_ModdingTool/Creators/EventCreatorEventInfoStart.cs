@@ -12,7 +12,7 @@ using WeThePeople_ModdingTool.Windows;
 
 namespace WeThePeople_ModdingTool.Creators
 {
-    public class EventCreatorEventInfoStart : IEventCreator
+    public class EventCreatorEventInfoStart : EventCreatorBase
     {
         private EventProcessor eventProcessor;
         public EventProcessor EventProcessor

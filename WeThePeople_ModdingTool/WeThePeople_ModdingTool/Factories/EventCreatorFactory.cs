@@ -9,7 +9,7 @@ namespace WeThePeople_ModdingTool.Factories
 {
     public class EventCreatorFactory
     {
-        public IEventCreator CreateEventInfoStart( MainWindow mainWindow )
+        public EventCreatorBase CreateEventInfoStart( MainWindow mainWindow )
         {
             EventCreatorEventInfoStart eventCreatorEventInfoStart = new EventCreatorEventInfoStart();
             eventCreatorEventInfoStart.EventProcessor = CreateEventProcessor(mainWindow);
@@ -21,7 +21,7 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorEventInfoStart;
         }
 
-        public IEventCreator CreateEventInfoDone( MainWindow mainWindow )
+        public EventCreatorBase CreateEventInfoDone( MainWindow mainWindow )
         {
             EventCreatorEventInfoDone eventCreatorEventInfoDone = new EventCreatorEventInfoDone();
             eventCreatorEventInfoDone.EventProcessor = CreateEventProcessor(mainWindow);

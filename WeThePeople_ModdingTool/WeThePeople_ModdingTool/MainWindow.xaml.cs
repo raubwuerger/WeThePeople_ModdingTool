@@ -184,7 +184,7 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
-            IEventCreator creator = new EventCreatorFilesPutTogether();
+            EventCreatorBase creator = new EventCreatorFilesPutTogether();
             creator.YieldType = selectedYieldType;
             creator.Harbour = selectedHarbour;
             creator.SavePath = dialog.SelectedPath;
@@ -285,7 +285,7 @@ namespace WeThePeople_ModdingTool
         private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
         {
             EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
-            IEventCreator eventCreator = eventCreatorFactory.CreateEventInfoStart(this);
+            EventCreatorBase eventCreator = eventCreatorFactory.CreateEventInfoStart(this);
             if( false == eventCreator.Create() )
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoStart failed!\r\nSee log file.");
@@ -295,7 +295,7 @@ namespace WeThePeople_ModdingTool
         private void button_AddEventInfoDone_Click(object sender, RoutedEventArgs e)
         {
             EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
-            IEventCreator eventCreator = eventCreatorFactory.CreateEventInfoDone(this);
+            EventCreatorBase eventCreator = eventCreatorFactory.CreateEventInfoDone(this);
             if( false == eventCreator.Create() )
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoDone failed!\r\nSee log file.");

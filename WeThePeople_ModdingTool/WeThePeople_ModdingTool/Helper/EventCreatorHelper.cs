@@ -9,7 +9,7 @@ namespace WeThePeople_ModdingTool.Helper
 {
     public class EventCreatorHelper
     {
-        public static bool IsValid( IEventCreator eventCreator )
+        public static bool IsValid( EventCreatorBase eventCreator )
         {
             if (true == StringValidator.IsNullOrWhiteSpace(eventCreator.Harbour))
             {
@@ -29,7 +29,7 @@ namespace WeThePeople_ModdingTool.Helper
             return true;
         }
 
-        public static string CreateConcreteFileNameSeparate( IEventCreator eventCreator, DataSetBase dataSetBase )
+        public static string CreateConcreteFileNameSeparate( EventCreatorBase eventCreator, DataSetBase dataSetBase )
         {
             string processedAppendix = eventCreator.YieldType;
             processedAppendix += "_";
@@ -38,7 +38,7 @@ namespace WeThePeople_ModdingTool.Helper
             return dataSetBase.TemplateFileNameProcessed + processedAppendix;
         }
 
-        public static string CreateConcreteFileNamePutTogether(IEventCreator eventCreator, DataSetBase dataSetBase )
+        public static string CreateConcreteFileNamePutTogether(EventCreatorBase eventCreator, DataSetBase dataSetBase )
         {
             string processedAppendix = "_";
             processedAppendix += eventCreator.YieldType;

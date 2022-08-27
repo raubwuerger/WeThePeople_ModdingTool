@@ -10,7 +10,7 @@ using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool
 {
-    public class EventCreatorFilesSeparate : IEventCreator
+    public class EventCreatorFilesSeparate : EventCreatorBase
     {
         public override bool Create()
         {

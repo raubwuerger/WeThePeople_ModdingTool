@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace WeThePeople_ModdingTool.Creators
 {
-    public class EventCreatorFilesPutTogether : IEventCreator
+    public class EventCreatorFilesPutTogether : EventCreatorBase
     {
         public static string RootNodeBase_Civ4GameText = "Civ4GameText";
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeThePeople_ModdingTool.Creators
 {
-    public abstract class IEventCreator
+    public abstract class EventCreatorBase
     {
         private string harbour;
         public string Harbour
