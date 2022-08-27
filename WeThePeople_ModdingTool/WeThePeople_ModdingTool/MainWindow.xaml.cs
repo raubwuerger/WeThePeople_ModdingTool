@@ -171,18 +171,10 @@ namespace WeThePeople_ModdingTool
 
         private void SaveCreatedEventFiles()
         {
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (System.Windows.Forms.DialogResult.OK != dialog.ShowDialog())
-            {
-                return;
-            }
+            EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
+            EventCreatorBase eventCreatorBase = eventCreatorFactory.CreateEventCreatorFilesPutTogether(this);
 
-            EventCreatorBase creator = new EventCreatorFilesPutTogether();
-            creator.YieldType = selectedYieldType;
-            creator.Harbour = selectedHarbour;
-            creator.SavePath = dialog.SelectedPath;
-
-            if( false == creator.Create() )
+            if( false == eventCreatorBase.Create() )
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating events failed!\r\nSee log file.");
             }

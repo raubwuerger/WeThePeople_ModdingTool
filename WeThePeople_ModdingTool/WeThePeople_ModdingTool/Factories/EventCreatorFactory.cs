@@ -33,6 +33,14 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorEventInfoDone;
         }
 
+        public EventCreatorFilesPutTogether CreateEventCreatorFilesPutTogether( MainWindow mainWindow )
+        {
+            EventCreatorFilesPutTogether eventCreatorFilesPutTogether = new EventCreatorFilesPutTogether();
+            eventCreatorFilesPutTogether.YieldType = mainWindow.ComboBox_Yield.SelectedItem.ToString();
+            eventCreatorFilesPutTogether.Harbour = mainWindow.comboBox_Harbours.SelectedItem.ToString();
+            return eventCreatorFilesPutTogether;
+        }
+
         private List<KeyValuePair<TextBox, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
         {
             List<KeyValuePair<TextBox, TabItem>> list = new List<KeyValuePair<TextBox, TabItem>>();

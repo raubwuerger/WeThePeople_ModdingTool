@@ -8,6 +8,7 @@ using Serilog;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Helper;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace WeThePeople_ModdingTool.Creators
 {
@@ -23,6 +24,11 @@ namespace WeThePeople_ModdingTool.Creators
 
         public override bool Create()
         {
+            if( false == GetSavePath() )
+            {
+                return false;
+            }
+
             if (false == EventCreatorHelper.IsValid(this))
             {
                 return false;
@@ -38,6 +44,18 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
+            return true;
+        }
+
+        private bool GetSavePath()
+        {
+            var dialog = new FolderBrowserDialog();
+            if (DialogResult.OK != dialog.ShowDialog())
+            {
+                return false;
+            }
+
+            SavePath = dialog.SelectedPath;
             return true;
         }
 
