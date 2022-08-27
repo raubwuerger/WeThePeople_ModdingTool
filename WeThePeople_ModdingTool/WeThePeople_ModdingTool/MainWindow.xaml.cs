@@ -26,7 +26,6 @@ namespace WeThePeople_ModdingTool
         private IDictionary<Button, TabItem> ButtonTextBox_Delete_Mapping = new Dictionary<Button, TabItem>();
         private IDictionary<DataSetXML, TextBox> DataSetXML_TextBox_Mapping = new Dictionary<DataSetXML, TextBox>();
         private IDictionary<DataSetPython, TextBox> DataSetPython_TextBox_Mapping = new Dictionary<DataSetPython, TextBox>();
-        private List<KeyValuePair<TextBox,TabItem>> EventInfoDone_TextBox_List = new List<KeyValuePair<TextBox,TabItem>>();
 
         public object StringUtility { get; private set; }
 
@@ -92,12 +91,6 @@ namespace WeThePeople_ModdingTool
 
             DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
             DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
-
-            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_1, TabItem_EventInfo_Done_1));
-            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_2, TabItem_EventInfo_Done_2));
-            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_3, TabItem_EventInfo_Done_3));
-            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_4, TabItem_EventInfo_Done_4));
-            EventInfoDone_TextBox_List.Add(new KeyValuePair<TextBox, TabItem>(TextBox_EventInfo_Done_5, TabItem_EventInfo_Done_5));
         }
 
         private void SetItemVisibility()
