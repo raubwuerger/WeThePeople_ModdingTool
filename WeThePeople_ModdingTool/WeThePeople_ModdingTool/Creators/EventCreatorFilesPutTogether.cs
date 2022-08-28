@@ -117,7 +117,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
-            XmlDocument concatenated = Concatenate(xmlDocuments);
+            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventTriggerInfos, DataSetFactory.ConcreteNode_EventTriggerInfo);
             if (null == concatenated)
             {
                 return false;
@@ -137,7 +137,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(eventEventInfos));
-            XmlDocument concatenated = Concatenate(xmlDocuments);
+            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventInfos, DataSetFactory.ConcreteNode_EventInfo);
             if (null == concatenated)
             {
                 return false;
@@ -146,7 +146,7 @@ namespace WeThePeople_ModdingTool.Creators
             return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventEventInfos[0])), concatenated);
         }
 
-        private XmlDocument Concatenate( List<XmlDocument> listToConcatenate )
+        private XmlDocument Concatenate( List<XmlDocument> listToConcatenate, string attachDest, string nodeToAttach)
         {
             if( listToConcatenate.Count < 0 )
             {
@@ -167,16 +167,31 @@ namespace WeThePeople_ModdingTool.Creators
                 {
                     break;
                 }
-                concatenated = Concatenate(concatenated, listToConcatenate[newIndex]);
+
+                XmlNodeList xmlNodeListAttachSource = listToConcatenate[newIndex].GetElementsByTagName(nodeToAttach);
+                if( xmlNodeListAttachSource.Count != 1 )
+                {
+                    Log.Debug("XmlDocument has invalid count of sub node: " +nodeToAttach);
+                    return null;
+                }
+
+                XmlNodeList xmlNodeListAttachDest = concatenated.GetElementsByTagName(attachDest);
+                if( xmlNodeListAttachDest.Count != 1 )
+                {
+                    Log.Debug("XmlDocument has invalid count of sub node: " + attachDest);
+                    return null;
+                }
+
+                concatenated = Concatenate(concatenated, xmlNodeListAttachDest[0], xmlNodeListAttachSource[0] );
             }
 
             return concatenated;
         }
 
-        private XmlDocument Concatenate( XmlDocument baseXML, XmlDocument addXML )
+        private XmlDocument Concatenate( XmlDocument baseXML, XmlNode xmlDest, XmlNode addXMLNode )
         {
-            XmlNode importedDocument = baseXML.ImportNode(addXML.DocumentElement, true);
-            baseXML.DocumentElement.AppendChild(importedDocument);
+            XmlNode importedDocument = baseXML.ImportNode(addXMLNode, true);
+            xmlDest.AppendChild(importedDocument);
             return baseXML;
         }
 

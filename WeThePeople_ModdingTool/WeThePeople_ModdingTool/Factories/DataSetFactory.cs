@@ -29,11 +29,11 @@ namespace WeThePeople_ModdingTool.Factories
         private static string FileExtensionXML = ".xml";
         private static string FileExtensionPython = ".py";
         private static string RootNode_EventInfo = "/Civ4EventInfos";
-        private static string ConcreteNode_EventInfo = "EventInfo";
+        public static string ConcreteNode_EventInfo = "EventInfo";
         private static string RootNode_EventTriggerInfo = "/Civ4EventTriggerInfos";
-        private static string ConcreteNode_EventTriggerInfo = "EventTriggerInfo";
+        public static string ConcreteNode_EventTriggerInfo = "EventTriggerInfo";
         private static string RootNode_Civ4GameText = "/Civ4GameText";
-        private static string ConcreteNode_Civ4GameText = "Civ4GameText";
+        public static string ConcreteNode_Civ4GameText = "Civ4GameText";
 
         public DataSetPython CreateRandomEventStart()
         {
