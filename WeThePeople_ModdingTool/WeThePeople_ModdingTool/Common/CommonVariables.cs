@@ -18,6 +18,7 @@ namespace WeThePeople_ModdingTool
         public static string MESSAGE_BOX_FILE_DOESNT_EXIST_CR = "The file doesn't exist!\n\r";
 
         public static string MESSAGE_BOX_UNABLE_SAVE_CAPTION = "Unable to save file!";
+        public static string MESSAGE_BOX_OVERWRITE = "Do you want to overwrite?";
         public static string MESSAGE_BOX_OVERWRITE_CR = "Do you want to overwrite?\n\r";
 
         public static string XML_ERROR = "XML error!";

@@ -9,6 +9,8 @@ using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Helper;
 using System.Xml;
 using System.Windows.Forms;
+using System.Windows;
+using System.IO;
 
 namespace WeThePeople_ModdingTool.Creators
 {
@@ -80,7 +82,14 @@ namespace WeThePeople_ModdingTool.Creators
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
             string savePathExtended = PathHelper.CombinePaths(SavePath,dataSetPythonDone.BaseAssetPath);
-            return TextFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNamePutTogether( this, dataSetPythonStart)), concatenatedFiles );
+            string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetPythonStart));
+
+            if( false == Overwrite(completeFileName) )
+            {
+                return true;
+            }
+
+            return TextFileUtility.SaveCreatePathOverwrite( completeFileName, concatenatedFiles );
         }
 
         private bool ConcatenateXMLFiles()
@@ -106,7 +115,15 @@ namespace WeThePeople_ModdingTool.Creators
         private bool CreateCiv4GameText()
         {
             DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
-            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath,eventGameText.BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventGameText)), eventGameText.XmlDocumentProcessed);
+
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventGameText.BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventGameText));
+
+            if (false == Overwrite(completeFileName))
+            {
+                return true;
+            }
+
+            return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, eventGameText.XmlDocumentProcessed);
         }
 
         private bool CreateEventTriggerInfo()
@@ -123,7 +140,14 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, dataSetXMLs[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetXMLs[0])), concatenated);
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, dataSetXMLs[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetXMLs[0]));
+
+            if (false == Overwrite(completeFileName))
+            {
+                return true;
+            }
+
+            return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
         }
 
         private bool CreateEventInfo()
@@ -143,7 +167,14 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            return XMLFileUtility.SaveCreatePath(PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventEventInfos[0])), concatenated);
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventEventInfos[0]));
+
+            if (false == Overwrite(completeFileName))
+            {
+                return true;
+            }
+
+            return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
         }
 
         private XmlDocument Concatenate( List<XmlDocument> listToConcatenate, string attachDest, string nodeToAttach)
@@ -195,5 +226,23 @@ namespace WeThePeople_ModdingTool.Creators
             return baseXML;
         }
 
+        private bool Overwrite( string fileToSave )
+        {
+            if (false == File.Exists(fileToSave))
+            {
+                return true;
+            }
+            else
+            {
+                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("File already exists!", "The file already exists! " + fileToSave + CommonVariables.CR + CommonVariables.CR +CommonVariables.MESSAGE_BOX_OVERWRITE ))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
     }
 }

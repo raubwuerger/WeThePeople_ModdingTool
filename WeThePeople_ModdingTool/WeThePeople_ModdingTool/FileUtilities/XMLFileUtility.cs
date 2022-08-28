@@ -58,7 +58,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
 
         }
-        public static bool SaveForce(string fileName, XmlDocument xmlDocument)
+        public static bool SaveOverwrite(string fileName, XmlDocument xmlDocument)
         {
             try
             {
@@ -78,6 +78,13 @@ namespace WeThePeople_ModdingTool.FileUtilities
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
             return Save(fileName, xmlDocument);
+        }
+
+        public static bool SaveCreatePathOverwrite(string fileName, XmlDocument xmlDocument)
+        {
+            string path = Path.GetDirectoryName(fileName);
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+            return SaveOverwrite(fileName, xmlDocument);
         }
 
         public static void SaveFormattedXml(XmlDocument doc, String outputPath, Encoding encoding)

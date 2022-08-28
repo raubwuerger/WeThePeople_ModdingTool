@@ -50,7 +50,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static bool SaveForce(string fileName, string content)
+        public static bool SaveOverwrite(string fileName, string content)
         {
             try
             {
@@ -70,6 +70,13 @@ namespace WeThePeople_ModdingTool.FileUtilities
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
             return Save(fileName, content);
+        }
+
+        public static bool SaveCreatePathOverwrite(string fileName, string content)
+        {
+            string path = Path.GetDirectoryName(fileName);
+            Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+            return SaveOverwrite(fileName, content);
         }
 
         public static String LoadFileText(DataSetBase dataSetBase)
