@@ -215,12 +215,16 @@ namespace WeThePeople_ModdingTool
             {
                 return;
             }
+            ValidateXMLFile(textEditor.Text);
+        }
 
-            if( true == WeThePeople_ModdingTool.Validators.StringValidator.IsNullOrWhiteSpace(textEditor.Text) )
+        private void ValidateXMLFile( string xmlString )
+        {
+            if (true == StringValidator.IsNullOrWhiteSpace(xmlString))
             {
                 return;
             }
-            XMLHelper.IsXMLShapelyShowMessageBox(textEditor.Text);
+            XMLHelper.IsXMLShapelyShowMessageBox(xmlString);
         }
 
         private TextEditor GetTextEditorValidation(Button button)
@@ -289,6 +293,31 @@ namespace WeThePeople_ModdingTool
             }
 
             return tabItem;
+        }
+
+        private void button_LoadXML_Click(object sender, RoutedEventArgs e)
+        {
+            tabControl_templates.SelectedItem = TabItem_LoadXMLFile;
+            TabItem_LoadXMLFile.Visibility = Visibility.Visible;
+            System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+            if (System.Windows.Forms.DialogResult.OK != dialog.ShowDialog())
+            {
+                return;
+            }
+
+            string xmlFile = TextFileUtility.Load(dialog.FileName);
+            TextBox_LoadXMLFile.Text = xmlFile;
+        }
+
+        private void button_LoadXMLFile_hide_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem_LoadXMLFile.Visibility = Visibility.Hidden;
+            tabControl_templates.SelectedIndex = 0;
+        }
+
+        private void button_LoadXMLFile_validate_Click(object sender, RoutedEventArgs e)
+        {
+            ValidateXMLFile(TextBox_LoadXMLFile.Text);
         }
     }
 }
