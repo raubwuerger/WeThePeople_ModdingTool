@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.AvalonEdit;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
@@ -17,32 +18,32 @@ namespace WeThePeople_ModdingTool.Creators
             set { eventProcessor = value; }
         }
 
-        private TextBox textBox_Python_Start;
-        public TextBox TextBox_Python_Start
+        private TextEditor textBox_Python_Start;
+        public TextEditor TextBox_Python_Start
         {
             set { textBox_Python_Start = value; }
         }
 
-        private TextBox textBox_Python_Done;
-        public TextBox TextBox_Python_Done
+        private TextEditor textBox_Python_Done;
+        public TextEditor TextBox_Python_Done
         {
             set { textBox_Python_Done = value; }
         }
 
-        private TextBox textBox_TriggerInfo_Start;
-        public TextBox TextBox_TriggerInfo_Start
+        private TextEditor textBox_TriggerInfo_Start;
+        public TextEditor TextBox_TriggerInfo_Start
         {
             set { textBox_TriggerInfo_Start = value; }
         }
 
-        private TextBox textBox_TriggerInfo_Done;
-        public TextBox TextBox_TriggerInfo_Done
+        private TextEditor textBox_TriggerInfo_Done;
+        public TextEditor TextBox_TriggerInfo_Done
         {
             set { textBox_TriggerInfo_Done = value; }
         }
 
-        private TextBox textBox_EventGameText;
-        public TextBox TextBox_EventGameText
+        private TextEditor textBox_EventGameText;
+        public TextEditor TextBox_EventGameText
         {
             set { textBox_EventGameText = value; }
         }

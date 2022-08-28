@@ -12,6 +12,7 @@ using WeThePeople_ModdingTool.Validators;
 using System.Diagnostics;
 using WeThePeople_ModdingTool.Creators;
 using WeThePeople_ModdingTool.Helper;
+using ICSharpCode.AvalonEdit;
 
 namespace WeThePeople_ModdingTool
 {
@@ -19,11 +20,11 @@ namespace WeThePeople_ModdingTool
     {
         public TabItem tabItemToDelete;
 
-        private IDictionary<CheckBox, TextBox> CheckBoxTextBox_Enable_Mapping = new Dictionary<CheckBox, TextBox>();
-        private IDictionary<Button, TextBox> ButtonTextBox_Validation_Mapping = new Dictionary<Button, TextBox>();
-        private IDictionary<Button, TabItem> ButtonTextBox_Delete_Mapping = new Dictionary<Button, TabItem>();
-        private IDictionary<DataSetXML, TextBox> DataSetXML_TextBox_Mapping = new Dictionary<DataSetXML, TextBox>();
-        private IDictionary<DataSetPython, TextBox> DataSetPython_TextBox_Mapping = new Dictionary<DataSetPython, TextBox>();
+        private IDictionary<CheckBox, TextEditor> CheckBoxTextEditor_Enable_Mapping = new Dictionary<CheckBox, TextEditor>();
+        private IDictionary<Button, TextEditor> ButtonTextEditor_Validation_Mapping = new Dictionary<Button, TextEditor>();
+        private IDictionary<Button, TabItem> ButtonTextEditor_Delete_Mapping = new Dictionary<Button, TabItem>();
+        private IDictionary<DataSetXML, TextEditor> DataSetXML_TextEditor_Mapping = new Dictionary<DataSetXML, TextEditor>();
+        private IDictionary<DataSetPython, TextEditor> DataSetPython_TextEditor_Mapping = new Dictionary<DataSetPython, TextEditor>();
 
         public object StringUtility { get; private set; }
 
@@ -54,41 +55,42 @@ namespace WeThePeople_ModdingTool
 
         private void InitMapping()
         {
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonStart_Editable, TextBox_Python_Start);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_PythonDone_Editable, TextBox_Python_Done);
-            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoStart_Editable_CheckBox, TextBox_TriggerInfo_Start);
-            CheckBoxTextBox_Enable_Mapping.Add(TriggerInfoDone_Editable_CheckBox, TextBox_TriggerInfo_Done);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoStart_Editable, TextBox_EventInfo_Start);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_CIV4GameText, TextBox_EventGameText);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_1_Editable, TextBox_EventInfo_Done_1);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_2_Editable, TextBox_EventInfo_Done_2);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_3_Editable, TextBox_EventInfo_Done_3);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_4_Editable, TextBox_EventInfo_Done_4);
-            CheckBoxTextBox_Enable_Mapping.Add(checkBox_EventInfoDone_5_Editable, TextBox_EventInfo_Done_5);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_PythonStart_Editable, TextBox_Python_Start);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_PythonDone_Editable, TextBox_Python_Done);
 
-            ButtonTextBox_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TextBox_TriggerInfo_Start);
-            ButtonTextBox_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TextBox_TriggerInfo_Done);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoStart_validate, TextBox_EventInfo_Start);
-            ButtonTextBox_Validation_Mapping.Add(button_CIV4GameText_validate, TextBox_EventGameText);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_1_validate, TextBox_EventInfo_Done_1);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_2_validate, TextBox_EventInfo_Done_2);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_3_validate, TextBox_EventInfo_Done_3);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_4_validate, TextBox_EventInfo_Done_4);
-            ButtonTextBox_Validation_Mapping.Add(button_EventInfoDone_5_validate, TextBox_EventInfo_Done_5);
+            CheckBoxTextEditor_Enable_Mapping.Add(TriggerInfoStart_Editable_CheckBox, TextBox_TriggerInfo_Start);
+            CheckBoxTextEditor_Enable_Mapping.Add(TriggerInfoDone_Editable_CheckBox, TextBox_TriggerInfo_Done);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoStart_Editable, TextBox_EventInfo_Start);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_CIV4GameText, TextBox_EventGameText);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_1_Editable, TextBox_EventInfo_Done_1);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_2_Editable, TextBox_EventInfo_Done_2);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_3_Editable, TextBox_EventInfo_Done_3);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_4_Editable, TextBox_EventInfo_Done_4);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_5_Editable, TextBox_EventInfo_Done_5);
 
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_1_delete, TabItem_EventInfo_Done_1);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_2_delete, TabItem_EventInfo_Done_2);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_3_delete, TabItem_EventInfo_Done_3);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_4_delete, TabItem_EventInfo_Done_4);
-            ButtonTextBox_Delete_Mapping.Add(button_EventInfoDone_5_delete, TabItem_EventInfo_Done_5);
+            ButtonTextEditor_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TextBox_TriggerInfo_Start);
+            ButtonTextEditor_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TextBox_TriggerInfo_Done);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoStart_validate, TextBox_EventInfo_Start);
+            ButtonTextEditor_Validation_Mapping.Add(button_CIV4GameText_validate, TextBox_EventGameText);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_1_validate, TextBox_EventInfo_Done_1);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_2_validate, TextBox_EventInfo_Done_2);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_3_validate, TextBox_EventInfo_Done_3);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_4_validate, TextBox_EventInfo_Done_4);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_5_validate, TextBox_EventInfo_Done_5);
 
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start), TextBox_EventInfo_Start);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText), TextBox_EventGameText);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start), TextBox_TriggerInfo_Start);
-            DataSetXML_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done), TextBox_TriggerInfo_Done);
+            ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_1_delete, TabItem_EventInfo_Done_1);
+            ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_2_delete, TabItem_EventInfo_Done_2);
+            ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_3_delete, TabItem_EventInfo_Done_3);
+            ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_4_delete, TabItem_EventInfo_Done_4);
+            ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_5_delete, TabItem_EventInfo_Done_5);
 
-            DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
-            DataSetPython_TextBox_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start), TextBox_EventInfo_Start);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText), TextBox_EventGameText);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start), TextBox_TriggerInfo_Start);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done), TextBox_TriggerInfo_Done);
+
+            DataSetPython_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
+            DataSetPython_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
         }
 
         private void SetItemVisibility()
@@ -115,7 +117,7 @@ namespace WeThePeople_ModdingTool
         private void button_RestTemplates_Click(object sender, RoutedEventArgs e)
         {
             TemplateRepository.Instance.Reset();
-            ClearTextBoxes();
+            ClearTextEditors();
             ComboBox_Yield.IsEnabled = true;
             comboBox_Harbours.IsEnabled = true;
             button_CreateEventInfoStartXML.IsEnabled = false;
@@ -130,9 +132,9 @@ namespace WeThePeople_ModdingTool
             TabItem_EventInfo_Done_5.Visibility = Visibility.Hidden;
         }
 
-        private void ClearTextBoxes()
+        private void ClearTextEditors()
         {
-            foreach(KeyValuePair<CheckBox, TextBox> entry in CheckBoxTextBox_Enable_Mapping)
+            foreach(KeyValuePair<CheckBox, TextEditor> entry in CheckBoxTextEditor_Enable_Mapping)
             {
                 entry.Value.Text = String.Empty;
             }
@@ -155,7 +157,7 @@ namespace WeThePeople_ModdingTool
 
         private void UpdateDataSets()
         {
-            foreach(KeyValuePair<DataSetXML, TextBox> entry in DataSetXML_TextBox_Mapping )
+            foreach(KeyValuePair<DataSetXML, TextEditor> entry in DataSetXML_TextEditor_Mapping )
             {
                 if( true == XMLHelper.IsXMLShapely(entry.Value.Text) )
                 {
@@ -163,77 +165,78 @@ namespace WeThePeople_ModdingTool
                 }
             }
 
-            foreach (KeyValuePair<DataSetPython, TextBox> entry in DataSetPython_TextBox_Mapping)
+            foreach (KeyValuePair<DataSetPython, TextEditor> entry in DataSetPython_TextEditor_Mapping)
             {
                 entry.Key.PythonContentProcessed = entry.Value.Text;
             }
+
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = GetTextBoxValidation(e.Source as CheckBox);
-            if (null == textBox)
+            TextEditor textEditor = GetTextEditorValidation(e.Source as CheckBox);
+            if (null == textEditor)
             {
                 return;
             }
-            textBox.IsReadOnly = false;
+            textEditor.IsReadOnly = false;
         }
 
         private void checkBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = GetTextBoxValidation(e.Source as CheckBox);
-            if (null == textBox)
+            TextEditor textEditor = GetTextEditorValidation(e.Source as CheckBox);
+            if (null == textEditor)
             {
                 return;
             }
-            textBox.IsReadOnly = true;
+            textEditor.IsReadOnly = true;
         }
 
-        private TextBox GetTextBoxValidation( CheckBox checkBox )
+        private TextEditor GetTextEditorValidation( CheckBox checkBox )
         {
             if( null == checkBox )
             {
                 return null;
             }
 
-            TextBox textBox;
-            if( false == CheckBoxTextBox_Enable_Mapping.TryGetValue(checkBox, out textBox) )
+            TextEditor textEditor;
+            if( false == CheckBoxTextEditor_Enable_Mapping.TryGetValue(checkBox, out textEditor) )
             {
                 return null;
             }
 
-            return textBox;
+            return textEditor;
         }
 
         private void button_Validation(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = GetTextBoxValidation(e.Source as Button);
-            if (null == textBox)
+            TextEditor textEditor = GetTextEditorValidation(e.Source as Button);
+            if (null == textEditor)
             {
                 return;
             }
 
-            if( true == WeThePeople_ModdingTool.Validators.StringValidator.IsNullOrWhiteSpace(textBox.Text) )
+            if( true == WeThePeople_ModdingTool.Validators.StringValidator.IsNullOrWhiteSpace(textEditor.Text) )
             {
                 return;
             }
-            XMLHelper.IsXMLShapelyShowMessageBox(textBox.Text);
+            XMLHelper.IsXMLShapelyShowMessageBox(textEditor.Text);
         }
 
-        private TextBox GetTextBoxValidation(Button button)
+        private TextEditor GetTextEditorValidation(Button button)
         {
             if (null == button)
             {
                 return null;
             }
 
-            TextBox textBox;
-            if (false == ButtonTextBox_Validation_Mapping.TryGetValue(button, out textBox))
+            TextEditor textEditor;
+            if (false == ButtonTextEditor_Validation_Mapping.TryGetValue(button, out textEditor))
             {
                 return null;
             }
 
-            return textBox;
+            return textEditor;
         }
 
         private void button_CreateEventInfoStartXML_Click(object sender, RoutedEventArgs e)
@@ -258,7 +261,7 @@ namespace WeThePeople_ModdingTool
 
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
         {
-            tabItemToDelete = GetTextBoxDelete(e.Source as Button);
+            tabItemToDelete = GetTextEditorDelete(e.Source as Button);
             if( null == tabItemToDelete)
             {
                 return;
@@ -272,7 +275,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public TabItem GetTextBoxDelete( Button button )
+        public TabItem GetTextEditorDelete( Button button )
         {
             if (null == button)
             {
@@ -280,7 +283,7 @@ namespace WeThePeople_ModdingTool
             }
 
             TabItem tabItem;
-            if (false == ButtonTextBox_Delete_Mapping.TryGetValue(button, out tabItem))
+            if (false == ButtonTextEditor_Delete_Mapping.TryGetValue(button, out tabItem))
             {
                 return null;
             }

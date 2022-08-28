@@ -38,7 +38,21 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="checkBox_PythonStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
-                    <TextBox x:Name="TextBox_Python_Start" Grid.Column="0" TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True"  VerticalScrollBarVisibility="Auto" />
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_Python_Start"
+                        SyntaxHighlighting="Python"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+						Margin="0,0,0,0"
+						VerticalAlignment="Stretch"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_PythonDone" Header="PythonDone">
@@ -51,7 +65,21 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="checkBox_PythonDone_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
-                    <TextBox x:Name="TextBox_Python_Done" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_Python_Done"
+                        SyntaxHighlighting="Python"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+                        ShowLineNumbers="True"
+						HorizontalAlignment="Stretch"
+						Margin="0,0,0,0"
+						VerticalAlignment="Stretch"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TriggerInfoStart_TabItem" Header="TriggerInfoStart">
@@ -67,7 +95,19 @@
                     <Button x:Name="TriggerInfoStart_Validation_Button" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_TriggerInfo_Start" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_TriggerInfo_Start"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TriggerInfoDone_TabItem" Header="TriggerInfoDone">
@@ -83,7 +123,19 @@
                     <Button x:Name="TriggerInfoDone_Validation_Button" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_TriggerInfo_Done" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_TriggerInfo_Done"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4GameText" Header="CIV4GameText_Colopedia">
@@ -99,7 +151,19 @@
                     <Button x:Name="button_CIV4GameText_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventGameText" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True"  VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventGameText"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="CIV4EventInfos_Start" Header="EventInfos_Start" Visibility="Hidden">
@@ -115,7 +179,19 @@
                     <Button x:Name="button_EventInfoStart_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventInfo_Start" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventInfo_Start"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_EventInfo_Done_1" Header="EventInfos_Done_1" Visibility="Hidden" >
@@ -132,7 +208,19 @@
                     <Button x:Name="button_EventInfoDone_1_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventInfo_Done_1" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventInfo_Done_1"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_EventInfo_Done_2" Header="EventInfos_Done_2" Visibility="Hidden" >
@@ -149,7 +237,19 @@
                     <Button x:Name="button_EventInfoDone_2_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventInfo_Done_2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventInfo_Done_2"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_EventInfo_Done_3" Header="EventInfos_Done_3" Visibility="Hidden" >
@@ -166,7 +266,19 @@
                     <Button x:Name="button_EventInfoDone_3_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventInfo_Done_3" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventInfo_Done_3"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_EventInfo_Done_4" Header="EventInfos_Done_4" Visibility="Hidden" >
@@ -183,7 +295,19 @@
                     <Button x:Name="button_EventInfoDone_4_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventInfo_Done_4" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventInfo_Done_4"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_EventInfo_Done_5" Header="EventInfos_Done_5" Visibility="Hidden" >
@@ -200,7 +324,19 @@
                     <Button x:Name="button_EventInfoDone_5_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Click="button_Validation">
                         Validate
                     </Button>
-                    <TextBox x:Name="TextBox_EventInfo_Done_5" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        x:Name="TextBox_EventInfo_Done_5"
+                        SyntaxHighlighting="XML"
+                        FontSize="10pt"
+                        Grid.Column="0"
+                        Grid.Row="1"
+						Grid.ColumnSpan="2"
+                        IsReadOnly="True"  
+                        VerticalScrollBarVisibility="Auto"
+						HorizontalAlignment="Stretch"
+                        ShowLineNumbers="True"
+                        />
                 </Grid>
             </TabItem>
         </TabControl>

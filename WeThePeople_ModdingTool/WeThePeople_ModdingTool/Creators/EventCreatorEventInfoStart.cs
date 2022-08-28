@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.AvalonEdit;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -20,8 +21,8 @@ namespace WeThePeople_ModdingTool.Creators
             set { eventProcessor = value; }
         }
 
-        private TextBox textBoxEventInfoStart;
-        public TextBox TextBoxEventInfoStart
+        private TextEditor textBoxEventInfoStart;
+        public TextEditor TextBoxEventInfoStart
         {
             set { textBoxEventInfoStart = value; }
         }

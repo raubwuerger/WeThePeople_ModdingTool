@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.AvalonEdit;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -19,14 +20,14 @@ namespace WeThePeople_ModdingTool.Creators
         {
             set { eventProcessor = value; }
         }
-        private List<KeyValuePair<TextBox, TabItem>> eventInfoDone_TextBox_List = new List<KeyValuePair<TextBox, TabItem>>();
-        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<System.Windows.Controls.TextBox, System.Windows.Controls.TabItem>> EventInfoDone_TextBox_List
+        private List<KeyValuePair<TextEditor, TabItem>> eventInfoDone_TextBox_List = new List<KeyValuePair<TextEditor, TabItem>>();
+        public List<KeyValuePair<TextEditor, TabItem>> EventInfoDone_TextBox_List
         {
             set { eventInfoDone_TextBox_List = value; }
         }
         
-        private TextBox textBox_TriggerInfo_Done;
-        public TextBox TextBox_TriggerInfo_Done
+        private TextEditor textBox_TriggerInfo_Done;
+        public TextEditor TextBox_TriggerInfo_Done
         {
             set { textBox_TriggerInfo_Done = value; }
         }
@@ -54,7 +55,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            KeyValuePair<TextBox, TabItem> keyValuePair = GetCorrespondingTextBox();
+            KeyValuePair<TextEditor, TabItem> keyValuePair = GetCorrespondingTextBox();
 
             DataSetXML dataSetEventInfos_Done = CreateDataSetXML_EventInfosDone();
             DataSetEventInfoDone dataSetEventInfoDone = eventInfoDoneWindow.DataSetEventInfoDone;
@@ -117,7 +118,7 @@ namespace WeThePeople_ModdingTool.Creators
         {
             return TemplateRepository.Instance.XmlDocumentEventDone.Count.ToString();
         }
-        private KeyValuePair<TextBox, TabItem> GetCorrespondingTextBox()
+        private KeyValuePair<TextEditor, TabItem> GetCorrespondingTextBox()
         {
             return eventInfoDone_TextBox_List[TemplateRepository.Instance.XmlDocumentEventDone.Count];
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.AvalonEdit;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,8 +19,8 @@ namespace WeThePeople_ModdingTool.Creators
             set { tabItemToHide = value; }
         }
 
-        private TextBox textBox_TriggerInfo_Done;
-        public TextBox TextBox_TriggerInfo_Done
+        private TextEditor textBox_TriggerInfo_Done;
+        public TextEditor TextBox_TriggerInfo_Done
         {
             set { textBox_TriggerInfo_Done = value; }
         }

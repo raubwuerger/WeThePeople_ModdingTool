@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.AvalonEdit;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
@@ -66,15 +67,15 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorRemoveEventTriggerInfoDone;
         }
 
-        private List<KeyValuePair<TextBox, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
+        private List<KeyValuePair<TextEditor, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
         {
-            List<KeyValuePair<TextBox, TabItem>> list = new List<KeyValuePair<TextBox, TabItem>>();
+            List<KeyValuePair<TextEditor, TabItem>> list = new List<KeyValuePair<TextEditor, TabItem>>();
 
-            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_1, mainWindow.TabItem_EventInfo_Done_1));
-            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_2, mainWindow.TabItem_EventInfo_Done_2));
-            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_3, mainWindow.TabItem_EventInfo_Done_3));
-            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_4, mainWindow.TabItem_EventInfo_Done_4));
-            list.Add(new KeyValuePair<TextBox, TabItem>(mainWindow.TextBox_EventInfo_Done_5, mainWindow.TabItem_EventInfo_Done_5));
+            list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_1, mainWindow.TabItem_EventInfo_Done_1));
+            list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_2, mainWindow.TabItem_EventInfo_Done_2));
+            list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_3, mainWindow.TabItem_EventInfo_Done_3));
+            list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_4, mainWindow.TabItem_EventInfo_Done_4));
+            list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_5, mainWindow.TabItem_EventInfo_Done_5));
             return list;
         }
 
