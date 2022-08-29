@@ -295,11 +295,18 @@ namespace WeThePeople_ModdingTool
             return tabItem;
         }
 
+        private void DeactivateEventCreation()
+        {
+
+        }
+
         private void button_LoadXML_Click(object sender, RoutedEventArgs e)
         {
+            DeactivateEventCreation();
             tabControl_templates.SelectedItem = TabItem_LoadXMLFile;
             TabItem_LoadXMLFile.Visibility = Visibility.Visible;
             System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+            dialog.Filter = "XML Files|*.xml";
             if (System.Windows.Forms.DialogResult.OK != dialog.ShowDialog())
             {
                 return;

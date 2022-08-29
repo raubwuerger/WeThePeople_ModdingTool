@@ -340,7 +340,7 @@
                         />
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabItem_LoadXMLFile" Header="Load XML File">
+            <TabItem x:Name="TabItem_LoadXMLFile" Header="Load XML File" Visibility="Hidden">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
