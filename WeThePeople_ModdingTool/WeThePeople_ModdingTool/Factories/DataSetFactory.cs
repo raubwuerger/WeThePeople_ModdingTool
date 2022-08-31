@@ -122,6 +122,7 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.DONE_INDEX, "1");
             return dataSet;
         }
 
