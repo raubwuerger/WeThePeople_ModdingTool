@@ -24,6 +24,11 @@ namespace WeThePeople_ModdingTool.Creators
         public static string RootNode_CIV4EVENTINFOS = "Civ4EventInfos";
         public static string Subnode_EventInfos = "EventInfos";
 
+        private static string CvRandomEventInterface = "CvRandomEventInterface.py";
+        private static string CIV4EventInfos = "CIV4EventInfos.xml";
+        private static string CIV4EventTriggerInfos = "CIV4EventTriggerInfos.xml";
+        private static string CIV4GameText_Colonization_Events_utf8 = "CIV4GameText_Colonization_Events_utf8.xml";
+
         public override bool Create()
         {
             if( false == GetSavePath() )
