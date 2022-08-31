@@ -195,31 +195,28 @@ namespace WeThePeople_ModdingTool.Factories
         private string CreateNameEventInfoDone()
         {
             IDictionary<string, DataSetXML> registered = TemplateRepository.Instance.XmlDocumentEventDone;
-            if( registered.Count == 0 )
+            List<string> eventInfoDons = CreateEventInfoDoneList();
+
+            foreach(string eventInfo in eventInfoDons)
             {
-                return EventInfos_Done_1;
-            }
-            else if ( registered.Count == 1 )
-            {
-                return EventInfos_Done_2;
-            }
-            else if (registered.Count == 2)
-            {
-                return EventInfos_Done_3;
-            }
-            else if (registered.Count == 3)
-            {
-                return EventInfos_Done_4;
-            }
-            else if (registered.Count == 4)
-            {
-                return EventInfos_Done_5;
-            }
-            else if (registered.Count == 5)
-            {
-                return EventInfos_Done_6;
+                if( false == registered.ContainsKey(eventInfo) )
+                {
+                    return eventInfo;
+                }
             }
             return String.Empty;
+        }
+
+        private List<string> CreateEventInfoDoneList()
+        {
+            List<string> list = new List<string>();
+            list.Add(EventInfos_Done_1);
+            list.Add(EventInfos_Done_2);
+            list.Add(EventInfos_Done_3);
+            list.Add(EventInfos_Done_4);
+            list.Add(EventInfos_Done_5);
+            list.Add(EventInfos_Done_6);
+            return list;
         }
 
         private bool FindStringInList( string toFind, IDictionary<string, DataSetXML> source )

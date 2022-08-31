@@ -236,16 +236,13 @@ namespace WeThePeople_ModdingTool.Creators
             {
                 return true;
             }
+            if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("File already exists!", "The file already exists! " + fileToSave + CommonVariables.CR + CommonVariables.CR +CommonVariables.MESSAGE_BOX_OVERWRITE ))
+            {
+                return false;
+            }
             else
             {
-                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("File already exists!", "The file already exists! " + fileToSave + CommonVariables.CR + CommonVariables.CR +CommonVariables.MESSAGE_BOX_OVERWRITE ))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
         }
     }

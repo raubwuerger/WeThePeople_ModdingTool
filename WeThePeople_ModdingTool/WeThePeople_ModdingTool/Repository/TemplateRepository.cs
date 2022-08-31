@@ -77,7 +77,11 @@ namespace WeThePeople_ModdingTool
                     return null;
                 }
 
-                xmlDocumentEventDone.Remove(unregister);
+                if( false == xmlDocumentEventDone.Remove(unregister) )
+                {
+                    return null;
+                }
+
                 return dataSetXML;
             }
             catch (ArgumentNullException)

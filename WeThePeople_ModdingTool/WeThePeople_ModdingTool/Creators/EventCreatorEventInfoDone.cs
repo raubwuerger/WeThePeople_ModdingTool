@@ -173,5 +173,10 @@ namespace WeThePeople_ModdingTool.Creators
         {
             return XMLHelper.FindNodeByName(xmlNodeList, DataSetFactory.NODE_TYPE);
         }
+
+        private bool CreateGameTextNode( string done_index )
+        {
+            return false;
+        }
     }
 }
