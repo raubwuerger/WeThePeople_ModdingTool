@@ -21,6 +21,7 @@ namespace WeThePeople_ModdingTool.Factories
         public static string EventInfos_Done_3 = "EventInfo_Done_3";
         public static string EventInfos_Done_4 = "EventInfo_Done_4";
         public static string EventInfos_Done_5 = "EventInfo_Done_5";
+        public static string EventInfos_Done_6 = "EventInfo_Done_6";
 
         public static string NODE_EVENTS = "Events";
         public static string NODE_EVENT = "Event";
@@ -213,6 +214,10 @@ namespace WeThePeople_ModdingTool.Factories
             else if (registered.Count == 4)
             {
                 return EventInfos_Done_5;
+            }
+            else if (registered.Count == 5)
+            {
+                return EventInfos_Done_6;
             }
             return String.Empty;
         }

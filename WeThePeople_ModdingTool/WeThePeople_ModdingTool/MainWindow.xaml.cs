@@ -67,6 +67,7 @@ namespace WeThePeople_ModdingTool
             CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_3_Editable, TextBox_EventInfo_Done_3);
             CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_4_Editable, TextBox_EventInfo_Done_4);
             CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_5_Editable, TextBox_EventInfo_Done_5);
+            CheckBoxTextEditor_Enable_Mapping.Add(checkBox_EventInfoDone_6_Editable, TextBox_EventInfo_Done_6);
 
             ButtonTextEditor_Validation_Mapping.Add(TriggerInfoStart_Validation_Button, TextBox_TriggerInfo_Start);
             ButtonTextEditor_Validation_Mapping.Add(TriggerInfoDone_Validation_Button, TextBox_TriggerInfo_Done);
@@ -77,12 +78,14 @@ namespace WeThePeople_ModdingTool
             ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_3_validate, TextBox_EventInfo_Done_3);
             ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_4_validate, TextBox_EventInfo_Done_4);
             ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_5_validate, TextBox_EventInfo_Done_5);
+            ButtonTextEditor_Validation_Mapping.Add(button_EventInfoDone_6_validate, TextBox_EventInfo_Done_6);
 
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_1_delete, TabItem_EventInfo_Done_1);
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_2_delete, TabItem_EventInfo_Done_2);
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_3_delete, TabItem_EventInfo_Done_3);
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_4_delete, TabItem_EventInfo_Done_4);
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_5_delete, TabItem_EventInfo_Done_5);
+            ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_6_delete, TabItem_EventInfo_Done_6);
 
             DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start), TextBox_EventInfo_Start);
             DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText), TextBox_EventGameText);
@@ -130,6 +133,7 @@ namespace WeThePeople_ModdingTool
             TabItem_EventInfo_Done_3.Visibility = Visibility.Hidden;
             TabItem_EventInfo_Done_4.Visibility = Visibility.Hidden;
             TabItem_EventInfo_Done_5.Visibility = Visibility.Hidden;
+            TabItem_EventInfo_Done_6.Visibility = Visibility.Hidden;
         }
 
         private void ClearTextEditors()
@@ -261,6 +265,12 @@ namespace WeThePeople_ModdingTool
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoDone failed!\r\nSee log file.");
             }
+            CheckEventInfoDone();
+        }
+
+        private void CheckEventInfoDone()
+        {
+            button_AddEventInfoDone.IsEnabled = TemplateRepository.Instance.XmlDocumentEventDone.Count < 6;
         }
 
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
@@ -277,6 +287,7 @@ namespace WeThePeople_ModdingTool
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Removing EventInfoDone_X from EventInfoTriggerDone failed!\r\nSee log file.");
             }
+            CheckEventInfoDone();
         }
 
         public TabItem GetTextEditorDelete( Button button )

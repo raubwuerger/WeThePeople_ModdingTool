@@ -76,6 +76,7 @@ namespace WeThePeople_ModdingTool.Factories
             list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_3, mainWindow.TabItem_EventInfo_Done_3));
             list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_4, mainWindow.TabItem_EventInfo_Done_4));
             list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_5, mainWindow.TabItem_EventInfo_Done_5));
+            list.Add(new KeyValuePair<TextEditor, TabItem>(mainWindow.TextBox_EventInfo_Done_6, mainWindow.TabItem_EventInfo_Done_6));
             return list;
         }
 
