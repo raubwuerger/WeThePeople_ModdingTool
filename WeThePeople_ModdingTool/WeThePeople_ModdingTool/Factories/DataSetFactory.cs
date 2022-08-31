@@ -122,7 +122,24 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
-            dataSet.TemplateReplaceItems.Add(ReplaceItems.DONE_INDEX, "1");
+            return dataSet;
+        }
+
+        public DataSetXML CreateEventGameTextDone()
+        {
+            DataSetXML dataSet = CreateBaseXML(EventGameText);
+            dataSet.TemplateNameWithoutExtension = "CIV4GameText_Colonization_Events_utf8";
+            dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
+            dataSet.TemplateFileNameRelativ = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_Done.xml";
+            dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
+            dataSet.TemplateFileNameProcessed = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_Done_";
+            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
+            dataSet.BaseAssetPath = @"Assets\XML\Text";
+            dataSet.XmlRootNode = RootNode_Civ4GameText;
+            dataSet.XmlConcreteNode = ConcreteNode_Civ4GameText;
+            dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.DONE_INDEX, "");
             return dataSet;
         }
 
