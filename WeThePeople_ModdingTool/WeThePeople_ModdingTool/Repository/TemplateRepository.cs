@@ -134,6 +134,28 @@ namespace WeThePeople_ModdingTool
             }
         }
 
+        public DataSetXML UnRegisterTemplate( string name )
+        {
+            try
+            {
+                DataSetXML dataSetXML = FindByNameXML(name);
+                if( dataSetXML == null )
+                {
+                    return null;
+                }
+                if (false == xmlDocuments.Remove(dataSetXML.TemplateName))
+                {
+                    return null;
+                }
+                return dataSetXML;
+            }
+            catch (ArgumentNullException)
+            {
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
+                return null;
+            }
+        }
+
         public bool RegisterTemplate( DataSetPython dataSetPython )
         {
             try

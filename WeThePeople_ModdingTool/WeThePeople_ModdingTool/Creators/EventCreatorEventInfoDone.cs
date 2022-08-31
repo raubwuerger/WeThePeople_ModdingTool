@@ -32,6 +32,12 @@ namespace WeThePeople_ModdingTool.Creators
             set { textBox_TriggerInfo_Done = value; }
         }
 
+        private TextEditor textBox_EventGameText;
+        public TextEditor TextBox_EventGameText
+        {
+            set { textBox_EventGameText = value; }
+        }
+
         private TabControl tabControl_templates;
         public TabControl TabControl_templates
         {
@@ -154,7 +160,13 @@ namespace WeThePeople_ModdingTool.Creators
             nodeEvent.AppendChild(importedNode);
             textBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done));
 
-            return true;
+            XmlNodeList description = dataSetXML_EventInfoDone.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_DESCRIPTION);
+            if(description.Count != 1)
+            {
+                return false;
+            }
+
+            return CreateGameTextNode(description[0].InnerText);
         }
 
         private string GetEventInfoDoneTypeName(DataSetXML dataSetXML)
@@ -174,9 +186,37 @@ namespace WeThePeople_ModdingTool.Creators
             return XMLHelper.FindNodeByName(xmlNodeList, DataSetFactory.NODE_TYPE);
         }
 
-        private bool CreateGameTextNode( string done_index )
+        private bool CreateGameTextNode( string description )
         {
-            return false;
+            DataSetFactory dataSetFactory = new DataSetFactory();
+            DataSetXML dataSetXML = dataSetFactory.CreateEventGameTextDone(description);
+            if( false == eventProcessor.ProcessAndSet(dataSetXML) )
+            {
+                return false;
+            }
+
+            XmlNodeList nodeTags = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TAG);
+            if (nodeTags.Count != 1)
+            {
+                return false;
+            }
+            nodeTags[0].InnerText = description;
+
+            XmlNodeList xmlTexts = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TEXT);
+            if( xmlTexts.Count != 1 )
+            {
+                return false;
+            }
+
+            TemplateRepository.Instance.RegisterTemplate(dataSetXML);
+
+            DataSetXML dataSetEventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            XmlNode importedNode = dataSetEventGameText.XmlDocumentProcessed.ImportNode(xmlTexts[0], true);
+
+            dataSetEventGameText.XmlDocumentProcessed.DocumentElement.AppendChild(importedNode);
+            textBox_EventGameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetEventGameText));
+
+            return true;
         }
     }
 }

@@ -38,7 +38,18 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            return RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.NODE_TYPE));
+            if( false == RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.NODE_TYPE)) )
+            {
+                return false;
+            }
+
+            XmlNodeList description = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_DESCRIPTION);
+            if (description.Count != 1)
+            {
+                return false;
+            }
+
+            return RemoveGameTextDone(description[0].InnerText);
         }
 
         private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete)
@@ -84,5 +95,14 @@ namespace WeThePeople_ModdingTool.Creators
             return true;
         }
 
+        private bool RemoveGameTextDone( string name )
+        {
+            if( null == TemplateRepository.Instance.UnRegisterTemplate(name) )
+            {
+                return false;
+            }
+            //TODO: Das gleiche wie bei RemoveEventTriggerInfoDone ...
+            return false;
+        }
     }
 }

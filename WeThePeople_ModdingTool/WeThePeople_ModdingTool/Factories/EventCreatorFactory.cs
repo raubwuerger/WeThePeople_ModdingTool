@@ -30,6 +30,7 @@ namespace WeThePeople_ModdingTool.Factories
             eventCreatorEventInfoDone.EventInfoDone_TextBox_List = CreateEventInfoDoneTextBoxTabItemList(mainWindow);
             eventCreatorEventInfoDone.TabControl_templates = mainWindow.tabControl_templates;
             eventCreatorEventInfoDone.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
+            eventCreatorEventInfoDone.TextBox_EventGameText = mainWindow.TextBox_EventGameText;
 
             return eventCreatorEventInfoDone;
         }
