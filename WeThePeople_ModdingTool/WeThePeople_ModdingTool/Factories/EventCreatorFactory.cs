@@ -64,7 +64,9 @@ namespace WeThePeople_ModdingTool.Factories
         {
             EventCreatorRemoveEventTriggerInfoDone eventCreatorRemoveEventTriggerInfoDone = new EventCreatorRemoveEventTriggerInfoDone();
             eventCreatorRemoveEventTriggerInfoDone.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
+            eventCreatorRemoveEventTriggerInfoDone.TextBox_EventGameText = mainWindow.TextBox_EventGameText;
             eventCreatorRemoveEventTriggerInfoDone.TabItem = mainWindow.tabItemToDelete;
+
             return eventCreatorRemoveEventTriggerInfoDone;
         }
 

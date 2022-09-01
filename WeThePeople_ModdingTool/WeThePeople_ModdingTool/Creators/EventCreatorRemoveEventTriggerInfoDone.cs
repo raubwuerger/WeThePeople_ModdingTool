@@ -24,6 +24,13 @@ namespace WeThePeople_ModdingTool.Creators
         {
             set { textBox_TriggerInfo_Done = value; }
         }
+
+        private TextEditor textBox_EventGameText;
+        public TextEditor TextBox_EventGameText
+        {
+            set { textBox_EventGameText = value; }
+        }
+
         public override bool Create()
         {
             if( false == Validate() )
@@ -101,8 +108,26 @@ namespace WeThePeople_ModdingTool.Creators
             {
                 return false;
             }
-            //TODO: Das gleiche wie bei RemoveEventTriggerInfoDone ...
-            return false;
+
+            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            XmlNodeList nodeTags = eventGameText.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TAG);
+            if (nodeTags.Count <= 0)
+            {
+                return false;
+            }
+
+            for (int i = nodeTags.Count - 1; i >= 0; i--)
+            {
+                if (nodeTags[i].InnerText.Equals(name))
+                {
+                    XmlNode parentNode = nodeTags[i].ParentNode;
+                    parentNode.ParentNode.RemoveChild(parentNode);
+                    textBox_EventGameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventGameText));
+                    return true;
+                }
+            }
+
+            return true;
         }
     }
 }
