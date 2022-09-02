@@ -38,7 +38,7 @@ namespace WeThePeople_ModdingTool.Windows
         {
             if( false == IsAtLeastOneInputValid() )
             {
-                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "No changes made!\n\rDo you want to proceed?"))
+                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "No changes made!\r\nDo you want to proceed?"))
                 {
                     return;
                 }

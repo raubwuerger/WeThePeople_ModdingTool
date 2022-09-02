@@ -78,6 +78,7 @@ namespace WeThePeople_ModdingTool.Creators
             }
 
             string concatenatedFiles = dataSetPythonStart.PythonContentProcessed;
+            concatenatedFiles += CommonVariables.CR;
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
             string savePathExtended = PathHelper.PathCombine(SavePath,Path.GetDirectoryName(dataSetPythonDone.TemplateFileNameRelativ));
