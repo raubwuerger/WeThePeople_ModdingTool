@@ -103,7 +103,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return true;
         }
 
-        public override bool Insert(XmlNodeList content)
+        public override bool Insert(XmlDocument content)
         {
             return false;
         }

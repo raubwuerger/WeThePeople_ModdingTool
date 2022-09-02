@@ -145,12 +145,21 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
-                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
-                return true;
+                return Append(completeFileName, eventGameText.XmlDocumentProcessed);
             }
             return false;
         }
 
+        private bool Append(string fileName, XmlDocument content)
+        {
+            ContentInserterXML contentInserterXML = new ContentInserterXML();
+            contentInserterXML.FileName = fileName;
+            contentInserterXML.UniqueNodeName = "Tag";
+            contentInserterXML.NodeNameToInsert = "Text";
+            contentInserterXML.ParentNodeToAppend = "Civ4GameText";
+            return contentInserterXML.Insert(content);
+        }
+        
         private bool CreateEventTriggerInfo()
         {
             List<DataSetXML> dataSetXMLs = new List<DataSetXML>();

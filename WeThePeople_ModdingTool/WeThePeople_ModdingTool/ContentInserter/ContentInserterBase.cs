@@ -16,7 +16,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
 
         public abstract bool Insert(string content);
 
-        public abstract bool Insert(XmlNodeList content);
+        public abstract bool Insert(XmlDocument content);
 
     }
 }
