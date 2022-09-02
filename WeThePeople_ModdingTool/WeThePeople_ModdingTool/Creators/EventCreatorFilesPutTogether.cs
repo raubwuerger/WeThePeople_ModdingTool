@@ -24,11 +24,6 @@ namespace WeThePeople_ModdingTool.Creators
         public static string RootNode_CIV4EVENTINFOS = "Civ4EventInfos";
         public static string Subnode_EventInfos = "EventInfos";
 
-        private static string CvRandomEventInterface = "CvRandomEventInterface.py";
-        private static string CIV4EventInfos = "CIV4EventInfos.xml";
-        private static string CIV4EventTriggerInfos = "CIV4EventTriggerInfos.xml";
-        private static string CIV4GameText_Colonization_Events_utf8 = "CIV4GameText_Colonization_Events_utf8.xml";
-
         public override bool Create()
         {
             if( false == GetSavePath() )
@@ -88,7 +83,7 @@ namespace WeThePeople_ModdingTool.Creators
             string savePathExtended = PathHelper.CombinePaths(SavePath,dataSetPythonDone.BaseAssetPath);
             string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetPythonStart));
 
-            if( false == Overwrite(completeFileName) )
+            if( false == CheckResultFile(completeFileName) )
             {
                 return true;
             }
@@ -122,7 +117,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventGameText.BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventGameText));
 
-            if (false == Overwrite(completeFileName))
+            if (false == CheckResultFile(completeFileName))
             {
                 return true;
             }
@@ -146,7 +141,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, dataSetXMLs[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetXMLs[0]));
 
-            if (false == Overwrite(completeFileName))
+            if (false == CheckResultFile(completeFileName))
             {
                 return true;
             }
@@ -173,7 +168,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventEventInfos[0]));
 
-            if (false == Overwrite(completeFileName))
+            if (false == CheckResultFile(completeFileName))
             {
                 return true;
             }
@@ -230,7 +225,7 @@ namespace WeThePeople_ModdingTool.Creators
             return baseXML;
         }
 
-        private bool Overwrite( string fileToSave )
+        private bool CheckResultFile( string fileToSave )
         {
             if (false == File.Exists(fileToSave))
             {

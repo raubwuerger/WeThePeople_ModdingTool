@@ -13,7 +13,6 @@ namespace WeThePeople_ModdingTool.Factories
         public static string EventTriggerInfos_Start = "EventTriggerInfos_Start";
         public static string EventTriggerInfos_Done = "EventTriggerInfos_Done";
         public static string EventGameText = "EventGameText";
-//        public static string EventGameText_Done = "EventGameText_Done";
         public static string RandomEvent_Start = "RandomEvent_Start";
         public static string RandomEvent_Done = "RandomEvent_Done";
         public static string EventInfos_Start = "EventInfo_Start";
@@ -45,10 +44,16 @@ namespace WeThePeople_ModdingTool.Factories
         private static string RootNode_Civ4GameText = "/Civ4GameText";
         public static string ConcreteNode_Civ4GameText = "Civ4GameText";
 
+        private static string CvRandomEventInterface = "CvRandomEventInterface.py";
+        private static string CIV4EventInfos = "CIV4EventInfos.xml";
+        private static string CIV4EventTriggerInfos = "CIV4EventTriggerInfos.xml";
+        private static string CIV4GameText_Colonization_Events_utf8 = "CIV4GameText_Colonization_Events_utf8.xml";
+
 
         public DataSetPython CreateRandomEventStart()
         {
             DataSetPython dataSet = CreateBasePython(RandomEvent_Start);
+            dataSet.OriginalFileName = CvRandomEventInterface;
             dataSet.TemplateNameWithoutExtension = "CvRandomEventInterface";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"Python\EntryPoints\CvRandomEventInterface_Start_Template.py";
@@ -65,6 +70,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetPython CreateRandomEventDone()
         {
             DataSetPython dataSet = CreateBasePython(RandomEvent_Done);
+            dataSet.OriginalFileName = CvRandomEventInterface;
             dataSet.TemplateNameWithoutExtension = "CvRandomEventInterface";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"Python\EntryPoints\CvRandomEventInterface_Done_Template.py";
@@ -81,6 +87,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventTriggerInfos_Start()
         {
             DataSetXML dataSet = CreateBaseXML(EventTriggerInfos_Start);
+            dataSet.OriginalFileName = CIV4EventTriggerInfos;
             dataSet.TemplateNameWithoutExtension = "CIV4EventTriggerInfos";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
@@ -100,6 +107,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventTriggerInfos_Done()
         {
             DataSetXML dataSet = CreateBaseXML(EventTriggerInfos_Done);
+            dataSet.OriginalFileName = CIV4EventTriggerInfos;
             dataSet.TemplateNameWithoutExtension = "CIV4EventTriggerInfos";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"XML\Events\CIV4EventTriggerInfos_Done_Template.xml";
@@ -120,6 +128,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventGameText()
         {
             DataSetXML dataSet = CreateBaseXML(EventGameText);
+            dataSet.OriginalFileName = CIV4GameText_Colonization_Events_utf8;
             dataSet.TemplateNameWithoutExtension = "CIV4GameText_Colonization_Events_utf8";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml";
@@ -139,6 +148,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventGameTextDone( string name )
         {
             DataSetXML dataSet = CreateBaseXML(name);
+            dataSet.OriginalFileName = CIV4EventInfos;
             dataSet.TemplateNameWithoutExtension = "CIV4GameText_Colonization_Events_utf8";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_Done.xml";
@@ -155,6 +165,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventInfos_Start()
         {
             DataSetXML dataSet = CreateBaseXML(EventInfos_Start);
+            dataSet.OriginalFileName = CIV4EventInfos;
             dataSet.TemplateNameWithoutExtension = "CIV4EventInfos";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Start_Template.xml";
@@ -176,6 +187,7 @@ namespace WeThePeople_ModdingTool.Factories
         public DataSetXML CreateEventInfo_Done()
         {
             DataSetXML dataSet = CreateBaseXML(CreateNameEventInfoDone());
+            dataSet.OriginalFileName = CIV4EventInfos;
             dataSet.TemplateNameWithoutExtension = "CIV4EventInfos";
             dataSet.TemplateNameCIV4 = dataSet.TemplateNameWithoutExtension + dataSet.TemplateFileExtension;
             dataSet.TemplateFileNameRelativ = @"XML\Events\CIV4EventInfos_Done_Template.xml";
