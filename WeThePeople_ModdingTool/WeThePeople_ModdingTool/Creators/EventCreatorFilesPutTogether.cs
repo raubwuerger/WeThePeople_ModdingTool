@@ -80,8 +80,8 @@ namespace WeThePeople_ModdingTool.Creators
             string concatenatedFiles = dataSetPythonStart.PythonContentProcessed;
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
-            string savePathExtended = PathHelper.CombinePaths(SavePath,dataSetPythonDone.BaseAssetPath);
-            string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetPythonStart));
+            string savePathExtended = PathHelper.PathCombine(SavePath,dataSetPythonDone.BaseAssetPath);
+            string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, dataSetPythonStart.OriginalFileName);
 
             if( false == CheckResultFile(completeFileName) )
             {
@@ -115,7 +115,7 @@ namespace WeThePeople_ModdingTool.Creators
         {
             DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventGameText.BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventGameText));
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, eventGameText.BaseAssetPath), eventGameText.OriginalFileName);
 
             if (false == CheckResultFile(completeFileName))
             {
@@ -139,7 +139,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, dataSetXMLs[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, dataSetXMLs[0]));
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, dataSetXMLs[0].BaseAssetPath), dataSetXMLs[0].OriginalFileName );
 
             if (false == CheckResultFile(completeFileName))
             {
@@ -166,7 +166,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePaths(SavePath, eventEventInfos[0].BaseAssetPath), EventCreatorHelper.CreateConcreteFileNamePutTogether(this, eventEventInfos[0]));
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, eventEventInfos[0].BaseAssetPath), eventEventInfos[0].OriginalFileName);
 
             if (false == CheckResultFile(completeFileName))
             {

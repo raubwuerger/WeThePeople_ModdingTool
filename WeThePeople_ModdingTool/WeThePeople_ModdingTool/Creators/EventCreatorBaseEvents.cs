@@ -79,22 +79,22 @@ namespace WeThePeople_ModdingTool.Creators
         }
         public override bool Create()
         {
-            textBox_Python_Start.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start));
-            textBox_Python_Done.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done));
+            textBox_Python_Start.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Start));
+            textBox_Python_Done.Text = eventProcessor.Process(TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Done));
 
-            DataSetXML dataSetXMLTriggerInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start);
+            DataSetXML dataSetXMLTriggerInfos_Start = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Start);
             if (true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Start))
             {
                 textBox_TriggerInfo_Start.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Start));
             }
 
-            DataSetXML dataSetXMLTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
+            DataSetXML dataSetXMLTriggerInfos_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Done);
             if (true == eventProcessor.ProcessAndSet(dataSetXMLTriggerInfos_Done))
             {
                 textBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetXMLTriggerInfos_Done));
             }
 
-            DataSetXML dataSetGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            DataSetXML dataSetGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4GameText_Colonization_Events_utf8_Start);
             if (true == eventProcessor.ProcessAndSet(dataSetGameText))
             {
                 textBox_EventGameText.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(dataSetGameText));

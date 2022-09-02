@@ -61,7 +61,7 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete)
         {
-            DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done);
+            DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Done);
             XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_EVENTS);
             if (nodeEvents.Count != 1)
             {
@@ -109,7 +109,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4GameText_Colonization_Events_utf8_Start);
             XmlNodeList nodeTags = eventGameText.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TAG);
             if (nodeTags.Count <= 0)
             {

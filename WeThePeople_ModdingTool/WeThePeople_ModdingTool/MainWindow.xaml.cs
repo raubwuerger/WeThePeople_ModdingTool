@@ -87,13 +87,13 @@ namespace WeThePeople_ModdingTool
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_5_delete, TabItem_EventInfo_Done_5);
             ButtonTextEditor_Delete_Mapping.Add(button_EventInfoDone_6_delete, TabItem_EventInfo_Done_6);
 
-            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start), TextBox_EventInfo_Start);
-            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText), TextBox_EventGameText);
-            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start), TextBox_TriggerInfo_Start);
-            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done), TextBox_TriggerInfo_Done);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventInfos_Start), TextBox_EventInfo_Start);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4GameText_Colonization_Events_utf8_Start), TextBox_EventGameText);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Start), TextBox_TriggerInfo_Start);
+            DataSetXML_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Done), TextBox_TriggerInfo_Done);
 
-            DataSetPython_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start), TextBox_Python_Start);
-            DataSetPython_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done), TextBox_Python_Done);
+            DataSetPython_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Start), TextBox_Python_Start);
+            DataSetPython_TextEditor_Mapping.Add(TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Done), TextBox_Python_Done);
         }
 
         private void SetItemVisibility()
