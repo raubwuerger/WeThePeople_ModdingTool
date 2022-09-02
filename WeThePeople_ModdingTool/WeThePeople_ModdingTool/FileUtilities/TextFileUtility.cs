@@ -84,5 +84,19 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
         }
 
+        public static List<string> LoadLineByLine( string fileName )
+        {
+            List<string> lines = new List<string>();
+            using (StreamReader sr = File.OpenText(fileName))
+            {
+                string s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    lines.Add(s);
+                }
+            }
+            return lines;
+        }
+
     }
 }

@@ -11,6 +11,7 @@ using System.Xml;
 using System.Windows.Forms;
 using System.Windows;
 using System.IO;
+using WeThePeople_ModdingTool.ContentInserter;
 
 namespace WeThePeople_ModdingTool.Creators
 {
@@ -95,10 +96,16 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
-                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
-                return true;
+                return Append(completeFileName, concatenatedFiles);
             }
             return false;
+        }
+
+        private bool Append( string fileName, string content )
+        {
+            ContentInserterPython contentInserterPython = new ContentInserterPython();
+            contentInserterPython.FileName = fileName;
+            return contentInserterPython.Insert(content);
         }
 
         private bool ConcatenateXMLFiles()
