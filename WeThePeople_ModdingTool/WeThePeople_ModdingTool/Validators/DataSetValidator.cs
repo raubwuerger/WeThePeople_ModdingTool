@@ -41,12 +41,6 @@ namespace WeThePeople_ModdingTool.Validators
                 validationOK = false;
             }
 
-            if (StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateFileNameAndPathProcessed))
-            {
-                Log.Debug("DataSetBase.TemplateFileNameConcrete is invalid!");
-                validationOK = false;
-            }
-
             return validationOK;
         }
 

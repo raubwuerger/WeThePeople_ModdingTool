@@ -63,8 +63,8 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool ConcatenatePythonFiles()
         {
-            DataSetPython dataSetPythonStart = TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Start);
-            DataSetPython dataSetPythonDone = TemplateRepository.Instance.FindByNamePython(DataSetFactory.RandomEvent_Done);
+            DataSetPython dataSetPythonStart = TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Start);
+            DataSetPython dataSetPythonDone = TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Done);
 
             if( false == DataSetValidator.ValidateFull(dataSetPythonStart) )
             {
@@ -80,15 +80,24 @@ namespace WeThePeople_ModdingTool.Creators
             string concatenatedFiles = dataSetPythonStart.PythonContentProcessed;
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
-            string savePathExtended = PathHelper.PathCombine(SavePath,dataSetPythonDone.BaseAssetPath);
+            string savePathExtended = PathHelper.PathCombine(SavePath,Path.GetDirectoryName(dataSetPythonDone.TemplateFileNameRelativ));
             string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, dataSetPythonStart.OriginalFileName);
 
-            if( false == CheckResultFile(completeFileName) )
+            MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
+            if (messageBoxResult == MessageBoxResult.Cancel)
             {
                 return true;
             }
-
-            return TextFileUtility.SaveCreatePathOverwrite( completeFileName, concatenatedFiles );
+            else if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                return TextFileUtility.SaveCreatePathOverwrite(completeFileName, concatenatedFiles);
+            }
+            else if (messageBoxResult == MessageBoxResult.No)
+            {
+                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
+                return true;
+            }
+            return false;
         }
 
         private bool ConcatenateXMLFiles()
@@ -113,23 +122,32 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool CreateCiv4GameText()
         {
-            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventGameText);
+            DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4GameText_Colonization_Events_utf8_Start);
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, eventGameText.BaseAssetPath), eventGameText.OriginalFileName);
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, Path.GetDirectoryName(eventGameText.TemplateFileNameRelativ)), eventGameText.OriginalFileName);
 
-            if (false == CheckResultFile(completeFileName))
+            MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
+            if (messageBoxResult == MessageBoxResult.Cancel)
             {
                 return true;
             }
-
-            return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, eventGameText.XmlDocumentProcessed);
+            else if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, eventGameText.XmlDocumentProcessed);
+            }
+            else if (messageBoxResult == MessageBoxResult.No)
+            {
+                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
+                return true;
+            }
+            return false;
         }
 
         private bool CreateEventTriggerInfo()
         {
             List<DataSetXML> dataSetXMLs = new List<DataSetXML>();
-            dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Start));
-            dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventTriggerInfos_Done));
+            dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Start));
+            dataSetXMLs.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Done));
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
@@ -139,20 +157,29 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, dataSetXMLs[0].BaseAssetPath), dataSetXMLs[0].OriginalFileName );
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, Path.GetDirectoryName(dataSetXMLs[0].TemplateFileNameRelativ)), dataSetXMLs[0].OriginalFileName );
 
-            if (false == CheckResultFile(completeFileName))
+            MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
+            if (messageBoxResult == MessageBoxResult.Cancel)
             {
                 return true;
             }
-
-            return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
+            else if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
+            }
+            else if (messageBoxResult == MessageBoxResult.No)
+            {
+                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
+                return true;
+            }
+            return false;
         }
 
         private bool CreateEventInfo()
         {
             List<DataSetXML> eventEventInfos = new List<DataSetXML>();
-            eventEventInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.EventInfos_Start));
+            eventEventInfos.Add(TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventInfos_Start));
             foreach (KeyValuePair<string, DataSetXML> entry in TemplateRepository.Instance.XmlDocumentEventDone)
             {
                 eventEventInfos.Add(entry.Value);
@@ -166,14 +193,23 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, eventEventInfos[0].BaseAssetPath), eventEventInfos[0].OriginalFileName);
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, Path.GetDirectoryName(eventEventInfos[0].TemplateFileNameRelativ)), eventEventInfos[0].OriginalFileName);
 
-            if (false == CheckResultFile(completeFileName))
+            MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
+            if (messageBoxResult == MessageBoxResult.Cancel )
             {
                 return true;
             }
-
-            return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
+            else if(messageBoxResult == MessageBoxResult.Yes)
+            {
+                return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
+            }
+            else if(messageBoxResult == MessageBoxResult.No)
+            {
+                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
+                return true;
+            }
+            return false;
         }
 
         private XmlDocument Concatenate( List<XmlDocument> listToConcatenate, string attachDest, string nodeToAttach)
@@ -225,20 +261,15 @@ namespace WeThePeople_ModdingTool.Creators
             return baseXML;
         }
 
-        private bool CheckResultFile( string fileToSave )
+        private MessageBoxResult CheckResultFile(string fileToSave)
         {
             if (false == File.Exists(fileToSave))
             {
-                return true;
+                return MessageBoxResult.Yes;
             }
-            if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("File already exists!", "The file already exists! " + fileToSave + CommonVariables.CR + CommonVariables.CR +CommonVariables.MESSAGE_BOX_OVERWRITE ))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+
+            return CommonMessageBox.Show_Question_YesNoCancel("File already exists!", "The file already exists! " + fileToSave + CommonVariables.CR + CommonVariables.CR
+                + CommonVariables.MESSAGE_BOX_YESNOCANCEL_QUESTION + CommonVariables.CR + CommonVariables.MESSAGE_BOX_YESNOCANCEL);
         }
     }
 }

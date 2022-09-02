@@ -32,12 +32,12 @@ namespace WeThePeople_ModdingTool.Factories
         private static string CIV4EventTriggerInfos = "CIV4EventTriggerInfos.xml";
         private static string CIV4GameText_Colonization_Events_utf8 = "CIV4GameText_Colonization_Events_utf8.xml";
 
-        public static string EventInfos_Done_1 = "CIV4EventInfos_Done_1";
-        public static string EventInfos_Done_2 = "CIV4EventInfos_Done _2";
-        public static string EventInfos_Done_3 = "CIV4EventInfos_Done _3";
-        public static string EventInfos_Done_4 = "CIV4EventInfos_Done _4";
-        public static string EventInfos_Done_5 = "CIV4EventInfos_Done _5";
-        public static string EventInfos_Done_6 = "CIV4EventInfos_Done _6";
+        public static string EventInfos_Done_1 = "CIV4EventInfos_Done_1.xml";
+        public static string EventInfos_Done_2 = "CIV4EventInfos_Done_2.xml";
+        public static string EventInfos_Done_3 = "CIV4EventInfos_Done_3.xml";
+        public static string EventInfos_Done_4 = "CIV4EventInfos_Done_4.xml";
+        public static string EventInfos_Done_5 = "CIV4EventInfos_Done_5.xml";
+        public static string EventInfos_Done_6 = "CIV4EventInfos_Done_6.xml";
 
         public static string GameText_Done_1 = "GameText_Done_1";
 
@@ -61,12 +61,8 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetPython dataSet = CreateBasePython(CvRandomEventInterface_Start);
             dataSet.OriginalFileName = CvRandomEventInterface;
-            dataSet.TemplatePathRelative = CvRandomEventInterface_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CvRandomEventInterface_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"Python\EntryPoints\CvRandomEventInterface_Start_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\Python\EntryPoints";
             dataSet.PythonContentTemplate = TextFileUtility.LoadFileText(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -77,12 +73,8 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetPython dataSet = CreateBasePython(CvRandomEventInterface_Done);
             dataSet.OriginalFileName = CvRandomEventInterface;
-            dataSet.TemplatePathRelative = CvRandomEventInterface_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CvRandomEventInterface_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"Python\EntryPoints\CvRandomEventInterface_Done_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\Python\EntryPoints";
             dataSet.PythonContentTemplate = TextFileUtility.LoadFileText(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -93,12 +85,8 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetXML dataSet = CreateBaseXML(CIV4EventTriggerInfos_Start);
             dataSet.OriginalFileName = CIV4EventTriggerInfos;
-            dataSet.TemplatePathRelative = CIV4EventTriggerInfos_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventTriggerInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"XML\Events\CIV4EventTriggerInfos_Start_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\XML\Events";
             dataSet.XmlRootNode = RootNode_EventTriggerInfo;
             dataSet.XmlConcreteNode = ConcreteNode_EventTriggerInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
@@ -112,12 +100,8 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetXML dataSet = CreateBaseXML(CIV4EventTriggerInfos_Done);
             dataSet.OriginalFileName = CIV4EventTriggerInfos;
-            dataSet.TemplatePathRelative = CIV4EventTriggerInfos_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventTriggerInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"XML\Events\CIV4EventTriggerInfos_Done_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\XML\Events";
             dataSet.XmlRootNode = RootNode_EventTriggerInfo;
             dataSet.XmlConcreteNode = ConcreteNode_EventTriggerInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
@@ -132,12 +116,8 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetXML dataSet = CreateBaseXML(CIV4GameText_Colonization_Events_utf8_Start);
             dataSet.OriginalFileName = CIV4GameText_Colonization_Events_utf8;
-            dataSet.TemplatePathRelative = CIV4GameText_Colonization_Events_utf8_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4GameText_Colonization_Events_utf8_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\XML\Text";
             dataSet.XmlRootNode = RootNode_Civ4GameText;
             dataSet.XmlConcreteNode = ConcreteNode_Civ4GameText;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
@@ -151,28 +131,26 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetXML dataSet = CreateBaseXML(name);
             dataSet.OriginalFileName = CIV4EventInfos;
-            dataSet.TemplatePathRelative = CIV4GameText_Colonization_Events_utf8_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4GameText_Colonization_Events_utf8_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"XML\Text\CIV4GameText_Colonization_Events_utf8_Template_Done_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\XML\Text";
             dataSet.XmlRootNode = RootNode_Civ4GameText;
             dataSet.XmlConcreteNode = ConcreteNode_Civ4GameText;
-            dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
+            dataSet.XmlDocumentTemplate = XMLFileUtility.Load(CreateTemplateFileNameAndPathAbsolute_EventGameTextDone());
             return dataSet;
         }
+        private string CreateTemplateFileNameAndPathAbsolute_EventGameTextDone()
+        {
+            string templateFileName = PathHelper.PathCombine(CIV4GameText_Colonization_Events_utf8_PathRelative, CIV4GameText_Colonization_Events_utf8_Done);
+            return PathHelper.GetFullAssetFileName(templateFileName);
+        }
+
 
         public DataSetXML CreateEventInfos_Start()
         {
             DataSetXML dataSet = CreateBaseXML(CIV4EventInfos_Start);
             dataSet.OriginalFileName = CIV4EventInfos;
-            dataSet.TemplatePathRelative = CIV4EventInfos_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Start_";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
-            dataSet.BaseAssetPath = @"Assets\XML\Events"; 
             dataSet.XmlRootNode = RootNode_EventInfo;
             dataSet.XmlConcreteNode = ConcreteNode_EventInfo;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
@@ -188,15 +166,11 @@ namespace WeThePeople_ModdingTool.Factories
         {
             DataSetXML dataSet = CreateBaseXML(CreateNameEventInfoDone());
             dataSet.OriginalFileName = CIV4EventInfos;
-            dataSet.TemplatePathRelative = CIV4EventInfos_PathRelative;
-            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(dataSet.TemplatePathRelative, dataSet.TemplateName);
+            dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.TemplateFileNameProcessed = @"XML\Events\CIV4EventInfos_Done_";
-            dataSet.BaseAssetPath = @"Assets\XML\Events";
-            dataSet.TemplateFileNameAndPathProcessed = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameProcessed);
             dataSet.XmlRootNode = RootNode_EventInfo;
             dataSet.XmlConcreteNode = ConcreteNode_EventInfo;
-            dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
+            dataSet.XmlDocumentTemplate = XMLFileUtility.Load(CreateTemplateFileNameAndPathAbsolute_EventInfoDone());
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -209,6 +183,12 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_PRICE, "0");
 
             return dataSet;
+        }
+
+        private string CreateTemplateFileNameAndPathAbsolute_EventInfoDone()
+        {
+            string templateFileName = PathHelper.PathCombine(CIV4EventInfos_PathRelative, CIV4EventInfos_Done);
+            return PathHelper.GetFullAssetFileName(templateFileName);
         }
 
         private string CreateNameEventInfoDone()
@@ -256,7 +236,6 @@ namespace WeThePeople_ModdingTool.Factories
             DataSetXML dataSetXML = new DataSetXML();
             dataSetXML.TemplateName = templateName;
             dataSetXML.TemplateFileExtension = Path.GetExtension(templateName);
-            dataSetXML.TemplateFileNameAndPathProcessed = "";
             return dataSetXML;
         }
 
@@ -265,7 +244,6 @@ namespace WeThePeople_ModdingTool.Factories
             DataSetPython dataSetPython = new DataSetPython();
             dataSetPython.TemplateName = templateName;
             dataSetPython.TemplateFileExtension = Path.GetExtension(templateName);
-            dataSetPython.TemplateFileNameAndPathProcessed = "";
             return dataSetPython;
         }
 

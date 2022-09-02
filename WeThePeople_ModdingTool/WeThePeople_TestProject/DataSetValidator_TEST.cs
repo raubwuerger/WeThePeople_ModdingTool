@@ -36,13 +36,11 @@ namespace WeThePeople_TestProject
             dataSetBase_TemplateFileNameRelativEmpty.TemplateFileNameRelativ = "";
 
             CreateValid(dataSetBase_TemplateFileNameAbsoluteEmpty);
-            dataSetBase_TemplateFileNameAbsoluteEmpty.TemplateFileNameProcessed= "";
 
             CreateValid(dataSetBase_TemplateFileExtensionEmpty);
             dataSetBase_TemplateFileExtensionEmpty.TemplateFileExtension = "";
 
             CreateValid(dataSetBase_TemplateFileNameConcreteEmpty);
-            dataSetBase_TemplateFileNameConcreteEmpty.TemplateFileNameProcessed = "";
 
             CreateValid(dataSetBase_Valid);
 
@@ -65,9 +63,7 @@ namespace WeThePeople_TestProject
             string validString = "Im a valid string";
             dataSetBase.TemplateName = validString;
             dataSetBase.TemplateFileNameRelativ = validString;
-            dataSetBase.TemplateFileNameProcessed = validString;
             dataSetBase.TemplateFileExtension = validString;
-            dataSetBase.TemplateFileNameProcessed = validString;
         }
 
         private void CreateValid( DataSetXML dataSetXML )

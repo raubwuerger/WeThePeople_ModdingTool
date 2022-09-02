@@ -33,5 +33,8 @@ namespace WeThePeople_ModdingTool
         public static string VALIDATION_SUCCEEDED = "Validation succeeded!";
         public static string VALIDATION_SUCCEEDED_CR = "Validation succeeded!\n\r";
         public static string XML_IS_SHAPELY = "XML is shapely!";
+
+        public static string MESSAGE_BOX_YESNOCANCEL_QUESTION = "What do you want to do?";
+        public static string MESSAGE_BOX_YESNOCANCEL = "Overwrite? (yes)\n\rAppend? (no)\n\rCancel? (cancel)";
     }
 }

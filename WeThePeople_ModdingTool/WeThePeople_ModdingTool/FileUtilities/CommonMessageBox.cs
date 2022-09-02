@@ -51,5 +51,15 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             return MessageBox.Show(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        static public MessageBoxResult Show_Question_YesNoCancel(string caption, string messageBoxText)
+        {
+            if (false == ShowMessageBoxesNotForUnitTests)
+            {
+                return MessageBoxResult.None;
+            }
+            return MessageBox.Show(messageBoxText, caption, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+        }
+
     }
 }
