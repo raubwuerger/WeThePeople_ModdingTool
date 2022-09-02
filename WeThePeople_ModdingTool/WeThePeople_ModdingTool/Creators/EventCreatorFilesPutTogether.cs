@@ -155,7 +155,7 @@ namespace WeThePeople_ModdingTool.Creators
             ContentInserterXML contentInserterXML = new ContentInserterXML();
             contentInserterXML.FileName = fileName;
             contentInserterXML.UniqueNodeName = "Tag";
-            contentInserterXML.NodeNameToInsert = "Text";
+            contentInserterXML.NodeNameToInsert = "TEXT";
             contentInserterXML.ParentNodeToAppend = "Civ4GameText";
             return contentInserterXML.Insert(content);
         }

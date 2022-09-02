@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.FileUtilities;
+using WeThePeople_ModdingTool.Helper;
 
 namespace WeThePeople_ModdingTool.ContentInserter
 {
@@ -24,24 +26,34 @@ namespace WeThePeople_ModdingTool.ContentInserter
         {
             set { parentNodeToAppend = value; }
         }
+
+        private ListHelper listComparator = new ListHelper();
+        
         public override bool Insert(XmlDocument content)
         {
-            XmlDocument destination = XMLFileUtility.Load(FileName);
-            XmlNodeList destinationNodes = destination.DocumentElement.GetElementsByTagName(uniqueNodeName);
+            XmlDocument originalDoc = XMLFileUtility.Load(FileName);
+            XmlNodeList originalNodes = originalDoc.DocumentElement.GetElementsByTagName(uniqueNodeName);
 
             XmlNodeList nodesToInsert = content.DocumentElement.GetElementsByTagName(uniqueNodeName);
 
-            if( true == Contains(nodesToInsert, destinationNodes) )
+            if( true == Contains(nodesToInsert, originalNodes) )
             {
                 return false;
             }
 
             XmlNode xmlNodeDestination;
-            XmlNode xmlNodeToInsert;
             if( ((XmlNode)content.DocumentElement).Name.Equals(parentNodeToAppend) )
             {
-                xmlNodeToInsert = (XmlNode)content.DocumentElement;
-                xmlNodeDestination = (XmlNode)destination.DocumentElement;
+                XmlNodeList xmlNodesToInsert = content.DocumentElement.GetElementsByTagName(nodeNameToInsert);
+                xmlNodeDestination = (XmlNode)originalDoc.DocumentElement;
+
+                ListHelper listHelper = new ListHelper();
+                xmlNodesToInsert = listHelper.GetNotIncluded(originalNodes, xmlNodesToInsert);
+
+                if (false == InsertNodes(originalDoc, xmlNodeDestination, xmlNodesToInsert))
+                {
+                    return false;
+                }
             }
             else
             {
@@ -50,49 +62,31 @@ namespace WeThePeople_ModdingTool.ContentInserter
                 {
                     return false;
                 }
-                xmlNodeToInsert = xmlNodesToInsert[0];
+                XmlNode xmlNodeToInsert = xmlNodesToInsert[0];
 
-                XmlNodeList xmlNodesDestination = destination.DocumentElement.GetElementsByTagName(parentNodeToAppend);
+                XmlNodeList xmlNodesDestination = originalDoc.DocumentElement.GetElementsByTagName(parentNodeToAppend);
                 if (xmlNodesDestination.Count != 1)
                 {
                     return false;
                 }
                 xmlNodeDestination = xmlNodesDestination[0];
-            }
-
-            if( false == Insert(destination, xmlNodeDestination, xmlNodeToInsert) )
-            {
-                return false;
-            }
-
-            return XMLFileUtility.SaveOverwrite(FileName, destination);
-        }
-
-        private bool Contains(XmlNode nodeToInsert, XmlNodeList destinationNodes)
-        {
-            foreach (XmlNode node in destinationNodes)
-            {
-                if (node.Equals(nodeToInsert))
+                if (false == InsertNodes(originalDoc, xmlNodeDestination, xmlNodeToInsert))
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+
+            return XMLFileUtility.SaveOverwrite(FileName, originalDoc);
         }
 
         private bool Contains(XmlNodeList nodesToInsert, XmlNodeList destinationNodes)
         {
-            foreach (XmlNode node in nodesToInsert)
-            {
-                if (Contains(node, destinationNodes))
-                {
-                    return true;
-                }
-            }
-            return false;
+            ListComparatorFactory listComparatorFactory = new ListComparatorFactory();
+            ListHelper listComparator = listComparatorFactory.CreateListComparatorGameEventText();
+            return listComparator.Contains(nodesToInsert, destinationNodes);
         }
 
-        private bool Insert(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNodeList xmlNodesToInsert)
+        private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNodeList xmlNodesToInsert)
         {
             foreach( XmlNode xmlNodeToInsert in xmlNodesToInsert )
             {
@@ -102,7 +96,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return true;
         }
 
-        private bool Insert(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNode xmlNodeToInsert )
+        private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNode xmlNodeToInsert )
         {
             XmlNode importedNode = xmlDocumentDestination.ImportNode(xmlNodeToInsert, true);
             xmlNodeDestination.AppendChild(importedNode);
