@@ -109,7 +109,10 @@ namespace WeThePeople_ModdingTool.ContentInserter
         private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNode xmlNodeToInsert )
         {
             XmlNode importedNode = xmlDocumentDestination.ImportNode(xmlNodeToInsert, true);
-            xmlNodeDestination.AppendChild(importedNode);
+            while( importedNode.ChildNodes.Count > 0 )
+            {
+                xmlNodeDestination.AppendChild(importedNode.ChildNodes[0]);
+            }
             return true;
         }
 
