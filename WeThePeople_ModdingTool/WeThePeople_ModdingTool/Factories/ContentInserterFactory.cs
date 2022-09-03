@@ -30,25 +30,5 @@ namespace WeThePeople_ModdingTool.ContentInserter
             contentInserterBase.ParentNodeToAppend = dataSetXML.XmlParentNode;
             return contentInserterBase;
         }
-
-        public static ContentInserterBase CreateContentInserterEventInfo(string fileName, DataSetXML dataSetXML)
-        {
-            ContentInserterXML contentInserterBase = new ContentInserterXML();
-            contentInserterBase.FileName = fileName;
-            contentInserterBase.UniqueNodeName = dataSetXML.XmlUniqueNode;
-            contentInserterBase.NodeNameToInsert = dataSetXML.XmlInsertNode;
-            contentInserterBase.ParentNodeToAppend = dataSetXML.XmlParentNode;
-            return contentInserterBase;
-        }
-
-        public static ContentInserterBase CreateContentInserterEventTriggerInfo(string fileName, DataSetXML dataSetXML)
-        {
-            ContentInserterXML contentInserterBase = new ContentInserterXML();
-            contentInserterBase.FileName = fileName;
-            contentInserterBase.UniqueNodeName = dataSetXML.XmlUniqueNode;
-            contentInserterBase.NodeNameToInsert = dataSetXML.XmlInsertNode;
-            contentInserterBase.ParentNodeToAppend = dataSetXML.XmlParentNode;
-            return contentInserterBase;
-        }
     }
 }
