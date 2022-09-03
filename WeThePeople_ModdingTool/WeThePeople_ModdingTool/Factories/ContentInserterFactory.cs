@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.Factories;
 
 namespace WeThePeople_ModdingTool.ContentInserter
 {
@@ -14,34 +16,38 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return contentInserterBase;
         }
 
-        public static ContentInserterBase CreateContentInserterByXmlDocument( string fileName, XmlDocument xmlDocument )
+        public static ContentInserterBase CreateContentInserterByXmlDocument( string fileName, DataSetXML dataSetXML )
         {
-            switch(xmlDocument.DocumentElement.Name)
-            {
-                case "sdf":
-                    return CreateContentInserterGameText(fileName);
-            }
-            return null;
+            return Create(fileName, dataSetXML);
         }
 
-        public static ContentInserterBase CreateContentInserterGameText(string fileName)
+        public static ContentInserterBase Create(string fileName, DataSetXML dataSetXML)
         {
-            ContentInserterBase contentInserterBase = new ContentInserterXML();
+            ContentInserterXML contentInserterBase = new ContentInserterXML();
             contentInserterBase.FileName = fileName;
+            contentInserterBase.UniqueNodeName = dataSetXML.XmlUniqueNode;
+            contentInserterBase.NodeNameToInsert = dataSetXML.XmlInsertNode;
+            contentInserterBase.ParentNodeToAppend = dataSetXML.XmlParentNode;
             return contentInserterBase;
         }
 
-        public static ContentInserterBase CreateContentInserterEventInfo(string fileName)
+        public static ContentInserterBase CreateContentInserterEventInfo(string fileName, DataSetXML dataSetXML)
         {
-            ContentInserterBase contentInserterBase = new ContentInserterXML();
+            ContentInserterXML contentInserterBase = new ContentInserterXML();
             contentInserterBase.FileName = fileName;
+            contentInserterBase.UniqueNodeName = dataSetXML.XmlUniqueNode;
+            contentInserterBase.NodeNameToInsert = dataSetXML.XmlInsertNode;
+            contentInserterBase.ParentNodeToAppend = dataSetXML.XmlParentNode;
             return contentInserterBase;
         }
 
-        public static ContentInserterBase CreateContentInserterEventTriggerInfo(string fileName)
+        public static ContentInserterBase CreateContentInserterEventTriggerInfo(string fileName, DataSetXML dataSetXML)
         {
-            ContentInserterBase contentInserterBase = new ContentInserterXML();
+            ContentInserterXML contentInserterBase = new ContentInserterXML();
             contentInserterBase.FileName = fileName;
+            contentInserterBase.UniqueNodeName = dataSetXML.XmlUniqueNode;
+            contentInserterBase.NodeNameToInsert = dataSetXML.XmlInsertNode;
+            contentInserterBase.ParentNodeToAppend = dataSetXML.XmlParentNode;
             return contentInserterBase;
         }
     }

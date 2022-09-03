@@ -149,21 +149,15 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
-                return Append(completeFileName, eventGameText.XmlDocumentProcessed);
+                return Append(completeFileName, eventGameText);
             }
             return false;
         }
 
-        private bool Append(string fileName, XmlDocument content)
+        private bool Append(string fileName, DataSetXML content)
         {
             ContentInserterBase contentInserterBase = ContentInserterFactory.CreateContentInserterByXmlDocument(fileName, content);
-
-            ContentInserterXML contentInserterXML = new ContentInserterXML();
-            contentInserterXML.FileName = fileName;
-            contentInserterXML.UniqueNodeName = "Tag";
-            contentInserterXML.NodeNameToInsert = "TEXT";
-            contentInserterXML.ParentNodeToAppend = "Civ4GameText";
-            return contentInserterXML.Insert(content);
+            return contentInserterBase.Insert(content.XmlDocumentProcessed);
         }
 
         private bool Overwrite( string fileName, XmlDocument content )
@@ -198,8 +192,8 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
-                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
-                return true;
+                dataSetXMLs[0].XmlDocumentProcessed = concatenated;
+                return Append(completeFileName, dataSetXMLs[0]);
             }
             return false;
         }
@@ -234,8 +228,8 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if(messageBoxResult == MessageBoxResult.No)
             {
-                CommonMessageBox.Show_Info("Append content", "Append content not implemented!");
-                return true;
+                eventEventInfos[0].XmlDocumentProcessed = concatenated;
+                return Append(completeFileName, eventEventInfos[0]);
             }
             return false;
         }

@@ -21,44 +21,44 @@ namespace WeThePeople_ModdingTool.Factories
         public static readonly string CIV4GameText_Colonization_Events_utf8_Start = "CIV4GameText_Colonization_Events_utf8_Start.xml";
         public static readonly string CIV4GameText_Colonization_Events_utf8_Done = "CIV4GameText_Colonization_Events_utf8_Done.xml";
 
-        private static string CvRandomEventInterface_PathRelative = @"Python\EntryPoints\";
-        private static string CIV4EventInfos_PathRelative = @"XML\Events\";
-        private static string CIV4EventTriggerInfos_PathRelative = @"XML\Events\";
-        private static string CIV4GameText_Colonization_Events_utf8_PathRelative = @"XML\Text\";
+        private static readonly string CvRandomEventInterface_PathRelative = @"Python\EntryPoints\";
+        private static readonly string CIV4EventInfos_PathRelative = @"XML\Events\";
+        private static readonly string CIV4EventTriggerInfos_PathRelative = @"XML\Events\";
+        private static readonly string CIV4GameText_Colonization_Events_utf8_PathRelative = @"XML\Text\";
 
         //Original names
-        private static string CvRandomEventInterface = "CvRandomEventInterface.py";
-        private static string CIV4EventInfos = "CIV4EventInfos.xml";
-        private static string CIV4EventTriggerInfos = "CIV4EventTriggerInfos.xml";
-        private static string CIV4GameText_Colonization_Events_utf8 = "CIV4GameText_Colonization_Events_utf8.xml";
+        private static readonly string CvRandomEventInterface = "CvRandomEventInterface.py";
+        private static readonly string CIV4EventInfos = "CIV4EventInfos.xml";
+        private static readonly string CIV4EventTriggerInfos = "CIV4EventTriggerInfos.xml";
+        private static readonly string CIV4GameText_Colonization_Events_utf8 = "CIV4GameText_Colonization_Events_utf8.xml";
 
-        public static string EventInfos_Done_1 = "CIV4EventInfos_Done_1.xml";
-        public static string EventInfos_Done_2 = "CIV4EventInfos_Done_2.xml";
-        public static string EventInfos_Done_3 = "CIV4EventInfos_Done_3.xml";
-        public static string EventInfos_Done_4 = "CIV4EventInfos_Done_4.xml";
-        public static string EventInfos_Done_5 = "CIV4EventInfos_Done_5.xml";
-        public static string EventInfos_Done_6 = "CIV4EventInfos_Done_6.xml";
+        public static readonly string EventInfos_Done_1 = "CIV4EventInfos_Done_1.xml";
+        public static readonly string EventInfos_Done_2 = "CIV4EventInfos_Done_2.xml";
+        public static readonly string EventInfos_Done_3 = "CIV4EventInfos_Done_3.xml";
+        public static readonly string EventInfos_Done_4 = "CIV4EventInfos_Done_4.xml";
+        public static readonly string EventInfos_Done_5 = "CIV4EventInfos_Done_5.xml";
+        public static readonly string EventInfos_Done_6 = "CIV4EventInfos_Done_6.xml";
 
-        public static string EventInfo_SelectNode = "/Civ4EventInfos";
-        public static string EventInfo_RootNode = "Civ4EventInfos";
-        public static string EventInfo_ParentNode = "EventInfos";
-        public static string EventInfo_InsertNode = "EventInfo";
-        public static string EventInfo_UniqueNode = "Type";
-        public static string EventInfo_DescriptionNode = "Description";
+        public static readonly string EventInfo_SelectNode = "/Civ4EventInfos";
+        public static readonly string EventInfo_RootNode = "Civ4EventInfos";
+        public static readonly string EventInfo_ParentNode = "EventInfos";
+        public static readonly string EventInfo_InsertNode = "EventInfo";
+        public static readonly string EventInfo_UniqueNode = "Type";
+        public static readonly string EventInfo_DescriptionNode = "Description";
 
-        public static string EventTriggerInfo_SelectNode = "/Civ4EventTriggerInfos";
-        public static string EventTriggerInfo_RootNode = "Civ4EventTriggerInfos";
-        public static string EventTriggerInfo_ParentNode = "EventTriggerInfos";
-        public static string EventTriggerInfo_InsertNode = "EventTriggerInfo";
-        public static string EventTriggerInfo_UniqueNode = "Type";
-        public static string EventTriggerInfo_EventsNode = "Events";
-        public static string EventTriggerInfo_EventNode = "Event";
+        public static readonly string EventTriggerInfo_SelectNode = "/Civ4EventTriggerInfos";
+        public static readonly string EventTriggerInfo_RootNode = "Civ4EventTriggerInfos";
+        public static readonly string EventTriggerInfo_ParentNode = "EventTriggerInfos";
+        public static readonly string EventTriggerInfo_InsertNode = "EventTriggerInfo";
+        public static readonly string EventTriggerInfo_UniqueNode = "Type";
+        public static readonly string EventTriggerInfo_EventsNode = "Events";
+        public static readonly string EventTriggerInfo_EventNode = "Event";
 
-        public static string Civ4GameText_SelectNode = "/Civ4GameText";
-        public static string Civ4GameText_RootNode = "Civ4GameText";
-        public static string Civ4GameText_ParentNode = "Civ4GameText";
-        public static string Civ4GameText_InsertNode = "TEXT";
-        public static string Civ4GameText_UniqueNode = "Tag";
+        public static readonly string Civ4GameText_SelectNode = "/Civ4GameText";
+        public static readonly string Civ4GameText_RootNode = "Civ4GameText";
+        public static readonly string Civ4GameText_ParentNode = "Civ4GameText";
+        public static readonly string Civ4GameText_InsertNode = "TEXT";
+        public static readonly string Civ4GameText_UniqueNode = "Tag";
 
 
         public DataSetPython CreateRandomEventStart()
