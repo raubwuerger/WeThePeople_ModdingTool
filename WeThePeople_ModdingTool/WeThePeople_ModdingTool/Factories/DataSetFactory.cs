@@ -49,12 +49,14 @@ namespace WeThePeople_ModdingTool.Factories
         public static string NODE_TEXT = "TEXT";
         public static string NODE_DESCRIPTION = "Description";
 
-        private static string RootNode_EventInfo = "/Civ4EventInfos";
-        public static string ConcreteNode_EventInfo = "EventInfo";
-        private static string RootNode_EventTriggerInfo = "/Civ4EventTriggerInfos";
-        public static string ConcreteNode_EventTriggerInfo = "EventTriggerInfo";
-        private static string RootNode_Civ4GameText = "/Civ4GameText";
-        public static string ConcreteNode_Civ4GameText = "Civ4GameText";
+        public static string EventInfo_SelectNode = "/Civ4EventInfos";
+        public static string EventInfo_NodeToInsert = "EventInfo";
+
+        public static string EventTriggerInfo_SelectNode = "/Civ4EventTriggerInfos";
+        public static string EventTriggerInfo_NodeToInsert = "EventTriggerInfo";
+
+        public static string Civ4GameText_SelectNode = "/Civ4GameText";
+        public static string Civ4GameText_NodeToInsert = "Civ4GameText";
 
 
         public DataSetPython CreateRandomEventStart()
@@ -87,8 +89,9 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.OriginalFileName = CIV4EventTriggerInfos;
             dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventTriggerInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.XmlRootNode = RootNode_EventTriggerInfo;
-            dataSet.XmlConcreteNode = ConcreteNode_EventTriggerInfo;
+//            dataSet.XmlRootNode = 
+            dataSet.XmlSelectNode = EventTriggerInfo_SelectNode;
+            dataSet.XmlConcreteNode = EventTriggerInfo_NodeToInsert;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -102,8 +105,8 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.OriginalFileName = CIV4EventTriggerInfos;
             dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventTriggerInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.XmlRootNode = RootNode_EventTriggerInfo;
-            dataSet.XmlConcreteNode = ConcreteNode_EventTriggerInfo;
+            dataSet.XmlSelectNode = EventTriggerInfo_SelectNode;
+            dataSet.XmlConcreteNode = EventTriggerInfo_NodeToInsert;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -118,8 +121,8 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.OriginalFileName = CIV4GameText_Colonization_Events_utf8;
             dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4GameText_Colonization_Events_utf8_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.XmlRootNode = RootNode_Civ4GameText;
-            dataSet.XmlConcreteNode = ConcreteNode_Civ4GameText;
+            dataSet.XmlSelectNode = Civ4GameText_SelectNode;
+            dataSet.XmlConcreteNode = Civ4GameText_NodeToInsert;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -133,8 +136,8 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.OriginalFileName = CIV4EventInfos;
             dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4GameText_Colonization_Events_utf8_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.XmlRootNode = RootNode_Civ4GameText;
-            dataSet.XmlConcreteNode = ConcreteNode_Civ4GameText;
+            dataSet.XmlSelectNode = Civ4GameText_SelectNode;
+            dataSet.XmlConcreteNode = Civ4GameText_NodeToInsert;
             dataSet.XmlDocumentTemplate = XMLFileUtility.Load(CreateTemplateFileNameAndPathAbsolute_EventGameTextDone());
             return dataSet;
         }
@@ -151,8 +154,8 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.OriginalFileName = CIV4EventInfos;
             dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.XmlRootNode = RootNode_EventInfo;
-            dataSet.XmlConcreteNode = ConcreteNode_EventInfo;
+            dataSet.XmlSelectNode = EventInfo_SelectNode;
+            dataSet.XmlConcreteNode = EventInfo_NodeToInsert;
             dataSet.XmlDocumentTemplate = XMLFileUtility.LoadFileXML(dataSet);
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
@@ -168,8 +171,8 @@ namespace WeThePeople_ModdingTool.Factories
             dataSet.OriginalFileName = CIV4EventInfos;
             dataSet.TemplateFileNameRelativ = PathHelper.PathCombine(CIV4EventInfos_PathRelative, dataSet.TemplateName);
             dataSet.TemplateFileNameAndPathAbsolute = PathHelper.GetFullAssetFileName(dataSet.TemplateFileNameRelativ);
-            dataSet.XmlRootNode = RootNode_EventInfo;
-            dataSet.XmlConcreteNode = ConcreteNode_EventInfo;
+            dataSet.XmlSelectNode = EventInfo_SelectNode;
+            dataSet.XmlConcreteNode = EventInfo_NodeToInsert;
             dataSet.XmlDocumentTemplate = XMLFileUtility.Load(CreateTemplateFileNameAndPathAbsolute_EventInfoDone());
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");

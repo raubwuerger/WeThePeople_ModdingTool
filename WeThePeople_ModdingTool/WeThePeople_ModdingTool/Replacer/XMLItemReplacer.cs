@@ -32,14 +32,14 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
 
-            if(dataSetXML.XmlRootNode.Equals(String.Empty) )
+            if(dataSetXML.XmlSelectNode.Equals(String.Empty) )
             {
                 Log.Debug("RootNode not set! --> RootNode");
                 return false;
             }
 
             replacedXmlDocument = (XmlDocument)dataSetXML.XmlDocumentTemplate.Clone();
-            XmlNodeList rootNodes = replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlRootNode);
+            XmlNodeList rootNodes = replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlSelectNode);
             XmlNode concreteNode = XMLHelper.FindNodeByName(rootNodes, dataSetXML.XmlConcreteNode);
             if( null == concreteNode )
             {

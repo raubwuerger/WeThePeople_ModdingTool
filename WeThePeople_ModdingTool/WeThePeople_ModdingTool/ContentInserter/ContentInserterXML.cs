@@ -50,7 +50,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
                 ListHelperXML listHelper = new ListHelperXML();
                 xmlNodesToInsert = listHelper.GetNotIncluded(originalNodes, xmlNodesToInsert);
 
-                if (false == InsertNodes(originalDoc, xmlNodeDestination, xmlNodesToInsert))
+                if (false == InsertNodes(originalDoc, xmlNodeDestination, CreateParentList(xmlNodesToInsert)))
                 {
                     return false;
                 }
@@ -79,6 +79,16 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return XMLFileUtility.SaveOverwrite(FileName, originalDoc);
         }
 
+        private List<XmlNode> CreateParentList( XmlNodeList xmlNodeList )
+        {
+            List<XmlNode> xmlNodes = new List<XmlNode>();
+            foreach( XmlNode xmlNode in xmlNodeList )
+            {
+                xmlNodes.Add(xmlNode.ParentNode);
+            }
+            return xmlNodes;
+        }
+
         private bool Contains(XmlNodeList nodesToInsert, XmlNodeList destinationNodes)
         {
             ListComparatorFactory listComparatorFactory = new ListComparatorFactory();
@@ -86,7 +96,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return listComparator.Contains(nodesToInsert, destinationNodes);
         }
 
-        private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNodeList xmlNodesToInsert)
+        private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, List<XmlNode> xmlNodesToInsert)
         {
             foreach( XmlNode xmlNodeToInsert in xmlNodesToInsert )
             {

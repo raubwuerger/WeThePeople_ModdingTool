@@ -58,7 +58,7 @@ namespace WeThePeople_ModdingTool.Validators
                 validationOK = false;
             }
 
-            if( StringValidator.IsNullOrWhiteSpace(dataSetXML.XmlRootNode) )
+            if( StringValidator.IsNullOrWhiteSpace(dataSetXML.XmlSelectNode) )
             {
                 Log.Debug("DataSetXML.XmlRootNode is invalid!");
                 validationOK = false;

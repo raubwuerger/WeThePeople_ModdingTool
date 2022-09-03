@@ -139,7 +139,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 return null;
             }
 
-            return dataSetXML.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXML.XmlRootNode);
+            return dataSetXML.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXML.XmlSelectNode);
         }
 
         public static XmlNodeList GetFirstChildRootNodeList( DataSetXML dataSetXML )

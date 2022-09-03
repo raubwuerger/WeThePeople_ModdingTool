@@ -92,7 +92,7 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if (messageBoxResult == MessageBoxResult.Yes)
             {
-                return TextFileUtility.SaveCreatePathOverwrite(completeFileName, concatenatedFiles);
+                return Overwrite(completeFileName, concatenatedFiles);
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
@@ -103,9 +103,13 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool Append( string fileName, string content )
         {
-            ContentInserterPython contentInserterPython = new ContentInserterPython();
-            contentInserterPython.FileName = fileName;
-            return contentInserterPython.Insert(content);
+            ContentInserterBase contentInserterBase = ContentInserterFactory.CreateContentInserterPython(fileName);
+            return contentInserterBase.Insert(content);
+        }
+
+        private bool Overwrite( string fileName, string content )
+        {
+            return TextFileUtility.SaveCreatePathOverwrite(fileName, content);
         }
 
         private bool ConcatenateXMLFiles()
@@ -141,7 +145,7 @@ namespace WeThePeople_ModdingTool.Creators
             }
             else if (messageBoxResult == MessageBoxResult.Yes)
             {
-                return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, eventGameText.XmlDocumentProcessed);
+                return Overwrite(completeFileName, eventGameText.XmlDocumentProcessed);
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
@@ -152,6 +156,8 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool Append(string fileName, XmlDocument content)
         {
+            ContentInserterBase contentInserterBase = ContentInserterFactory.CreateContentInserterByXmlDocument(fileName, content);
+
             ContentInserterXML contentInserterXML = new ContentInserterXML();
             contentInserterXML.FileName = fileName;
             contentInserterXML.UniqueNodeName = "Tag";
@@ -159,7 +165,12 @@ namespace WeThePeople_ModdingTool.Creators
             contentInserterXML.ParentNodeToAppend = "Civ4GameText";
             return contentInserterXML.Insert(content);
         }
-        
+
+        private bool Overwrite( string fileName, XmlDocument content )
+        {
+            return XMLFileUtility.SaveCreatePathOverwrite(fileName, content);
+        }
+
         private bool CreateEventTriggerInfo()
         {
             List<DataSetXML> dataSetXMLs = new List<DataSetXML>();
@@ -168,7 +179,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
-            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventTriggerInfos, DataSetFactory.ConcreteNode_EventTriggerInfo);
+            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventTriggerInfos, DataSetFactory.EventTriggerInfo_NodeToInsert);
             if (null == concatenated)
             {
                 return false;
@@ -204,7 +215,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(eventEventInfos));
-            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventInfos, DataSetFactory.ConcreteNode_EventInfo);
+            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventInfos, DataSetFactory.EventInfo_NodeToInsert);
             if (null == concatenated)
             {
                 return false;
