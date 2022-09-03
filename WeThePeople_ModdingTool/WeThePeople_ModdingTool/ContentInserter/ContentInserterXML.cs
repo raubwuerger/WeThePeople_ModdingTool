@@ -27,8 +27,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             set { parentNodeToAppend = value; }
         }
 
-        private ListHelperXML listComparator = new ListHelperXML();
-        
+      
         public override bool Insert(XmlDocument content)
         {
             XmlDocument originalDoc = XMLFileUtility.Load(FileName);
@@ -76,7 +75,18 @@ namespace WeThePeople_ModdingTool.ContentInserter
                 }
             }
 
+            RemoveAttribute_xmlns(originalDoc.GetElementsByTagName(nodeNameToInsert));
+
             return XMLFileUtility.SaveOverwrite(FileName, originalDoc);
+        }
+
+        private void RemoveAttribute_xmlns( XmlNodeList xmlNodeList )
+        {
+            foreach( XmlNode xmlNode in xmlNodeList )
+            {
+                XmlAttributeCollection xmlAttributeCollection = xmlNode.Attributes;
+                xmlAttributeCollection.Remove(xmlAttributeCollection["xmlns"]);
+            }
         }
 
         private List<XmlNode> CreateParentList( XmlNodeList xmlNodeList )
