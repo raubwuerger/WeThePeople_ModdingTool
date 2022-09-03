@@ -20,8 +20,23 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        List<String> yieldTypes = new List<string>();
-        public List<string> YieldTypes { get => yieldTypes; set => yieldTypes = value; }
+        List<String> yieldTypeNames = new List<string>();
+        public List<System.String> YieldTypeNames
+        {
+            get { return yieldTypeNames; }
+            set { yieldTypeNames = value; }
+        }
 
+        IDictionary<string, string> yieldTypes = new Dictionary<string, string>();
+        public IDictionary<string, string> YieldTypes
+        {
+            get { return yieldTypes; }
+            set { yieldTypes = value; }
+        }
+
+        public string GetValueFromName( string name )
+        {
+            return yieldTypes[name];
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace WeThePeople_ModdingTool.Factories
         public EventCreatorFilesPutTogether CreateEventCreatorFilesPutTogether( MainWindow mainWindow )
         {
             EventCreatorFilesPutTogether eventCreatorFilesPutTogether = new EventCreatorFilesPutTogether();
-            eventCreatorFilesPutTogether.YieldType = mainWindow.ComboBox_Yield.SelectedItem.ToString();
+            eventCreatorFilesPutTogether.YieldType = YieldTypeRepository.Instance.GetValueFromName( mainWindow.ComboBox_Yield.SelectedItem.ToString() );
             eventCreatorFilesPutTogether.Harbour = mainWindow.comboBox_Harbours.SelectedItem.ToString();
             return eventCreatorFilesPutTogether;
         }
@@ -86,7 +86,7 @@ namespace WeThePeople_ModdingTool.Factories
         private EventProcessor CreateEventProcessor( MainWindow mainWindow )
         {
             EventProcessor eventProcessor = new EventProcessor();
-            eventProcessor.YieldType = mainWindow.ComboBox_Yield.SelectedItem.ToString();
+            eventProcessor.YieldType = YieldTypeRepository.Instance.GetValueFromName( mainWindow.ComboBox_Yield.SelectedItem.ToString());
             eventProcessor.Harbour = mainWindow.comboBox_Harbours.SelectedItem.ToString();
             return eventProcessor;
         }

@@ -39,10 +39,10 @@ namespace WeThePeople_ModdingTool
             }
             InitMapping();
 
-            ComboBox_Yield.ItemsSource = YieldTypeRepository.Instance.YieldTypes;
+            ComboBox_Yield.ItemsSource = YieldTypeRepository.Instance.YieldTypeNames;
             if( ComboBox_Yield.Items.Count > 0 )
             {
-                ComboBox_Yield.SelectedItem = YieldTypeRepository.Instance.YieldTypes[0];
+                ComboBox_Yield.SelectedItem = YieldTypeRepository.Instance.YieldTypeNames[0];
             }
 
             comboBox_Harbours.ItemsSource = HarbourRepository.Instance.Harbours;

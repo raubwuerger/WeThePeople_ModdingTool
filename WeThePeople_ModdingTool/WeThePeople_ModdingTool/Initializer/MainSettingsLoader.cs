@@ -7,6 +7,7 @@ using System.Xml;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.FileUtilities;
+using WeThePeople_ModdingTool.Helper;
 
 namespace WeThePeople_ModdingTool
 {
@@ -84,8 +85,20 @@ namespace WeThePeople_ModdingTool
 
             yieldTypes.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
 
-            YieldTypeRepository.Instance.YieldTypes = yieldTypes;
+            YieldTypeRepository.Instance.YieldTypes = CreatedDictionary(yieldTypes, 6);
+            YieldTypeRepository.Instance.YieldTypeNames = DictionaryHelper.GetKeys(YieldTypeRepository.Instance.YieldTypes);
             return YieldTypeRepository.Instance.YieldTypes.Count > 0;
+        }
+
+        private IDictionary<string,string> CreatedDictionary( List<string> list, int substringIndex )
+        {
+            IDictionary<string, string> dictionary = new Dictionary<string, string>();
+            foreach( string item in list )
+            {
+                string name = item.Substring(substringIndex);
+                dictionary.TryAdd(name,item);
+            }
+            return dictionary;
         }
 
         private bool InitUnitClasses()
