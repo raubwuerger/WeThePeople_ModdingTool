@@ -27,7 +27,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             set { parentNodeToAppend = value; }
         }
 
-        private ListHelper listComparator = new ListHelper();
+        private ListHelperXML listComparator = new ListHelperXML();
         
         public override bool Insert(XmlDocument content)
         {
@@ -47,7 +47,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
                 XmlNodeList xmlNodesToInsert = content.DocumentElement.GetElementsByTagName(uniqueNodeName);
                 xmlNodeDestination = (XmlNode)originalDoc.DocumentElement;
 
-                ListHelper listHelper = new ListHelper();
+                ListHelperXML listHelper = new ListHelperXML();
                 xmlNodesToInsert = listHelper.GetNotIncluded(originalNodes, xmlNodesToInsert);
 
                 if (false == InsertNodes(originalDoc, xmlNodeDestination, xmlNodesToInsert))
@@ -82,7 +82,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
         private bool Contains(XmlNodeList nodesToInsert, XmlNodeList destinationNodes)
         {
             ListComparatorFactory listComparatorFactory = new ListComparatorFactory();
-            ListHelper listComparator = listComparatorFactory.CreateListComparatorGameEventText();
+            ListHelperXML listComparator = listComparatorFactory.CreateListComparatorGameEventText();
             return listComparator.Contains(nodesToInsert, destinationNodes);
         }
 

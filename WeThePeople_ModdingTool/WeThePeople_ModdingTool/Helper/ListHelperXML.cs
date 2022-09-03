@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace WeThePeople_ModdingTool.Helper
 {
-    public class ListHelper
+    public class ListHelperXML
     {
         private List<string> ignoreList = new List<string>();
         public List<string> IgnoreList

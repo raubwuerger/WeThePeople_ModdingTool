@@ -7,9 +7,9 @@ namespace WeThePeople_ModdingTool.Factories
 {
     public class ListComparatorFactory
     {
-        public ListHelper CreateListComparatorGameEventText()
+        public ListHelperXML CreateListComparatorGameEventText()
         {
-            ListHelper listComparator = new ListHelper();
+            ListHelperXML listComparator = new ListHelperXML();
             List<string> ignoreItems = new List<string>();
             ignoreItems.Add("TXT_KEY_EVENT_EUROPE_TRADE_QUEST_START");
             ignoreItems.Add("TXT_KEY_EVENT_AFRICA_TRADE_QUEST_START");
