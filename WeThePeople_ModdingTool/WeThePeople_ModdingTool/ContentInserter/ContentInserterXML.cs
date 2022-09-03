@@ -44,7 +44,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             XmlNode xmlNodeDestination;
             if( ((XmlNode)content.DocumentElement).Name.Equals(parentNodeToAppend) )
             {
-                XmlNodeList xmlNodesToInsert = content.DocumentElement.GetElementsByTagName(nodeNameToInsert);
+                XmlNodeList xmlNodesToInsert = content.DocumentElement.GetElementsByTagName(uniqueNodeName);
                 xmlNodeDestination = (XmlNode)originalDoc.DocumentElement;
 
                 ListHelper listHelper = new ListHelper();

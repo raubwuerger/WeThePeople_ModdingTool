@@ -48,14 +48,25 @@ namespace WeThePeople_ModdingTool.Helper
 
         public XmlNodeList GetNotIncluded(XmlNodeList originalList, XmlNodeList listToInsert)
         {
-            for (int i = originalList.Count - 1; i >= 0; i--)
+            List<XmlNode> listToRemove = new List<XmlNode>();
+            for (int i = listToInsert.Count - 1; i >= 0; i--)
             {
-                if (true == Containes(listToInsert, originalList[i]))
+                if (true == Containes(originalList, listToInsert[i]))
                 {
-                    listToInsert[i].ParentNode.RemoveChild(listToInsert[i]);
+                    listToRemove.Add(listToInsert[i]);
                 }
             }
+            RemoveXmlNodes(listToRemove);
             return listToInsert;
+        }
+
+        private void RemoveXmlNodes( List<XmlNode> xmlNodes )
+        {
+            foreach( XmlNode xmlNode in xmlNodes )
+            {
+                XmlNode parentNode = xmlNode.ParentNode;
+                parentNode.ParentNode.RemoveChild(parentNode);
+            }
         }
 
         private bool Containes(XmlNodeList originalList, XmlNode nodeToInsert)
