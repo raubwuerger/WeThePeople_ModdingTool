@@ -179,7 +179,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(dataSetXMLs));
-            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventTriggerInfos, DataSetFactory.EventTriggerInfo_NodeToInsert);
+            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventTriggerInfos, DataSetFactory.EventTriggerInfo_InsertNode);
             if (null == concatenated)
             {
                 return false;
@@ -215,7 +215,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             List<XmlDocument> xmlDocuments = new List<XmlDocument>();
             xmlDocuments.AddRange(DataSetConverter.CreateList(eventEventInfos));
-            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventInfos, DataSetFactory.EventInfo_NodeToInsert);
+            XmlDocument concatenated = Concatenate(xmlDocuments, Subnode_EventInfos, DataSetFactory.EventInfo_InsertNode);
             if (null == concatenated)
             {
                 return false;

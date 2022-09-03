@@ -40,10 +40,10 @@ namespace WeThePeople_ModdingTool
 
             replacedXmlDocument = (XmlDocument)dataSetXML.XmlDocumentTemplate.Clone();
             XmlNodeList rootNodes = replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlSelectNode);
-            XmlNode concreteNode = XMLHelper.FindNodeByName(rootNodes, dataSetXML.XmlConcreteNode);
+            XmlNode concreteNode = XMLHelper.FindNodeByName(rootNodes, dataSetXML.XmlInsertNode);
             if( null == concreteNode )
             {
-                Log.Debug("Concrete node not found! " + dataSetXML.XmlConcreteNode);
+                Log.Debug("Concrete node not found! " + dataSetXML.XmlInsertNode);
                 return false;
             }
             Replace(concreteNode.ChildNodes);
