@@ -117,7 +117,8 @@ namespace WeThePeople_ModdingTool
 
             unitClasses.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
 
-            UnitClassRepository.Instance.UnitClasses = unitClasses;
+            UnitClassRepository.Instance.UnitClasses = CreatedDictionary(unitClasses,10);
+            UnitClassRepository.Instance.UnitClassNames = DictionaryHelper.GetKeys(UnitClassRepository.Instance.UnitClasses);
             return UnitClassRepository.Instance.UnitClasses.Count > 0;
         }
 

@@ -35,7 +35,7 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void InitGUIElements()
         {
-            comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClasses;
+            comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClassNames;
 
             for( int i=0;i<=100;i++ )
             {
@@ -85,7 +85,7 @@ namespace WeThePeople_ModdingTool.Windows
         private void SetDataToGUI()
         {
             textBox_Gold.Text = dataSetEventInfoDone.GetGold();
-            comboBox_UnitClass.SelectedItem = dataSetEventInfoDone.GetUnitClass();
+            comboBox_UnitClass.SelectedItem = UnitClassRepository.Instance.GetKeyFromValue(dataSetEventInfoDone.GetUnitClass());
             comboBox_UnitCount.SelectedItem = dataSetEventInfoDone.GetUnitCount();
             textBox_UnitExperiance.Text = dataSetEventInfoDone.GetUnitExperience();
             comboBox_RelationKing.SelectedItem = dataSetEventInfoDone.GetKingRelation();
@@ -97,7 +97,7 @@ namespace WeThePeople_ModdingTool.Windows
             dataSetEventInfoDone.SetGold(textBox_Gold.Text);
             if( -1 != comboBox_UnitClass.SelectedIndex )
             {
-                dataSetEventInfoDone.SetUnitClass(comboBox_UnitClass.SelectedItem.ToString());
+                dataSetEventInfoDone.SetUnitClass(UnitClassRepository.Instance.GetValueFromName(comboBox_UnitClass.SelectedItem.ToString()));
             }
             else            
             {

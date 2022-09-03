@@ -20,8 +20,35 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        List<String> unitClasses = new List<string>();
-        public List<string> UnitClasses { get => unitClasses; set => unitClasses = value; }
+        List<String> unitClassNames = new List<string>();
+        public List<string> UnitClassNames
+        { 
+            get => unitClassNames; 
+            set => unitClassNames = value; 
+        }
 
+        IDictionary<string, string> unitClasses = new Dictionary<string, string>();
+        public IDictionary<string, string> UnitClasses
+        {
+            get { return unitClasses; }
+            set { unitClasses = value; }
+        }
+
+        public string GetValueFromName(string name)
+        {
+            return unitClasses[name];
+        }
+
+        public string GetKeyFromValue( string value )
+        {
+            foreach (string key in unitClasses.Keys)
+            {
+                if (unitClasses[key] == value)
+                {
+                    return key;
+                }
+            }
+            return null;
+        }
     }
 }
