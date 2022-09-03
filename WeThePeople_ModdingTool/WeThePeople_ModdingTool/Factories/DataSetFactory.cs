@@ -39,27 +39,20 @@ namespace WeThePeople_ModdingTool.Factories
         public static string EventInfos_Done_5 = "CIV4EventInfos_Done_5.xml";
         public static string EventInfos_Done_6 = "CIV4EventInfos_Done_6.xml";
 
-        public static string GameText_Done_1 = "GameText_Done_1";
-
-        public static string NODE_EVENTS = "Events";
-        public static string NODE_EVENT = "Event";
-        public static string NODE_TYPE = "Type";
-
-        public static string NODE_TAG = "Tag";
-        public static string NODE_TEXT = "TEXT";
-        public static string NODE_DESCRIPTION = "Description";
-
         public static string EventInfo_SelectNode = "/Civ4EventInfos";
         public static string EventInfo_RootNode = "Civ4EventInfos";
         public static string EventInfo_ParentNode = "EventInfos";
         public static string EventInfo_InsertNode = "EventInfo";
         public static string EventInfo_UniqueNode = "Type";
+        public static string EventInfo_DescriptionNode = "Description";
 
         public static string EventTriggerInfo_SelectNode = "/Civ4EventTriggerInfos";
         public static string EventTriggerInfo_RootNode = "Civ4EventTriggerInfos";
         public static string EventTriggerInfo_ParentNode = "EventTriggerInfos";
         public static string EventTriggerInfo_InsertNode = "EventTriggerInfo";
         public static string EventTriggerInfo_UniqueNode = "Type";
+        public static string EventTriggerInfo_EventsNode = "Events";
+        public static string EventTriggerInfo_EventNode = "Event";
 
         public static string Civ4GameText_SelectNode = "/Civ4GameText";
         public static string Civ4GameText_RootNode = "Civ4GameText";

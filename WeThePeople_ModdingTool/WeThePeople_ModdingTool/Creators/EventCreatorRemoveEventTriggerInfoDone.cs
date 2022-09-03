@@ -45,12 +45,12 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            if( false == RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.NODE_TYPE)) )
+            if( false == RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.EventTriggerInfo_UniqueNode)) )
             {
                 return false;
             }
 
-            XmlNodeList description = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_DESCRIPTION);
+            XmlNodeList description = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.EventInfo_DescriptionNode);
             if (description.Count != 1)
             {
                 return false;
@@ -62,7 +62,7 @@ namespace WeThePeople_ModdingTool.Creators
         private bool RemoveEventTriggerInfoDone(XmlNode nodeNameToDelete)
         {
             DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Done);
-            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_EVENTS);
+            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.EventTriggerInfo_EventsNode);
             if (nodeEvents.Count != 1)
             {
                 return false;
@@ -110,7 +110,7 @@ namespace WeThePeople_ModdingTool.Creators
             }
 
             DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4GameText_Colonization_Events_utf8_Start);
-            XmlNodeList nodeTags = eventGameText.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TAG);
+            XmlNodeList nodeTags = eventGameText.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.Civ4GameText_UniqueNode);
             if (nodeTags.Count <= 0)
             {
                 return false;

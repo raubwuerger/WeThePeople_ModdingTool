@@ -140,7 +140,7 @@ namespace WeThePeople_ModdingTool.Creators
         private bool AddEventTriggerInfoDone(DataSetXML dataSetXML_EventInfoDone)
         {
             DataSetXML eventTriggerInfo_Done = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4EventTriggerInfos_Done);
-            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_EVENTS);
+            XmlNodeList nodeEvents = eventTriggerInfo_Done.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.EventTriggerInfo_EventsNode);
             if (nodeEvents.Count != 1)
             {
                 return false;
@@ -148,7 +148,7 @@ namespace WeThePeople_ModdingTool.Creators
 
             XmlNode nodeEvent = nodeEvents[0];
 
-            XmlNode xmlNodeEvent = dataSetXML_EventInfoDone.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, DataSetFactory.NODE_EVENT, eventTriggerInfo_Done.XmlDocumentProcessed.NamespaceURI);
+            XmlNode xmlNodeEvent = dataSetXML_EventInfoDone.XmlDocumentProcessed.CreateNode(XmlNodeType.Element, DataSetFactory.EventTriggerInfo_EventNode, eventTriggerInfo_Done.XmlDocumentProcessed.NamespaceURI);
             xmlNodeEvent.InnerText = GetEventInfoDoneTypeName(dataSetXML_EventInfoDone);
 
             if (true == XMLHelper.ContainsInnerNode(nodeEvent, xmlNodeEvent.InnerText))
@@ -160,7 +160,7 @@ namespace WeThePeople_ModdingTool.Creators
             nodeEvent.AppendChild(importedNode);
             textBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done));
 
-            XmlNodeList description = dataSetXML_EventInfoDone.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_DESCRIPTION);
+            XmlNodeList description = dataSetXML_EventInfoDone.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.EventInfo_DescriptionNode);
             if(description.Count != 1)
             {
                 return false;
@@ -183,7 +183,7 @@ namespace WeThePeople_ModdingTool.Creators
 
         private XmlNode GetEventInfoDoneNode_TYPE(XmlNodeList xmlNodeList)
         {
-            return XMLHelper.FindNodeByName(xmlNodeList, DataSetFactory.NODE_TYPE);
+            return XMLHelper.FindNodeByName(xmlNodeList, DataSetFactory.EventInfo_UniqueNode);
         }
 
         private bool CreateGameTextNode( string description )
@@ -195,14 +195,14 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            XmlNodeList nodeTags = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TAG);
+            XmlNodeList nodeTags = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.Civ4GameText_UniqueNode);
             if (nodeTags.Count != 1)
             {
                 return false;
             }
             nodeTags[0].InnerText = description;
 
-            XmlNodeList xmlTexts = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.NODE_TEXT);
+            XmlNodeList xmlTexts = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.Civ4GameText_InsertNode);
             if( xmlTexts.Count != 1 )
             {
                 return false;
