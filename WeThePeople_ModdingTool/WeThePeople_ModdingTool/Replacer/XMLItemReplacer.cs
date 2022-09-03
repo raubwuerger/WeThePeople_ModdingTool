@@ -39,15 +39,29 @@ namespace WeThePeople_ModdingTool
             }
 
             replacedXmlDocument = (XmlDocument)dataSetXML.XmlDocumentTemplate.Clone();
-            XmlNodeList rootNodes = replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlSelectNode);
-            XmlNode concreteNode = XMLHelper.FindNodeByName(rootNodes, dataSetXML.XmlInsertNode);
-            if( null == concreteNode )
+            XmlNode concreteNode = GetConcreteNode(dataSetXML);
+            if ( null == concreteNode )
             {
                 Log.Debug("Concrete node not found! " + dataSetXML.XmlInsertNode);
                 return false;
             }
             Replace(concreteNode.ChildNodes);
             return true;
+        }
+
+        //Hack for CIV4GameText_Colonization_Events_utf8.xml. Because root node and parent node are identical!
+        private XmlNode GetConcreteNode( DataSetXML dataSetXML )
+        {
+            XmlNodeList rootNodes = replacedXmlDocument.DocumentElement.SelectNodes(dataSetXML.XmlSelectNode);
+            XmlNode concreteNode = XMLHelper.FindNodeByName(rootNodes, dataSetXML.XmlInsertNode);
+            if ( dataSetXML.XmlParentNode.Equals(dataSetXML.XmlRootNode) )
+            {
+                return concreteNode.ParentNode;
+            }
+            else 
+            {
+                return concreteNode;
+            }
         }
 
         private void Replace( XmlNodeList nodes )
