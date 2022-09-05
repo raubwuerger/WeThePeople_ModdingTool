@@ -6,7 +6,7 @@ namespace WeThePeople_ModdingTool.DataSets
 {
     public class DataSetEventInfoDone
     {
-        private KeyValuePair<string, string> gold = new KeyValuePair<string, string>(ReplaceItems.GOLD,"1000");
+        private KeyValuePair<string, string> gold = new KeyValuePair<string, string>(ReplaceItems.GOLD,"0");
         public KeyValuePair<string, string> Gold
         {
             get { return gold; }

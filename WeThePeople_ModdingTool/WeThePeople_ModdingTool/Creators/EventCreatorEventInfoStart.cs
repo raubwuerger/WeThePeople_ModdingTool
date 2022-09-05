@@ -53,7 +53,7 @@ namespace WeThePeople_ModdingTool.Creators
             EventInfoStartWindow eventInfoStartWindow = new EventInfoStartWindow();
             if (false == eventInfoStartWindow.ShowDialog())
             {
-                return false;
+                return true;
             }
 
             DataSetEventInfoStart dataSetEventInfo = eventInfoStartWindow.DataSetEventInfoStart;

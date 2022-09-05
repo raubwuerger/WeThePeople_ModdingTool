@@ -58,7 +58,7 @@ namespace WeThePeople_ModdingTool.Creators
             EventInfoDoneWindow eventInfoDoneWindow = new EventInfoDoneWindow();
             if (false == eventInfoDoneWindow.ShowDialog())
             {
-                return false;
+                return true;
             }
 
             KeyValuePair<TextEditor, TabItem> keyValuePair = GetCorrespondingTextBox();
