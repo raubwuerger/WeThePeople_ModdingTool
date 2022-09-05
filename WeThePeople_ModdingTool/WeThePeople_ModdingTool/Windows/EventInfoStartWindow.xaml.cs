@@ -34,7 +34,7 @@ namespace WeThePeople_ModdingTool.Windows
             SetDataToGUI();
         }
 
-        private void EventInfoStart_Ok_Click(object sender, RoutedEventArgs e)
+        private void button_EventInfoStart_Ok_Click(object sender, RoutedEventArgs e)
         {
             if( false == IsAtLeastOneInputValid() )
             {
@@ -54,7 +54,7 @@ namespace WeThePeople_ModdingTool.Windows
             DialogResult = true;
         }
 
-        private void EventInfoStart_Cancel_Click(object sender, RoutedEventArgs e)
+        private void button_EventInfoStart_Cancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
         }
@@ -67,14 +67,14 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void SetDataToGUI()
         {
-            StartValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueStart();
-            DoneValue_TextBox.Text = dataSetEventInfoStart.GetTriggerValueDone();
+            textBox_StartValue.Text = dataSetEventInfoStart.GetTriggerValueStart();
+            textBox_DoneValue.Text = dataSetEventInfoStart.GetTriggerValueDone();
         }
 
         private void GetFromGUI()
         {
-            dataSetEventInfoStart.SetTriggerValueStart(StartValue_TextBox.Text);
-            dataSetEventInfoStart.SetTriggerValueDone(DoneValue_TextBox.Text);
+            dataSetEventInfoStart.SetTriggerValueStart(textBox_StartValue.Text);
+            dataSetEventInfoStart.SetTriggerValueDone(textBox_DoneValue.Text);
         }
 
         private bool IsAtLeastOneInputValid()
@@ -95,13 +95,13 @@ namespace WeThePeople_ModdingTool.Windows
         private bool IsRelationStartDoneValueValid()
         {
             int startValue;
-            if( false == StringHelper.StringToInteger(StartValue_TextBox.Text, out startValue) )
+            if( false == StringHelper.StringToInteger(textBox_StartValue.Text, out startValue) )
             {
                 return false;
             }
 
             int doneValue;
-            if (false == StringHelper.StringToInteger(DoneValue_TextBox.Text, out doneValue))
+            if (false == StringHelper.StringToInteger(textBox_DoneValue.Text, out doneValue))
             {
                 return false;
             }
@@ -111,21 +111,21 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsStartValueValid()
         {
-            return StringHelper.IsNumberGreaterZero(StartValue_TextBox.Text);
+            return StringHelper.IsNumberGreaterZero(textBox_StartValue.Text);
         }
         private bool IsDoneValueValid()
         {
-            return StringHelper.IsNumberGreaterZero(DoneValue_TextBox.Text);
+            return StringHelper.IsNumberGreaterZero(textBox_DoneValue.Text);
         }
 
         private void button_StartValue_Clear_Click(object sender, RoutedEventArgs e)
         {
-            StartValue_TextBox.Text = "100";
+            textBox_StartValue.Text = "100";
         }
 
         private void button_DoneValue_Clear_Click(object sender, RoutedEventArgs e)
         {
-            DoneValue_TextBox.Text = "1000";
+            textBox_DoneValue.Text = "1000";
         }
     }
 }
