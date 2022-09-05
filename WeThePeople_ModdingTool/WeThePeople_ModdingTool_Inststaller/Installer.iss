@@ -40,13 +40,14 @@ Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeo
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\CIV4UnitInfos_OnlyClasses.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Civ4YieldInfos_OnlyTypes.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Harbours.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventInfos_Done_Template.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventInfos_Start_Template.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Done_Template.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Start_Template.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Template.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Done_Template.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
-Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Start_Template.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventInfos_Done.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventInfos_Start.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Done.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Start.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Done.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Start.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Done.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Start.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
