@@ -311,6 +311,16 @@ namespace WeThePeople_ModdingTool
 
         }
 
+        private string loadXmlFileName;
+        private XmlDocument xmlDocument;
+        private readonly string CIV4UnitInfos = "CIV4UnitInfos.xml";
+        private readonly string RootNode_Civ4UnitInfos = "Civ4UnitInfos";
+        private readonly string Civ4UnitInfos_UnitInfo = "UnitInfo";
+        private readonly string Civ4UnitInfos_iEuropeCost = "iEuropeCost";
+        private readonly string Civ4UnitInfos_iAfricaCost = "iAfricaCost";
+        private readonly string Civ4UnitInfos_iPortRoyalCost = "iPortRoyalCost";
+
+
         private void button_LoadXML_Click(object sender, RoutedEventArgs e)
         {
             DeactivateEventCreation();
@@ -323,6 +333,7 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
+            loadXmlFileName = dialog.FileName;
             string xmlFile = TextFileUtility.Load(dialog.FileName);
             TextBox_LoadXMLFile.Text = xmlFile;
         }
@@ -337,5 +348,58 @@ namespace WeThePeople_ModdingTool
         {
             ValidateXMLFile(TextBox_LoadXMLFile.Text);
         }
+
+        private void button_LoadXMLFile_analyze_Click(object sender, RoutedEventArgs e)
+        {
+            xmlDocument = XMLFileUtility.Load(loadXmlFileName);
+
+            if (false == xmlDocument.DocumentElement.Name.Equals(RootNode_Civ4UnitInfos))
+            {
+                CommonMessageBox.Show_OK_Error("Wrong file selected!", "This operation assumes file named: " + CIV4UnitInfos);
+                return;
+            }
+
+            IDictionary<string, string> unitType = new System.Collections.Generic.Dictionary<string, string>();
+
+            XmlNodeList xmlNodeList = xmlDocument.DocumentElement.GetElementsByTagName(Civ4UnitInfos_UnitInfo);
+            foreach( XmlNode xmlNode in xmlNodeList )
+            {
+                int costEurope;
+                bool iEurope = StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iEuropeCost), out costEurope);
+
+                int costAfrica;
+                bool iAfrica = StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iAfricaCost), out costAfrica);
+
+                int costPortRoyal;
+                bool iPortRoyal = StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iPortRoyalCost), out costPortRoyal);
+
+
+            }
+        }
+
+        private bool HasSubnode( XmlNode parentNode, string subnode )
+        {
+            foreach( XmlNode xmlNode in  parentNode.ChildNodes )
+            {
+                if( xmlNode.Name.Equals(subnode) )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private string GetSubnodeValue(XmlNode parentNode, string subnode)
+        {
+            foreach (XmlNode xmlNode in parentNode.ChildNodes)
+            {
+                if (xmlNode.Name.Equals(subnode))
+                {
+                    return xmlNode.InnerText;
+                }
+            }
+            return "";
+        }
+
     }
 }

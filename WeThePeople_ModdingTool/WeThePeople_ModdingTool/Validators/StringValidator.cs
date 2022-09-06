@@ -26,5 +26,10 @@ namespace WeThePeople_ModdingTool.Validators
             double isDouble;
             return double.TryParse(rhs, out isDouble);
         }
+
+        public static bool GetNaturalNumber( string rhs, out int number )
+        {
+            return int.TryParse(rhs, out number);
+        }
     }
 }

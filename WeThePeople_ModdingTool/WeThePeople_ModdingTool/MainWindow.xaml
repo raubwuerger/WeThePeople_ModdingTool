@@ -378,8 +378,9 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button x:Name="button_LoadXMLFile_hide" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Content="Close" Margin="0,0,84,0" Click="button_LoadXMLFile_hide_Click"/>
-                    <Button x:Name="button_LoadXMLFile_validate" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Content="Validate" Click="button_LoadXMLFile_validate_Click"/>
+                    <Button x:Name="button_LoadXMLFile_hide" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Width="80" Content="Close" Margin="0,0,84,0" Click="button_LoadXMLFile_hide_Click"/>
+                    <Button x:Name="button_LoadXMLFile_validate" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" Width="80" Content="Validate" Click="button_LoadXMLFile_validate_Click"/>
+                    <Button x:Name="button_LoadXMLFile_analyze" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Content="Analyze" Click="button_LoadXMLFile_analyze_Click"/>
                     <avalonEdit:TextEditor
                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                         x:Name="TextBox_LoadXMLFile"
