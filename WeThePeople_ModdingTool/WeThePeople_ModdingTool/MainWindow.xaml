@@ -24,6 +24,7 @@
             <Button x:Name="button_CreateEventInfoStartXML" Click="button_CreateEventInfoStartXML_Click" Margin="10" Height="20" Content="Create Event InfoStart" IsEnabled="false"/>
             <Button x:Name="button_AddEventInfoDone" Click="button_AddEventInfoDone_Click" Margin="10" Height="20" Content="Add Event InfoDone" IsEnabled="false"/>
             <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="20" IsEnabled="False">Create Events</Button>
+            <Button x:Name="button_ShowGridControl" Click="button_ShowGridControl_Click" Margin="10" Height="20" IsEnabled="True">Open GridControl</Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Width="200">
             <Button x:Name="button_LoadXML" Margin="10" Height="20" Click="button_LoadXML_Click" Content="Load XML File"/>

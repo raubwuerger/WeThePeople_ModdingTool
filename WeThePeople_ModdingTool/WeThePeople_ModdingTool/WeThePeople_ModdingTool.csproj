@@ -16,6 +16,13 @@
     <PackageReference Include="Serilog" Version="2.11.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="unvell.ReoGridWPF.dll" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="unvell.ReoGrid">
+      <HintPath>..\Assets\ReoGrid-2.1.0.0-Minimum\unvell.ReoGrid.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

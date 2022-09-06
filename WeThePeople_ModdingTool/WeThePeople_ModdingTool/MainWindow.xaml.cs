@@ -466,5 +466,13 @@ namespace WeThePeople_ModdingTool
             return "";
         }
 
+        private void button_ShowGridControl_Click(object sender, RoutedEventArgs e)
+        {
+            GridControl eventInfoStartWindow = new GridControl();
+            if (false == eventInfoStartWindow.ShowDialog())
+            {
+                return;
+            }
+        }
     }
 }
