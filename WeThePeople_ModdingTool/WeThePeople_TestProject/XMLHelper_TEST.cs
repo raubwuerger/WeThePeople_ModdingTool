@@ -16,7 +16,7 @@ namespace WeThePeople_TestProject
         [SetUp]
         public void Setup()
         {
-            string fileNameAbsolute = @"D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Start_Template.xml";
+            string fileNameAbsolute = @"D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Start.xml";
             xmlDocument = XMLFileUtility.Load(fileNameAbsolute);
             XmlNodeList nodeList = xmlDocument.GetElementsByTagName("Events");
         }
