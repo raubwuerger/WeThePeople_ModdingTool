@@ -27,6 +27,7 @@
             <Button x:Name="button_ShowGridControl" Click="button_ShowGridControl_Click" Margin="10" Height="20" IsEnabled="True">Open GridControl</Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Width="200">
+            <Button x:Name="button_LoadXML_Civ4UnitInfos" Margin="10" Height="20" Click="button_LoadXML_Civ4UnitInfos_Click" Content="Load Civ4UnitInfos"/>
             <Button x:Name="button_LoadXML" Margin="10" Height="20" Click="button_LoadXML_Click" Content="Load XML File"/>
         </StackPanel>
         <TabControl x:Name="tabControl_templates" Grid.Column="1">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
 {
@@ -20,11 +21,19 @@ namespace WeThePeople_ModdingTool
             }
         }
 
+        public static readonly string MOD_UNIT_PATH = @"Assets\XML\Units";
+        public static readonly string CIV4UnitInfos = "CIV4UnitInfos.xml";
+
         private string mod_path;
         public string Mod_path
         {
             get { return mod_path; }
             set { mod_path = value; }
+        }
+
+        public string GetFullPathCIV4UnitInfos()
+        {
+            return PathHelper.CombinePathAndFileName(PathHelper.PathCombine(mod_path, MOD_UNIT_PATH), CIV4UnitInfos);
         }
     }
 }

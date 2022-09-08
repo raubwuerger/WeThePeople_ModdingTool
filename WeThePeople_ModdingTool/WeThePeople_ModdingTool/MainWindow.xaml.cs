@@ -474,5 +474,14 @@ namespace WeThePeople_ModdingTool
                 return;
             }
         }
+
+        private void button_LoadXML_Civ4UnitInfos_Click(object sender, RoutedEventArgs e)
+        {
+            XmlDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetFullPathCIV4UnitInfos());
+            if( null == xmlDocument )
+            {
+                return;
+            }
+        }
     }
 }
