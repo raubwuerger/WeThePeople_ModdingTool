@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -13,6 +14,9 @@ namespace WeThePeople_ModdingTool
 {
     public sealed class MainSettingsLoader
     {
+        private static readonly string MAIN_CONFIG_FILE = "WeThePeople_ModdingTool.xml";
+        private static readonly string MOD_SOURCE_PATH = "ModSourcePath";
+        private static readonly string MOD_SOURCE_PATH_PATH = "Path";
         private static readonly MainSettingsLoader instance = new MainSettingsLoader();
 
         static MainSettingsLoader()
@@ -35,8 +39,33 @@ namespace WeThePeople_ModdingTool
 
         public bool Init()
         {
+            if( false == InitConfig() )
+            {
+                return false;
+            }
             return LoadTemplates();
         }
+
+        private bool InitConfig()
+        {
+            XmlDocument xmlDocument = XMLFileUtility.Load(PathHelper.GetBasePathCombine(MAIN_CONFIG_FILE));
+            if( null == xmlDocument )
+            {
+                Log.Debug("Unable to load main config: " + MAIN_CONFIG_FILE);
+                return false;
+            }
+
+            XmlNodeList modSourcePath = xmlDocument.DocumentElement.GetElementsByTagName(MOD_SOURCE_PATH_PATH);
+            if( modSourcePath.Count != 1 )
+            {
+                return false;
+            }
+
+            WeThePeople_ModdingTool_Config.Instance.Mod_path = modSourcePath[0].InnerText;
+
+            return true;
+        }
+
         //TODO: Sollte in List überführt werden. Wenn die Anzahl an templates wächst muss nur ein weiterer Eintrag in die List eingefügt werden.
         public bool LoadTemplates()
         {
