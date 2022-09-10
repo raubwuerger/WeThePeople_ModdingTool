@@ -10,7 +10,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
-                .WriteTo.File(GenerateLogFileName(), rollingInterval: RollingInterval.Day)
+                .WriteTo.File(GenerateLogFileName(), rollingInterval: RollingInterval.Day, outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}")
                 .CreateLogger();
             CreateInitialLogMessage();
         }
