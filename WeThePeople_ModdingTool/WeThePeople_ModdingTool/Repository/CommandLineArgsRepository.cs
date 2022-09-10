@@ -37,6 +37,7 @@ namespace WeThePeople_ModdingTool
                 Log.Debug("Command line argument already registered: " + commandLineArg);
                 return false;
             }
+            Log.Debug("Registered command line argument: " + commandLineArg);
             commandLineArgs.Add(commandLineArg);
             return true;
         }
