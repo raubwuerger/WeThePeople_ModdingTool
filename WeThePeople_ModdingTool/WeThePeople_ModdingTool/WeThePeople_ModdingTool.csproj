@@ -29,8 +29,4 @@
     <Resource Include="WtP_desktop_icon.ico" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logging\" />
-  </ItemGroup>
-
 </Project>
