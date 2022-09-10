@@ -21,6 +21,17 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 return Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             }
         }
+        public static string GetBasePathReleaseOnly( string pathExtension )
+        {
+            if (CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE))
+            {
+                return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            }
+            else
+            {
+                return CombinePath(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, pathExtension);
+            }
+        }
 
         public static string GetBasePath_Test()
         {
@@ -58,7 +69,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return Path.Combine( filename, AssetPathShort );
         }
 
-        public static string PathCombine( string pathFirst, string pathSecond )
+        public static string CombinePath( string pathFirst, string pathSecond )
         {
             return Path.Combine(pathFirst, pathSecond);
         }

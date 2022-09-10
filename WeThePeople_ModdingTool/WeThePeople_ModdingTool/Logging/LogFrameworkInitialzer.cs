@@ -33,6 +33,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
             initialLogMessage += ":";
             initialLogMessage += System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             initialLogMessage += " <<<<<<<<<<";
+
+            string separatorLine = new string('>', initialLogMessage.Length);
+
+            Log.Information(separatorLine);
             Log.Information(initialLogMessage);
         }
     }

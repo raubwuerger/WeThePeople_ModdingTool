@@ -80,7 +80,7 @@ namespace WeThePeople_ModdingTool.Creators
             concatenatedFiles += CommonVariables.CR;
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
-            string savePathExtended = PathHelper.PathCombine(SavePath,Path.GetDirectoryName(dataSetPythonDone.TemplateFileNameRelativ));
+            string savePathExtended = PathHelper.CombinePath(SavePath,Path.GetDirectoryName(dataSetPythonDone.TemplateFileNameRelativ));
             string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, dataSetPythonStart.OriginalFileName);
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
@@ -134,7 +134,7 @@ namespace WeThePeople_ModdingTool.Creators
         {
             DataSetXML eventGameText = TemplateRepository.Instance.FindByNameXML(DataSetFactory.CIV4GameText_Colonization_Events_utf8_Start);
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, Path.GetDirectoryName(eventGameText.TemplateFileNameRelativ)), eventGameText.OriginalFileName);
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePath(SavePath, Path.GetDirectoryName(eventGameText.TemplateFileNameRelativ)), eventGameText.OriginalFileName);
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
             if (messageBoxResult == MessageBoxResult.Cancel)
@@ -177,7 +177,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, Path.GetDirectoryName(dataSetXMLs[0].TemplateFileNameRelativ)), dataSetXMLs[0].OriginalFileName );
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePath(SavePath, Path.GetDirectoryName(dataSetXMLs[0].TemplateFileNameRelativ)), dataSetXMLs[0].OriginalFileName );
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
             if (messageBoxResult == MessageBoxResult.Cancel)
@@ -213,7 +213,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.PathCombine(SavePath, Path.GetDirectoryName(eventEventInfos[0].TemplateFileNameRelativ)), eventEventInfos[0].OriginalFileName);
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePath(SavePath, Path.GetDirectoryName(eventEventInfos[0].TemplateFileNameRelativ)), eventEventInfos[0].OriginalFileName);
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
             if (messageBoxResult == MessageBoxResult.Cancel )

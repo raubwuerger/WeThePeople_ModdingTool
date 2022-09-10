@@ -14,9 +14,6 @@ namespace WeThePeople_ModdingTool
 {
     public sealed class MainSettingsLoader
     {
-        private static readonly string MAIN_CONFIG_FILE = "WeThePeople_ModdingTool.xml";
-        private static readonly string MOD_SOURCE_PATH = "ModSourcePath";
-        private static readonly string MOD_SOURCE_PATH_PATH = "Path";
         private static readonly MainSettingsLoader instance = new MainSettingsLoader();
 
         static MainSettingsLoader()
@@ -48,14 +45,14 @@ namespace WeThePeople_ModdingTool
 
         private bool InitConfig()
         {
-            XmlDocument xmlDocument = XMLFileUtility.Load(PathHelper.GetBasePathCombine(MAIN_CONFIG_FILE));
+            XmlDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetBasePathAndFileName());
             if( null == xmlDocument )
             {
-                Log.Debug("Unable to load main config: " + MAIN_CONFIG_FILE);
+                Log.Debug("Unable to load main config: " + WeThePeople_ModdingTool_Config.Instance.MAIN_CONFIG_FILE);
                 return false;
             }
 
-            XmlNodeList modSourcePath = xmlDocument.DocumentElement.GetElementsByTagName(MOD_SOURCE_PATH_PATH);
+            XmlNodeList modSourcePath = xmlDocument.DocumentElement.GetElementsByTagName(WeThePeople_ModdingTool_Config.Instance.MOD_SOURCE_PATH_PATH);
             if( modSourcePath.Count != 1 )
             {
                 return false;

@@ -22,6 +22,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             try
             {
+                Log.Debug("Loading file: " + fileName);
                 FileName = fileName;
                 XmlDocument doc = new XmlDocument();
                 doc.PreserveWhitespace = false;
@@ -89,6 +90,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
 
         public static void SaveFormattedXml(XmlDocument doc, String outputPath, Encoding encoding)
         {
+            Log.Debug("Saving file: " + outputPath);
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.IndentChars = "\t";
