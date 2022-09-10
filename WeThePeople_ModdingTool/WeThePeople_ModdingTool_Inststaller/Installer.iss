@@ -19,6 +19,7 @@ WizardStyle=modern
 OutputBaseFilename=WeThePeople_ModdingTool
 SetupIconFile=WtP_desktop_icon.ico
 UninstallDisplayIcon=WtP_desktop_icon.ico
+UsePreviousAppDir=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -35,6 +36,8 @@ Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeo
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\WeThePeople_ModdingTool.deps.json"; DestDir: "{app}\program"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\WeThePeople_ModdingTool.dll"; DestDir: "{app}\program"; Flags: ignoreversion
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\WeThePeople_ModdingTool.runtimeconfig.json"; DestDir: "{app}\program"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool.xml"; DestDir: "{app}\program"; Flags: ignoreversion
+Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\Assets\ReoGrid-2.1.0.0-WPFMinimum\*"; DestDir: "{app}\program"; Flags: ignoreversion recursesubdirs
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WtP_desktop_icon.ico"; DestDir: "{app}\program"; Flags: ignoreversion
 
 Source: "D:\Projekte\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\CIV4UnitInfos_OnlyClasses.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
