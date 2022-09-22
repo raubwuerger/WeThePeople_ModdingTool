@@ -354,6 +354,11 @@ namespace WeThePeople_ModdingTool
         private void button_LoadXMLFile_analyze_Click(object sender, RoutedEventArgs e)
         {
             xmlDocument = XMLFileUtility.Load(loadXmlFileName);
+            if( null == xmlDocument )
+            {
+                CommonMessageBox.Show_OK_Error("No file selected!", "This operation assumes file named: " + CIV4UnitInfos);
+                return;
+            }
 
             if (false == xmlDocument.DocumentElement.Name.Equals(RootNode_Civ4UnitInfos))
             {
@@ -366,6 +371,7 @@ namespace WeThePeople_ModdingTool
             IDictionary<string, string> unitTypePortRoyal = new System.Collections.Generic.Dictionary<string, string>();
 
             string message = CreateHeader();
+            message += "\r\n";
 
             XmlNodeList xmlNodeList = xmlDocument.DocumentElement.GetElementsByTagName(Civ4UnitInfos_UnitInfo);
             foreach( XmlNode xmlNode in xmlNodeList )
@@ -469,6 +475,7 @@ namespace WeThePeople_ModdingTool
         private void button_ShowGridControl_Click(object sender, RoutedEventArgs e)
         {
             GridControl eventInfoStartWindow = new GridControl();
+            eventInfoStartWindow.Init();
             if (false == eventInfoStartWindow.ShowDialog())
             {
                 return;
@@ -479,6 +486,15 @@ namespace WeThePeople_ModdingTool
         {
             XmlDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetFullPathCIV4UnitInfos());
             if( null == xmlDocument )
+            {
+                return;
+            }
+
+            GridControl eventInfoStartWindow = new GridControl();
+            eventInfoStartWindow.WindowState = WindowState.Maximized;
+            eventInfoStartWindow.XmlDocument = xmlDocument;
+            eventInfoStartWindow.Init();
+            if (false == eventInfoStartWindow.ShowDialog())
             {
                 return;
             }
