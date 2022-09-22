@@ -31,7 +31,14 @@ namespace WeThePeople_ModdingTool
 
         public string GetBasePathAndFileName()
         {
-            return PathHelper.CombinePathAndFileName(PathHelper.CombinePath(PathHelper.GetBasePath(), PATH_RELATIVE), MAIN_CONFIG_FILE);
+            if (CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE))
+            {
+                return PathHelper.CombinePathAndFileName(PathHelper.GetBasePath(), MAIN_CONFIG_FILE);
+            }
+            else
+            {
+                return PathHelper.CombinePathAndFileName(PathHelper.CombinePath(PathHelper.GetBasePath(), PATH_RELATIVE), MAIN_CONFIG_FILE);
+            }
         }
 
 
