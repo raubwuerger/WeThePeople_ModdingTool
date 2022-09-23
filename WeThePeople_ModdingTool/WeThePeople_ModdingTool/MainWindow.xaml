@@ -24,7 +24,6 @@
             <Button x:Name="button_CreateEventInfoStartXML" Click="button_CreateEventInfoStartXML_Click" Margin="10" Height="20" Content="Create Event InfoStart" IsEnabled="false"/>
             <Button x:Name="button_AddEventInfoDone" Click="button_AddEventInfoDone_Click" Margin="10" Height="20" Content="Add Event InfoDone" IsEnabled="false"/>
             <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="20" IsEnabled="False">Create Events</Button>
-            <Button x:Name="button_ShowGridControl" Click="button_ShowGridControl_Click" Margin="10" Height="20" IsEnabled="True">Open GridControl</Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Width="200">
             <Button x:Name="button_LoadXML_Civ4UnitInfos" Margin="10" Height="20" Click="button_LoadXML_Civ4UnitInfos_Click" Content="Load Civ4UnitInfos"/>
@@ -382,7 +381,6 @@
                     </Grid.RowDefinitions>
                     <Button x:Name="button_LoadXMLFile_hide" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Width="80" Content="Close" Margin="0,0,84,0" Click="button_LoadXMLFile_hide_Click"/>
                     <Button x:Name="button_LoadXMLFile_validate" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" Width="80" Content="Validate" Click="button_LoadXMLFile_validate_Click"/>
-                    <Button x:Name="button_LoadXMLFile_analyze" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" Width="80" Content="Analyze" Click="button_LoadXMLFile_analyze_Click"/>
                     <avalonEdit:TextEditor
                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                         x:Name="TextBox_LoadXMLFile"

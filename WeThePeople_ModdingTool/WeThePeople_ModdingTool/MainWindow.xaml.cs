@@ -312,16 +312,6 @@ namespace WeThePeople_ModdingTool
 
         }
 
-        private string loadXmlFileName;
-        private XmlDocument xmlDocument;
-        private readonly string CIV4UnitInfos = "CIV4UnitInfos.xml";
-        private readonly string RootNode_Civ4UnitInfos = "Civ4UnitInfos";
-        private readonly string Civ4UnitInfos_Type = "Type";
-        private readonly string Civ4UnitInfos_UnitInfo = "UnitInfo";
-        private readonly string Civ4UnitInfos_iEuropeCost = "iEuropeCost";
-        private readonly string Civ4UnitInfos_iAfricaCost = "iAfricaCost";
-        private readonly string Civ4UnitInfos_iPortRoyalCost = "iPortRoyalCost";
-
 
         private void button_LoadXML_Click(object sender, RoutedEventArgs e)
         {
@@ -335,7 +325,6 @@ namespace WeThePeople_ModdingTool
                 return;
             }
 
-            loadXmlFileName = dialog.FileName;
             string xmlFile = TextFileUtility.Load(dialog.FileName);
             TextBox_LoadXMLFile.Text = xmlFile;
         }
@@ -351,115 +340,6 @@ namespace WeThePeople_ModdingTool
             ValidateXMLFile(TextBox_LoadXMLFile.Text);
         }
 
-        private void button_LoadXMLFile_analyze_Click(object sender, RoutedEventArgs e)
-        {
-            xmlDocument = XMLFileUtility.Load(loadXmlFileName);
-            if( null == xmlDocument )
-            {
-                CommonMessageBox.Show_OK_Error("No file selected!", "This operation assumes file named: " + CIV4UnitInfos);
-                return;
-            }
-
-            if (false == xmlDocument.DocumentElement.Name.Equals(RootNode_Civ4UnitInfos))
-            {
-                CommonMessageBox.Show_OK_Error("Wrong file selected!", "This operation assumes file named: " + CIV4UnitInfos);
-                return;
-            }
-
-            IDictionary<string, string> unitTypeEurope = new System.Collections.Generic.Dictionary<string, string>();
-            IDictionary<string, string> unitTypeAfrica = new System.Collections.Generic.Dictionary<string, string>();
-            IDictionary<string, string> unitTypePortRoyal = new System.Collections.Generic.Dictionary<string, string>();
-
-            string message = CreateHeader();
-            message += "\r\n";
-
-            XmlNodeList xmlNodeList = xmlDocument.DocumentElement.GetElementsByTagName(Civ4UnitInfos_UnitInfo);
-            foreach( XmlNode xmlNode in xmlNodeList )
-            {
-                XmlNode xmlNodeType = XMLHelper.FindNodeByName(xmlNode.ChildNodes, Civ4UnitInfos_Type);
-                if( null == xmlNodeType )
-                {
-                    Log.Debug("Node has no subnode named: " + Civ4UnitInfos_Type);
-                    continue;
-                }
-                string unitName = xmlNodeType.InnerText;
-                int costEurope = 0;
-                bool iEurope = StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iEuropeCost), out costEurope);
-                iEurope = costEurope > 0;
-                if( iEurope )
-                {
-                    unitTypeEurope.Add(unitName, costEurope.ToString());
-                    unitName += "\t\t\t";
-                    unitName += costEurope.ToString();
-                }
-                else 
-                {
-                    unitName += "\t\t\t\t";
-                }
-
-                int costAfrica = 0;
-                bool iAfrica = StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iAfricaCost), out costAfrica);
-                iAfrica = costAfrica > 0;
-                if( iAfrica )
-                {
-                    unitTypeAfrica.Add(unitName, costAfrica.ToString());
-                    unitName += "\t\t";
-                    unitName += costAfrica.ToString();
-                }
-                else
-                {
-                    unitName += "\t\t\t";
-                }
-
-                int costPortRoyal = 0;
-                bool iPortRoyal = StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iPortRoyalCost), out costPortRoyal);
-                iPortRoyal = costPortRoyal > 0;
-                if( iPortRoyal )
-                {
-                    unitTypePortRoyal.Add(unitName, costPortRoyal.ToString());
-                    unitName += "\t\t";
-                    unitName += costPortRoyal.ToString();
-                }
-                else
-                {
-                    unitName += "\t\t\t";
-                }
-
-                if( unitName.TrimEnd() != unitName )
-                {
-                    message += unitName;
-                    message += "\r\n";
-                }
-            }
-
-            TextBox_LoadXMLFile.Text = message;
-        }
-
-        private string CreateHeader()
-        {
-            string header = "";
-            header += "UnitType";
-            header += "\t\t\t";
-            header += "Europe";
-            header += "\t";
-            header += "Africa";
-            header += "\t";
-            header += "PortRoyal";
-            return header;
-        }
-
-        private bool HasSubnode( XmlNode parentNode, string subnode )
-        {
-            foreach( XmlNode xmlNode in  parentNode.ChildNodes )
-            {
-                if( xmlNode.Name.Equals(subnode) )
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         private string GetSubnodeValue(XmlNode parentNode, string subnode)
         {
             foreach (XmlNode xmlNode in parentNode.ChildNodes)
@@ -470,16 +350,6 @@ namespace WeThePeople_ModdingTool
                 }
             }
             return "";
-        }
-
-        private void button_ShowGridControl_Click(object sender, RoutedEventArgs e)
-        {
-            GridControl eventInfoStartWindow = new GridControl();
-            eventInfoStartWindow.Init();
-            if (false == eventInfoStartWindow.ShowDialog())
-            {
-                return;
-            }
         }
 
         private void button_LoadXML_Civ4UnitInfos_Click(object sender, RoutedEventArgs e)
