@@ -15,6 +15,17 @@ namespace WeThePeople_ModdingTool.Creators
 {
     public class EventCreatorEventInfoDone : EventCreatorBase
     {
+        private string yield;
+        public string Yield
+        {
+            set { yield = value; }
+        }
+
+        private string harbour;
+        public string Harbour
+        {
+            set { harbour = value; }
+        }
         private EventProcessor eventProcessor;
         public EventProcessor EventProcessor
         {
@@ -56,6 +67,9 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
             EventInfoDoneWindow eventInfoDoneWindow = new EventInfoDoneWindow();
+            eventInfoDoneWindow.Yield = yield;
+            eventInfoDoneWindow.Harbour = harbour;
+            eventInfoDoneWindow.Init();
             if (false == eventInfoDoneWindow.ShowDialog())
             {
                 return true;

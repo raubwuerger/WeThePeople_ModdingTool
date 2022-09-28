@@ -24,7 +24,7 @@
                 <RowDefinition Height="10" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2">Create Event Info Start</Label>
+            <Label x:Name="label_EventInfoStart" VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2"></Label>
             <Rectangle Fill="Black" Height="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="4,4,4,4"/>
             <Label VerticalAlignment="Center" Grid.Row="2">Start value:</Label>
             <TextBox x:Name="textBox_StartValue" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Width="80" Margin="4,4,4,4" PreviewTextInput="PreviewTextInput"></TextBox>

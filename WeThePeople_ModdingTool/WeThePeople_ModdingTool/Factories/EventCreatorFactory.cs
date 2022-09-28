@@ -18,6 +18,8 @@ namespace WeThePeople_ModdingTool.Factories
             eventCreatorEventInfoStart.TabItemEventInfoStart = mainWindow.CIV4EventInfos_Start;
             eventCreatorEventInfoStart.TabControl = mainWindow.tabControl_templates;
             eventCreatorEventInfoStart.ButtonAddEventInfoDone = mainWindow.button_AddEventInfoDone;
+            eventCreatorEventInfoStart.Yield = mainWindow.ComboBox_Yield.Text;
+            eventCreatorEventInfoStart.Harbour = mainWindow.comboBox_Harbours.Text;
 
             return eventCreatorEventInfoStart;
         }
@@ -31,6 +33,9 @@ namespace WeThePeople_ModdingTool.Factories
             eventCreatorEventInfoDone.TabControl_templates = mainWindow.tabControl_templates;
             eventCreatorEventInfoDone.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
             eventCreatorEventInfoDone.TextBox_EventGameText = mainWindow.TextBox_EventGameText;
+            eventCreatorEventInfoDone.Yield = mainWindow.ComboBox_Yield.Text;
+            eventCreatorEventInfoDone.Harbour = mainWindow.comboBox_Harbours.Text;
+
 
             return eventCreatorEventInfoDone;
         }

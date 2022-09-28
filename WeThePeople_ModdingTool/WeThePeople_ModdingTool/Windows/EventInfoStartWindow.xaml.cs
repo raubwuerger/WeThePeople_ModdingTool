@@ -15,6 +15,17 @@ namespace WeThePeople_ModdingTool.Windows
     /// </summary>
     public partial class EventInfoStartWindow : Window
     {
+        private string yield;
+        public string Yield
+        {
+            set { yield = value; }
+        }
+
+        private string harbour;
+        public string Harbour
+        {
+            set { harbour = value; }
+        }
         private DataSetEventInfoStart dataSetEventInfoStart = new DataSetEventInfoStart();
         public DataSetEventInfoStart DataSetEventInfoStart
         {
@@ -31,6 +42,9 @@ namespace WeThePeople_ModdingTool.Windows
         public EventInfoStartWindow()
         {
             InitializeComponent();
+        }
+        public void Init()
+        {
             SetDataToGUI();
         }
 
@@ -67,6 +81,7 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void SetDataToGUI()
         {
+            label_EventInfoStart.Content = "Create EventInfoStart: " + yield + " - " + harbour;
             textBox_StartValue.Text = dataSetEventInfoStart.GetTriggerValueStart();
             textBox_DoneValue.Text = dataSetEventInfoStart.GetTriggerValueDone();
         }

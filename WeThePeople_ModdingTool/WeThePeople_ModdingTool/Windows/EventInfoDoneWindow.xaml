@@ -29,7 +29,7 @@
                 <RowDefinition Height="10" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0">Create Event Info Done</Label>
+            <Label x:Name="label_EventInfoDone" Grid.Row="0" Grid.ColumnSpan="2"></Label>
             <Rectangle Fill="Black" Height="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="4,4,4,4"/>
             <Label Grid.Row="2">Gold:</Label>
             <TextBox x:Name="textBox_Gold" Grid.Column="1" Grid.Row="2" PreviewTextInput="PreviewTextInput" Margin="4,4,4,4" Width="80" HorizontalAlignment="Left"></TextBox>

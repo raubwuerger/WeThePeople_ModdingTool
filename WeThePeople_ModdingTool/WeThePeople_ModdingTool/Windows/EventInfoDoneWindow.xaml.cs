@@ -11,6 +11,18 @@ namespace WeThePeople_ModdingTool.Windows
 {
     public partial class EventInfoDoneWindow : Window
     {
+        private string yield;
+        public string Yield
+        {
+            set { yield = value; }
+        }
+
+        private string harbour;
+        public string Harbour
+        {
+            set { harbour = value; }
+        }
+
         private DataSetEventInfoDone dataSetEventInfoDone = new DataSetEventInfoDone();
         public DataSetEventInfoDone DataSetEventInfoDone
         {
@@ -29,12 +41,18 @@ namespace WeThePeople_ModdingTool.Windows
         public EventInfoDoneWindow()
         {
             InitializeComponent();
+        }
+
+        public void Init()
+        {
             InitGUIElements();
             SetDataToGUI();
         }
 
         private void InitGUIElements()
         {
+            label_EventInfoDone.Content = "Create EventInfoDone: " +yield +" - " +harbour;
+
             comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClassNames;
 
             for( int i=0;i<=100;i++ )
