@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -398,5 +399,21 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <RichTextBox 
+            x:Name="LoggingRichTextBox"
+            Grid.Row="2"
+            Width="auto"
+            Grid.ColumnSpan="2"
+            Background="Black"
+            Foreground="LightGray"
+            FontFamily="Cascadia Mono, Consolas, Courier New, monospace"
+            VerticalScrollBarVisibility="Auto"
+            IsReadOnly="True">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>

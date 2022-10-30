@@ -32,7 +32,7 @@ namespace WeThePeople_ModdingTool
         public MainWindow()
         {
             InitializeComponent();
-            LogFrameworkInitialzer.Init();
+            LogFrameworkInitialzer.Init(this);
             CommandLineArgsParser.Parse();
             if( false == MainSettingsLoader.Instance.Init() )
             {
