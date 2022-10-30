@@ -11,24 +11,27 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="200" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel VerticalAlignment="Top">
-            <ComboBox x:Name="ComboBox_Yield" Margin="10"/>
-            <ComboBox x:Name="comboBox_Harbours" Margin="10"/>
-            <Button x:Name="button_LoadTemplates" Click="button_LoadTemplates_Click" Margin="10" Height="20" Content="Init Templates" IsEnabled="true"/>
-            <Button x:Name="button_ResetTemplates" Click="button_RestTemplates_Click" Margin="10" Height="20" Content="Reset Templates" IsEnabled="true"/>
-            <Button x:Name="button_CreateEventInfoStartXML" Click="button_CreateEventInfoStartXML_Click" Margin="10" Height="20" Content="Create Event InfoStart" IsEnabled="false"/>
-            <Button x:Name="button_AddEventInfoDone" Click="button_AddEventInfoDone_Click" Margin="10" Height="20" Content="Add Event InfoDone" IsEnabled="false"/>
-            <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="20" IsEnabled="False">Create Events</Button>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Bottom" Width="200">
-            <Button x:Name="button_LoadXML_Civ4UnitInfos" Margin="10" Height="20" Click="button_LoadXML_Civ4UnitInfos_Click" Content="Load Civ4UnitInfos"/>
-            <Button x:Name="button_LoadXML" Margin="10" Height="20" Click="button_LoadXML_Click" Content="Load XML File"/>
+        <StackPanel x:Name="LeftSide" VerticalAlignment="Top">
+            <StackPanel VerticalAlignment="Top" Height="Auto">
+                <ComboBox x:Name="ComboBox_Yield" Margin="10"/>
+                <ComboBox x:Name="comboBox_Harbours" Margin="10"/>
+                <Button x:Name="button_LoadTemplates" Click="button_LoadTemplates_Click" Margin="10" Height="20" Content="Init Templates" IsEnabled="true"/>
+                <Button x:Name="button_ResetTemplates" Click="button_RestTemplates_Click" Margin="10" Height="20" Content="Reset Templates" IsEnabled="true"/>
+                <Button x:Name="button_CreateEventInfoStartXML" Click="button_CreateEventInfoStartXML_Click" Margin="10" Height="20" Content="Create Event InfoStart" IsEnabled="false"/>
+                <Button x:Name="button_AddEventInfoDone" Click="button_AddEventInfoDone_Click" Margin="10" Height="20" Content="Add Event InfoDone" IsEnabled="false"/>
+                <Button x:Name="button_CreateEvents" Click="button_CreateEvents_Click" Margin="10" Height="20" IsEnabled="False">Create Events</Button>
+                <Button x:Name="button_LoadXML_Civ4UnitInfos" Margin="10" Height="20" Click="button_LoadXML_Civ4UnitInfos_Click" Content="Load Civ4UnitInfos"/>
+                <Button x:Name="button_LoadXML" Margin="10" Height="20" Click="button_LoadXML_Click" Content="Load XML File" VerticalAlignment="Bottom"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" Width="200" Height="40">
+                <Button x:Name="Test_logging" Margin="10" Height="20" Click="Test_logging_Click" Content="Test logging"/>
+            </StackPanel>
         </StackPanel>
         <TabControl x:Name="tabControl_templates" Grid.Column="1">
             <TabItem x:Name="TabItem_PythonStart" Header="PythonStart">
@@ -411,7 +414,7 @@
             IsReadOnly="True">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="RichTextBox"/>
+                    <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

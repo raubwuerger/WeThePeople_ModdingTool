@@ -369,5 +369,15 @@ namespace WeThePeople_ModdingTool
                 return;
             }
         }
+
+        public static int counterStart = 0;
+        private void Test_logging_Click(object sender, RoutedEventArgs e)
+        {
+            int counterEnd = counterStart + 10000;
+            for ( int i= counterStart; i< counterEnd; i++)
+            {
+                Log.Information("Log entry:" +i.ToString());
+            }
+        }
     }
 }
