@@ -72,7 +72,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
-            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
 
             return dataSet;
         }
@@ -87,7 +87,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
-            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
 
             return dataSet;
         }
@@ -107,7 +107,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
-            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
 
             return dataSet;
         }
@@ -127,7 +127,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
-            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
 
             return dataSet;
         }
@@ -148,7 +148,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
-            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
 
             return dataSet;
         }
@@ -192,6 +192,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_START, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.TRIGGER_VALUE_DONE, "");
@@ -216,6 +217,7 @@ namespace WeThePeople_ModdingTool.Factories
 
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_NORMAL, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.HARBOUR_UPPERCASE, "");
+            dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD_SHORT, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.YIELD, "");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.GOLD, "0");
             dataSet.TemplateReplaceItems.Add(ReplaceItems.UNIT_CLASS, "UNITCLASS_NONE");

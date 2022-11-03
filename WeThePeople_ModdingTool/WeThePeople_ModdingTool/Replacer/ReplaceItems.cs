@@ -9,6 +9,7 @@ namespace WeThePeople_ModdingTool
         public static string HARBOUR_NORMAL = "$HARBOUR_NORMAL$";
         public static string HARBOUR_UPPERCASE = "$HARBOUR_UPPERCASE$";
         public static string YIELD = "$YIELD$";
+        public static string YIELD_SHORT = "$YIELD_SHORT$";
         public static string TRIGGER_VALUE_START = "$TRIGGER_VALUE_START$";
         public static string TRIGGER_VALUE_DONE = "$TRIGGER_VALUE_DONE$";
         public static string GOLD = "$GOLD$";

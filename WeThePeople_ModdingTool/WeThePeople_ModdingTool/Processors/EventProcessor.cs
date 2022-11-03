@@ -4,6 +4,7 @@ using WeThePeople_ModdingTool.Validators;
 using Serilog;
 using System;
 using System.Diagnostics;
+using WeThePeople_ModdingTool.Helper;
 
 namespace WeThePeople_ModdingTool.Processors
 {
@@ -29,6 +30,7 @@ namespace WeThePeople_ModdingTool.Processors
             }
             dataSetPython.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = harbour;
             dataSetPython.TemplateReplaceItems[ReplaceItems.HARBOUR_UPPERCASE] = harbour.ToUpper();
+            dataSetPython.TemplateReplaceItems[ReplaceItems.YIELD_SHORT] = StringHelper.RemovePrefix(yieldType,"YIELD_");
             dataSetPython.TemplateReplaceItems[ReplaceItems.YIELD] = yieldType;
 
             PythonItemReplacer replacer = new PythonItemReplacer(dataSetPython);
@@ -62,6 +64,7 @@ namespace WeThePeople_ModdingTool.Processors
 
             dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = harbour;
             dataSetXML.TemplateReplaceItems[ReplaceItems.HARBOUR_UPPERCASE] = harbour.ToUpper();
+            dataSetXML.TemplateReplaceItems[ReplaceItems.YIELD_SHORT] = StringHelper.RemovePrefix(yieldType, "YIELD_");
             dataSetXML.TemplateReplaceItems[ReplaceItems.YIELD] = yieldType;
 
             XMLItemReplacer replacer = new XMLItemReplacer(dataSetXML);

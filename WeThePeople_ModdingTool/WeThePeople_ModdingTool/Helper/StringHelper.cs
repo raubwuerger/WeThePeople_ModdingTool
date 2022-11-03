@@ -32,5 +32,10 @@ namespace WeThePeople_ModdingTool.Helper
         {
             return int.TryParse(numberString, out numericValue);
         }
+
+        public static string RemovePrefix( string original, string prefix )
+        {
+            return original.Replace(prefix, "");
+        }
     }
 }

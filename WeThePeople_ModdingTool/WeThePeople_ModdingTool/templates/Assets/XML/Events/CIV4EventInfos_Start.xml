@@ -1,12 +1,12 @@
 <Civ4EventInfos>
     <EventInfos>
 		<EventInfo>
-			<Type>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Type>
+			<Type>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_START</Type>
 			<Description>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_START</Description>
 			<LocalInfoText/>
 			<WorldNewsTexts/>
 			<OtherPlayerPopup/>
-			<QuestFailText>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_FAILED</QuestFailText>
+			<QuestFailText>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_FAILED</QuestFailText>
 			<bQuest>1</bQuest>
 			<bGlobal>0</bGlobal>
 			<bTeam>0</bTeam>

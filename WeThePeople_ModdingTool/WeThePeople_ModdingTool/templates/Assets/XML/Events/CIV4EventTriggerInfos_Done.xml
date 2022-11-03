@@ -1,13 +1,13 @@
 <Civ4EventTriggerInfos>
     <EventTriggerInfos>
 		<EventTriggerInfo>
-			<Type>EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Type>
+			<Type>EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_DONE</Type>
 			<WorldNewsTexts>
-				<Text>TXT_KEY_WORLD_EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
+				<Text>TXT_KEY_WORLD_EVENTTRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_DONE</Text>
 			</WorldNewsTexts>
 			<TriggerTexts>
 				<TriggerText>
-					<Text>TXT_KEY_EVENT_TRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE</Text>
+					<Text>TXT_KEY_EVENT_TRIGGER_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_DONE</Text>
 					<Era>NONE</Era>
 				</TriggerText>
 			</TriggerTexts>
@@ -46,7 +46,7 @@
 			<Events>
 			</Events>
 			<PrereqEvents>
-				<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+				<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_START</Event>
 			</PrereqEvents>
 			<bPrereqEventPlot>1</bPrereqEventPlot>
 			<bRecurring>0</bRecurring>
@@ -64,7 +64,7 @@
 			<bFrontPopup>0</bFrontPopup>
 			<iCityFoodWeight>0</iCityFoodWeight>
 			<PythonCanDo/>
-			<PythonCanDoCity>canTrigger$HARBOUR_NORMAL$TradeQuest_$YIELD$_DONE</PythonCanDoCity>
+			<PythonCanDoCity>canTrigger$HARBOUR_NORMAL$TradeQuest_$YIELD_SHORT$_DONE</PythonCanDoCity>
 			<PythonCanDoUnit/>
 			<PythonCallback/>
 		</EventTriggerInfo>

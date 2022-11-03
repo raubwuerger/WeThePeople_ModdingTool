@@ -1,7 +1,7 @@
 <Civ4EventInfos>
     <EventInfos>
 		<EventInfo>
-			<Type>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_DONE_$DONE_INDEX$</Type>
+			<Type>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_DONE_$DONE_INDEX$</Type>
 			<Description>TXT_KEY_EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_DONE_$DONE_INDEX$</Description>
 			<LocalInfoText/>
 			<WorldNewsTexts/>
@@ -51,7 +51,7 @@
 			<EventTimes/>
 			<ClearEvents>
 				<EventChance>
-					<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD$_START</Event>
+					<Event>EVENT_$HARBOUR_UPPERCASE$_TRADE_QUEST_$YIELD_SHORT$_START</Event>
 					<iEventChance>100</iEventChance>
 				</EventChance>
 			</ClearEvents>
