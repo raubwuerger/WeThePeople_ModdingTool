@@ -36,5 +36,8 @@ namespace WeThePeople_ModdingTool
 
         public static string MESSAGE_BOX_YESNOCANCEL_QUESTION = "What do you want to do?";
         public static string MESSAGE_BOX_YESNOCANCEL = "Overwrite? (yes)\r\nAppend? (no)\r\nCancel? (cancel)";
+
+        public static string PREFIX_YIELD = "YIELD_";
+        public static string PREFIX_UNITCLASS = "UNITCLASS_";
     }
 }

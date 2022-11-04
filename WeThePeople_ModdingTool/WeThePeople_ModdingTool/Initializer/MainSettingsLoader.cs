@@ -111,7 +111,8 @@ namespace WeThePeople_ModdingTool
 
             yieldTypes.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
 
-            YieldTypeRepository.Instance.YieldTypes = CreatedDictionary(yieldTypes, 6);
+            int length_PREFIX_YIELD = CommonVariables.PREFIX_YIELD.Length;
+            YieldTypeRepository.Instance.YieldTypes = CreatedDictionary(yieldTypes, length_PREFIX_YIELD);
             YieldTypeRepository.Instance.YieldTypeNames = DictionaryHelper.GetKeys(YieldTypeRepository.Instance.YieldTypes);
             return YieldTypeRepository.Instance.YieldTypes.Count > 0;
         }
@@ -143,7 +144,8 @@ namespace WeThePeople_ModdingTool
 
             unitClasses.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
 
-            UnitClassRepository.Instance.UnitClasses = CreatedDictionary(unitClasses,10);
+            int length_PREFIX_UNITCLASS = CommonVariables.PREFIX_UNITCLASS.Length;
+            UnitClassRepository.Instance.UnitClasses = CreatedDictionary(unitClasses, length_PREFIX_UNITCLASS);
             UnitClassRepository.Instance.UnitClassNames = DictionaryHelper.GetKeys(UnitClassRepository.Instance.UnitClasses);
             return UnitClassRepository.Instance.UnitClasses.Count > 0;
         }
