@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Xml;
+using System.Xml.Linq;
 using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.FileUtilities
@@ -13,26 +14,35 @@ namespace WeThePeople_ModdingTool.FileUtilities
     {
         static string FileName;
 
-        public static XmlDocument Load(string fileName)
+        public static XDocument Load(string fileName)
         {
-            if (false == File.Exists(fileName))
-            {
-                Log.Warning(CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST + CommonVariables.COLON_BLANK + fileName);
-                return null;
-            }
             try
             {
                 Log.Debug("Loading file: " + fileName);
-                FileName = fileName;
-                XmlDocument doc = new XmlDocument();
-                doc.PreserveWhitespace = false;
-                doc.Load(fileName);
-                return doc;
+                return XDocument.Load(fileName);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
-                CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_OPEN_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
+                Log.Error("Exception occurred! " + exception.Message);
+                return null;
+            }
+        }
+
+        public static XDocument LoadWithReader(string fileName)
+        {
+            try
+            {
+                Log.Debug("Loading file: " + fileName);
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                var context = new XmlParserContext(null, null, null, XmlSpace.None);
+                context.Encoding = Encoding.GetEncoding(1252);
+                var reader = XmlReader.Create(fileName, null, context);
+                reader.MoveToContent();
+                return XDocument.Load(reader);
+            }
+            catch (Exception exeption)
+            {
+                Log.Error("Exception occurred: " + exeption.Message);
                 return null;
             }
         }
@@ -112,7 +122,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static XmlDocument LoadFileXML(DataSetBase dataSetBase)
+        public static XDocument LoadFileXML(DataSetBase dataSetBase)
         {
             return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
         }

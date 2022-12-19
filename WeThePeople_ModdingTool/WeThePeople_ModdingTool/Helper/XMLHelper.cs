@@ -1,8 +1,10 @@
 ﻿using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Validators;
 
@@ -100,18 +102,12 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return stringBuilder.ToString();
         }
 
-        public static XmlNode FindNodeByName( XmlNodeList nodes, string nodeName )
+        public static XElement FindNodeByName(IEnumerable<XElement> nodes, string nodeName )
         {
-            foreach (XmlNode node in nodes)
+            foreach (XElement node in nodes)
             {
-                if (node.Name.Equals(nodeName))
-                {
-                    return node;
-                }
-                if ( node.HasChildNodes == true )
-                {
-                    return FindNodeByName(node.ChildNodes,nodeName);
-                }
+                IEnumerable<XElement> childs = node.Elements(nodeName);
+//                if( )
             }
             return null;
         }

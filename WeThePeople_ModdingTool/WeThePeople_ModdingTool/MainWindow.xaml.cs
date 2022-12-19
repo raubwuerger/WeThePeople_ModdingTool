@@ -14,6 +14,7 @@ using WeThePeople_ModdingTool.Creators;
 using WeThePeople_ModdingTool.Helper;
 using ICSharpCode.AvalonEdit;
 using Serilog;
+using System.Xml.Linq;
 
 namespace WeThePeople_ModdingTool
 {
@@ -354,7 +355,7 @@ namespace WeThePeople_ModdingTool
 
         private void button_LoadXML_Civ4UnitInfos_Click(object sender, RoutedEventArgs e)
         {
-            XmlDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetFullPathCIV4UnitInfos());
+            XDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetFullPathCIV4UnitInfos());
             if( null == xmlDocument )
             {
                 return;

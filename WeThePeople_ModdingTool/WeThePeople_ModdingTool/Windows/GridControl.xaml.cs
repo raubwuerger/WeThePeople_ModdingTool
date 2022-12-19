@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Xml.Linq;
 using unvell.ReoGrid;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Validators;
@@ -35,8 +36,8 @@ namespace WeThePeople_ModdingTool.Windows
         private readonly string NODE_NOT_FOUND = "NODE_NOT_FOUND";
         private readonly string SPECIALUNIT_YIELD_CARGO = "SPECIALUNIT_YIELD_CARGO";
 
-        private XmlDocument xmlDocument;
-        public System.Xml.XmlDocument XmlDocument
+        private XDocument xmlDocument;
+        public XDocument XmlDocument
         {
             set { xmlDocument = value; }
         }
@@ -79,10 +80,10 @@ namespace WeThePeople_ModdingTool.Windows
             IDictionary<string, int> costPortRoyalAll = new System.Collections.Generic.Dictionary<string, int>();
             List<string> domainAll = new List<string>();
 
-            XmlNodeList xmlNodeList = xmlDocument.DocumentElement.GetElementsByTagName(Civ4UnitInfos_UnitInfo);
-            foreach (XmlNode xmlNode in xmlNodeList)
+            IEnumerable<XElement> xmlNodeList = xmlDocument.Elements(Civ4UnitInfos_UnitInfo);
+            foreach (XElement xmlNode in xmlNodeList)
             {
-                XmlNode xmlNodeType = XMLHelper.FindNodeByName(xmlNode.ChildNodes, Civ4UnitInfos_Type);
+                XmlNode xmlNodeType = XMLHelper.FindNodeByName(xmlNode.Elements, Civ4UnitInfos_Type);
                 if (null == xmlNodeType)
                 {
                     continue;
@@ -166,13 +167,13 @@ namespace WeThePeople_ModdingTool.Windows
             sheet.AutoFitColumnWidth(0, false);
         }
 
-        private string GetSubnodeValue(XmlNode parentNode, string subnode)
+        private string GetSubnodeValue(IEnumerable<XElement> parentNode, string subnode)
         {
-            foreach (XmlNode xmlNode in parentNode.ChildNodes)
+            foreach (XElement xmlNode in parentNode)
             {
-                if (xmlNode.Name.Equals(subnode))
+                if (xmlNode.GetType().Name.Equals(subnode))
                 {
-                    return xmlNode.InnerText;
+                    return xmlNode.ToString();
                 }
             }
             return NODE_NOT_FOUND;
