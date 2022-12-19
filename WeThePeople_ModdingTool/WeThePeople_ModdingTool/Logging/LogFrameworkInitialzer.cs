@@ -12,7 +12,6 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
                 .WriteTo.File(GenerateLogFileName(), rollingInterval: RollingInterval.Day, outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}")
-                .WriteTo.RichTextBox(mainWindow.LoggingRichTextBox, theme: RichTextBoxConsoleTheme.Colored, outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} {Level:u3}] {Message:lj}{NewLine}{Exception}")
                 .CreateLogger();
             CreateInitialLogMessage();
         }
