@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Xml;
+using System.Xml.Linq;
 using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.FileUtilities
@@ -13,7 +14,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
     {
         static string FileName;
 
-        public static XmlDocument Load(string fileName)
+        public static XDocument Load(string fileName)
         {
             if (false == File.Exists(fileName))
             {
@@ -24,8 +25,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             {
                 Log.Debug("Loading file: " + fileName);
                 FileName = fileName;
-                XmlDocument doc = new XmlDocument();
-                doc.PreserveWhitespace = false;
+                XDocument doc = new XDocument();
                 doc.Load(fileName);
                 return doc;
             }
@@ -37,7 +37,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static bool Save(string fileName, XmlDocument xmlDocument)
+        public static bool Save(string fileName, XDocument xDocument)
         {
             if (true == File.Exists(fileName))
             {
@@ -48,7 +48,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             try
             {
-                SaveFormattedXml(xmlDocument,fileName, Encoding.UTF8);
+                SaveFormattedXml(xDocument,fileName, Encoding.UTF8);
                 return true;
             }
             catch (Exception ex)
@@ -59,11 +59,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
 
         }
-        public static bool SaveOverwrite(string fileName, XmlDocument xmlDocument)
+        public static bool SaveOverwrite(string fileName, XDocument xDocument)
         {
             try
             {
-                SaveFormattedXml(xmlDocument, fileName, Encoding.UTF8);
+                SaveFormattedXml(xDocument, fileName, Encoding.UTF8);
                 return true;
             }
             catch (Exception ex)
@@ -74,21 +74,21 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
 
         }
-        public static bool SaveCreatePath(string fileName, XmlDocument xmlDocument)
+        public static bool SaveCreatePath(string fileName, XDocument xDocument)
         {
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
-            return Save(fileName, xmlDocument);
+            return Save(fileName, xDocument);
         }
 
-        public static bool SaveCreatePathOverwrite(string fileName, XmlDocument xmlDocument)
+        public static bool SaveCreatePathOverwrite(string fileName, XDocument xDocument)
         {
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
-            return SaveOverwrite(fileName, xmlDocument);
+            return SaveOverwrite(fileName, xDocument);
         }
 
-        public static void SaveFormattedXml(XmlDocument doc, String outputPath, Encoding encoding)
+        public static void SaveFormattedXml(XDocument doc, String outputPath, Encoding encoding)
         {
             Log.Debug("Saving file: " + outputPath);
             XmlWriterSettings settings = new XmlWriterSettings();
@@ -112,7 +112,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static XmlDocument LoadFileXML(DataSetBase dataSetBase)
+        public static XDocument LoadFileXML(DataSetBase dataSetBase)
         {
             return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
         }
