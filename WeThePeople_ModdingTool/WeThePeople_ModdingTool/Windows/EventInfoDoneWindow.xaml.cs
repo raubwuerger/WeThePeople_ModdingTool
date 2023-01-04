@@ -112,19 +112,30 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void GetFromGUI()
         {
-            dataSetEventInfoDone.SetGold(textBox_Gold.Text);
+            dataSetEventInfoDone.SetGold(GetGold());
             if( -1 != comboBox_UnitClass.SelectedIndex )
             {
                 dataSetEventInfoDone.SetUnitClass(UnitClassRepository.Instance.GetValueFromName(comboBox_UnitClass.SelectedItem.ToString()));
             }
             else            
             {
-                dataSetEventInfoDone.SetUnitClass("");
+                dataSetEventInfoDone.SetUnitClass("NONE");
             }
             dataSetEventInfoDone.SetUnitCount(comboBox_UnitCount.SelectedItem.ToString());
             dataSetEventInfoDone.SetUnitExperience(textBox_UnitExperiance.Text);
             dataSetEventInfoDone.SetKingRelation(comboBox_RelationKing.SelectedItem.ToString());
             dataSetEventInfoDone.SetYieldPrice(comboBox_YieldPrice.SelectedItem.ToString());
+        }
+
+        private String GetGold()
+        {
+            int number;
+            bool isNumeric = int.TryParse(textBox_Gold.Text, out number);
+            if( false == isNumeric )
+            {
+                return "0";
+            }
+            return textBox_Gold.Text;
         }
 
         private bool IsAtLeastOneInputValid()

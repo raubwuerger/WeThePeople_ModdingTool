@@ -11,7 +11,7 @@ namespace WeThePeople_ModdingTool.DataSets
         {
             get { return trigger_Value_Start; }
         }
-        private KeyValuePair<string, string> trigger_Value_Done = new KeyValuePair<string, string>(ReplaceItems.TRIGGER_VALUE_DONE, "5000");
+        private KeyValuePair<string, string> trigger_Value_Done = new KeyValuePair<string, string>(ReplaceItems.TRIGGER_VALUE_DONE, "1000");
         public KeyValuePair<string, string> Trigger_Value_Done
         {
             get { return trigger_Value_Done; }
