@@ -21,6 +21,9 @@ SetupIconFile=WtP_desktop_icon.ico
 UninstallDisplayIcon=WtP_desktop_icon.ico
 UsePreviousAppDir=no
 
+#define Project_BasePath = "C:\Projects\WeThePeople_ModdingTool\WeThePeople_ModdingTool\"
+#define Project_BasePath_Program Project_BasePath +"\WeThePeople_ModdingTool\"
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -28,22 +31,22 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\bin\Release\netcoreapp3.1\*"; DestDir: "{app}\program"; Flags: ignoreversion recursesubdirs
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool.xml"; DestDir: "{app}\program"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\Assets\ReoGrid-2.1.0.0-WPFMinimum\*"; DestDir: "{app}\program"; Flags: ignoreversion recursesubdirs
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WtP_desktop_icon.ico"; DestDir: "{app}\program"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\bin\Release\netcoreapp3.1\*"; DestDir: "{app}\program"; Flags: ignoreversion recursesubdirs
+Source: "{#Project_BasePath_Program}\WeThePeople_ModdingTool.xml"; DestDir: "{app}\program"; Flags: ignoreversion
+Source: "{#Project_BasePath}\Assets\ReoGrid-2.1.0.0-WPFMinimum\*"; DestDir: "{app}\program"; Flags: ignoreversion recursesubdirs
+Source: "{#Project_BasePath_Program}\WtP_desktop_icon.ico"; DestDir: "{app}\program"; Flags: ignoreversion
 
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\CIV4UnitInfos_OnlyClasses.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Civ4YieldInfos_OnlyTypes.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Harbours.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventInfos_Done.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventInfos_Start.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Done.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Events\CIV4EventTriggerInfos_Start.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Done.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Start.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Done.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
-Source: "C:\Projects\C#\WeThePeople_ModdingTool\WeThePeople_ModdingTool\WeThePeople_ModdingTool\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Start.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\CIV4UnitInfos_OnlyClasses.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Civ4YieldInfos_OnlyTypes.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Harbours.xml"; DestDir: "{app}\templates\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\XML\Events\CIV4EventInfos_Done.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\XML\Events\CIV4EventInfos_Start.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\XML\Events\CIV4EventTriggerInfos_Done.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\XML\Events\CIV4EventTriggerInfos_Start.xml"; DestDir: "{app}\templates\Assets\XML\Events\"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Done.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Start.xml"; DestDir: "{app}\templates\Assets\XML\Text"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Done.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
+Source: "{#Project_BasePath_Program}\templates\Assets\Python\EntryPoints\CvRandomEventInterface_Start.py"; DestDir: "{app}\templates\Assets\Python\EntryPoints"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
