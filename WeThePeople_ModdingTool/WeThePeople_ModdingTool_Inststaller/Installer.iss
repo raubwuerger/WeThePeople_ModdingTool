@@ -21,7 +21,7 @@ SetupIconFile=WtP_desktop_icon.ico
 UninstallDisplayIcon=WtP_desktop_icon.ico
 UsePreviousAppDir=no
 
-#define Project_BasePath = "C:\Projects\WeThePeople_ModdingTool\WeThePeople_ModdingTool\"
+#define Project_BasePath = "..\"
 #define Project_BasePath_Program Project_BasePath +"\WeThePeople_ModdingTool\"
 
 [Languages]
