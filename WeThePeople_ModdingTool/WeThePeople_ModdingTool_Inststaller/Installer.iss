@@ -63,3 +63,5 @@ Name: "{autodesktop}\WeThePeople_ModdingTool"; Filename: "{app}\program\WeThePeo
 [Run]
 Filename: "{app}\program\WeThePeople_ModdingTool.exe"; Description: "{cm:LaunchProgram,WeThePeople_ModdingTool}"; Flags: nowait postinstall skipifsilent
 
+[UninstallDelete]
+Type: filesandordirs; Name: "{app}"
