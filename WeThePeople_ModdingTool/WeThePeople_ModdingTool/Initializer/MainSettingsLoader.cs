@@ -34,6 +34,9 @@ namespace WeThePeople_ModdingTool
 
         private string HarboursDocumentPath = @"templates\Harbours.xml";
 
+        private string ApplicationConfigBasePath = @".\Configuration\";
+
+        private string MAIN_CONFIG_FILE = "WeThePeople_ModdingTool.xml";
         public bool Init()
         {
             if( false == InitConfig() )
@@ -45,10 +48,10 @@ namespace WeThePeople_ModdingTool
 
         private bool InitConfig()
         {
-            XmlDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetBasePathAndFileName());
+            XmlDocument xmlDocument = XMLFileUtility.Load(ApplicationConfigBasePath + MAIN_CONFIG_FILE);
             if( null == xmlDocument )
             {
-                Log.Debug("Unable to load main config: " + WeThePeople_ModdingTool_Config.Instance.MAIN_CONFIG_FILE);
+                Log.Debug("Unable to load main config: " + MAIN_CONFIG_FILE);
                 return false;
             }
 

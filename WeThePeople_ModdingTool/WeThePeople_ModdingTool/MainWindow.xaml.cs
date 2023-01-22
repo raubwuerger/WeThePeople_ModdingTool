@@ -14,6 +14,7 @@ using WeThePeople_ModdingTool.Creators;
 using WeThePeople_ModdingTool.Helper;
 using ICSharpCode.AvalonEdit;
 using Serilog;
+using System.IO;
 
 namespace WeThePeople_ModdingTool
 {
@@ -32,6 +33,7 @@ namespace WeThePeople_ModdingTool
         public MainWindow()
         {
             InitializeComponent();
+            string currentPath = System.IO.Directory.GetCurrentDirectory();
             LogFrameworkInitialzer.Init(this);
             CommandLineArgsParser.Parse();
             if( false == MainSettingsLoader.Instance.Init() )

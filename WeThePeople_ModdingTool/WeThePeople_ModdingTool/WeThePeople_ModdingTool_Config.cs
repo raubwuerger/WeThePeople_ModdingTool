@@ -23,24 +23,10 @@ namespace WeThePeople_ModdingTool
         }
 
         private readonly string PATH_RELATIVE = @"program";
-        public readonly string MAIN_CONFIG_FILE = "WeThePeople_ModdingTool.xml";
         public readonly string MOD_SOURCE_PATH = "ModSourcePath";
         public readonly string MOD_SOURCE_PATH_PATH = "Path";
         public readonly string MOD_UNIT_PATH = @"Assets\XML\Units";
         public readonly string CIV4UnitInfos = "CIV4UnitInfos.xml";
-
-        public string GetBasePathAndFileName()
-        {
-            if (CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE))
-            {
-                return PathHelper.CombinePathAndFileName(PathHelper.GetBasePath(), MAIN_CONFIG_FILE);
-            }
-            else
-            {
-                return PathHelper.CombinePathAndFileName(PathHelper.CombinePath(PathHelper.GetBasePath(), PATH_RELATIVE), MAIN_CONFIG_FILE);
-            }
-        }
-
 
         private string mod_path;
         public string Mod_path

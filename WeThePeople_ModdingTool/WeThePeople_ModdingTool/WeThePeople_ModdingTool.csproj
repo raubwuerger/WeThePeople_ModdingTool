@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="templates\Assets\Python\EntryPoints\CvRandomEventInterface_Done.py" />
+    <None Remove="templates\Assets\Python\EntryPoints\CvRandomEventInterface_Start.py" />
+    <None Remove="templates\Assets\XML\Events\CIV4EventInfos_Done.xml" />
+    <None Remove="templates\Assets\XML\Events\CIV4EventInfos_Start.xml" />
+    <None Remove="templates\Assets\XML\Events\CIV4EventTriggerInfos_Done.xml" />
+    <None Remove="templates\Assets\XML\Events\CIV4EventTriggerInfos_Start.xml" />
+    <None Remove="templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Done.xml" />
+    <None Remove="templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Start.xml" />
+    <None Remove="templates\CIV4UnitInfos_OnlyClasses.xml" />
+    <None Remove="templates\Civ4YieldInfos_OnlyTypes.xml" />
+    <None Remove="templates\Harbours.xml" />
+    <None Remove="WeThePeople_ModdingTool.xml" />
     <None Remove="WtP_desktop_icon.ico" />
   </ItemGroup>
 
@@ -28,6 +40,42 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Configuration\WeThePeople_ModdingTool.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\Python\EntryPoints\CvRandomEventInterface_Done.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\Python\EntryPoints\CvRandomEventInterface_Start.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\XML\Events\CIV4EventInfos_Done.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\XML\Events\CIV4EventInfos_Start.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\XML\Events\CIV4EventTriggerInfos_Done.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\XML\Events\CIV4EventTriggerInfos_Start.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Done.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Assets\XML\Text\CIV4GameText_Colonization_Events_utf8_Start.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\CIV4UnitInfos_OnlyClasses.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Civ4YieldInfos_OnlyTypes.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\Harbours.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="WtP_desktop_icon.ico" />
   </ItemGroup>
 
