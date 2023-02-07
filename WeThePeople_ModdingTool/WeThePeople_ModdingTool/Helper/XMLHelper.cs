@@ -19,7 +19,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             showMessageBox = false;
             return xmlDocument;
         }
-        public static XmlDocument CreateFromString( string xmlString )
+        public static XmlDocument CreateFromString(string xmlString)
         {
             XmlDocument xmlDocument = new XmlDocument();
             try
@@ -27,14 +27,14 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 xmlDocument.LoadXml(xmlString);
                 if (true == showMessageBox)
                 {
-                    CommonMessageBox.Show_Info("Information!", CommonVariables.VALIDATION_SUCCEEDED_CR +CommonVariables.XML_IS_SHAPELY);
+                    CommonMessageBox.Show_Info("Information!", CommonVariables.VALIDATION_SUCCEEDED_CR + CommonVariables.XML_IS_SHAPELY);
                 }
                 return xmlDocument;
             }
             catch (Exception ex)
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + ex.Message);
-                if( true == showMessageBox )
+                if (true == showMessageBox)
                 {
                     CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + CommonVariables.CR + ex.Message);
                 }
@@ -49,7 +49,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return xmlDocument != null;
         }
 
-        public static bool IsXMLShapely( string xmlString )
+        public static bool IsXMLShapely(string xmlString)
         {
             XmlDocument xmlDocument = CreateFromString(xmlString);
             return xmlDocument != null;
@@ -63,10 +63,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return formated;
         }
 
-        public static string FormatKeepIndention( XmlNodeList nodes )
+        public static string FormatKeepIndention(XmlNodeList nodes)
         {
             try
-            { 
+            {
                 string formatedXML = String.Empty;
                 foreach (XmlNode node in nodes)
                 {
@@ -74,12 +74,12 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 }
                 return formatedXML;
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.COLON_BLANK + ex.Message);
                 if (true == showMessageBox)
                 {
-                    CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.MESSAGE_BOX_EXCEPTION +" Formatting failed!" + CommonVariables.CR + CommonVariables.CR + ex.Message);
+                    CommonMessageBox.Show_OK_Error(CommonVariables.XML_ERROR, CommonVariables.MESSAGE_BOX_EXCEPTION + " Formatting failed!" + CommonVariables.CR + CommonVariables.CR + ex.Message);
                 }
                 return String.Empty;
             }
@@ -100,7 +100,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return stringBuilder.ToString();
         }
 
-        public static XmlNode FindNodeByName( XmlNodeList nodes, string nodeName )
+        public static XmlNode FindNodeByName(XmlNodeList nodes, string nodeName)
         {
             foreach (XmlNode node in nodes)
             {
@@ -108,9 +108,9 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 {
                     return node;
                 }
-                if ( node.HasChildNodes == true )
+                if (node.HasChildNodes == true)
                 {
-                    return FindNodeByName(node.ChildNodes,nodeName);
+                    return FindNodeByName(node.ChildNodes, nodeName);
                 }
             }
             return null;
@@ -118,7 +118,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
 
         public static XmlNode FindNodeByName(XmlNode node, string nodeName)
         {
-            if (node.Name.Equals(nodeName) )
+            if (node.Name.Equals(nodeName))
             {
                 return node;
             }
@@ -132,9 +132,9 @@ namespace WeThePeople_ModdingTool.FileUtilities
         }
 
 
-        public static XmlNodeList GetRootNodeListProcessedXML( DataSetXML dataSetXML )
+        public static XmlNodeList GetRootNodeListProcessedXML(DataSetXML dataSetXML)
         {
-            if( false == DataSetValidator.ValidateFull(dataSetXML) )
+            if (false == DataSetValidator.ValidateFull(dataSetXML))
             {
                 return null;
             }
@@ -142,10 +142,10 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return dataSetXML.XmlDocumentProcessed.DocumentElement.SelectNodes(dataSetXML.XmlSelectNode);
         }
 
-        public static XmlNodeList GetFirstChildRootNodeList( DataSetXML dataSetXML )
+        public static XmlNodeList GetFirstChildRootNodeList(DataSetXML dataSetXML)
         {
             XmlNodeList xmlNodeList = GetRootNodeListProcessedXML(dataSetXML);
-            if( null == xmlNodeList )
+            if (null == xmlNodeList)
             {
                 return null;
             }
@@ -153,7 +153,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return xmlNodeList[0].ChildNodes;
         }
 
-        public static bool ContainsInnerNode( XmlNode xmlNode, string innerText )
+        public static bool ContainsInnerNode(XmlNode xmlNode, string innerText)
         {
             return xmlNode.InnerText.Equals(innerText);
         }

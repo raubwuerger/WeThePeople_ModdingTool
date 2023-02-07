@@ -1,7 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Controls;
 using WeThePeople_ModdingTool.Creators;
 using WeThePeople_ModdingTool.Processors;
@@ -10,7 +8,7 @@ namespace WeThePeople_ModdingTool.Factories
 {
     public class EventCreatorFactory
     {
-        public EventCreatorBase CreateEventInfoStart( MainWindow mainWindow )
+        public EventCreatorBase CreateEventInfoStart(MainWindow mainWindow)
         {
             EventCreatorEventInfoStart eventCreatorEventInfoStart = new EventCreatorEventInfoStart();
             eventCreatorEventInfoStart.EventProcessor = CreateEventProcessor(mainWindow);
@@ -24,7 +22,7 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorEventInfoStart;
         }
 
-        public EventCreatorBase CreateEventInfoDone( MainWindow mainWindow )
+        public EventCreatorBase CreateEventInfoDone(MainWindow mainWindow)
         {
             EventCreatorEventInfoDone eventCreatorEventInfoDone = new EventCreatorEventInfoDone();
             eventCreatorEventInfoDone.EventProcessor = CreateEventProcessor(mainWindow);
@@ -40,15 +38,15 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorEventInfoDone;
         }
 
-        public EventCreatorFilesPutTogether CreateEventCreatorFilesPutTogether( MainWindow mainWindow )
+        public EventCreatorFilesPutTogether CreateEventCreatorFilesPutTogether(MainWindow mainWindow)
         {
             EventCreatorFilesPutTogether eventCreatorFilesPutTogether = new EventCreatorFilesPutTogether();
-            eventCreatorFilesPutTogether.YieldType = YieldTypeRepository.Instance.GetValueFromName( mainWindow.ComboBox_Yield.SelectedItem.ToString() );
+            eventCreatorFilesPutTogether.YieldType = YieldTypeRepository.Instance.GetValueFromName(mainWindow.ComboBox_Yield.SelectedItem.ToString());
             eventCreatorFilesPutTogether.Harbour = mainWindow.comboBox_Harbours.SelectedItem.ToString();
             return eventCreatorFilesPutTogether;
         }
 
-        public EventCreatorBaseEvents CreateEventCreatorBaseEvents( MainWindow mainWindow )
+        public EventCreatorBaseEvents CreateEventCreatorBaseEvents(MainWindow mainWindow)
         {
             EventCreatorBaseEvents eventCreatorBaseEvents = new EventCreatorBaseEvents();
             eventCreatorBaseEvents.EventProcessor = CreateEventProcessor(mainWindow);
@@ -65,7 +63,7 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorBaseEvents;
         }
 
-        public EventCreatorRemoveEventTriggerInfoDone CreateEventCreatorRemoveEventTriggerInfoDone( MainWindow mainWindow )
+        public EventCreatorRemoveEventTriggerInfoDone CreateEventCreatorRemoveEventTriggerInfoDone(MainWindow mainWindow)
         {
             EventCreatorRemoveEventTriggerInfoDone eventCreatorRemoveEventTriggerInfoDone = new EventCreatorRemoveEventTriggerInfoDone();
             eventCreatorRemoveEventTriggerInfoDone.TextBox_TriggerInfo_Done = mainWindow.TextBox_TriggerInfo_Done;
@@ -75,7 +73,7 @@ namespace WeThePeople_ModdingTool.Factories
             return eventCreatorRemoveEventTriggerInfoDone;
         }
 
-        private List<KeyValuePair<TextEditor, TabItem>> CreateEventInfoDoneTextBoxTabItemList( MainWindow mainWindow )
+        private List<KeyValuePair<TextEditor, TabItem>> CreateEventInfoDoneTextBoxTabItemList(MainWindow mainWindow)
         {
             List<KeyValuePair<TextEditor, TabItem>> list = new List<KeyValuePair<TextEditor, TabItem>>();
 
@@ -88,10 +86,10 @@ namespace WeThePeople_ModdingTool.Factories
             return list;
         }
 
-        private EventProcessor CreateEventProcessor( MainWindow mainWindow )
+        private EventProcessor CreateEventProcessor(MainWindow mainWindow)
         {
             EventProcessor eventProcessor = new EventProcessor();
-            eventProcessor.YieldType = YieldTypeRepository.Instance.GetValueFromName( mainWindow.ComboBox_Yield.SelectedItem.ToString());
+            eventProcessor.YieldType = YieldTypeRepository.Instance.GetValueFromName(mainWindow.ComboBox_Yield.SelectedItem.ToString());
             eventProcessor.Harbour = mainWindow.comboBox_Harbours.SelectedItem.ToString();
             return eventProcessor;
         }

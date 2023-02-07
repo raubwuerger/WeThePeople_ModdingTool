@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.FileUtilities;
-using System.Xml;
-using Serilog;
-using System.IO;
 
 namespace WeThePeople_ModdingTool.Factories
 {
@@ -153,7 +150,7 @@ namespace WeThePeople_ModdingTool.Factories
             return dataSet;
         }
 
-        public DataSetXML CreateEventGameTextDone( string name )
+        public DataSetXML CreateEventGameTextDone(string name)
         {
             DataSetXML dataSet = CreateBaseXML(name);
             dataSet.OriginalFileName = CIV4EventInfos;
@@ -239,9 +236,9 @@ namespace WeThePeople_ModdingTool.Factories
             IDictionary<string, DataSetXML> registered = TemplateRepository.Instance.XmlDocumentEventDone;
             List<string> eventInfoDons = CreateEventInfoDoneList();
 
-            foreach(string eventInfo in eventInfoDons)
+            foreach (string eventInfo in eventInfoDons)
             {
-                if( false == registered.ContainsKey(eventInfo) )
+                if (false == registered.ContainsKey(eventInfo))
                 {
                     return eventInfo;
                 }
@@ -261,11 +258,11 @@ namespace WeThePeople_ModdingTool.Factories
             return list;
         }
 
-        private bool FindStringInList( string toFind, IDictionary<string, DataSetXML> source )
+        private bool FindStringInList(string toFind, IDictionary<string, DataSetXML> source)
         {
             foreach (KeyValuePair<string, DataSetXML> entry in source)
             {
-                if( entry.Equals(toFind) )
+                if (entry.Equals(toFind))
                 {
                     return true;
                 }
@@ -274,7 +271,7 @@ namespace WeThePeople_ModdingTool.Factories
         }
 
 
-        private DataSetXML CreateBaseXML( string templateName )
+        private DataSetXML CreateBaseXML(string templateName)
         {
             DataSetXML dataSetXML = new DataSetXML();
             dataSetXML.TemplateName = templateName;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.FileUtilities;
@@ -27,7 +26,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             set { parentNodeToAppend = value; }
         }
 
-      
+
         public override bool Insert(XmlDocument content)
         {
             XmlDocument originalDoc = XMLFileUtility.Load(FileName);
@@ -35,13 +34,13 @@ namespace WeThePeople_ModdingTool.ContentInserter
 
             XmlNodeList nodesToInsert = content.DocumentElement.GetElementsByTagName(uniqueNodeName);
 
-            if( true == Contains(nodesToInsert, originalNodes) )
+            if (true == Contains(nodesToInsert, originalNodes))
             {
                 return false;
             }
 
             XmlNode xmlNodeDestination;
-            if( ((XmlNode)content.DocumentElement).Name.Equals(parentNodeToAppend) )
+            if (((XmlNode)content.DocumentElement).Name.Equals(parentNodeToAppend))
             {
                 XmlNodeList xmlNodesToInsert = content.DocumentElement.GetElementsByTagName(uniqueNodeName);
                 xmlNodeDestination = (XmlNode)originalDoc.DocumentElement;
@@ -80,19 +79,19 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return XMLFileUtility.SaveOverwrite(FileName, originalDoc);
         }
 
-        private void RemoveAttribute_xmlns( XmlNodeList xmlNodeList )
+        private void RemoveAttribute_xmlns(XmlNodeList xmlNodeList)
         {
-            foreach( XmlNode xmlNode in xmlNodeList )
+            foreach (XmlNode xmlNode in xmlNodeList)
             {
                 XmlAttributeCollection xmlAttributeCollection = xmlNode.Attributes;
                 xmlAttributeCollection.Remove(xmlAttributeCollection["xmlns"]);
             }
         }
 
-        private List<XmlNode> CreateParentList( XmlNodeList xmlNodeList )
+        private List<XmlNode> CreateParentList(XmlNodeList xmlNodeList)
         {
             List<XmlNode> xmlNodes = new List<XmlNode>();
-            foreach( XmlNode xmlNode in xmlNodeList )
+            foreach (XmlNode xmlNode in xmlNodeList)
             {
                 xmlNodes.Add(xmlNode.ParentNode);
             }
@@ -108,7 +107,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
 
         private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, List<XmlNode> xmlNodesToInsert)
         {
-            foreach( XmlNode xmlNodeToInsert in xmlNodesToInsert )
+            foreach (XmlNode xmlNodeToInsert in xmlNodesToInsert)
             {
                 XmlNode importedNode = xmlDocumentDestination.ImportNode(xmlNodeToInsert, true);
                 xmlNodeDestination.AppendChild(importedNode);
@@ -116,10 +115,10 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return true;
         }
 
-        private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNode xmlNodeToInsert )
+        private bool InsertNodes(XmlDocument xmlDocumentDestination, XmlNode xmlNodeDestination, XmlNode xmlNodeToInsert)
         {
             XmlNode importedNode = xmlDocumentDestination.ImportNode(xmlNodeToInsert, true);
-            while( importedNode.ChildNodes.Count > 0 )
+            while (importedNode.ChildNodes.Count > 0)
             {
                 xmlNodeDestination.AppendChild(importedNode.ChildNodes[0]);
             }

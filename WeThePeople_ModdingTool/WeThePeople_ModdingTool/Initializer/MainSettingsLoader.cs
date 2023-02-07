@@ -1,11 +1,6 @@
 ﻿using Serilog;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Xml;
-using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Helper;
@@ -39,7 +34,7 @@ namespace WeThePeople_ModdingTool
         private string MAIN_CONFIG_FILE = "WeThePeople_ModdingTool.xml";
         public bool Init()
         {
-            if( false == InitConfig() )
+            if (false == InitConfig())
             {
                 return false;
             }
@@ -49,14 +44,14 @@ namespace WeThePeople_ModdingTool
         private bool InitConfig()
         {
             XmlDocument xmlDocument = XMLFileUtility.Load(ApplicationConfigBasePath + MAIN_CONFIG_FILE);
-            if( null == xmlDocument )
+            if (null == xmlDocument)
             {
                 Log.Debug("Unable to load main config: " + MAIN_CONFIG_FILE);
                 return false;
             }
 
             XmlNodeList modSourcePath = xmlDocument.DocumentElement.GetElementsByTagName(WeThePeople_ModdingTool_Config.Instance.MOD_SOURCE_PATH_PATH);
-            if( modSourcePath.Count != 1 )
+            if (modSourcePath.Count != 1)
             {
                 return false;
             }
@@ -73,24 +68,24 @@ namespace WeThePeople_ModdingTool
 
             DataSetFactory dataSetFactory = new DataSetFactory();
 
-            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventInfos_Start() );
+            TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventInfos_Start());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventTriggerInfos_Start());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventTriggerInfos_Done());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateEventGameText());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateRandomEventStart());
             TemplateRepository.Instance.RegisterTemplate(dataSetFactory.CreateRandomEventDone());
 
-            if ( false == InitYieldList() )
+            if (false == InitYieldList())
             {
                 loadingTamplatesOk = false;
             }
 
-            if( false == InitUnitClasses() )
+            if (false == InitUnitClasses())
             {
                 loadingTamplatesOk = false;
             }
 
-            if( false == InitHarbours() )
+            if (false == InitHarbours())
             {
                 loadingTamplatesOk = false;
             }
@@ -120,13 +115,13 @@ namespace WeThePeople_ModdingTool
             return YieldTypeRepository.Instance.YieldTypes.Count > 0;
         }
 
-        private IDictionary<string,string> CreatedDictionary( List<string> list, int substringIndex )
+        private IDictionary<string, string> CreatedDictionary(List<string> list, int substringIndex)
         {
             IDictionary<string, string> dictionary = new Dictionary<string, string>();
-            foreach( string item in list )
+            foreach (string item in list)
             {
                 string name = item.Substring(substringIndex);
-                dictionary.TryAdd(name,item);
+                dictionary.TryAdd(name, item);
             }
             return dictionary;
         }

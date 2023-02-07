@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Serilog;
 using WeThePeople_ModdingTool.DataSets;
-using Serilog;
 
 namespace WeThePeople_ModdingTool.Validators
 {
     public class DataSetValidator
     {
-        public static bool Validate( DataSetBase dataSetBase )
+        public static bool Validate(DataSetBase dataSetBase)
         {
-            if( null == dataSetBase )
+            if (null == dataSetBase)
             {
                 Log.Debug("DataSetBase is null!");
                 return false;
             }
 
             bool validationOK = true;
-            if( StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateName) )
+            if (StringValidator.IsNullOrWhiteSpace(dataSetBase.TemplateName))
             {
                 Log.Debug("DataSetBase.TemplateName is invalid!");
                 validationOK = false;
@@ -44,21 +41,21 @@ namespace WeThePeople_ModdingTool.Validators
             return validationOK;
         }
 
-        public static bool Validate( DataSetXML dataSetXML )
+        public static bool Validate(DataSetXML dataSetXML)
         {
             bool validationOK = true;
-            if( false == Validate((DataSetBase)dataSetXML) )
+            if (false == Validate((DataSetBase)dataSetXML))
             {
                 validationOK = false;
             }
 
-            if( null == dataSetXML.XmlDocumentTemplate )
+            if (null == dataSetXML.XmlDocumentTemplate)
             {
                 Log.Debug("DataSetXML.XmlDocumentObject is null!");
                 validationOK = false;
             }
 
-            if( StringValidator.IsNullOrWhiteSpace(dataSetXML.XmlSelectNode) )
+            if (StringValidator.IsNullOrWhiteSpace(dataSetXML.XmlSelectNode))
             {
                 Log.Debug("DataSetXML.XmlRootNode is invalid!");
                 validationOK = false;
@@ -66,14 +63,14 @@ namespace WeThePeople_ModdingTool.Validators
             return validationOK;
         }
 
-        public static bool ValidateFull( DataSetXML dataSetXML )
+        public static bool ValidateFull(DataSetXML dataSetXML)
         {
-            if( false == Validate(dataSetXML) )
+            if (false == Validate(dataSetXML))
             {
                 return false;
             }
 
-            if( null == dataSetXML.XmlDocumentProcessed )
+            if (null == dataSetXML.XmlDocumentProcessed)
             {
                 return false;
             }
@@ -81,7 +78,7 @@ namespace WeThePeople_ModdingTool.Validators
             return true;
         }
 
-        public static bool Validate( DataSetPython dataSetPython )
+        public static bool Validate(DataSetPython dataSetPython)
         {
             bool validationOK = true;
             if (false == Validate((DataSetBase)dataSetPython))

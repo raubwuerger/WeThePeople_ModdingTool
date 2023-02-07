@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml;
 
 namespace WeThePeople_ModdingTool.Helper
@@ -60,9 +58,9 @@ namespace WeThePeople_ModdingTool.Helper
             return listToInsert;
         }
 
-        private void RemoveXmlNodes( List<XmlNode> xmlNodes )
+        private void RemoveXmlNodes(List<XmlNode> xmlNodes)
         {
-            foreach( XmlNode xmlNode in xmlNodes )
+            foreach (XmlNode xmlNode in xmlNodes)
             {
                 XmlNode parentNode = xmlNode.ParentNode;
                 parentNode.ParentNode.RemoveChild(parentNode);

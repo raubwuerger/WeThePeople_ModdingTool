@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
     public class CommonMessageBox
     {
         public static bool ShowMessageBoxesNotForUnitTests = true;
-        static public MessageBoxResult Show( string caption, string messageBoxText, MessageBoxButton button, MessageBoxImage icon )
+        static public MessageBoxResult Show(string caption, string messageBoxText, MessageBoxButton button, MessageBoxImage icon)
         {
-            if( false == ShowMessageBoxesNotForUnitTests )
+            if (false == ShowMessageBoxesNotForUnitTests)
             {
                 return MessageBoxResult.None;
             }
-            return MessageBox.Show(messageBoxText, caption, button, icon );
+            return MessageBox.Show(messageBoxText, caption, button, icon);
         }
 
         static public MessageBoxResult Show_OK_Error(string caption, string messageBoxText)

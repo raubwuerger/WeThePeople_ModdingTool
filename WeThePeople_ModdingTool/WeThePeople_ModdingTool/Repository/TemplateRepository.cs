@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.FileUtilities;
@@ -35,13 +34,13 @@ namespace WeThePeople_ModdingTool
         {
             get { return xmlDocuments; }
         }
-        private IDictionary<string, DataSetPython> pythonFiles = new Dictionary< string, DataSetPython>();
+        private IDictionary<string, DataSetPython> pythonFiles = new Dictionary<string, DataSetPython>();
         public System.Collections.Generic.IDictionary<string, WeThePeople_ModdingTool.DataSets.DataSetPython> PythonFiles
         {
             get { return pythonFiles; }
         }
 
-        public bool RegisterTemplateEventDone( DataSetXML dataSetXML)
+        public bool RegisterTemplateEventDone(DataSetXML dataSetXML)
         {
             try
             {
@@ -72,12 +71,12 @@ namespace WeThePeople_ModdingTool
             try
             {
                 DataSetXML dataSetXML;
-                if( false == xmlDocumentEventDone.TryGetValue(unregister, out dataSetXML) )
+                if (false == xmlDocumentEventDone.TryGetValue(unregister, out dataSetXML))
                 {
                     return null;
                 }
 
-                if( false == xmlDocumentEventDone.Remove(unregister) )
+                if (false == xmlDocumentEventDone.Remove(unregister))
                 {
                     return null;
                 }
@@ -91,7 +90,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public bool RegisterTemplate( DataSetXML dataSetXML )
+        public bool RegisterTemplate(DataSetXML dataSetXML)
         {
             try
             {
@@ -102,7 +101,7 @@ namespace WeThePeople_ModdingTool
             }
             catch (ArgumentNullException)
             {
-                CommonMessageBox.Show_OK_Error("Wrong parameter!","Key must not be null!");
+                CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
                 return false;
             }
 
@@ -110,7 +109,7 @@ namespace WeThePeople_ModdingTool
             {
                 return xmlDocuments.TryAdd(dataSetXML.TemplateName, dataSetXML);
             }
-            catch( ArgumentNullException)
+            catch (ArgumentNullException)
             {
                 CommonMessageBox.Show_OK_Error("Wrong parameter!", "Key must not be null!");
                 return false;
@@ -121,7 +120,7 @@ namespace WeThePeople_ModdingTool
         {
             try
             {
-                if( false == xmlDocuments.Remove(dataSetXML.TemplateName) )
+                if (false == xmlDocuments.Remove(dataSetXML.TemplateName))
                 {
                     return null;
                 }
@@ -134,12 +133,12 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public DataSetXML UnRegisterTemplate( string name )
+        public DataSetXML UnRegisterTemplate(string name)
         {
             try
             {
                 DataSetXML dataSetXML = FindByNameXML(name);
-                if( dataSetXML == null )
+                if (dataSetXML == null)
                 {
                     return null;
                 }
@@ -156,7 +155,7 @@ namespace WeThePeople_ModdingTool
             }
         }
 
-        public bool RegisterTemplate( DataSetPython dataSetPython )
+        public bool RegisterTemplate(DataSetPython dataSetPython)
         {
             try
             {
@@ -181,7 +180,7 @@ namespace WeThePeople_ModdingTool
                 return false;
             }
         }
-        public DataSetXML FindByNameXML( string name )
+        public DataSetXML FindByNameXML(string name)
         {
             DataSetXML dataSetXML;
             xmlDocuments.TryGetValue(name, out dataSetXML);
@@ -197,7 +196,7 @@ namespace WeThePeople_ModdingTool
 
         public void Reset()
         {
-            foreach(KeyValuePair<string, DataSetXML> entry in xmlDocuments)
+            foreach (KeyValuePair<string, DataSetXML> entry in xmlDocuments)
             {
                 entry.Value.XmlDocumentProcessed = new XmlDocument();
             }

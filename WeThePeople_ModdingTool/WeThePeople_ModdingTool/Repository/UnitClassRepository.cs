@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace WeThePeople_ModdingTool
 {
@@ -22,9 +21,9 @@ namespace WeThePeople_ModdingTool
 
         List<String> unitClassNames = new List<string>();
         public List<string> UnitClassNames
-        { 
-            get => unitClassNames; 
-            set => unitClassNames = value; 
+        {
+            get => unitClassNames;
+            set => unitClassNames = value;
         }
 
         IDictionary<string, string> unitClasses = new Dictionary<string, string>();
@@ -39,7 +38,7 @@ namespace WeThePeople_ModdingTool
             return unitClasses[name];
         }
 
-        public string GetKeyFromValue( string value )
+        public string GetKeyFromValue(string value)
         {
             foreach (string key in unitClasses.Keys)
             {

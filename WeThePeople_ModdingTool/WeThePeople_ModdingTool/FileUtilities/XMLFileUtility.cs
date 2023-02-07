@@ -1,6 +1,5 @@
 ﻿using Serilog;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -48,7 +47,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
             try
             {
-                SaveFormattedXml(xmlDocument,fileName, Encoding.UTF8);
+                SaveFormattedXml(xmlDocument, fileName, Encoding.UTF8);
                 return true;
             }
             catch (Exception ex)

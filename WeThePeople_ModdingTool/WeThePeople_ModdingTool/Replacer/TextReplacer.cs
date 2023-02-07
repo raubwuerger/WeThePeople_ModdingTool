@@ -1,23 +1,23 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using WeThePeople_ModdingTool.FileUtilities;
-using Serilog;
 using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool
 {
     public class TextReplacer
     {
-        public static string Replace( string content, KeyValuePair<string, string> replaceItem )
+        public static string Replace(string content, KeyValuePair<string, string> replaceItem)
         {
-            if( true == StringValidator.IsNull(replaceItem.Value) )
+            if (true == StringValidator.IsNull(replaceItem.Value))
             {
                 Log.Debug("Replace item value is invalid! " + replaceItem.Key);
                 return content;
             }
 
-            Log.Debug("Content to replace : " + content +" - key: " +replaceItem.Key +" - value: " +replaceItem.Value);
+            Log.Debug("Content to replace : " + content + " - key: " + replaceItem.Key + " - value: " + replaceItem.Value);
             StringBuilder builder = new StringBuilder(content);
             try
             {
@@ -26,13 +26,13 @@ namespace WeThePeople_ModdingTool
                 Log.Debug("Content replaced : " + contentReplaced);
                 return contentReplaced;
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_EXCEPTION, "Replacing text failed!" + CommonVariables.CR + ex.Message);
                 return null;
             }
         }
-        public static string Replace(string content, IDictionary<string, string> replaceItems )
+        public static string Replace(string content, IDictionary<string, string> replaceItems)
         {
             StringBuilder builder = new StringBuilder(content);
             try

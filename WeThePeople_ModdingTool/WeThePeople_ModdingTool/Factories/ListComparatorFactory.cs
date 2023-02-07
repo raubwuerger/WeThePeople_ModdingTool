@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using WeThePeople_ModdingTool.Helper;
 
 namespace WeThePeople_ModdingTool.Factories

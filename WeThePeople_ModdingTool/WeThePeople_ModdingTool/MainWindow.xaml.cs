@@ -1,19 +1,19 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Collections.Generic;
-using WeThePeople_ModdingTool.FileUtilities;
-using System.Xml;
-using WeThePeople_ModdingTool.Windows;
-using WeThePeople_ModdingTool.Factories;
-using WeThePeople_ModdingTool.DataSets;
-using ICSharpCode.AvalonEdit;
+﻿using ICSharpCode.AvalonEdit;
 using Serilog;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using WeThePeople_ModdingTool.Creators;
-using WeThePeople_ModdingTool.Validators;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Xml;
+using WeThePeople_ModdingTool.Creators;
+using WeThePeople_ModdingTool.DataSets;
+using WeThePeople_ModdingTool.Factories;
+using WeThePeople_ModdingTool.FileUtilities;
+using WeThePeople_ModdingTool.Validators;
+using WeThePeople_ModdingTool.Windows;
 
 namespace WeThePeople_ModdingTool
 {

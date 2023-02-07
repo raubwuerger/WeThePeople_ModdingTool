@@ -1,7 +1,4 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Controls;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Factories;

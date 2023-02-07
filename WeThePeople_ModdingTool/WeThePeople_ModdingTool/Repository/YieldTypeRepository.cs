@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace WeThePeople_ModdingTool
 {
@@ -34,7 +33,7 @@ namespace WeThePeople_ModdingTool
             set { yieldTypes = value; }
         }
 
-        public string GetValueFromName( string name )
+        public string GetValueFromName(string name)
         {
             return yieldTypes[name];
         }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Serilog;
+﻿using Serilog;
+using System;
 
 namespace WeThePeople_ModdingTool
 {
@@ -10,11 +8,11 @@ namespace WeThePeople_ModdingTool
         public static void Parse()
         {
             string[] args = Environment.GetCommandLineArgs();
-            for( int i=0;i<args.Length;i++ )
+            for (int i = 0; i < args.Length; i++)
             {
                 CommandLineArgsRepository.Instance.RegisterCommandLineArgument(args[i]);
             }
-            Log.Debug("Number command line arguments registered: " + CommandLineArgsRepository.Instance.CommandLineArgs.Count.ToString() );
+            Log.Debug("Number command line arguments registered: " + CommandLineArgsRepository.Instance.CommandLineArgs.Count.ToString());
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
@@ -36,7 +35,7 @@ namespace WeThePeople_ModdingTool.Creators
         {
             set { eventInfoDone_TextBox_List = value; }
         }
-        
+
         private TextEditor textBox_TriggerInfo_Done;
         public TextEditor TextBox_TriggerInfo_Done
         {
@@ -62,7 +61,7 @@ namespace WeThePeople_ModdingTool.Creators
         }
         public override bool Create()
         {
-            if( false == Validate() )
+            if (false == Validate())
             {
                 return false;
             }
@@ -112,7 +111,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            if ( eventInfoDone_TextBox_List.Count <= 0 )
+            if (eventInfoDone_TextBox_List.Count <= 0)
             {
                 return false;
             }
@@ -175,7 +174,7 @@ namespace WeThePeople_ModdingTool.Creators
             textBox_TriggerInfo_Done.Text = XMLHelper.FormatKeepIndention(XMLHelper.GetRootNodeListProcessedXML(eventTriggerInfo_Done));
 
             XmlNodeList description = dataSetXML_EventInfoDone.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.EventInfo_DescriptionNode);
-            if(description.Count != 1)
+            if (description.Count != 1)
             {
                 return false;
             }
@@ -200,11 +199,11 @@ namespace WeThePeople_ModdingTool.Creators
             return XMLHelper.FindNodeByName(xmlNodeList, DataSetFactory.EventInfo_UniqueNode);
         }
 
-        private bool CreateGameTextNode( string description )
+        private bool CreateGameTextNode(string description)
         {
             DataSetFactory dataSetFactory = new DataSetFactory();
             DataSetXML dataSetXML = dataSetFactory.CreateEventGameTextDone(description);
-            if( false == eventProcessor.ProcessAndSet(dataSetXML) )
+            if (false == eventProcessor.ProcessAndSet(dataSetXML))
             {
                 return false;
             }
@@ -217,7 +216,7 @@ namespace WeThePeople_ModdingTool.Creators
             nodeTags[0].InnerText = description;
 
             XmlNodeList xmlTexts = dataSetXML.XmlDocumentProcessed.GetElementsByTagName(DataSetFactory.Civ4GameText_InsertNode);
-            if( xmlTexts.Count != 1 )
+            if (xmlTexts.Count != 1)
             {
                 return false;
             }

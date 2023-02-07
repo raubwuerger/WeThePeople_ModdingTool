@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Validators;
@@ -11,16 +9,16 @@ namespace WeThePeople_ModdingTool.ContentInserter
     public class ContentInserterPython : ContentInserterBase
     {
         private static string DEF = "def ";
-        private bool LastLineEmpty = true; 
+        private bool LastLineEmpty = true;
         public override bool Insert(string content)
         {
             List<string> linesToInsert = SplitToLines(content);
-            List<string> defsToInsert = GetOnlyLinesStartWith(DEF,linesToInsert);
+            List<string> defsToInsert = GetOnlyLinesStartWith(DEF, linesToInsert);
 
             List<string> linesTarget = TextFileUtility.LoadLineByLine(FileName);
             List<string> defsExisting = GetOnlyLinesStartWith(DEF, linesTarget);
 
-            if( true == Contains(defsToInsert, defsExisting) )
+            if (true == Contains(defsToInsert, defsExisting))
             {
                 return false;
             }
@@ -29,7 +27,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return Append(linesToInsert);
         }
 
-        private List<string> SplitToLines( string content )
+        private List<string> SplitToLines(string content)
         {
             List<string> lines = new List<string>();
             string[] strings = content.Split("\r\n");
@@ -40,12 +38,12 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return lines;
         }
 
-        private List<string> GetOnlyLinesStartWith( string startWith, List<string> lines )
+        private List<string> GetOnlyLinesStartWith(string startWith, List<string> lines)
         {
             List<string> startingWith = new List<string>();
-            foreach( string line in lines )
+            foreach (string line in lines)
             {
-                if( line.StartsWith(startWith) )
+                if (line.StartsWith(startWith))
                 {
                     startingWith.Add(line);
                 }
@@ -53,11 +51,11 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return startingWith;
         }
 
-        private bool Contains( string contains, List<string> lines )
+        private bool Contains(string contains, List<string> lines)
         {
-            foreach( string line in lines )
+            foreach (string line in lines)
             {
-                if( line.Equals(contains) )
+                if (line.Equals(contains))
                 {
                     return true;
                 }
@@ -65,11 +63,11 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return false;
         }
 
-        private bool Contains( List<string> contains, List<string> lines )
+        private bool Contains(List<string> contains, List<string> lines)
         {
             foreach (string line in contains)
             {
-                if (Contains(line, lines) )
+                if (Contains(line, lines))
                 {
                     return true;
                 }
@@ -77,9 +75,9 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return false;
         }
 
-        private bool IsLastLineEmpty( List<string> lines )
+        private bool IsLastLineEmpty(List<string> lines)
         {
-            if( lines.Count == 0 )
+            if (lines.Count == 0)
             {
                 return true;
             }
@@ -87,11 +85,11 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return StringValidator.IsNullOrEmpty(lastLine);
         }
 
-        private bool Append( List<string> toInsert )
+        private bool Append(List<string> toInsert)
         {
             using (StreamWriter sw = File.AppendText(FileName))
             {
-                if( LastLineEmpty == false )
+                if (LastLineEmpty == false)
                 {
                     sw.WriteLine("\r\n");
                 }

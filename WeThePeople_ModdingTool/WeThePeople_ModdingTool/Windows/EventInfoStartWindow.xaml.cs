@@ -1,12 +1,9 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Helper;
-using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.Windows
 {
@@ -29,15 +26,16 @@ namespace WeThePeople_ModdingTool.Windows
         private DataSetEventInfoStart dataSetEventInfoStart = new DataSetEventInfoStart();
         public DataSetEventInfoStart DataSetEventInfoStart
         {
-            get {
+            get
+            {
                 GetFromGUI();
-                return dataSetEventInfoStart; 
-                }
-            set 
-                {
+                return dataSetEventInfoStart;
+            }
+            set
+            {
                 SetDataToGUI();
-                dataSetEventInfoStart = value; 
-                }
+                dataSetEventInfoStart = value;
+            }
         }
         public EventInfoStartWindow()
         {
@@ -50,18 +48,18 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void button_EventInfoStart_Ok_Click(object sender, RoutedEventArgs e)
         {
-            if( false == IsAtLeastOneInputValid() )
+            if (false == IsAtLeastOneInputValid())
             {
                 if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "No changes made!\r\nDo you want to proceed?"))
                 {
                     return;
                 }
             }
-            else 
+            else
             {
-                if( false == IsRelationStartDoneValueValid() )
+                if (false == IsRelationStartDoneValueValid())
                 {
-                    CommonMessageBox.Show_OK_Error("Input not valid!","StartValue is equal or greater DoneValue!");
+                    CommonMessageBox.Show_OK_Error("Input not valid!", "StartValue is equal or greater DoneValue!");
                     return;
                 }
             }
@@ -94,12 +92,12 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsAtLeastOneInputValid()
         {
-            if( true == IsStartValueValid() )
+            if (true == IsStartValueValid())
             {
                 return true;
             }
 
-            if( true == IsDoneValueValid() )
+            if (true == IsDoneValueValid())
             {
                 return true;
             }
@@ -110,7 +108,7 @@ namespace WeThePeople_ModdingTool.Windows
         private bool IsRelationStartDoneValueValid()
         {
             int startValue;
-            if( false == StringHelper.StringToInteger(textBox_StartValue.Text, out startValue) )
+            if (false == StringHelper.StringToInteger(textBox_StartValue.Text, out startValue))
             {
                 return false;
             }

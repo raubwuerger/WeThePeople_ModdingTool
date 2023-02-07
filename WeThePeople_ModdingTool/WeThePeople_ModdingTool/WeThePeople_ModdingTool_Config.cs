@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WeThePeople_ModdingTool.FileUtilities;
-using Serilog;
+﻿using WeThePeople_ModdingTool.FileUtilities;
 
 namespace WeThePeople_ModdingTool
 {

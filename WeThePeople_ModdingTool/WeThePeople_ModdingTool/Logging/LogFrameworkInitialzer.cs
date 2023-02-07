@@ -1,6 +1,5 @@
-﻿using System;
-using Serilog;
-using Serilog.Sinks.RichTextBox.Themes;
+﻿using Serilog;
+using System;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {

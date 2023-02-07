@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml;
 using unvell.ReoGrid;
 using WeThePeople_ModdingTool.FileUtilities;
@@ -91,34 +83,34 @@ namespace WeThePeople_ModdingTool.Windows
                 string unitName = xmlNodeType.InnerText;
 
                 string animal = GetSubnodeValue(xmlNode, Civ4UnitInfos_bAnimal);
-                if ( animal.Equals("1") )
+                if (animal.Equals("1"))
                 {
                     continue;
                 }
 
                 string cargo = GetSubnodeValue(xmlNode, Civ4UnitInfos_Special);
-                if( cargo.Equals(SPECIALUNIT_YIELD_CARGO) )
+                if (cargo.Equals(SPECIALUNIT_YIELD_CARGO))
                 {
                     continue;
                 }
 
                 int costEurope = 0;
                 StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iEuropeCost), out costEurope);
-                if( costEurope <= 0 )
+                if (costEurope <= 0)
                 {
                     costEurope = 0;
                 }
 
                 int costAfrica = 0;
                 StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iAfricaCost), out costAfrica);
-                if(costAfrica <= 0)
+                if (costAfrica <= 0)
                 {
                     costAfrica = 0;
                 }
 
                 int costPortRoyal = 0;
                 StringValidator.GetNaturalNumber(GetSubnodeValue(xmlNode, Civ4UnitInfos_iPortRoyalCost), out costPortRoyal);
-                if(costPortRoyal <= 0)
+                if (costPortRoyal <= 0)
                 {
                     costPortRoyal = 0;
                 }
@@ -140,7 +132,7 @@ namespace WeThePeople_ModdingTool.Windows
 
             sheet.RowCount = (units.Count + 1);
 
-            foreach (string unit in units )
+            foreach (string unit in units)
             {
                 currentColumnIndex = columnStartIndex;
                 sheet[currentRowIndex, currentColumnIndex++] = RemoveFront(PREFIX_UNIT, units[index]);
@@ -156,7 +148,7 @@ namespace WeThePeople_ModdingTool.Windows
                     int portRoyalCost = costPortRoyalAll[units[index]];
 
                     var range = sheet.Ranges[currentRowIndex, columnStartIndex, 1, currentColumnIndex];
-                    range.Style.BackColor = Color.FromRgb(211,211,211);
+                    range.Style.BackColor = Color.FromRgb(211, 211, 211);
                 }
 
                 currentRowIndex++;
@@ -178,7 +170,7 @@ namespace WeThePeople_ModdingTool.Windows
             return NODE_NOT_FOUND;
         }
 
-        private string RemoveFront(  string removeString, string sourceString )
+        private string RemoveFront(string removeString, string sourceString)
         {
             int startIndex = 0;
             int endIndex = removeString.Length;

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WeThePeople_ModdingTool.Helper
 {
     public class StringHelper
     {
-        public static bool IsNumberGreaterZero( string numberString )
+        public static bool IsNumberGreaterZero(string numberString)
         {
             try
             {
@@ -23,17 +21,17 @@ namespace WeThePeople_ModdingTool.Helper
             return true;
 
         }
-        public static bool IsStringInteger( string numberString )
+        public static bool IsStringInteger(string numberString)
         {
             return int.TryParse(numberString, out int numericValue);
         }
 
-        public static bool StringToInteger( string numberString, out int numericValue )
+        public static bool StringToInteger(string numberString, out int numericValue)
         {
             return int.TryParse(numberString, out numericValue);
         }
 
-        public static string RemovePrefix( string original, string prefix )
+        public static string RemovePrefix(string original, string prefix)
         {
             return original.Replace(prefix, "");
         }

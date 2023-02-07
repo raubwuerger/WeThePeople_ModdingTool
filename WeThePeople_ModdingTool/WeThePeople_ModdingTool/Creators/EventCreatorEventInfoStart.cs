@@ -1,8 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using WeThePeople_ModdingTool.DataSets;
@@ -58,7 +55,7 @@ namespace WeThePeople_ModdingTool.Creators
         }
         public override bool Create()
         {
-            if( false == Validate() )
+            if (false == Validate())
             {
                 return false;
             }
@@ -88,27 +85,27 @@ namespace WeThePeople_ModdingTool.Creators
 
         private bool Validate()
         {
-            if( null == eventProcessor )
+            if (null == eventProcessor)
             {
                 return false;
             }
 
-            if( null == textBoxEventInfoStart )
+            if (null == textBoxEventInfoStart)
             {
                 return false;
             }
 
-            if( null == tabItemEventInfoStart )
+            if (null == tabItemEventInfoStart)
             {
                 return false;
             }
 
-            if( null == tabControl )
+            if (null == tabControl)
             {
                 return false;
             }
 
-            if( null == buttonAddEventInfoDone )
+            if (null == buttonAddEventInfoDone)
             {
                 return false;
             }

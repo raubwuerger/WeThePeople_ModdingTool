@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
-using Serilog;
 using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.FileUtilities
@@ -14,11 +14,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             try
             {
-                if( false == File.Exists(fileName) )
+                if (false == File.Exists(fileName))
                 {
                     Log.Warning(CommonVariables.MESSAGE_BOX_FILE_DOESNT_EXIST + CommonVariables.BLANK_MINUS_BLANK + fileName);
                 }
-                return File.ReadAllText(fileName,Encoding.UTF8);
+                return File.ReadAllText(fileName, Encoding.UTF8);
             }
             catch (Exception ex)
             {
@@ -28,11 +28,11 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static bool Save( string fileName, string content )
+        public static bool Save(string fileName, string content)
         {
             if (true == File.Exists(fileName))
             {
-                if( MessageBoxResult.No == CommonMessageBox.Show_YesNo(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_OVERWRITE_CR + fileName) )
+                if (MessageBoxResult.No == CommonMessageBox.Show_YesNo(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_OVERWRITE_CR + fileName))
                 {
                     return false;
                 }
@@ -42,7 +42,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
                 File.WriteAllText(fileName, content);
                 return true;
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 Log.Error(CommonVariables.MESSAGE_BOX_EXCEPTION + CommonVariables.BLANK_MINUS_BLANK + ex.Message);
                 CommonMessageBox.Show_OK_Error(CommonVariables.MESSAGE_BOX_UNABLE_SAVE_CAPTION, CommonVariables.MESSAGE_BOX_EXCEPTION_CR + ex.Message);
@@ -65,7 +65,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             }
         }
 
-        public static bool SaveCreatePath( string fileName, string content )
+        public static bool SaveCreatePath(string fileName, string content)
         {
             string path = Path.GetDirectoryName(fileName);
             Directory.CreateDirectory(Path.GetDirectoryName(fileName));
@@ -84,7 +84,7 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return Load(dataSetBase.TemplateFileNameAndPathAbsolute);
         }
 
-        public static List<string> LoadLineByLine( string fileName )
+        public static List<string> LoadLineByLine(string fileName)
         {
             List<string> lines = new List<string>();
             using (StreamReader sr = File.OpenText(fileName))

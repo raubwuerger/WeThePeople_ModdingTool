@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace WeThePeople_ModdingTool.DataSets
 {
     public class DataSetEventInfoDone
     {
-        private KeyValuePair<string, string> gold = new KeyValuePair<string, string>(ReplaceItems.GOLD,"0");
+        private KeyValuePair<string, string> gold = new KeyValuePair<string, string>(ReplaceItems.GOLD, "0");
         public KeyValuePair<string, string> Gold
         {
             get { return gold; }
         }
-        public void SetGold( string value )
+        public void SetGold(string value)
         {
             gold = new KeyValuePair<string, string>(ReplaceItems.GOLD, value);
         }

@@ -51,16 +51,16 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void InitGUIElements()
         {
-            label_EventInfoDone.Content = "Create EventInfoDone: " +yield +" - " +harbour;
+            label_EventInfoDone.Content = "Create EventInfoDone: " + yield + " - " + harbour;
 
             comboBox_UnitClass.ItemsSource = UnitClassRepository.Instance.UnitClassNames;
 
-            for( int i=0;i<=100;i++ )
+            for (int i = 0; i <= 100; i++)
             {
                 comboBox_UnitCount.Items.Add(i.ToString());
             }
 
-            for( int i=-9;i<10;i++)
+            for (int i = -9; i < 10; i++)
             {
                 comboBox_RelationKing.Items.Add(i.ToString());
                 comboBox_YieldPrice.Items.Add(i.ToString());
@@ -74,14 +74,14 @@ namespace WeThePeople_ModdingTool.Windows
 
         private void button_Ok_Click(object sender, RoutedEventArgs e)
         {
-            if( false == IsAtLeastOneInputValid() )
+            if (false == IsAtLeastOneInputValid())
             {
                 if (MessageBoxResult.No == CommonMessageBox.Show_YesNo("Input not valid!", "No changes made!\r\nDo you want to proceed?"))
                 {
                     return;
                 }
             }
-            else 
+            else
             {
                 if (false == IsUnitCreationValid())
                 {
@@ -113,11 +113,11 @@ namespace WeThePeople_ModdingTool.Windows
         private void GetFromGUI()
         {
             dataSetEventInfoDone.SetGold(GetGold());
-            if( -1 != comboBox_UnitClass.SelectedIndex )
+            if (-1 != comboBox_UnitClass.SelectedIndex)
             {
                 dataSetEventInfoDone.SetUnitClass(UnitClassRepository.Instance.GetValueFromName(comboBox_UnitClass.SelectedItem.ToString()));
             }
-            else            
+            else
             {
                 dataSetEventInfoDone.SetUnitClass("NONE");
             }
@@ -131,7 +131,7 @@ namespace WeThePeople_ModdingTool.Windows
         {
             int number;
             bool isNumeric = int.TryParse(textBox_Gold.Text, out number);
-            if( false == isNumeric )
+            if (false == isNumeric)
             {
                 return "0";
             }
@@ -140,12 +140,12 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsAtLeastOneInputValid()
         {
-            if( true == IsGoldValid() )
+            if (true == IsGoldValid())
             {
                 return true;
             }
 
-            if( true == IsUnitClassValid() )
+            if (true == IsUnitClassValid())
             {
                 return true;
             }
@@ -175,12 +175,12 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsUnitCreationValid()
         {
-            if( false == IsUnitClassValid() && false == IsUnitCountValid() && false == IsUnitExperienceValid() )
+            if (false == IsUnitClassValid() && false == IsUnitCountValid() && false == IsUnitExperienceValid())
             {
                 return true;
             }
 
-            if( IsUnitClassValid() && IsUnitCountValid() )
+            if (IsUnitClassValid() && IsUnitCountValid())
             {
                 return true;
             }
@@ -190,7 +190,7 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsUnitClassValid()
         {
-            if( comboBox_UnitClass.SelectedItem == null )
+            if (comboBox_UnitClass.SelectedItem == null)
             {
                 return false;
             }
@@ -200,12 +200,12 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsUnitCountValid()
         {
-            if( comboBox_UnitCount.SelectedItem == null )
+            if (comboBox_UnitCount.SelectedItem == null)
             {
                 return false;
             }
 
-            if( StringValidator.IsNullOrWhiteSpace(comboBox_UnitCount.SelectedItem.ToString()) )
+            if (StringValidator.IsNullOrWhiteSpace(comboBox_UnitCount.SelectedItem.ToString()))
             {
                 return false;
             }
@@ -215,7 +215,7 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsUnitExperienceValid()
         {
-            if( true == StringValidator.IsNullOrWhiteSpace(textBox_UnitExperiance.Text) )
+            if (true == StringValidator.IsNullOrWhiteSpace(textBox_UnitExperiance.Text))
             {
                 return false;
             }
@@ -225,7 +225,7 @@ namespace WeThePeople_ModdingTool.Windows
 
         private bool IsGoldValid()
         {
-            if( true == StringValidator.IsNullOrWhiteSpace(textBox_Gold.Text) )
+            if (true == StringValidator.IsNullOrWhiteSpace(textBox_Gold.Text))
             {
                 return false;
             }

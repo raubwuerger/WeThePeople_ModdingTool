@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using WeThePeople_ModdingTool.DataSets;
-using WeThePeople_ModdingTool.Factories;
+﻿using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool.ContentInserter
 {
@@ -16,7 +11,7 @@ namespace WeThePeople_ModdingTool.ContentInserter
             return contentInserterBase;
         }
 
-        public static ContentInserterBase CreateContentInserterByXmlDocument( string fileName, DataSetXML dataSetXML )
+        public static ContentInserterBase CreateContentInserterByXmlDocument(string fileName, DataSetXML dataSetXML)
         {
             return Create(fileName, dataSetXML);
         }

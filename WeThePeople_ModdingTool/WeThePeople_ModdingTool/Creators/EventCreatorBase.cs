@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WeThePeople_ModdingTool.Creators
+﻿namespace WeThePeople_ModdingTool.Creators
 {
     public abstract class EventCreatorBase
     {

@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Serilog;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Windows;
+using System.Windows.Forms;
+using System.Xml;
+using WeThePeople_ModdingTool.ContentInserter;
 using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Factories;
-using WeThePeople_ModdingTool.Validators;
-using Serilog;
 using WeThePeople_ModdingTool.FileUtilities;
 using WeThePeople_ModdingTool.Helper;
-using System.Xml;
-using System.Windows.Forms;
-using System.Windows;
-using System.IO;
-using WeThePeople_ModdingTool.ContentInserter;
+using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.Creators
 {
@@ -25,7 +23,7 @@ namespace WeThePeople_ModdingTool.Creators
 
         public override bool Create()
         {
-            if( false == GetSavePath() )
+            if (false == GetSavePath())
             {
                 return false;
             }
@@ -35,12 +33,12 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            if ( false == ConcatenatePythonFiles() )
+            if (false == ConcatenatePythonFiles())
             {
                 return false;
             }
 
-            if( false == ConcatenateXMLFiles() )
+            if (false == ConcatenateXMLFiles())
             {
                 return false;
             }
@@ -65,12 +63,12 @@ namespace WeThePeople_ModdingTool.Creators
             DataSetPython dataSetPythonStart = TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Start);
             DataSetPython dataSetPythonDone = TemplateRepository.Instance.FindByNamePython(DataSetFactory.CvRandomEventInterface_Done);
 
-            if( false == DataSetValidator.ValidateFull(dataSetPythonStart) )
+            if (false == DataSetValidator.ValidateFull(dataSetPythonStart))
             {
                 Log.Debug("DataSetPyton start is not valid!");
                 return false;
             }
-            if( false == DataSetValidator.ValidateFull(dataSetPythonDone) )
+            if (false == DataSetValidator.ValidateFull(dataSetPythonDone))
             {
                 Log.Debug("DataSetPyton start is not valid!");
                 return false;
@@ -80,7 +78,7 @@ namespace WeThePeople_ModdingTool.Creators
             concatenatedFiles += CommonVariables.CR;
             concatenatedFiles += dataSetPythonDone.PythonContentProcessed;
 
-            string savePathExtended = PathHelper.CombinePath(SavePath,Path.GetDirectoryName(dataSetPythonDone.TemplateFileNameRelativ));
+            string savePathExtended = PathHelper.CombinePath(SavePath, Path.GetDirectoryName(dataSetPythonDone.TemplateFileNameRelativ));
             string completeFileName = PathHelper.CombinePathAndFileName(savePathExtended, dataSetPythonStart.OriginalFileName);
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
@@ -99,30 +97,30 @@ namespace WeThePeople_ModdingTool.Creators
             return false;
         }
 
-        private bool Append( string fileName, string content )
+        private bool Append(string fileName, string content)
         {
             ContentInserterBase contentInserterBase = ContentInserterFactory.CreateContentInserterPython(fileName);
             return contentInserterBase.Insert(content);
         }
 
-        private bool Overwrite( string fileName, string content )
+        private bool Overwrite(string fileName, string content)
         {
             return TextFileUtility.SaveCreatePathOverwrite(fileName, content);
         }
 
         private bool ConcatenateXMLFiles()
         {
-            if( false == CreateCiv4GameText() )
+            if (false == CreateCiv4GameText())
             {
                 return false;
             }
 
-            if( false == CreateEventTriggerInfo() )
+            if (false == CreateEventTriggerInfo())
             {
                 return false;
             }
 
-            if( false == CreateEventInfo() )
+            if (false == CreateEventInfo())
             {
                 return false;
             }
@@ -158,7 +156,7 @@ namespace WeThePeople_ModdingTool.Creators
             return contentInserterBase.Insert(content.XmlDocumentProcessed);
         }
 
-        private bool Overwrite( string fileName, XmlDocument content )
+        private bool Overwrite(string fileName, XmlDocument content)
         {
             return XMLFileUtility.SaveCreatePathOverwrite(fileName, content);
         }
@@ -177,7 +175,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePath(SavePath, Path.GetDirectoryName(dataSetXMLs[0].TemplateFileNameRelativ)), dataSetXMLs[0].OriginalFileName );
+            string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePath(SavePath, Path.GetDirectoryName(dataSetXMLs[0].TemplateFileNameRelativ)), dataSetXMLs[0].OriginalFileName);
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
             if (messageBoxResult == MessageBoxResult.Cancel)
@@ -216,15 +214,15 @@ namespace WeThePeople_ModdingTool.Creators
             string completeFileName = PathHelper.CombinePathAndFileName(PathHelper.CombinePath(SavePath, Path.GetDirectoryName(eventEventInfos[0].TemplateFileNameRelativ)), eventEventInfos[0].OriginalFileName);
 
             MessageBoxResult messageBoxResult = CheckResultFile(completeFileName);
-            if (messageBoxResult == MessageBoxResult.Cancel )
+            if (messageBoxResult == MessageBoxResult.Cancel)
             {
                 return true;
             }
-            else if(messageBoxResult == MessageBoxResult.Yes)
+            else if (messageBoxResult == MessageBoxResult.Yes)
             {
                 return XMLFileUtility.SaveCreatePathOverwrite(completeFileName, concatenated);
             }
-            else if(messageBoxResult == MessageBoxResult.No)
+            else if (messageBoxResult == MessageBoxResult.No)
             {
                 eventEventInfos[0].XmlDocumentProcessed = concatenated;
                 return Append(completeFileName, eventEventInfos[0]);
@@ -232,9 +230,9 @@ namespace WeThePeople_ModdingTool.Creators
             return false;
         }
 
-        private XmlDocument Concatenate( List<XmlDocument> listToConcatenate, string attachDest, string nodeToAttach)
+        private XmlDocument Concatenate(List<XmlDocument> listToConcatenate, string attachDest, string nodeToAttach)
         {
-            if( listToConcatenate.Count < 0 )
+            if (listToConcatenate.Count < 0)
             {
                 return null;
             }
@@ -245,36 +243,36 @@ namespace WeThePeople_ModdingTool.Creators
             }
 
             XmlDocument concatenated = listToConcatenate[0];
-            for ( int i=0;i<listToConcatenate.Count - 1;i++ )
+            for (int i = 0; i < listToConcatenate.Count - 1; i++)
             {
                 //TODO: Die Ausgangslage ist schon nicht sauber! Warum ist in der Liste ein null-Object?
                 int newIndex = i + 1;
-                if(listToConcatenate[newIndex] == null || listToConcatenate[newIndex].DocumentElement == null || newIndex >= listToConcatenate.Count )
+                if (listToConcatenate[newIndex] == null || listToConcatenate[newIndex].DocumentElement == null || newIndex >= listToConcatenate.Count)
                 {
                     break;
                 }
 
                 XmlNodeList xmlNodeListAttachSource = listToConcatenate[newIndex].GetElementsByTagName(nodeToAttach);
-                if( xmlNodeListAttachSource.Count != 1 )
+                if (xmlNodeListAttachSource.Count != 1)
                 {
-                    Log.Debug("XmlDocument has invalid count of sub node: " +nodeToAttach);
+                    Log.Debug("XmlDocument has invalid count of sub node: " + nodeToAttach);
                     return null;
                 }
 
                 XmlNodeList xmlNodeListAttachDest = concatenated.GetElementsByTagName(attachDest);
-                if( xmlNodeListAttachDest.Count != 1 )
+                if (xmlNodeListAttachDest.Count != 1)
                 {
                     Log.Debug("XmlDocument has invalid count of sub node: " + attachDest);
                     return null;
                 }
 
-                concatenated = Concatenate(concatenated, xmlNodeListAttachDest[0], xmlNodeListAttachSource[0] );
+                concatenated = Concatenate(concatenated, xmlNodeListAttachDest[0], xmlNodeListAttachSource[0]);
             }
 
             return concatenated;
         }
 
-        private XmlDocument Concatenate( XmlDocument baseXML, XmlNode xmlDest, XmlNode addXMLNode )
+        private XmlDocument Concatenate(XmlDocument baseXML, XmlNode xmlDest, XmlNode addXMLNode)
         {
             XmlNode importedDocument = baseXML.ImportNode(addXMLNode, true);
             xmlDest.AppendChild(importedDocument);

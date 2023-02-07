@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using WeThePeople_ModdingTool.DataSets;
 
 namespace WeThePeople_ModdingTool
@@ -9,7 +7,7 @@ namespace WeThePeople_ModdingTool
     {
         private DataSetPython dataSetPython;
 
-        public PythonItemReplacer( DataSetPython dataSetPythonObject )
+        public PythonItemReplacer(DataSetPython dataSetPythonObject)
         {
             dataSetPython = dataSetPythonObject;
         }

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Serilog;
 
 namespace WeThePeople_ModdingTool
 {
@@ -22,7 +21,7 @@ namespace WeThePeople_ModdingTool
                 return instance;
             }
         }
-        
+
         private List<String> commandLineArgs = new List<string>();
 
         public List<string> CommandLineArgs
@@ -30,9 +29,9 @@ namespace WeThePeople_ModdingTool
             get => commandLineArgs;
         }
 
-        public bool RegisterCommandLineArgument( string commandLineArg )
+        public bool RegisterCommandLineArgument(string commandLineArg)
         {
-            if( commandLineArgs.Contains(commandLineArg) )
+            if (commandLineArgs.Contains(commandLineArg))
             {
                 Log.Debug("Command line argument already registered: " + commandLineArg);
                 return false;
@@ -42,7 +41,7 @@ namespace WeThePeople_ModdingTool
             return true;
         }
 
-        public bool HasCommandLineArgument( string commandLineArgument )
+        public bool HasCommandLineArgument(string commandLineArgument)
         {
             return commandLineArgs.Contains(commandLineArgument);
         }

@@ -1,10 +1,9 @@
-﻿using System.Xml;
-using WeThePeople_ModdingTool.DataSets;
-using WeThePeople_ModdingTool.Validators;
-using Serilog;
-using System;
+﻿using System;
 using System.Diagnostics;
+using System.Xml;
+using WeThePeople_ModdingTool.DataSets;
 using WeThePeople_ModdingTool.Helper;
+using WeThePeople_ModdingTool.Validators;
 
 namespace WeThePeople_ModdingTool.Processors
 {
@@ -24,13 +23,13 @@ namespace WeThePeople_ModdingTool.Processors
         }
         public string Process(DataSetPython dataSetPython)
         {
-            if( false == IsInitialized() )
+            if (false == IsInitialized())
             {
                 return String.Empty;
             }
             dataSetPython.TemplateReplaceItems[ReplaceItems.HARBOUR_NORMAL] = harbour;
             dataSetPython.TemplateReplaceItems[ReplaceItems.HARBOUR_UPPERCASE] = harbour.ToUpper();
-            dataSetPython.TemplateReplaceItems[ReplaceItems.YIELD_SHORT] = StringHelper.RemovePrefix(yieldType,"YIELD_");
+            dataSetPython.TemplateReplaceItems[ReplaceItems.YIELD_SHORT] = StringHelper.RemovePrefix(yieldType, "YIELD_");
             dataSetPython.TemplateReplaceItems[ReplaceItems.YIELD] = yieldType;
 
             PythonItemReplacer replacer = new PythonItemReplacer(dataSetPython);
@@ -46,7 +45,7 @@ namespace WeThePeople_ModdingTool.Processors
         public bool ProcessAndSet(DataSetXML dataSetXML)
         {
             XmlDocument processed = Process(dataSetXML);
-            if( null == processed )
+            if (null == processed)
             {
                 return false;
             }
@@ -79,7 +78,7 @@ namespace WeThePeople_ModdingTool.Processors
 
         private bool IsInitialized()
         {
-            if( true == StringValidator.IsNullOrWhiteSpace(harbour) )
+            if (true == StringValidator.IsNullOrWhiteSpace(harbour))
             {
                 Debug.Assert(false, "EventProcessor is not Initialized! (harbour)");
                 return false;

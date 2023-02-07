@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace WeThePeople_ModdingTool.FileUtilities
 {
@@ -12,16 +9,16 @@ namespace WeThePeople_ModdingTool.FileUtilities
         public static string AssetPathShort = @"Assets";
         public static string GetBasePath()
         {
-            if( CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE) )
+            if (CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE))
             {
                 return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
             }
-            else 
+            else
             {
                 return Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             }
         }
-        public static string GetBasePathReleaseOnly( string pathExtension )
+        public static string GetBasePathReleaseOnly(string pathExtension)
         {
             if (CommandLineArgsRepository.Instance.HasCommandLineArgument(CommandLineArgsRepository.RUNS_INSIDE_IDE))
             {
@@ -37,12 +34,12 @@ namespace WeThePeople_ModdingTool.FileUtilities
         {
             return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         }
-        public static string GetBasePathCombine( string path )
+        public static string GetBasePathCombine(string path)
         {
             return Path.Combine(GetBasePath(), path);
         }
 
-        public static string GetFullAssetFileName( string asset )
+        public static string GetFullAssetFileName(string asset)
         {
             string assetPathAbsolute = Path.Combine(GetBasePath(), AssetPathRelative);
             return Path.Combine(assetPathAbsolute, asset);
@@ -59,21 +56,21 @@ namespace WeThePeople_ModdingTool.FileUtilities
             return Path.Combine(GetBasePath(), AssetPathRelative);
         }
 
-        public static string CombinePathAndFileName( string path, string filename )
+        public static string CombinePathAndFileName(string path, string filename)
         {
             return Path.Combine(path, filename);
         }
 
-        public static string CombineAssetPathShortAndFileName( string filename )
+        public static string CombineAssetPathShortAndFileName(string filename)
         {
-            return Path.Combine( filename, AssetPathShort );
+            return Path.Combine(filename, AssetPathShort);
         }
 
-        public static string CombinePath( string pathFirst, string pathSecond )
+        public static string CombinePath(string pathFirst, string pathSecond)
         {
             return Path.Combine(pathFirst, pathSecond);
         }
-        
+
         public static void CreatePath(string path)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));

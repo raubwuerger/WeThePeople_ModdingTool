@@ -1,7 +1,4 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
@@ -33,7 +30,7 @@ namespace WeThePeople_ModdingTool.Creators
 
         public override bool Create()
         {
-            if( false == Validate() )
+            if (false == Validate())
             {
                 return false;
             }
@@ -45,7 +42,7 @@ namespace WeThePeople_ModdingTool.Creators
                 return false;
             }
 
-            if( false == RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.EventTriggerInfo_UniqueNode)) )
+            if (false == RemoveEventTriggerInfoDone(XMLHelper.FindNodeByName(XMLHelper.GetFirstChildRootNodeList(dataSetXML), DataSetFactory.EventTriggerInfo_UniqueNode)))
             {
                 return false;
             }
@@ -102,9 +99,9 @@ namespace WeThePeople_ModdingTool.Creators
             return true;
         }
 
-        private bool RemoveGameTextDone( string name )
+        private bool RemoveGameTextDone(string name)
         {
-            if( null == TemplateRepository.Instance.UnRegisterTemplate(name) )
+            if (null == TemplateRepository.Instance.UnRegisterTemplate(name))
             {
                 return false;
             }
