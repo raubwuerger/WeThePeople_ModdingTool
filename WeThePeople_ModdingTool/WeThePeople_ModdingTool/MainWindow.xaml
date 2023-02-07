@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WeThePeople_ModdingTool"
         mc:Ignorable="d"
         Title="WeThePeople_ModdingTool" Height="1024" Width="1280" Icon="/WtP_desktop_icon.ico"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Background="LightGray">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -34,13 +35,14 @@
             <TabItem x:Name="TabItem_PythonStart" Header="PythonStart">
                 <Grid Background="#FFE5E5E5" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="71*" />
+                        <ColumnDefinition Width="287*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="checkBox_PythonStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
+                    <CheckBox x:Name="checkBox_PythonStart_Editable" Grid.Column="0" Content="Editable" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" />
                     <avalonEdit:TextEditor
                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                         x:Name="TextBox_Python_Start"
@@ -51,10 +53,8 @@
 						Grid.ColumnSpan="2"
                         IsReadOnly="True"  
                         VerticalScrollBarVisibility="Auto"
-						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
-						Margin="0,0,0,0"
-						VerticalAlignment="Stretch"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -82,6 +82,7 @@
 						HorizontalAlignment="Stretch"
 						Margin="0,0,0,0"
 						VerticalAlignment="Stretch"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -110,6 +111,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -138,6 +140,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -166,6 +169,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -194,6 +198,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -223,6 +228,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -252,6 +258,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -281,6 +288,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -310,6 +318,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -339,6 +348,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -368,6 +378,7 @@
                         VerticalScrollBarVisibility="Auto"
 						HorizontalAlignment="Stretch"
                         ShowLineNumbers="True"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
@@ -395,6 +406,7 @@
 						HorizontalAlignment="Stretch"
 						Margin="0,0,0,0"
 						VerticalAlignment="Stretch"
+                        Background="LightGray"
                         />
                 </Grid>
             </TabItem>
