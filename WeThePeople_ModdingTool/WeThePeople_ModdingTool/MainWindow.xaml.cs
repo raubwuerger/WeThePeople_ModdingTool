@@ -7,14 +7,13 @@ using System.Xml;
 using WeThePeople_ModdingTool.Windows;
 using WeThePeople_ModdingTool.Factories;
 using WeThePeople_ModdingTool.DataSets;
-using WeThePeople_ModdingTool.Processors;
-using WeThePeople_ModdingTool.Validators;
-using System.Diagnostics;
-using WeThePeople_ModdingTool.Creators;
-using WeThePeople_ModdingTool.Helper;
 using ICSharpCode.AvalonEdit;
 using Serilog;
 using System.IO;
+using WeThePeople_ModdingTool.Creators;
+using WeThePeople_ModdingTool.Validators;
+using System.Linq;
+using System.Text;
 
 namespace WeThePeople_ModdingTool
 {
@@ -36,24 +35,25 @@ namespace WeThePeople_ModdingTool
             string currentPath = System.IO.Directory.GetCurrentDirectory();
             LogFrameworkInitialzer.Init(this);
             CommandLineArgsParser.Parse();
-            if( false == MainSettingsLoader.Instance.Init() )
+            if (false == MainSettingsLoader.Instance.Init())
             {
                 CommonMessageBox.Show_OK_Error("Initialization failed!", "Initialization failed! See log file!");
             }
             InitMapping();
 
             ComboBox_Yield.ItemsSource = YieldTypeRepository.Instance.YieldTypeNames;
-            if( ComboBox_Yield.Items.Count > 0 )
+            if (ComboBox_Yield.Items.Count > 0)
             {
                 ComboBox_Yield.SelectedItem = YieldTypeRepository.Instance.YieldTypeNames[0];
             }
 
             comboBox_Harbours.ItemsSource = HarbourRepository.Instance.Harbours;
-            if( comboBox_Harbours.Items.Count > 0 )
+            if (comboBox_Harbours.Items.Count > 0)
             {
                 comboBox_Harbours.SelectedItem = HarbourRepository.Instance.Harbours[0];
             }
             SetItemVisibility();
+            InitReplaceStrings();
         }
 
         private void InitMapping()
@@ -141,7 +141,7 @@ namespace WeThePeople_ModdingTool
 
         private void ClearTextEditors()
         {
-            foreach(KeyValuePair<CheckBox, TextEditor> entry in CheckBoxTextEditor_Enable_Mapping)
+            foreach (KeyValuePair<CheckBox, TextEditor> entry in CheckBoxTextEditor_Enable_Mapping)
             {
                 entry.Value.Text = String.Empty;
             }
@@ -152,7 +152,7 @@ namespace WeThePeople_ModdingTool
             EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
             EventCreatorBase eventCreatorBase = eventCreatorFactory.CreateEventCreatorFilesPutTogether(this);
 
-            if( false == eventCreatorBase.Create() )
+            if (false == eventCreatorBase.Create())
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating events failed!\r\nSee log file.");
             }
@@ -164,9 +164,9 @@ namespace WeThePeople_ModdingTool
 
         private void UpdateDataSets()
         {
-            foreach(KeyValuePair<DataSetXML, TextEditor> entry in DataSetXML_TextEditor_Mapping )
+            foreach (KeyValuePair<DataSetXML, TextEditor> entry in DataSetXML_TextEditor_Mapping)
             {
-                if( true == XMLHelper.IsXMLShapely(entry.Value.Text) )
+                if (true == XMLHelper.IsXMLShapely(entry.Value.Text))
                 {
                     entry.Key.XmlDocumentProcessed.LoadXml(entry.Value.Text);
                 }
@@ -199,15 +199,15 @@ namespace WeThePeople_ModdingTool
             textEditor.IsReadOnly = true;
         }
 
-        private TextEditor GetTextEditorValidation( CheckBox checkBox )
+        private TextEditor GetTextEditorValidation(CheckBox checkBox)
         {
-            if( null == checkBox )
+            if (null == checkBox)
             {
                 return null;
             }
 
             TextEditor textEditor;
-            if( false == CheckBoxTextEditor_Enable_Mapping.TryGetValue(checkBox, out textEditor) )
+            if (false == CheckBoxTextEditor_Enable_Mapping.TryGetValue(checkBox, out textEditor))
             {
                 return null;
             }
@@ -225,7 +225,7 @@ namespace WeThePeople_ModdingTool
             ValidateXMLFile(textEditor.Text);
         }
 
-        private void ValidateXMLFile( string xmlString )
+        private void ValidateXMLFile(string xmlString)
         {
             if (true == StringValidator.IsNullOrWhiteSpace(xmlString))
             {
@@ -254,7 +254,7 @@ namespace WeThePeople_ModdingTool
         {
             EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
             EventCreatorBase eventCreator = eventCreatorFactory.CreateEventInfoStart(this);
-            if( false == eventCreator.Create() )
+            if (false == eventCreator.Create())
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoStart failed!\r\nSee log file.");
             }
@@ -264,7 +264,7 @@ namespace WeThePeople_ModdingTool
         {
             EventCreatorFactory eventCreatorFactory = new EventCreatorFactory();
             EventCreatorBase eventCreator = eventCreatorFactory.CreateEventInfoDone(this);
-            if( false == eventCreator.Create() )
+            if (false == eventCreator.Create())
             {
                 CommonMessageBox.Show_OK_Error("Operation failed!", "Creating event EventInfoDone failed!\r\nSee log file.");
             }
@@ -279,7 +279,7 @@ namespace WeThePeople_ModdingTool
         private void button_EventInfoDone_delete(object sender, RoutedEventArgs e)
         {
             tabItemToDelete = GetTextEditorDelete(e.Source as Button);
-            if( null == tabItemToDelete)
+            if (null == tabItemToDelete)
             {
                 return;
             }
@@ -293,7 +293,7 @@ namespace WeThePeople_ModdingTool
             CheckEventInfoDone();
         }
 
-        public TabItem GetTextEditorDelete( Button button )
+        public TabItem GetTextEditorDelete(Button button)
         {
             if (null == button)
             {
@@ -357,7 +357,7 @@ namespace WeThePeople_ModdingTool
         private void button_LoadXML_Civ4UnitInfos_Click(object sender, RoutedEventArgs e)
         {
             XmlDocument xmlDocument = XMLFileUtility.Load(WeThePeople_ModdingTool_Config.Instance.GetFullPathCIV4UnitInfos());
-            if( null == xmlDocument )
+            if (null == xmlDocument)
             {
                 return;
             }
@@ -376,10 +376,81 @@ namespace WeThePeople_ModdingTool
         private void Test_logging_Click(object sender, RoutedEventArgs e)
         {
             int counterEnd = counterStart + 10000;
-            for ( int i= counterStart; i< counterEnd; i++)
+            for (int i = counterStart; i < counterEnd; i++)
             {
-                Log.Information("Log entry:" +i.ToString());
+                Log.Information("Log entry:" + i.ToString());
             }
+        }
+
+        static private Dictionary<string, string> _replaceStrings = new Dictionary<string, string>();
+
+        private void InitReplaceStrings()
+        {
+            _replaceStrings.Add(" />", "/>");
+            _replaceStrings.Add("<LocalInfoText></LocalInfoText>", "<LocalInfoText/>");
+            _replaceStrings.Add("<WorldNewsTexts></WorldNewsTexts>", "<WorldNewsTexts/>");
+            _replaceStrings.Add("<OtherPlayerPopup></OtherPlayerPopup>", "<OtherPlayerPopup/>");
+            _replaceStrings.Add("<UnitPromotion></UnitPromotion>", "<UnitPromotion/>");
+            _replaceStrings.Add("<UnitName></UnitName>", "<UnitName/>");
+            _replaceStrings.Add("<UnitCombatPromotions></UnitCombatPromotions>", "<UnitCombatPromotions/>");
+            _replaceStrings.Add("<UnitClassPromotions></UnitClassPromotions>", "<UnitClassPromotions/>");
+            _replaceStrings.Add("<BuildingExtraYields></BuildingExtraYields>", "<BuildingExtraYields/>");
+            _replaceStrings.Add("<PlotExtraYields></PlotExtraYields>", "<PlotExtraYields/>");
+            _replaceStrings.Add("<AdditionalEvents></AdditionalEvents>", "<AdditionalEvents/>");
+            _replaceStrings.Add("<EventTimes></EventTimes>", "<EventTimes/>");
+            _replaceStrings.Add("<ClearEvents></ClearEvents>", "<ClearEvents/>");
+            _replaceStrings.Add("<PythonCallback></PythonCallback>", "<PythonCallback/>");
+            _replaceStrings.Add("<PythonExpireCheck></PythonExpireCheck>", "<PythonExpireCheck/>");
+            _replaceStrings.Add("<PythonCanDo></PythonCanDo>", "<PythonCanDo/>");
+            _replaceStrings.Add("<QuestFailText></QuestFailText>", "<QuestFailText/>");
+
+            _replaceStrings.Add("<UnitsRequired></UnitsRequired>", "<UnitsRequired/>");
+            _replaceStrings.Add("<BuildingsRequired></BuildingsRequired>", "<BuildingsRequired/>");
+            _replaceStrings.Add("<FeaturesRequired></FeaturesRequired>", "<FeaturesRequired/>");
+            _replaceStrings.Add("<TerrainsRequired></TerrainsRequired>", "<TerrainsRequired/>");
+            _replaceStrings.Add("<ImprovementsRequired></ImprovementsRequired>", "<ImprovementsRequired/>");
+            _replaceStrings.Add("<RoutesRequired></RoutesRequired>", "<RoutesRequired/>");
+            _replaceStrings.Add("<PrereqEvents></PrereqEvents>", "<PrereqEvents/>");
+            _replaceStrings.Add("<PythonCanDoUnit></PythonCanDoUnit>", "<PythonCanDoUnit/>");
+        }
+        private void button_FormatXML_Click(object sender, RoutedEventArgs e)
+        {
+            DeactivateEventCreation();
+            System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
+            dialog.Filter = "XML Files|*.xml";
+            if (System.Windows.Forms.DialogResult.OK != dialog.ShowDialog())
+            {
+                return;
+            }
+
+            List<string> linesFormated = new List<string>();
+            string[] keys = _replaceStrings.Keys.ToArray();
+
+            foreach (string line in File.ReadLines(dialog.FileName))
+            {
+                linesFormated.Add(DoReplace(line, keys));
+            }
+
+            StringBuilder builder = new StringBuilder();
+            foreach (string line in linesFormated)
+            {
+                // Append string to StringBuilder.
+                builder.Append(line).Append(Environment.NewLine);
+            }
+            TextFileUtility.Save(dialog.FileName + ".fmt", builder.ToString());
+        }
+
+        private string DoReplace(string original, string[] replaces)
+        {
+            foreach (string key in replaces)
+            {
+                if (false == original.Contains(key))
+                {
+                    continue;
+                }
+                return original.Replace(key, _replaceStrings[key]);
+            }
+            return original;
         }
     }
 }
