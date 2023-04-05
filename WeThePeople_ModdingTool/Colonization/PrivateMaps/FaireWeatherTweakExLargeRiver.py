@@ -1652,7 +1652,7 @@ class ClimateMap :
             countRemaining -= 1
             
     def getRainCost(self,x1,y1,x2,y2,distanceToUplift):
-        print "getRainCost(self,x1,y1,x2,y2,distanceToUplift)"
+#        print "getRainCost(self,x1,y1,x2,y2,distanceToUplift)"
         cost = mc.minimumRainCost
         cRange = 1.0 - mc.minimumRainCost/1.0#We don't want to go over 1.0 so the range is reduced
         upliftCost = (1.0/(float(distanceToUplift) + 1.0)) * cRange
@@ -1666,7 +1666,7 @@ class ClimateMap :
         return
 
     def getInitialTemp(self,x,y,tropic):
-        print "getInitialTemp(self,x,y,tropic)"
+#        print "getInitialTemp(self,x,y,tropic)"
         i = GetHmIndex(x,y)
         lat = self.getLattitude(y)
         latRange = float(90 + abs(tropic))
@@ -1682,7 +1682,7 @@ class ClimateMap :
         return temp
 
     def getLattitude(self,y):
-        print "getLattitude(self,y)"
+#        print "getLattitude(self,y)"
         latitudeRange = mc.topLattitude - mc.bottomLattitude
         degreesPerDY = float(latitudeRange)/float(mc.hmHeight)
         # TAC - Map scripts - koma13 - START
@@ -1762,7 +1762,7 @@ class WindZones :
         self.botLat = botLat
 
     def GetZone(self,y):
-        print "GetZone(self,y)"
+#        print "GetZone(self,y)"
         if y < 0 or y >= self.mapHeight:
             return self.NOZONE
         lat = self.GetLatitude(y)
@@ -1781,7 +1781,7 @@ class WindZones :
         return
 
     def GetZoneName(self,zone):
-        print "GetZoneName(self,zone)"
+#        print "GetZoneName(self,zone)"
         if zone == self.NPOLAR:
             return "NPOLAR"
         elif zone == self.NTEMPERATE:
@@ -1817,7 +1817,7 @@ class WindZones :
         return size
 
     def GetLatitude(self,y):
-        print "GetLatitude(self,y)"
+#        print "GetLatitude(self,y)"
         latitudeRange = self.topLat - self.botLat
         degreesPerDY = float(latitudeRange)/float(self.mapHeight)
         # TAC - Map scripts - koma13 - START
@@ -1833,7 +1833,7 @@ class WindZones :
         return self.GetWindDirectionsInZone(z)
 
     def GetWindDirectionsInZone(self,z):
-        print "GetWindDirectionsInZone(self,z)"
+#        print "GetWindDirectionsInZone(self,z)"
         #get x,y directions
         if z == self.NPOLAR:
             return (-1,-1)
@@ -1912,7 +1912,7 @@ class SmallMaps :
         return
 
     def isBelowSeaLevel(self,x,y):
-        print "isBelowSeaLevel(self,x,y)"
+#        print "isBelowSeaLevel(self,x,y)"
         i = GetIndex(x,y)
         if self.heightMap[i] < hm.seaLevel:
             return True
@@ -1921,7 +1921,7 @@ class SmallMaps :
     ## This function returns altitude in relation to sea level with
     ## 0.0 being seaLevel and 1.0 being highest altitude
     def getAltitudeAboveSeaLevel(self,x,y):
-        print "getAltitudeAboveSeaLevel(self,x,y)"
+#        print "getAltitudeAboveSeaLevel(self,x,y)"
         i = GetIndex(x,y)
         if i == -1:
             return 0.0
@@ -2245,14 +2245,14 @@ class Areamap :
         return
 
     def getAreaByID(self,areaID):
-        print "getAreaByID(self,areaID)"
+#        print "getAreaByID(self,areaID)"
         for i in range(len(self.areaList)):
             if self.areaList[i].ID == areaID:
                 return self.areaList[i]
         return None
 
     def getOceanID(self):
-        print "getOceanID(self)"
+#        print "getOceanID(self)"
         self.areaList.sort(lambda x,y:cmp(x.size,y.size))
         self.areaList.reverse()
         for a in self.areaList:
@@ -2479,7 +2479,7 @@ class Areamap :
         return i
     
     def fillArea(self,index,areaID,matchFunction):
-        print "fillArea(self,index,areaID,matchFunction)"
+#        print "fillArea(self,index,areaID,matchFunction)"
         #first divide index into x and y
         y = index/self.mapWidth
         x = index%self.mapWidth
@@ -2501,7 +2501,7 @@ class Areamap :
         return self.size,matchFunction(x,y)
 
     def scanAndFillLine(self,seg,areaID,matchValue,matchFunction):
-        print "scanAndFillLine(self,seg,areaID,matchValue,matchFunction)"
+#        print "scanAndFillLine(self,seg,areaID,matchValue,matchFunction)"
         i = self.getIndex(seg.xLeft,seg.y + seg.dy)
         if i < 0:
 ##            print "scanLine off map ignoring",str(seg)
@@ -2852,7 +2852,7 @@ class RiverMap :
         #riverMap is ready for use
 
     def rxFromPlot(self,x,y,direction):
-        print "rxFromPlot(self,x,y,direction)"
+#        print "rxFromPlot(self,x,y,direction)"
         if direction == self.NE:
             return x,y + 1
         if direction == self.SW:
@@ -3408,7 +3408,7 @@ def addRivers():
                             break
     
 def placeRiversInPlot(x,y):
-    print "placeRiversInPlot(x,y)"
+#    print "placeRiversInPlot(x,y)"
     gc = CyGlobalContext()
     pmap = gc.getMap()
     plot = pmap.plot(x,y)
@@ -3417,20 +3417,24 @@ def placeRiversInPlot(x,y):
     ii = GetIndex(xx,yy)
     if ii != -1:
         if rm.riverMap[ii] == rm.S:
+            print "placed river in - WO - plot(x,y) %d,%d" % (x,y)
             plot.setWOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_SOUTH)
     #SW
     xx,yy = rm.rxFromPlot(x,y,rm.SW)
     ii = GetIndex(xx,yy)
     if ii != -1:
         if rm.riverMap[ii] == rm.E:
+            print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
             plot.setNOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_EAST)
     #SE
     xx,yy = rm.rxFromPlot(x,y,rm.SE)
     ii = GetIndex(xx,yy)
     if ii != -1:
         if rm.riverMap[ii] == rm.N:
+            print "placed river in - WO - plot(x,y) %d,%d" % (x,y)
             plot.setWOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_NORTH)
         elif rm.riverMap[ii] == rm.W:
+            print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
             plot.setNOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_WEST)
 
 def printRiverMap():
@@ -3622,7 +3626,7 @@ This function tries to minimize that occurance by replacing it with a
 natural harbor, which looks much better.
 '''
 def makeHarbor(x,y,oceanMap):
-    print "makeHarbor(x,y,oceanMap)"
+#    print "makeHarbor(x,y,oceanMap)"
     oceanID = oceanMap.getOceanID()
     i = oceanMap.getIndex(x,y)
     if oceanMap.areaMap[i] != oceanID:
@@ -3918,7 +3922,7 @@ def isAllAdjacentPlotTerrainType(x, y, terrainType):
     return True
 
 def isAnyAdjacentPlotTerrainType(x, y, terrainType):
-    print "isAnyAdjacentPlotTerrainType(x, y, terrainType)"
+#    print "isAnyAdjacentPlotTerrainType(x, y, terrainType)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     
