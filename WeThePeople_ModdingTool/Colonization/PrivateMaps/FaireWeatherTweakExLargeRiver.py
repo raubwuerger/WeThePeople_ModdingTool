@@ -333,6 +333,7 @@ class MapConstants :
         return
     
     def initInGameOptions(self):
+        print "initInGameOptions()"
         gc = CyGlobalContext()
         mmap = gc.getMap()
 
@@ -486,6 +487,7 @@ PRand = PythonRandom()
 ################################################################################
 #This function converts x and y to an index.
 def GetIndex(x,y):
+    print "GetIndex(x,y)"
     #Check X for wrap
     if mc.WrapX == True:
         xx = x % mc.width
@@ -505,6 +507,7 @@ def GetIndex(x,y):
     return i
 
 def GetHmIndex(x,y):
+    print "GetHmIndex(x,y)"
     #Check X for wrap
     if mc.WrapX == True:
         xx = x % mc.hmWidth
@@ -525,6 +528,7 @@ def GetHmIndex(x,y):
 
 #Handles arbitrary size
 def GetIndexGeneral(x,y,width,height):
+    print "GetIndexGeneral(x,y,width,height)"
     #Check X for wrap
     if mc.WrapX == True:
         xx = x % width
@@ -547,6 +551,7 @@ def GetIndexGeneral(x,y,width,height):
 #This function scales a float map so that all values are between
 #0.0 and 1.0.
 def NormalizeMap(fMap,width,height):
+    print "NormalizeMap(fMap,width,height)"
     #find highest and lowest points
     maxAlt = 0.0
     minAlt = 0.0
@@ -570,7 +575,9 @@ def NormalizeMap(fMap,width,height):
         for x in range(width):
             fMap[GetIndexGeneral(x,y,width,height)] = fMap[GetIndexGeneral(x,y,width,height)] * scaler              
     return
+
 def ShrinkMap(largeMap,lWidth,lHeight,sWidth,sHeight):
+    print "ShrinkMap(largeMap,lWidth,lHeight,sWidth,sHeight)"
     smallMap = array('d')
     yScale = float(lHeight)/float(sHeight)
     xScale = float(lWidth)/float(sWidth)
@@ -687,6 +694,7 @@ def GetDistance(x,y,dx,dy):
     return distance
 
 def GetOppositeDirection(direction):
+    print "GetOppositeDirection(direction)"
     opposite = mc.L
     if direction == mc.N:
         opposite = mc.S
@@ -707,6 +715,7 @@ def GetOppositeDirection(direction):
     return opposite
 
 def GetXYFromDirection(x,y,direction):
+    print "GetXYFromDirection(x,y,direction)"
     xx = x
     yy = y
     if direction == mc.N:
@@ -735,6 +744,7 @@ def GetXYFromDirection(x,y,direction):
 ##than or less than the desired percent of a whole map within a given tolerance. Map values
 ##should be between 0 and 1.
 def FindValueFromPercent(mmap,width,height,percent,tolerance,greaterThan):
+    print "FindValueFromPercent(mmap,width,height,percent,tolerance,greaterThan)"
     inTolerance = False
     #to speed things up a little, lets take some time to find the middle value
     #in the dataset and use that to begin our search
@@ -808,6 +818,7 @@ class HeightMap :
         return
     
     def checkMaxGrain(self):
+        print "checkMaxGrain(self)"
         #hm map dimensions(minus 1 if no wrapping) must be evenly divisible
         #by max grain
         ok = True
@@ -829,6 +840,7 @@ class HeightMap :
         return
 
     def isPlotOnMargin(self,x,y):
+        print "isPlotOnMargin(self,x,y)"
         #first check top and bottom
         if mc.WrapY == False: #no margin needed when wrapping
             if y < (mc.hmMaxGrain * mc.hmGrainMargin):
@@ -860,6 +872,7 @@ class HeightMap :
         return False
     
     def generateMidpointDisplacement(self):
+        print "generateMidpointDisplacement(self)"
         self.checkMaxGrain()
         
         #make list of map plots that aren't on margin for each
@@ -1001,6 +1014,7 @@ class HeightMap :
         return
     
     def performTectonics(self):
+        print "performTectonics(self)"
         self.plateMap = list()
         borderMap = array('i')#this will help in later distance calculations
         self.plateHeightMap = array('d')
@@ -1153,7 +1167,8 @@ class HeightMap :
 ##        self.printPlateHeightMap()
 
 
-    def combineMaps(self):                    
+    def combineMaps(self):
+        print "combineMaps(self)"
         #Now add plateHeightMap to HeightMap
         for i in range(mc.hmWidth * mc.hmHeight):
             self.heightMap[i] += self.plateHeightMap[i] * mc.plateMapScale
@@ -1244,6 +1259,7 @@ class HeightMap :
         return altitude
     
     def isSeedBlocked(self,plateList,seedX,seedY):
+        print "isSeedBlocked(self,plateList,seedX,seedY)"
         for plate in plateList:
             if seedX > plate.seedX - mc.minSeedRange and seedX < plate.seedX + mc.minSeedRange:
                 if seedY > plate.seedY - mc.minSeedRange and seedY < plate.seedY + mc.minSeedRange:
@@ -1254,13 +1270,17 @@ class HeightMap :
         if seedY < mc.minEdgeRange or seedY >= (mc.hmHeight + 1) - mc.minEdgeRange:
             return True
         return False
+
     def GetInfluFromDistance(self,sinkValue,peakValue,searchRadius,distance):
+        print "GetInfluFromDistance(self,sinkValue,peakValue,searchRadius,distance)"
         influence = peakValue
         maxDistance = math.sqrt(pow(float(searchRadius),2) + pow(float(searchRadius),2))
         #minDistance = 1.0
         influence -= ((peakValue - sinkValue)* (distance - 1.0))/(maxDistance - 1.0)
         return influence
+    
     def FindDistanceToPlateBoundary(self,x,y,searchRadius):
+        print "FindDistanceToPlateBoundary(self,x,y,searchRadius)"
         minDistance = 10.0
         i = self.GetIndex(x,y)
         for yy in range(y - searchRadius,y + searchRadius):
@@ -1277,6 +1297,7 @@ class HeightMap :
         return minDistance
     
     def fillInLakes(self):
+        print "fillInLakes(self)"
         #smaller lakes need to be filled in for now. The river system will
         #most likely recreate them later due to drainage calculation
         #according to certain rules. This makes the lakes look much better
@@ -1298,6 +1319,7 @@ class HeightMap :
         return
     
     def printInitialPeaks(self):
+        print "printInitialPeaks(self)"
         lineString = "midpoint displacement peaks and margins"
         print lineString
         if not mc.WrapY:
@@ -1319,6 +1341,7 @@ class HeightMap :
         print lineString
         
     def printHeightMap(self):
+        print "printHeightMap(self)"
         lineString = "Height Map"
         print lineString
         for y in range(mc.hmHeight - 1,-1,-1):
@@ -1326,7 +1349,6 @@ class HeightMap :
             for x in range(0,mc.hmWidth,1):
                 i = GetHmIndex(x,y)
                 mapLoc = int((self.heightMap[i] - self.seaLevel)/(1.0 - self.seaLevel) * 10)
-                #mapLoc = int(self.heightMap[i] * 10)
                 if self.heightMap[i] < self.seaLevel:
                     lineString += '.'
                 else:
@@ -1336,6 +1358,7 @@ class HeightMap :
         print lineString
         
     def printPlateMap(self,plateMap):
+        print "printPlateMap(self,plateMap)"
         lineString = "Plate Map"
         print lineString
         for y in range(mc.hmHeight - 1,-1,-1):
@@ -1351,6 +1374,7 @@ class HeightMap :
         print lineString
         
     def printPreSmoothMap(self,preSmoothMap):
+        print "printPreSmoothMap(self,preSmoothMap)"
         lineString = "Pre-Smooth Map"
         print lineString
         for y in range(mc.hmHeight - 1,-1,-1):
@@ -1364,6 +1388,7 @@ class HeightMap :
         print lineString
         
     def printPlateHeightMap(self):
+        print "printPlateHeightMap(self)"
         lineString = "Plate Height Map"
         print lineString
         for y in range(mc.hmHeight - 1,-1,-1):
@@ -1377,6 +1402,7 @@ class HeightMap :
         print lineString
         
     def printDistanceMap(self,distanceMap,maxDistance):
+        print "printDistanceMap(self,distanceMap,maxDistance)"
         lineString = "Plate Height Map"
         print lineString
         for y in range(mc.hmHeight - 1,-1,-1):
@@ -1410,6 +1436,7 @@ class ClimateMap :
     def __init__(self):
         return
     def createClimateMaps(self):
+        print "createClimateMaps(self)"
         summerSunMap = array('d')
         winterSunMap = array('d')
         self.summerTempsMap = array('d')
@@ -1541,6 +1568,7 @@ class ClimateMap :
         
                 
     def dropRain(self,plotList, tempMap, bGeostrophic, windZones):
+        print "dropRain(self,plotList, tempMap, bGeostrophic, windZones)"
         countRemaining = len(plotList)
         bDebug = False
         for plot in plotList:
@@ -1624,6 +1652,7 @@ class ClimateMap :
             countRemaining -= 1
             
     def getRainCost(self,x1,y1,x2,y2,distanceToUplift):
+        print "getRainCost(self,x1,y1,x2,y2,distanceToUplift)"
         cost = mc.minimumRainCost
         cRange = 1.0 - mc.minimumRainCost/1.0#We don't want to go over 1.0 so the range is reduced
         upliftCost = (1.0/(float(distanceToUplift) + 1.0)) * cRange
@@ -1635,7 +1664,9 @@ class ClimateMap :
             for x in range(mc.hmWidth):
                 tempMap.append(self.getInitialTemp(x,y,tropic))
         return
+
     def getInitialTemp(self,x,y,tropic):
+        print "getInitialTemp(self,x,y,tropic)"
         i = GetHmIndex(x,y)
         lat = self.getLattitude(y)
         latRange = float(90 + abs(tropic))
@@ -1651,6 +1682,7 @@ class ClimateMap :
         return temp
 
     def getLattitude(self,y):
+        print "getLattitude(self,y)"
         latitudeRange = mc.topLattitude - mc.bottomLattitude
         degreesPerDY = float(latitudeRange)/float(mc.hmHeight)
         # TAC - Map scripts - koma13 - START
@@ -1660,6 +1692,7 @@ class ClimateMap :
         return latitude
     
     def printRainFallMap(self,bOcean):
+        print "printRainFallMap(self,bOcean)"
         lineString = "Rainfall Map"
         print lineString
         wz = WindZones(mc.hmHeight,mc.topLattitude,mc.bottomLattitude)
@@ -1693,7 +1726,9 @@ class ClimateMap :
             print lineString
         lineString = " "
         print lineString
+
     def printTempMap(self,tempMap):
+        print "printTempMap(self,tempMap)"
         lineString = "Temp Map"
         print lineString
         for y in range(mc.hmHeight - 1,-1,-1):
@@ -1725,7 +1760,9 @@ class WindZones :
         self.mapHeight = mapHeight
         self.topLat = topLat
         self.botLat = botLat
+
     def GetZone(self,y):
+        print "GetZone(self,y)"
         if y < 0 or y >= self.mapHeight:
             return self.NOZONE
         lat = self.GetLatitude(y)
@@ -1742,7 +1779,9 @@ class WindZones :
         else:
             return self.SPOLAR
         return
+
     def GetZoneName(self,zone):
+        print "GetZoneName(self,zone)"
         if zone == self.NPOLAR:
             return "NPOLAR"
         elif zone == self.NTEMPERATE:
@@ -1756,7 +1795,9 @@ class WindZones :
         else:
             return "SPOLAR"
         return
+
     def GetYFromZone(self,zone,bTop):
+        print "GetYFromZone(self,zone,bTop)"
         if bTop:
             for y in range(mc.hmHeight - 1,-1,-1):
                 if zone == self.GetZone(y):
@@ -1766,12 +1807,17 @@ class WindZones :
                 if zone == self.GetZone(y):
                     return y
         return -1
+
     def GetZoneSize(self):
+        print "GetZoneSize(self)"
         latitudeRange = self.topLat - self.botLat
         degreesPerDY = float(latitudeRange)/float(self.mapHeight)
         size = 30.0/degreesPerDY
+        print "Zone size:= %d" % (size)
         return size
+
     def GetLatitude(self,y):
+        print "GetLatitude(self,y)"
         latitudeRange = self.topLat - self.botLat
         degreesPerDY = float(latitudeRange)/float(self.mapHeight)
         # TAC - Map scripts - koma13 - START
@@ -1779,11 +1825,15 @@ class WindZones :
         latitude = (self.botLat + (int(round(float(y)* degreesPerDY)))) * -1
         # TAC - Map scripts - koma13 - END        
         return latitude
+
     def GetWindDirections(self,y):
+        print "GetWindDirections(self,y)"
         z = self.GetZone(y)
         #get x,y directions
         return self.GetWindDirectionsInZone(z)
+
     def GetWindDirectionsInZone(self,z):
+        print "GetWindDirectionsInZone(self,z)"
         #get x,y directions
         if z == self.NPOLAR:
             return (-1,-1)
@@ -1840,9 +1890,9 @@ class SmallMaps :
         self.createPlotMap()
         self.printPlotMap()
         self.createTerrainMap()
-#        self.printRiverMapShort()
 
     def fillInLakes(self):
+        print "fillInLakes(self)"
         #smaller lakes need to be filled in again because the map
         #shrinker sometimes creates lakes.
         am = Areamap(mc.width,mc.height,True,True)
@@ -1860,7 +1910,9 @@ class SmallMaps :
                             self.heightMap[i] = hm.seaLevel
         
         return
+
     def isBelowSeaLevel(self,x,y):
+        print "isBelowSeaLevel(self,x,y)"
         i = GetIndex(x,y)
         if self.heightMap[i] < hm.seaLevel:
             return True
@@ -1869,6 +1921,7 @@ class SmallMaps :
     ## This function returns altitude in relation to sea level with
     ## 0.0 being seaLevel and 1.0 being highest altitude
     def getAltitudeAboveSeaLevel(self,x,y):
+        print "getAltitudeAboveSeaLevel(self,x,y)"
         i = GetIndex(x,y)
         if i == -1:
             return 0.0
@@ -1880,6 +1933,7 @@ class SmallMaps :
     
 
     def createPlotMap(self):
+        print "createPlotMap(self)"
         self.plotMap = array('i')
         #create height difference map to allow for tuning
         diffMap = array('d')
@@ -1959,7 +2013,9 @@ class SmallMaps :
                         self.plotMap[i] = mc.HILLS
         
         return
+
     def createTerrainMap(self):
+        print "createTerrainMap(self)"
         self.terrainMap = array('i')
         #initialize terrainMap with OCEAN
         for i in range(0,mc.height*mc.width):
@@ -2081,7 +2137,9 @@ class SmallMaps :
                     if higherFound and self.plotMap[i] != mc.LAND:
                         self.plotMap[i] = mc.LAND
         return
+
     def cropMaps(self):
+        print "cropMaps(self)"
         hm.heightMap = CropMap(hm.heightMap)
         cm.averageTempMap = CropMap(cm.averageTempMap)
         cm.rainFallMap = CropMap(cm.rainFallMap)
@@ -2089,6 +2147,7 @@ class SmallMaps :
         mc.hmHeight = mc.hmHeight - mc.northCrop - mc.southCrop
 
     def printHeightMap(self):
+        print "printHeightMap(self)"
         lineString = "Height Map"
         print lineString
         for y in range(mc.height - 1,-1,-1):
@@ -2106,7 +2165,7 @@ class SmallMaps :
         print lineString
         
     def printPlotMap(self):
-        print "Plot Map"
+        print "printPlotMap(self)"
         for y in range(mc.height - 1,-1,-1):
             lineString = ""
             for x in range(mc.width):
@@ -2124,7 +2183,7 @@ class SmallMaps :
         print lineString
 
     def printTerrainMap(self):
-        print "Terrain Map"
+        print "printTerrainMap(self)"
         wz = WindZones(mc.height,80,-80)
         for y in range(mc.height - 1,-1,-1):
             lineString = ""
@@ -2164,63 +2223,36 @@ class Areamap :
         for i in range(0,self.mapHeight*self.mapWidth):
             self.areaMap.append(0)
         return
+
     def defineAreas(self,matchFunction):
+        print "defineAreas(self,matchFunction)"
         #coastIsLand = True means that we are trying to find continents that
         #are not connected by coasts to the main landmasses, allowing us to
         #find continents suitable as a 'New World'. Otherwise, we
         #are just looking to fill in lakes and coast needs to be considered
         #water in that case
-#        self.areaSizes = array('i')
-##        starttime = time.clock()
         self.areaList = list()
         areaID = 0
         #make sure map is erased in case it is used multiple times
         for i in range(0,self.mapHeight*self.mapWidth):
             self.areaMap[i] = 0
-#        for i in range(0,1):
         for i in range(0,self.mapHeight*self.mapWidth):
             if self.areaMap[i] == 0: #not assigned to an area yet
                 areaID += 1
                 areaSize,match = self.fillArea(i,areaID,matchFunction)
                 area = Area(areaID,areaSize,match)
                 self.areaList.append(area)
-
-##        endtime = time.clock()
-##        elapsed = endtime - starttime
-##        print "defineAreas time ="
-##        print elapsed
-##        print
-
         return
 
-##    def isWater(self,x,y,coastIsLand):
-##        #coastIsLand = True means that we are trying to find continents that
-##        #are not connected by coasts to the main landmasses, allowing us to
-##        #find continents suitable as a 'New World'. Otherwise, we
-##        #are just looking to fill in lakes and coast needs to be considered
-##        #water in that case
-##        ii = self.getIndex(x,y)
-##        if ii == -1:
-##            return False
-##        if coastIsLand:
-##            if hm.plotMap[ii] == hm.OCEAN and terr.terrainMap[ii] != terr.COAST:
-##                return True
-##            else:
-##                return False
-##        else:
-##            if hm.isBelowSeaLevel(x,y):
-##                return True
-##            else:
-##                return False
-##            
-##        return False
     def getAreaByID(self,areaID):
+        print "getAreaByID(self,areaID)"
         for i in range(len(self.areaList)):
             if self.areaList[i].ID == areaID:
                 return self.areaList[i]
         return None
+
     def getOceanID(self):
-#        self.areaList.sort(key=operator.attrgetter('size'),reverse=True)
+        print "getOceanID(self)"
         self.areaList.sort(lambda x,y:cmp(x.size,y.size))
         self.areaList.reverse()
         for a in self.areaList:
@@ -2228,6 +2260,7 @@ class Areamap :
                 return a.ID
             
     def getContinentCenter(self,ID):
+        print "getContinentCenter(self,ID)"
         #first find center in x direction
         changes = list()
         yMin = hm.mapHeight
@@ -2272,7 +2305,7 @@ class Areamap :
         return center    
 
     def isPangea(self):
-##        starttime = time.clock()
+        print "isPangea(self)"
         continentList = list()
         for a in self.areaList:
             if a.water == False:
@@ -2287,18 +2320,11 @@ class Areamap :
         continentList.reverse()
         biggestSize = continentList[0].size
         if 0.70 < float(biggestSize)/float(totalLand):
-##            endtime = time.clock()
-##            elapsed = endtime - starttime
-##            print "isPangea time = %(t)s" % {"t":str(elapsed)}
             return True
-##        endtime = time.clock()
-##        elapsed = endtime - starttime
-##        print "isPangea time = "
-##        print elapsed
-##        print
         return False
+
     def getMeteorStrike(self):
-##        starttime = time.clock()
+        print "getMeteorStrike(self)"
         continentList = list()
         for a in self.areaList:
             if a.water == False:
@@ -2329,22 +2355,12 @@ class Areamap :
         chokeList.sort(lambda x,y:cmp(x.avgDistance,y.avgDistance))
 
         if len(chokeList) == 0:#return bad value if no chokepoints
-##            endtime = time.clock()
-##            elapsed = endtime - starttime
-##            print "getMeteorStrike time = "
-##            print elapsed
-##            print
             return -1,-1
-
-##        endtime = time.clock()
-##        elapsed = endtime - starttime
-##        print "getMeteorStrike time = "
-##        print elapsed
-##        print
-        
+       
         return chokeList[0].x,chokeList[0].y
                 
     def isChokePoint(self,x,y):
+        print "isChokePoint(self,x,y)"
         circlePoints = self.getCirclePoints(x,y,4)
         waterOpposite = False
         landOpposite = False
@@ -2364,7 +2380,9 @@ class Areamap :
         if landOpposite and waterOpposite:
             return True
         return False
+
     def getDistance(self,x,y,dx,dy):
+        print "getDistance(self,x,y,dx,dy)"
         xx = x - dx
         if abs(xx) > hm.mapWidth/2:
             xx = hm.mapWidth - abs(xx)
@@ -2373,6 +2391,7 @@ class Areamap :
         return distance
         
     def getNewWorldID(self):
+        print "getNewWorldID(self)"
         nID = 0
         continentList = list()
         for a in self.areaList:
@@ -2436,9 +2455,11 @@ class Areamap :
                 if c.ID == self.areaMap[i]:
                     self.areaMap[i] = nID
  
+        print "newWorldID:=%d" % (nID)
         return nID
             
     def getIndex(self,x,y):
+        print "()"
         #Check X for wrap
         if mc.WrapX == True:
             xx = x % self.mapWidth
@@ -2458,6 +2479,7 @@ class Areamap :
         return i
     
     def fillArea(self,index,areaID,matchFunction):
+        print "fillArea(self,index,areaID,matchFunction)"
         #first divide index into x and y
         y = index/self.mapWidth
         x = index%self.mapWidth
@@ -2475,22 +2497,16 @@ class Areamap :
         while(len(self.segStack) > 0):
             seg = self.segStack.pop()
             self.scanAndFillLine(seg,areaID,matchValue,matchFunction)
-##            if (seg.y < 8 and seg.y > 4) or (seg.y < 70 and seg.y > 64):
-##            if (areaID == 4
-##                PrintPlotMap(hm)
-##                self.PrintAreaMap()
         
         return self.size,matchFunction(x,y)
+
     def scanAndFillLine(self,seg,areaID,matchValue,matchFunction):
-        #check for y + dy being off map
+        print "scanAndFillLine(self,seg,areaID,matchValue,matchFunction)"
         i = self.getIndex(seg.xLeft,seg.y + seg.dy)
         if i < 0:
 ##            print "scanLine off map ignoring",str(seg)
             return
         debugReport = False
-##        if (seg.y < 8 and seg.y > 4) or (seg.y < 70 and seg.y > 64):
-##        if (areaID == 4):
-##            debugReport = True
         #for land tiles we must look one past the x extents to include
         #8-connected neighbors
         if self.b8connected:
@@ -2603,8 +2619,7 @@ class Areamap :
         return
     #for debugging
     def PrintAreaMap(self):
-        
-        print "Area Map"
+        print "PrintAreaMap(self)"
         for y in range(self.mapHeight - 1,-1,-1):
             lineString = ""
             for x in range(self.mapWidth):
@@ -2699,6 +2714,7 @@ class RiverMap :
         #nothing, object initializer must be empty
         return
     def generateRiverMap(self):
+        print "generateRiverMap(self)"
         self.L = 0 #also denotes a 'pit' or 'flat'
         self.N = 1
         self.S = 2
@@ -2836,6 +2852,7 @@ class RiverMap :
         #riverMap is ready for use
 
     def rxFromPlot(self,x,y,direction):
+        print "rxFromPlot(self,x,y,direction)"
         if direction == self.NE:
             return x,y + 1
         if direction == self.SW:
@@ -2845,7 +2862,7 @@ class RiverMap :
         raise ValueError,"rxFromPlot using bad direction input"
     
     def printRiverMap(self):
-        print "River Map"
+        print "printRiverMap(self)"
         wz = WindZones(mc.hmHeight,80,-80)
         for y in range(mc.hmHeight - 1,-1,-1):
             lineString = ""
@@ -2869,7 +2886,7 @@ class RiverMap :
         print lineString
             
     def printFlowMap(self):
-        print "Flow Map"
+        print "printFlowMap(self)"
         wz = WindZones(mc.height,80,-80)
         for y in range(mc.height - 1,-1,-1):
             lineString = ""
@@ -2893,7 +2910,7 @@ class RiverMap :
         print lineString
     
     def printRiverAndTerrainAlign(self):
-        print "River Alignment Check"
+        print "printRiverAndTerrainAlign(self)"
         for y in range(mc.getGridHeight() - 1,-1,-1):
             lineString1 = ""
             lineString2 = ""
@@ -2966,6 +2983,7 @@ def getWrapY():
     return False
     
 def getNumCustomMapOptions():
+    print "getNumCustomMapOptions()"
     """
     Number of different user-defined options for this map
     Return an integer
@@ -2976,53 +2994,56 @@ def getNumCustomMapOptions():
     # TAC - Map scripts - koma13 - END
     
 def getCustomMapOptionName(argsList):
-        """
-        Returns name of specified option
-        argsList[0] is Option ID (int)
-        Return a Unicode string
-        """
-        optionID = argsList[0]
-        if mc.mapOptionNames[optionID] == "distance":
-            return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_DISTANCE", ())
-        # TAC - Map scripts - koma13 - START
-        elif mc.mapOptionNames[optionID] == "border north":
-            return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_NORTHERN_BORDER", ())
-        elif mc.mapOptionNames[optionID] == "border south":
-            return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_SOUTHERN_BORDER", ())
-        # TAC - Map scripts - koma13 - END
-        elif mc.mapOptionNames[optionID] == "land allocation":
-            return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_LAND_ALLOCATION", ())
-        elif mc.mapOptionNames[optionID] == "regularity":
-            return "Regularity"
-        elif mc.mapOptionNames[optionID] == "colony catchment radius":
-             return localText.getText("TXT_KEY_MAP_CUSTOM_OPTION_CITY_CATCHMENT_RADIUS", ())
-        return u""
+    print "getCustomMapOptionName(argsList)"
+    """
+    Returns name of specified option
+    argsList[0] is Option ID (int)
+    Return a Unicode string
+    """
+    optionID = argsList[0]
+    if mc.mapOptionNames[optionID] == "distance":
+        return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_DISTANCE", ())
+    # TAC - Map scripts - koma13 - START
+    elif mc.mapOptionNames[optionID] == "border north":
+        return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_NORTHERN_BORDER", ())
+    elif mc.mapOptionNames[optionID] == "border south":
+        return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_SOUTHERN_BORDER", ())
+    # TAC - Map scripts - koma13 - END
+    elif mc.mapOptionNames[optionID] == "land allocation":
+        return localText.getText("TXT_KEY_MAP_FAIRE_WEATHER_LAND_ALLOCATION", ())
+    elif mc.mapOptionNames[optionID] == "regularity":
+        return "Regularity"
+    elif mc.mapOptionNames[optionID] == "colony catchment radius":
+         return localText.getText("TXT_KEY_MAP_CUSTOM_OPTION_CITY_CATCHMENT_RADIUS", ())
+    return u""
     
 def getNumCustomMapOptionValues(argsList):
-        """
-        Number of different choices for a particular setting
-        argsList[0] is Option ID (int)
-        Return an integer
-        """
-        optionID = argsList[0]
-        if mc.mapOptionNames[optionID] == "distance":
-            return 4
-        # TAC - Map scripts - koma13 - START
-        elif mc.mapOptionNames[optionID] == "border north":
-            return 13
-        elif mc.mapOptionNames[optionID] == "border south":
-            return 13
-        # TAC - Map scripts - koma13 - START
-        elif mc.mapOptionNames[optionID] == "land allocation":
-            return 2
-        elif mc.mapOptionNames[optionID] == "regularity":
-            return 3
-        elif mc.mapOptionNames[optionID] == "colony catchment radius":
-            return 2
-        
-        return 0
+    print "getNumCustomMapOptionValues(argsList)"
+    """
+    Number of different choices for a particular setting
+    argsList[0] is Option ID (int)
+    Return an integer
+    """
+    optionID = argsList[0]
+    if mc.mapOptionNames[optionID] == "distance":
+        return 4
+    # TAC - Map scripts - koma13 - START
+    elif mc.mapOptionNames[optionID] == "border north":
+        return 13
+    elif mc.mapOptionNames[optionID] == "border south":
+        return 13
+    # TAC - Map scripts - koma13 - START
+    elif mc.mapOptionNames[optionID] == "land allocation":
+        return 2
+    elif mc.mapOptionNames[optionID] == "regularity":
+        return 3
+    elif mc.mapOptionNames[optionID] == "colony catchment radius":
+        return 2
+    
+    return 0
     
 def getCustomMapOptionDescAt(argsList):
+    print "getCustomMapOptionDescAt(argsList)"
     """
     Returns name of value of option at specified row
     argsList[0] is Option ID (int)
@@ -3123,6 +3144,7 @@ def getCustomMapOptionDescAt(argsList):
     return u""
     
 def getCustomMapOptionDefault(argsList):
+    print "getCustomMapOptionDefault(argsList)"
     """
     Returns default value of specified option
     argsList[0] is Option ID (int)
@@ -3151,6 +3173,7 @@ def getCustomMapOptionDefault(argsList):
     return 0
     
 def isRandomCustomMapOption(argsList):
+    print "isRandomCustomMapOption(argsList)"
     """
     Returns a flag indicating whether a random option should be provided
     argsList[0] is Option ID (int)
@@ -3197,18 +3220,21 @@ def isAdvancedMap():
     """
     return 0
 def isClimateMap():
+    print "isClimateMap()"
     """
     Uses the Climate options
     """
     return 0
     
 def isSeaLevelMap():
+    print "isSeaLevelMap()"
     """
     Uses the Sea Level options
     """
     return 0
     
 def getTopLatitude():
+    print "getTopLatitude()"
     "Default is 90. 75 is past the Arctic Circle"
     # TAC - Map scripts - koma13 - START
     #return 90
@@ -3216,6 +3242,7 @@ def getTopLatitude():
     # TAC - Map scripts - koma13 - END
 
 def getBottomLatitude():
+    print "getBottomLatitude()"
     "Default is -90. -75 is past the Antartic Circle"
     # TAC - Map scripts - koma13 - START
     #return -90
@@ -3223,6 +3250,7 @@ def getBottomLatitude():
     # TAC - Map scripts - koma13 - END
     
 def getGridSize(argsList):
+    print "getGridSize(argsList)"
     "Colonization is different than Civ in this function. The numbers"
     "here are the actual map size, not divided by 4 as in Civ"
     mc.initialize()
@@ -3241,6 +3269,7 @@ def getGridSize(argsList):
     return grid_sizes[eWorldSize]
 
 def generatePlotTypes():
+    print "generatePlotTypes()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     mc.width = mmap.getGridWidth()
@@ -3273,9 +3302,10 @@ def generatePlotTypes():
             plotTypes[i] = PlotTypes.PLOT_OCEAN
     print "Finished generating plot types."         
     return plotTypes
+
 def generateTerrainTypes():
+    print "generateTerrainTypes()"
     NiTextOut("Generating Terrain  ...")
-    print "Adding Terrain"
     gc = CyGlobalContext()
     terrainDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
     terrainPrairie = gc.getInfoTypeForString("TERRAIN_PLAINS")
@@ -3325,7 +3355,7 @@ def generateTerrainTypes():
 
 def addRivers():
     NiTextOut("Adding Rivers....")
-    print "Adding Rivers"
+    print "addRivers()"
     gc = CyGlobalContext()
     pmap = gc.getMap()
     for y in range(mc.height):
@@ -3378,6 +3408,7 @@ def addRivers():
                             break
     
 def placeRiversInPlot(x,y):
+    print "placeRiversInPlot(x,y)"
     gc = CyGlobalContext()
     pmap = gc.getMap()
     plot = pmap.plot(x,y)
@@ -3403,7 +3434,7 @@ def placeRiversInPlot(x,y):
             plot.setNOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_WEST)
 
 def printRiverMap():
-    print "River Map"
+    print "printRiverMap()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     for y in range(mc.height - 1,-1,-1):
@@ -3422,7 +3453,7 @@ def printRiverMap():
     print lineString
 
 def generateLargeRiver():
-    print "Adding Large Rivers."
+    print "generateLargeRiver()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
 
@@ -3472,6 +3503,7 @@ removed. This function also returns a list of riverID's that flow into the
 lake.
 '''
 def cleanUpLake(x,y):
+    print "cleanUpLake(x,y)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     riversIntoLake = list()
@@ -3536,6 +3568,7 @@ added after a river were causing graphical glitches and incorrect river rules
 due to not updating the river crossings.
 '''
 def replaceRivers(x,y):
+    print "replaceRivers(x,y)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     plot = mmap.plot(x,y+1)#North
@@ -3589,6 +3622,7 @@ This function tries to minimize that occurance by replacing it with a
 natural harbor, which looks much better.
 '''
 def makeHarbor(x,y,oceanMap):
+    print "makeHarbor(x,y,oceanMap)"
     oceanID = oceanMap.getOceanID()
     i = oceanMap.getIndex(x,y)
     if oceanMap.areaMap[i] != oceanID:
@@ -3674,7 +3708,9 @@ def makeHarbor(x,y,oceanMap):
         oceanMap.defineAreas(isSmallWaterMatch)
         oceanID = oceanMap.getOceanID()
     return
+
 def makeChannel(x,y):
+    print "makeChannel(x,y)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainCoast = gc.getInfoTypeForString("TERRAIN_COAST")
@@ -3688,7 +3724,9 @@ def makeChannel(x,y):
     i = GetIndex(x,y)
     sm.plotMap[i] = mc.OCEAN
     return
+
 def expandLake(x,y,riversIntoLake,oceanMap):
+    print "expandLake(x,y,riversIntoLake,oceanMap)"
     class LakePlot :
         def __init__(self,x,y,altitude):
             self.x = x
@@ -3759,11 +3797,10 @@ def expandLake(x,y,riversIntoLake,oceanMap):
     return
             
 def addLakes():
-    print "Adding Lakes"
+    print "addLakes()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainCoast = gc.getInfoTypeForString("TERRAIN_COAST")
-#    PrintFlowMap()
     oceanMap = Areamap(mc.width,mc.height,True,True)
     oceanMap.defineAreas(isSmallWaterMatch)
 ##    oceanMap.PrintList(oceanMap.areaList)
@@ -3775,11 +3812,6 @@ def addLakes():
                 riversIntoLake = cleanUpLake(x,y)
                 plot = mmap.plot(x,y)
                 if len(riversIntoLake) > 0:
-##                    plot.setRiverID(-1)
-##                    plot.setNOfRiver(False,CardinalDirectionTypes.NO_CARDINALDIRECTION)
-##                    plot.setWOfRiver(False,CardinalDirectionTypes.NO_CARDINALDIRECTION)
-##                    #plot.setPlotType(PlotTypes.PLOT_OCEAN,True,True) setTerrain handles this already
-##                    plot.setTerrainType(terrainCoast,True,True)
                     expandLake(x,y,riversIntoLake,oceanMap)
                 else:
                     #no lake here, but in that case there should be no rivers either
@@ -3797,7 +3829,7 @@ def addLakes():
         
 def addFeatures():
     NiTextOut("Generating Features  ...")
-    print "Adding Features"
+    print "addFeatures()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     featureIce = gc.getInfoTypeForString("FEATURE_ICE")
@@ -3812,23 +3844,6 @@ def addFeatures():
     FORESTSNOWY = 2
     #Ice must be created later because it is overwritten by the addEurope
     #function that is not exposed to python.
-##    iceChance = 1.0
-##    for y in range(4):
-##        for x in range(mc.width):
-##            plot = mmap.plot(x,y)
-##            if plot != 0 and plot.isWater() == True and PRand.random() < iceChance:
-##                plot.setFeatureType(featureIce,0)
-##        iceChance *= .66
-##    iceChance = 1.0
-##    for y in range(mc.height - 1,mc.height - 5,-1):
-##        for x in range(mc.width):
-##            plot = mmap.plot(x,y)
-##            if plot != 0 and plot.isWater() == True and PRand.random() < iceChance:
-##                plot.setFeatureType(featureIce,0)
-##        iceChance *= .66
-    #Now plant forest or jungle
-##    PrintTempMap(tm,tm.tempMap)
-##    PrintRainMap(rm,rm.rainMap,False)
     ## R&R, ray, corrected maps to generate Savannah plains
     terrainSavannah = gc.getInfoTypeForString("TERRAIN_SAVANNAH")
     for y in range(mc.height):
@@ -3891,6 +3906,7 @@ def europeMatch(x,y):
     return False
 
 def isAllAdjacentPlotTerrainType(x, y, terrainType):
+    print "isAllAdjacentPlotTerrainType(x, y, terrainType)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     
@@ -3902,6 +3918,7 @@ def isAllAdjacentPlotTerrainType(x, y, terrainType):
     return True
 
 def isAnyAdjacentPlotTerrainType(x, y, terrainType):
+    print "isAnyAdjacentPlotTerrainType(x, y, terrainType)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     
@@ -3913,6 +3930,7 @@ def isAnyAdjacentPlotTerrainType(x, y, terrainType):
     return False
 
 def isAnyAdjacentPlotType(x, y, plotType):
+    print "isAnyAdjacentPlotType(x, y, plotType)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     
@@ -3925,7 +3943,7 @@ def isAnyAdjacentPlotType(x, y, plotType):
 
 def generateShallowCoast():
 
-    print "generating ShallowCoast ..."
+    print "generateShallowCoast()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainCoast = gc.getInfoTypeForString("TERRAIN_COAST")
@@ -3948,7 +3966,7 @@ def generateShallowCoast():
 
 def generateShrubland():
     
-    print "generating shrubland ..."
+    print "generateShrubland()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainShrubland = gc.getInfoTypeForString("TERRAIN_SHRUBLAND")
@@ -3970,7 +3988,7 @@ def generateShrubland():
 
 def generateTaiga():
     
-    print "generating taiga ..."
+    print "generateTaiga()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainTaiga = gc.getInfoTypeForString("TERRAIN_TAIGA")
@@ -3992,6 +4010,7 @@ def generateTaiga():
                             plot.setTerrainType(terrainTaiga, True, True)               
 
 def generateRockSteppes():
+    print "generateRockSteppes()"
 
     gc = CyGlobalContext()
     mmap = gc.getMap()
@@ -4025,6 +4044,7 @@ def generateRockSteppes():
                                 plot.setTerrainType(terrainRockSteppes, True, True)               
 
 def generateWetland():
+    print "generateWetland()"
 
     gc = CyGlobalContext()
     mmap = gc.getMap()
@@ -4064,6 +4084,7 @@ def generateWetland():
                                 plot.setTerrainType(terrainWetland, True, True)                    
                         
 def afterGeneration():
+    print "afterGeneration()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     em.initialize()
@@ -4137,6 +4158,7 @@ def afterGeneration():
     printRiverMap()
     
 def createIce():
+    print "createIce()"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     featureIce = gc.getInfoTypeForString("FEATURE_ICE")
@@ -4162,28 +4184,3 @@ def createIce():
     
     # TAC - Map scripts - koma13 - END
 
-##mc.initialize()
-##PRand.seed()
-##hm.performTectonics()
-##hm.generateHeightMap()
-##hm.combineMaps()
-##hm.calculateSeaLevel()
-##hm.printHeightMap()
-##hm.fillInLakes()
-##hm.addWaterBands()
-##hm.printHeightMap()
-##cm.createClimateMaps()
-##sm.initialize()
-##rm.generateRiverMap()
-##hm.printHeightMap()
-##sm.printHeightMap()
-##sm.printPlotMap()
-##sm.printTerrainMap()
-##rm.printFlowMap()
-##rm.printRiverMap()
-##rm.printRiverAndTerrainAlign()
-
-##sm.printHeightMap()
-##cm.printTempMap(cm.summerTempsMap)
-##cm.printTempMap(cm.winterTempsMap)
-##cm.printTempMap(cm.averageTempMap)
