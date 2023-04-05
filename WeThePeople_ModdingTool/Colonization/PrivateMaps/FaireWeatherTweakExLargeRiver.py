@@ -577,7 +577,7 @@ def NormalizeMap(fMap,width,height):
     return
 
 def ShrinkMap(largeMap,lWidth,lHeight,sWidth,sHeight):
-    print "ShrinkMap(largeMap,lWidth,lHeight,sWidth,sHeight)"
+#    print "ShrinkMap(largeMap,lWidth,lHeight,sWidth,sHeight)"
     smallMap = array('d')
     yScale = float(lHeight)/float(sHeight)
     xScale = float(lWidth)/float(sWidth)
@@ -744,7 +744,7 @@ def GetXYFromDirection(x,y,direction):
 ##than or less than the desired percent of a whole map within a given tolerance. Map values
 ##should be between 0 and 1.
 def FindValueFromPercent(mmap,width,height,percent,tolerance,greaterThan):
-    print "FindValueFromPercent(mmap,width,height,percent,tolerance,greaterThan)"
+#    print "FindValueFromPercent(mmap,width,height,percent,tolerance,greaterThan)"
     inTolerance = False
     #to speed things up a little, lets take some time to find the middle value
     #in the dataset and use that to begin our search
@@ -840,7 +840,7 @@ class HeightMap :
         return
 
     def isPlotOnMargin(self,x,y):
-        print "isPlotOnMargin(self,x,y)"
+#        print "isPlotOnMargin(self,x,y)"
         #first check top and bottom
         if mc.WrapY == False: #no margin needed when wrapping
             if y < (mc.hmMaxGrain * mc.hmGrainMargin):
@@ -1259,7 +1259,7 @@ class HeightMap :
         return altitude
     
     def isSeedBlocked(self,plateList,seedX,seedY):
-        print "isSeedBlocked(self,plateList,seedX,seedY)"
+#        print "isSeedBlocked(self,plateList,seedX,seedY)"
         for plate in plateList:
             if seedX > plate.seedX - mc.minSeedRange and seedX < plate.seedX + mc.minSeedRange:
                 if seedY > plate.seedY - mc.minSeedRange and seedY < plate.seedY + mc.minSeedRange:
@@ -1568,7 +1568,7 @@ class ClimateMap :
         
                 
     def dropRain(self,plotList, tempMap, bGeostrophic, windZones):
-        print "dropRain(self,plotList, tempMap, bGeostrophic, windZones)"
+#        print "dropRain(self,plotList, tempMap, bGeostrophic, windZones)"
         countRemaining = len(plotList)
         bDebug = False
         for plot in plotList:
@@ -1797,7 +1797,7 @@ class WindZones :
         return
 
     def GetYFromZone(self,zone,bTop):
-        print "GetYFromZone(self,zone,bTop)"
+#        print "GetYFromZone(self,zone,bTop)"
         if bTop:
             for y in range(mc.hmHeight - 1,-1,-1):
                 if zone == self.GetZone(y):
@@ -2225,7 +2225,7 @@ class Areamap :
         return
 
     def defineAreas(self,matchFunction):
-        print "defineAreas(self,matchFunction)"
+#        print "defineAreas(self,matchFunction)"
         #coastIsLand = True means that we are trying to find continents that
         #are not connected by coasts to the main landmasses, allowing us to
         #find continents suitable as a 'New World'. Otherwise, we
@@ -2983,7 +2983,7 @@ def getWrapY():
     return False
     
 def getNumCustomMapOptions():
-    print "getNumCustomMapOptions()"
+#    print "getNumCustomMapOptions()"
     """
     Number of different user-defined options for this map
     Return an integer
@@ -3018,7 +3018,7 @@ def getCustomMapOptionName(argsList):
     return u""
     
 def getNumCustomMapOptionValues(argsList):
-    print "getNumCustomMapOptionValues(argsList)"
+#    print "getNumCustomMapOptionValues(argsList)"
     """
     Number of different choices for a particular setting
     argsList[0] is Option ID (int)
@@ -3043,7 +3043,7 @@ def getNumCustomMapOptionValues(argsList):
     return 0
     
 def getCustomMapOptionDescAt(argsList):
-    print "getCustomMapOptionDescAt(argsList)"
+#    print "getCustomMapOptionDescAt(argsList)"
     """
     Returns name of value of option at specified row
     argsList[0] is Option ID (int)
@@ -3144,7 +3144,7 @@ def getCustomMapOptionDescAt(argsList):
     return u""
     
 def getCustomMapOptionDefault(argsList):
-    print "getCustomMapOptionDefault(argsList)"
+#    print "getCustomMapOptionDefault(argsList)"
     """
     Returns default value of specified option
     argsList[0] is Option ID (int)
@@ -3173,7 +3173,7 @@ def getCustomMapOptionDefault(argsList):
     return 0
     
 def isRandomCustomMapOption(argsList):
-    print "isRandomCustomMapOption(argsList)"
+#    print "isRandomCustomMapOption(argsList)"
     """
     Returns a flag indicating whether a random option should be provided
     argsList[0] is Option ID (int)
@@ -3220,14 +3220,14 @@ def isAdvancedMap():
     """
     return 0
 def isClimateMap():
-    print "isClimateMap()"
+#    print "isClimateMap()"
     """
     Uses the Climate options
     """
     return 0
     
 def isSeaLevelMap():
-    print "isSeaLevelMap()"
+#    print "isSeaLevelMap()"
     """
     Uses the Sea Level options
     """
@@ -3507,7 +3507,7 @@ removed. This function also returns a list of riverID's that flow into the
 lake.
 '''
 def cleanUpLake(x,y):
-    print "cleanUpLake(x,y)"
+#    print "cleanUpLake(x,y)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     riversIntoLake = list()
@@ -3572,7 +3572,7 @@ added after a river were causing graphical glitches and incorrect river rules
 due to not updating the river crossings.
 '''
 def replaceRivers(x,y):
-    print "replaceRivers(x,y)"
+#    print "replaceRivers(x,y)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     plot = mmap.plot(x,y+1)#North
@@ -3714,7 +3714,7 @@ def makeHarbor(x,y,oceanMap):
     return
 
 def makeChannel(x,y):
-    print "makeChannel(x,y)"
+#    print "makeChannel(x,y)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     terrainCoast = gc.getInfoTypeForString("TERRAIN_COAST")
@@ -3730,7 +3730,7 @@ def makeChannel(x,y):
     return
 
 def expandLake(x,y,riversIntoLake,oceanMap):
-    print "expandLake(x,y,riversIntoLake,oceanMap)"
+#    print "expandLake(x,y,riversIntoLake,oceanMap)"
     class LakePlot :
         def __init__(self,x,y,altitude):
             self.x = x
@@ -3910,7 +3910,7 @@ def europeMatch(x,y):
     return False
 
 def isAllAdjacentPlotTerrainType(x, y, terrainType):
-    print "isAllAdjacentPlotTerrainType(x, y, terrainType)"
+#    print "isAllAdjacentPlotTerrainType(x, y, terrainType)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     
@@ -3934,7 +3934,7 @@ def isAnyAdjacentPlotTerrainType(x, y, terrainType):
     return False
 
 def isAnyAdjacentPlotType(x, y, plotType):
-    print "isAnyAdjacentPlotType(x, y, plotType)"
+#    print "isAnyAdjacentPlotType(x, y, plotType)"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     
