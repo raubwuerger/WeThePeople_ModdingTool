@@ -487,7 +487,7 @@ PRand = PythonRandom()
 ################################################################################
 #This function converts x and y to an index.
 def GetIndex(x,y):
-    print "GetIndex(x,y)"
+#    print "GetIndex(x,y)"
     #Check X for wrap
     if mc.WrapX == True:
         xx = x % mc.width
@@ -507,7 +507,7 @@ def GetIndex(x,y):
     return i
 
 def GetHmIndex(x,y):
-    print "GetHmIndex(x,y)"
+#    print "GetHmIndex(x,y)"
     #Check X for wrap
     if mc.WrapX == True:
         xx = x % mc.hmWidth
@@ -528,7 +528,7 @@ def GetHmIndex(x,y):
 
 #Handles arbitrary size
 def GetIndexGeneral(x,y,width,height):
-    print "GetIndexGeneral(x,y,width,height)"
+#    print "GetIndexGeneral(x,y,width,height)"
     #Check X for wrap
     if mc.WrapX == True:
         xx = x % width
@@ -715,7 +715,7 @@ def GetOppositeDirection(direction):
     return opposite
 
 def GetXYFromDirection(x,y,direction):
-    print "GetXYFromDirection(x,y,direction)"
+#    print "GetXYFromDirection(x,y,direction)"
     xx = x
     yy = y
     if direction == mc.N:
@@ -2459,7 +2459,7 @@ class Areamap :
         return nID
             
     def getIndex(self,x,y):
-        print "()"
+#        print "getIndex(self,x,y)"
         #Check X for wrap
         if mc.WrapX == True:
             xx = x % self.mapWidth
