@@ -441,7 +441,7 @@ class PythonRandom :
             # Python 'long' has unlimited precision, while the random generator
             # has 53 bits of precision, so I'm using a 53 bit integer to seed the map!
             seed() #Start with system time
-            seedValue = 3645298652265720
+            seedValue = 4645253112049907
             seed(seedValue)
             print "Random seed (Using Python rands) for this map is %(s)20d" % {"s":seedValue}
             
@@ -2860,16 +2860,24 @@ class RiverMap :
         if direction == self.SE:
             return x,y 
         raise ValueError,"rxFromPlot using bad direction input"
-    
+### Point 1    
     def printRiverMap(self):
-        print "printRiverMap(self)"
+        print "printRiverMap(self) - jha"
         wz = WindZones(mc.hmHeight,80,-80)
         for y in range(mc.hmHeight - 1,-1,-1):
             lineString = ""
             for x in range(mc.width):
                 mapLoc = self.riverMap[GetIndex(x,y)]
                 if mapLoc == self.O:
-                    lineString += '.'
+                    plotLoc = sm.plotMap[GetIndex(x,y)]
+                    if plotLoc == mc.PEAK:
+                        lineString += '_'
+                    elif plotLoc == mc.HILLS:
+                        lineString += '_'
+                    elif plotLoc == mc.LAND:
+                        lineString += '_'
+                    else:
+                        lineString += '.'
                 elif mapLoc == self.L:
                     lineString += 'L'
                 elif mapLoc == self.N:
@@ -3437,8 +3445,9 @@ def placeRiversInPlot(x,y):
             print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
             plot.setNOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_WEST)
 
+### Point 2
 def printRiverMap():
-    print "printRiverMap()"
+    print "printRiverMap() - jha"
     gc = CyGlobalContext()
     mmap = gc.getMap()
     for y in range(mc.height - 1,-1,-1):
@@ -3451,7 +3460,15 @@ def printRiverMap():
                 else:
                     lineString += 'i'
             else:
-                lineString += '.'
+                plotLoc = sm.plotMap[GetIndex(x,y)]
+                if plotLoc == mc.PEAK:
+                    lineString += '_'
+                elif plotLoc == mc.HILLS:
+                    lineString += '_'
+                elif plotLoc == mc.LAND:
+                    lineString += '_'
+                else:
+                    lineString += '.'
         print lineString
     lineString = " "
     print lineString
