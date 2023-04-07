@@ -2919,7 +2919,7 @@ class RiverMap :
     
     def printRiverAndTerrainAlign(self):
         print "printRiverAndTerrainAlign(self)"
-        for y in range(mc.getGridHeight() - 1,-1,-1):
+        for y in range(mc.height - 1,-1,-1):
             lineString1 = ""
             lineString2 = ""
             for x in range(mc.width):
@@ -3370,7 +3370,7 @@ def addRivers():
         for x in range(mc.width):
             placeRiversInPlot(x,y)
 
-##    rm.printRiverAndTerrainAlign()
+    rm.printRiverAndTerrainAlign()
             
     #peaks and rivers don't always mix well graphically, so lets eliminate
     #these potential glitches. Basically if there are adjacent peaks on both
@@ -3425,24 +3425,24 @@ def placeRiversInPlot(x,y):
     ii = GetIndex(xx,yy)
     if ii != -1:
         if rm.riverMap[ii] == rm.S:
-            print "placed river in - WO - plot(x,y) %d,%d" % (x,y)
+#            print "placed river in - WO - plot(x,y) %d,%d" % (x,y)
             plot.setWOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_SOUTH)
     #SW
     xx,yy = rm.rxFromPlot(x,y,rm.SW)
     ii = GetIndex(xx,yy)
     if ii != -1:
         if rm.riverMap[ii] == rm.E:
-            print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
+ #           print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
             plot.setNOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_EAST)
     #SE
     xx,yy = rm.rxFromPlot(x,y,rm.SE)
     ii = GetIndex(xx,yy)
     if ii != -1:
         if rm.riverMap[ii] == rm.N:
-            print "placed river in - WO - plot(x,y) %d,%d" % (x,y)
+  #          print "placed river in - WO - plot(x,y) %d,%d" % (x,y)
             plot.setWOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_NORTH)
         elif rm.riverMap[ii] == rm.W:
-            print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
+   #         print "placed river in - NO - plot(x,y) %d,%d" % (x,y)
             plot.setNOfRiver(True,CardinalDirectionTypes.CARDINALDIRECTION_WEST)
 
 ### Point 2
@@ -3478,8 +3478,8 @@ def generateLargeRiver():
     gc = CyGlobalContext()
     mmap = gc.getMap()
 
-    terrainRiver = gc.getInfoTypeForString("TERRAIN_RIVER")
-    print "River terrain id: %s" % (terrainRiver)
+    terrainDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
+    print "River terrain id: %s" % (terrainDesert)
 
     terrainLargeRiver = gc.getInfoTypeForString("TERRAIN_LARGE_RIVER")
     print "LargeRiver terrain id: %s" % (terrainLargeRiver)
@@ -3487,35 +3487,20 @@ def generateLargeRiver():
     terrainCoast = gc.getInfoTypeForString("TERRAIN_COAST")
     print "Coast terrain id: %s" % (terrainCoast)
 
-    terrainDesert = gc.getInfoTypeForString("TERRAIN_DESERT")
-    print "Desert terrain id: %s" % (terrainDesert)
+    terrainOcean = gc.getInfoTypeForString("TERRAIN_OCEAN")
 
-    terrainPeak = gc.getInfoTypeForString("TERRAIN_PEAK")
-    print "Peak terrain id: %s" % (terrainPeak)
-    
-    inlandRiverTiles = 0
-    coastalRiverTiles = 0
 
-    for y in range(mc.height):
+    gc = CyGlobalContext()
+    mmap = gc.getMap()
+    for y in range(mc.height - 1,-1,-1):
         for x in range(mc.width):
             plot = mmap.plot(x, y)
-#            print "Analyzing plot %d,%d" % (plot.getX(),plot.getY())
-#            print "Plot is terrain type: %s" % (plot.getTerrainType())
-#            print "Plot is isRiverSide: %s" % (plot.isRiverSide())
-#            print "Plot is isRiver: %s" % (plot.isRiver())
             if plot.isRiver() == True:
-                print "Found river at plot %d,%d" % (plot.getX(),plot.getY())
                 if plot.isCoastalLand() == True:
-                    coastalRiverTiles += 1
-                    print "Plot is coastal"
-#                    plot.setTerrainType(terrainPeak, True, True)
+                    plot.setTerrainType(terrainOcean,True,True)
                 else:
-                    print "Plot is inland"
-                    inlandRiverTiles += 1
-#                    plot.setTerrainType(terrainDesert, True, True)
+                    plot.setTerrainType(terrainOcean,True,True)
 
-    print "InlandRiverTiles: %d" % (inlandRiverTiles)
-    print "CoastalRiverTiles: %d" % (coastalRiverTiles)
 
 '''
 This function examines a lake area and removes ugly surrounding rivers. Any
@@ -4166,9 +4151,9 @@ def afterGeneration():
                 else:
                     plot.setEurope(europeEast)
         
+    generateLargeRiver()
     createIce()
     generateShallowCoast()
-    generateLargeRiver()
     generateShrubland()
     generateTaiga()
     generateRockSteppes()
