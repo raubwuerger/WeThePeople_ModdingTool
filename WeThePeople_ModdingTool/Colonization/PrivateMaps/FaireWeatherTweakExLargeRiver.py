@@ -441,7 +441,7 @@ class PythonRandom :
             # Python 'long' has unlimited precision, while the random generator
             # has 53 bits of precision, so I'm using a 53 bit integer to seed the map!
             seed() #Start with system time
-            seedValue = 4645253112049907
+            seedValue = 3
             seed(seedValue)
             print "Random seed (Using Python rands) for this map is %(s)20d" % {"s":seedValue}
             
